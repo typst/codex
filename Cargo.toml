@@ -1,0 +1,11 @@
+[package]
+name = "codex"
+version = "0.1.0"
+authors = ["The Typst Project Developers"]
+edition = "2021"
+description = "Human-friendly notation for Unicode symbols."
+repository = "https://github.com/typst/codex"
+readme = "README.md"
+license = "Apache-2.0"
+categories = ["encoding", "text-processing"]
+keywords = ["unicode", "symbols"]
