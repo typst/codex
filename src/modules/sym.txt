@@ -1026,3 +1026,11 @@ Im ℑ
 dotless
   .i ı
   .j ȷ
+
+die
+  .six ⚅
+  .five ⚄
+  .four ⚃
+  .three ⚂
+  .two ⚁
+  .one ⚀
