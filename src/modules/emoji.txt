@@ -1347,7 +1347,6 @@ train 🚆
   .suspend 🚟
   .tram 🚊
   .tram.car 🚋
-transgender ⚧
 tray
   .inbox 📥
   .mail 📨

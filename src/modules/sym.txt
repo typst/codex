@@ -1026,3 +1026,18 @@ Im ℑ
 dotless
   .i ı
   .j ȷ
+
+gender {
+  female ♀
+    .double ⚢
+    .male ⚤
+  intersex ⚥
+  male ♂
+    .double ⚣
+    .female ⚤
+    .stroke ⚦
+    .stroke.t ⚨
+    .stroke.r ⚩
+  neuter ⚲
+  trans ⚧
+}
