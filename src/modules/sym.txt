@@ -502,6 +502,8 @@ miny ⧿
 // Number theory.
 divides ∣
   .not ∤
+  .not.rev ⫮
+  .struck ⟊
 
 // Algebra.
 wreath ≀
