@@ -86,8 +86,8 @@ fn tokenize(line: &str) -> StrResult<Line> {
         return Ok(Line::Blank);
     }
 
-    let (head, tail) = match line.split_once(' ') {
-        Some((a, b)) => (a, Some(b)),
+    let (head, tail) = match line.split_once(char::is_whitespace) {
+        Some((a, b)) => (a, Some(b.trim_start())),
         None => (line, None),
     };
 
@@ -121,10 +121,29 @@ fn validate_ident(string: &str) -> StrResult<()> {
 /// Extracts either a single char or parses a U+XXXX escape.
 fn decode_char(text: &str) -> StrResult<char> {
     if let Some(hex) = text.strip_prefix("U+") {
-        u32::from_str_radix(hex, 16)
+        let (hex, name) = match hex.split_once(char::is_whitespace) {
+            Some((hex, name)) => (hex, Some(name.trim_start())),
+            None => (hex, None),
+        };
+
+        let ch = u32::from_str_radix(hex, 16)
             .ok()
-            .and_then(|n| char::try_from(n).ok())
-            .ok_or_else(|| format!("invalid unicode escape {text:?}"))
+            .and_then(|n| char::from_u32(n))
+            .ok_or_else(|| format!("invalid unicode escape {hex:?}"))?;
+
+        #[allow(unused_variables)]
+        if let Some(name) = name {
+            #[cfg(feature = "unicode_names2")]
+            if unicode_names2::character(name) != Some(ch) {
+                return Err(format!(
+                    "Incorrect name supplied for character U+{hex}: '{name}'{}",
+                    unicode_names2::name(ch)
+                        .map_or("".to_string(), |name| format!(" (expected {name})"))
+                ));
+            }
+        }
+
+        Ok(ch)
     } else {
         let mut chars = text.chars();
         match (chars.next(), chars.next()) {
