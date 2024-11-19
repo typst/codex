@@ -524,6 +524,9 @@ perp ⟂
 
 // Miscellaneous Technical.
 diameter ⌀
+interleave ⫴
+  .big ⫼
+  .struck ⫵
 join ⨝
   .r ⟖
   .l ⟕
