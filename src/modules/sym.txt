@@ -1031,3 +1031,12 @@ Im ℑ
 dotless
   .i ı
   .j ȷ
+
+// Miscellany.
+die
+  .six ⚅
+  .five ⚄
+  .four ⚃
+  .three ⚂
+  .two ⚁
+  .one ⚀
