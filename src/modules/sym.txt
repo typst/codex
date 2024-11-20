@@ -1040,3 +1040,10 @@ die
   .three ⚂
   .two ⚁
   .one ⚀
+error
+  .square.stroked ⧮
+  .square.filled ⧯
+  .diamond.stroked ⧰
+  .diamond.filled ⧱
+  .circle.stroked ⧲
+  .circle.filled ⧳
