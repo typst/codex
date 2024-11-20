@@ -131,7 +131,7 @@ fn decode_char(text: &str) -> StrResult<char> {
             .and_then(|n| char::from_u32(n))
             .ok_or_else(|| format!("invalid unicode escape {hex:?}"))?;
 
-        #[allow(unused_variables)]
+        #[cfg_attr(not(feature = "unicode_names2"), expect(unused_variables))]
         if let Some(name) = name {
             #[cfg(feature = "unicode_names2")]
             if unicode_names2::character(name) != Some(ch) {
