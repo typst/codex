@@ -41,6 +41,26 @@ pub enum Symbol {
 
 /// A module that contains the other top-level modules.
 pub const ROOT: Module =
-    Module(&[("sym", Def::Module(SYM)), ("emoji", Def::Module(EMOJI))]);
+    Module(&[("emoji", Def::Module(EMOJI)), ("sym", Def::Module(SYM))]);
 
 include!(concat!(env!("OUT_DIR"), "/out.rs"));
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn all_modules_sorted() {
+        fn assert_sorted_recursively(root: Module) {
+            assert!(root.0.is_sorted_by_key(|(k, _)| k));
+
+            for (_, def) in root.iter() {
+                if let Def::Module(module) = def {
+                    assert_sorted_recursively(module)
+                }
+            }
+        }
+
+        assert_sorted_recursively(ROOT);
+    }
+}
