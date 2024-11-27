@@ -1040,3 +1040,18 @@ die
   .three ⚂
   .two ⚁
   .one ⚀
+
+gender {
+  female ♀
+    .double ⚢
+    .male ⚤
+  intersex ⚥
+  male ♂
+    .double ⚣
+    .female ⚤
+    .stroke ⚦
+    .stroke.t ⚨
+    .stroke.r ⚩
+  neuter ⚲
+  trans ⚧
+}
