@@ -502,6 +502,8 @@ miny ⧿
 // Number theory.
 divides ∣
   .not ∤
+  .not.rev ⫮
+  .struck ⟊
 
 // Algebra.
 wreath ≀
@@ -522,6 +524,9 @@ perp ⟂
 
 // Miscellaneous Technical.
 diameter ⌀
+interleave ⫴
+  .big ⫼
+  .struck ⫵
 join ⨝
   .r ⟖
   .l ⟕
@@ -1026,6 +1031,15 @@ Im ℑ
 dotless
   .i ı
   .j ȷ
+
+// Miscellany.
+die
+  .six ⚅
+  .five ⚄
+  .four ⚃
+  .three ⚂
+  .two ⚁
+  .one ⚀
 
 gender {
   female ♀
