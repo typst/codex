@@ -361,6 +361,10 @@ succ ≻
   .tilde ≿
 equiv ≡
   .not ≢
+smt ⪪
+  .eq ⪬
+lat ⪫
+  .eq ⪭
 prop ∝
 original ⊶
 image ⊷
