@@ -260,6 +260,9 @@ eq =
   .star ≛
   .circle ⊜
   .colon ≕
+  .dots ≑
+  .dots.down ≒
+  .dots.up ≓
   .def ≝
   .delta ≜
   .equi ≚
