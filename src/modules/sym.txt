@@ -962,6 +962,7 @@ Lambda Λ
 Mu Μ
 Nu Ν
 Omega Ω
+  .inv ℧
 Omicron Ο
 Phi Φ
 Pi Π
@@ -1025,7 +1026,6 @@ Im ℑ
 dotless
   .i ı
   .j ȷ
-mho ℧
 
 // Miscellany.
 die
