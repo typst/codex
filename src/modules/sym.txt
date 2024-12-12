@@ -1,25 +1,25 @@
-// Control.
-wj U+2060
-zwj U+200D
-zwnj U+200C
-zws U+200B
-lrm U+200E
-rlm U+200F
+// Layout control.
+wj   U+2060  Word joiner
+zwj  U+200D  Zero width joiner
+zwnj U+200C  Zero width non-joiner
+zws  U+200B  Zero width space
+lrm  U+200E  Left-to-right mark
+rlm  U+200F  Right-to-left mark
 
 // Spaces.
-space U+20
-  .nobreak U+A0
-  .nobreak.narrow U+202F
-  .en U+2002
-  .quad U+2003
-  .third U+2004
-  .quarter U+2005
-  .sixth U+2006
-  .med U+205F
-  .fig U+2007
-  .punct U+2008
-  .thin U+2009
-  .hair U+200A
+space U+20        Space
+  .nobreak U+A0   No-break space
+  .nobreak.narrow U+202F Narrow no-break space
+  .en U+2002      En space
+  .quad U+2003    Em space
+  .third U+2004   Three-per-em space
+  .quarter U+2005 Four-per-em space
+  .sixth U+2006   Six-per-em space
+  .fig U+2007     Figure space
+  .punct U+2008   Punctuation space
+  .thin U+2009    Thin space
+  .hair U+200A    Hair space
+  .med U+205F     Medium mathematical space
 
 // Delimiters.
 paren
@@ -30,9 +30,9 @@ paren
   .t ⏜
   .b ⏝
 brace
-  .l U+7B
+  .l U+7B  Left curly bracket
   .l.double ⦃
-  .r U+7D
+  .r U+7D  Right curly bracket
   .r.double ⦄
   .t ⏞
   .b ⏟
@@ -130,14 +130,14 @@ dash
   .wave.double 〰
 dot
   .op ⋅
-  .basic U+2E
+  .basic U+2E  Full stop
   .c ·
   .circle ⊙
   .circle.big ⨀
   .square ⊡
   .double ¨
-  .triple U+20DB
-  .quad U+20DC
+  .triple U+20DB Combining three dots above 
+  .quad U+20DC   Combining four dots above
 excl !
   .double ‼
   .inv ¡
@@ -149,10 +149,10 @@ quest ?
 interrobang ‽
 hash #
 hyph ‐
-  .minus U+2D
-  .nobreak U+2011
+  .minus U+2D     Hyphen-minus
+  .nobreak U+2011 Non-breaking hyphen
+  .soft U+AD      Soft hyphen
   .point ‧
-  .soft U+AD
 numero №
 percent %
 permille ‰
