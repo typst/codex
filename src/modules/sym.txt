@@ -428,7 +428,7 @@ inter ∩
   .sq ⊓
   .sq.big ⨅
   .sq.double ⩎
-# Deprecation planned.
+// Deprecation planned.
 sect ∩
   .and ⩄
   .big ⋂
@@ -463,7 +463,7 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  # Deprecation planned.
+  // Deprecation planned.
   .sect ⨙
   .slash ⨏
   .square ⨖
