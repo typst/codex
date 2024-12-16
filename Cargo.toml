@@ -9,3 +9,7 @@ readme = "README.md"
 license = "Apache-2.0"
 categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
+
+[features]
+default = ["styling"]
+styling = []
