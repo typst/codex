@@ -2,6 +2,9 @@
 Human-friendly notation for Unicode symbols.
 */
 
+#[cfg(feature = "styling")]
+pub mod styling;
+
 /// A module of definitions.
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
 pub struct Module(&'static [(&'static str, Def)]);
