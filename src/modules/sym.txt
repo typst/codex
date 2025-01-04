@@ -712,6 +712,16 @@ star
   .op ⋆
   .stroked ☆
   .filled ★
+wedge ∧
+  .big ⋀
+  .curly ⋏
+  .dot ⟑
+  .double ⩓
+vee ∨
+  .big ⋁
+  .curly ⋎
+  .dot ⟇
+  .double ⩔
 
 // Arrows, harpoons, and tacks.
 arrow
