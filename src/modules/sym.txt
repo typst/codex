@@ -1025,8 +1025,7 @@ ZZ ℤ
 
 // Miscellaneous letter-likes.
 ell ℓ
-planck ℎ
-  .reduce ℏ
+planck ħ
 angstrom Å
 kelvin K
 Re ℜ
