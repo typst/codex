@@ -423,6 +423,7 @@ union ∪
   .sq ⊔
   .sq.big ⨆
   .sq.double ⩏
+  .vee ⩅
 sect ∩
   .and ⩄
   .big ⋂
@@ -431,6 +432,7 @@ sect ∩
   .sq ⊓
   .sq.big ⨅
   .sq.double ⩎
+  .wedge ⩄
 
 // Calculus.
 infinity ∞
