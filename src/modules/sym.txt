@@ -1042,3 +1042,10 @@ die
   .three ⚂
   .two ⚁
   .one ⚀
+errorbar
+  .square.stroked ⧮
+  .square.filled ⧯
+  .diamond.stroked ⧰
+  .diamond.filled ⧱
+  .circle.stroked ⧲
+  .circle.filled ⧳
