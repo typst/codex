@@ -67,11 +67,11 @@ angle ∠
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
-  .l.double 《
+  .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
-  .r.double 》
+  .r.double ⟫
   .acute ⦟
   .arc ∡
   .arc.rev ⦛
@@ -539,8 +539,6 @@ join ⨝
   .l ⟕
   .l.r ⟗
 degree °
-  .c ℃
-  .f ℉
 smash ⨳
 
 // Currency.
@@ -938,8 +936,6 @@ kappa κ
 lambda λ
 mu μ
 nu ν
-ohm Ω
-  .inv ℧
 omega ω
 omicron ο
 phi φ
@@ -973,6 +969,7 @@ Lambda Λ
 Mu Μ
 Nu Ν
 Omega Ω
+  .inv ℧
 Omicron Ο
 Phi Φ
 Pi Π
@@ -1031,8 +1028,6 @@ ZZ ℤ
 ell ℓ
 planck ℎ
   .reduce ℏ
-angstrom Å
-kelvin K
 Re ℜ
 Im ℑ
 dotless
