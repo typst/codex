@@ -193,7 +193,7 @@ breve ˘
 caret ‸
 caron ˇ
 hat ^
-@diaer dot.double
+diaer @= dot.double
 grave `
 macron ¯
 quote
@@ -359,7 +359,7 @@ succ ≻
   .not ⊁
   .ntilde ⋩
   .tilde ≿
-@equiv eq.triple.*
+equiv @= eq.triple.*
 smt ⪪
   .eq ⪬
 lat ⪫
@@ -377,7 +377,7 @@ emptyset ∅
   .bar ⦱
   .circle ⦲
   .rev ⦰
-@nothing emptyset.*
+nothing @= emptyset.*
 without ∖
 complement ∁
 in ∈
@@ -435,10 +435,10 @@ infinity ∞
   .bar ⧞
   .incomplete ⧜
   .tie ⧝
-@oo infinity
+oo @= infinity
 partial ∂
 gradient ∇
-@nabla gradient.*
+nabla @= gradient.*
 sum ∑
   .integral ⨋
 product ∏
@@ -468,8 +468,8 @@ laplace ∆
 forall ∀
 exists ∃
   .not ∄
-@top tack.b
-@bot tack.t
+top @= tack.b
+bot @= tack.t
 not ¬
 and ∧
   .big ⋀
@@ -481,7 +481,7 @@ or ∨
   .curly ⋎
   .dot ⟇
   .double ⩔
-@xor plus.circle.*
+xor @= plus.circle.*
 models ⊧
 forces ⊩
   .not ⊮
@@ -490,8 +490,8 @@ because ∵
 qed ∎
 
 // Function and category theory.
-@compose circle.stroked.tiny
-@convolve ast.op
+compose @= circle.stroked.tiny
+convolve @= ast.op
 multimap ⊸
   .double ⧟
 
@@ -980,13 +980,13 @@ Zeta Ζ
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
-@alef aleph
+alef @= aleph
 beth ב
-@bet beth
+bet @= beth
 gimmel ג
-@gimel gimmel
+gimel @= gimmel
 daleth ד
-@dalet daleth
+dalet @= daleth
 shin ש
 
 // Double-struck.

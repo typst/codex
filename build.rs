@@ -105,9 +105,9 @@ fn tokenize(line: &str) -> StrResult<Line> {
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
         Line::Variant(rest, c)
-    } else if let Some(alias) = head.strip_prefix('@') {
+    } else if let Some(mut value) = tail.and_then(|tail| tail.strip_prefix("@= ")) {
+        let alias = head;
         validate_ident(alias)?;
-        let mut value = tail.ok_or("missing value")?;
         let mut deep = false;
         if let Some(v) = value.strip_suffix(".*") {
             deep = true;
