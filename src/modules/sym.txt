@@ -713,7 +713,51 @@ parallelogram
 star
   .op ⋆
   .stroked ☆
+  .stroked.small ⭒
+  .stroked.outlined ⚝
+  .stroked.shadowed ✰
+  .stroked.filled.l ⯪
+  .stroked.filled.r ⯫
   .filled ★
+  .filled.small ⭑
+  .filled.light 🟉
+  .filled.heavy 🟊
+  .filled.l ⯨
+  .filled.r ⯩
+  .filled.outlined ✭
+  .filled.outlined.heavy ✮
+  .pinwheel ✯
+  .three.filled 🟂
+  .three.filled.medium 🟁
+  .three.filled.light 🟀
+  .three.pinwheel 🟃
+  .four.filled 🟆
+  .four.filled.medium 🟅
+  .four.filled.light 🟄
+  .four.pinwheel 🟇
+  .four.pinwheel.rev 🟈
+  .penta ⛤
+  .penta.inv ⛧
+  .penta.laced.l ⛦
+  .penta.laced.r ⛥
+  .six.filled ✶
+  .six.filled.medium 🟋
+  .six.filled.heavy 🟌
+  .six.pinwheel 🟍
+  .six.dot 🔯
+  .six.david ✡
+  .eight.filled ✴
+  .eight.filled.medium 🟎
+  .eight.filled.heavy 🟏
+  .eight.filled.veryheavy 🟐
+  .eight.filled.rect ✷
+  .eight.filled.rect.heavy ✸
+  .eight.pinwheel ✵
+  .eight.pinwheel.heavy 🟑
+  .twelve ✹
+  .twelve.light 🟒
+  .twelve.heavy 🟓
+  .twelve.heavy.pinwheel 🟔
 
 // Arrows, harpoons, and tacks.
 arrow
