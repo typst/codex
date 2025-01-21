@@ -335,6 +335,7 @@ approx ≈
   .not ≉
 prec ≺
   .approx ⪷
+  .curly ⊰
   .curly.eq ≼
   .curly.eq.not ⋠
   .double ⪻
@@ -348,6 +349,7 @@ prec ≺
   .tilde ≾
 succ ≻
   .approx ⪸
+  .curly ⊱
   .curly.eq ≽
   .curly.eq.not ⋡
   .double ⪼
