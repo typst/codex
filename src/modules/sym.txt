@@ -538,6 +538,9 @@ join ⨝
   .r ⟖
   .l ⟕
   .l.r ⟗
+hourglass
+  .stroked ⧖
+  .filled ⧗
 degree °
 smash ⨳
 
