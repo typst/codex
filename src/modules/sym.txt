@@ -540,6 +540,12 @@ join ⨝
   .l.r ⟗
 degree °
 smash ⨳
+power
+  .standby ⏻
+  .on ⏽
+  .off ⭘
+  .on.off ⏼
+  .sleep ⏾
 
 // Currency.
 bitcoin ₿
