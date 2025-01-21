@@ -754,6 +754,7 @@ star
   .eight.filled.rect.heavy ✸
   .eight.pinwheel ✵
   .eight.pinwheel.heavy 🟑
+  .nine.stroked 🟙
   .twelve ✹
   .twelve.light 🟒
   .twelve.heavy 🟓
