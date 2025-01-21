@@ -118,6 +118,10 @@ colon :
 comma ,
 dagger †
   .double ‡
+  .triple ⹋
+  .l ⸶
+  .r ⸷
+  .inv ⸸
 dash
   .en –
   .em —
