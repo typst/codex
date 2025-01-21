@@ -254,6 +254,9 @@ times ×
   .square ⊠
   .triangle ⨻
 ratio ∶
+root √
+  .cube ∛
+  .fourth ∜
 
 // Relations.
 eq =
