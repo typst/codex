@@ -113,6 +113,8 @@ backslash \
 co ℅
 colon :
   .double ∷
+  .tri ⁝
+  .tri.op ⫶
   .eq ≔
   .double.eq ⩴
 comma ,
