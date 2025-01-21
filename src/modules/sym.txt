@@ -744,8 +744,8 @@ star
   .six.filled.medium 🟋
   .six.filled.heavy 🟌
   .six.pinwheel 🟍
-  .six.dot 🔯
   .six.david ✡
+  .six.david.dot 🔯
   .eight.filled ✴
   .eight.filled.medium 🟎
   .eight.filled.heavy 🟏
