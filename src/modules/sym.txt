@@ -497,7 +497,6 @@ because ∵
 qed ∎
 
 // Function and category theory.
-to →
 mapsto ↦
   .long ⟼
 compose ∘
