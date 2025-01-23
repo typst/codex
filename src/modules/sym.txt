@@ -503,6 +503,8 @@ because ∵
 qed ∎
 
 // Function and category theory.
+mapsto ↦
+  .long ⟼
 compose ∘
 convolve ∗
 multimap ⊸
