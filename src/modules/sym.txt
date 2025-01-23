@@ -67,11 +67,11 @@ angle ∠
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
-  .l.double 《
+  .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
-  .r.double 》
+  .r.double ⟫
   .acute ⦟
   .arc ∡
   .arc.rev ⦛
@@ -113,11 +113,17 @@ backslash \
 co ℅
 colon :
   .double ∷
+  .tri ⁝
+  .tri.op ⫶
   .eq ≔
   .double.eq ⩴
 comma ,
 dagger †
   .double ‡
+  .triple ⹋
+  .l ⸶
+  .r ⸷
+  .inv ⸸
 dash
   .en –
   .em —
@@ -361,6 +367,10 @@ succ ≻
   .tilde ≿
 equiv ≡
   .not ≢
+smt ⪪
+  .eq ⪬
+lat ⪫
+  .eq ⪭
 prop ∝
 original ⊶
 image ⊷
@@ -493,6 +503,8 @@ because ∵
 qed ∎
 
 // Function and category theory.
+mapsto ↦
+  .long ⟼
 compose ∘
 convolve ∗
 multimap ⊸
@@ -534,9 +546,10 @@ join ⨝
   .r ⟖
   .l ⟕
   .l.r ⟗
+hourglass
+  .stroked ⧖
+  .filled ⧗
 degree °
-  .c ℃
-  .f ℉
 smash ⨳
 
 // Currency.
@@ -934,8 +947,6 @@ kappa κ
 lambda λ
 mu μ
 nu ν
-ohm Ω
-  .inv ℧
 omega ω
 omicron ο
 phi φ
@@ -969,6 +980,7 @@ Lambda Λ
 Mu Μ
 Nu Ν
 Omega Ω
+  .inv ℧
 Omicron Ο
 Phi Φ
 Pi Π
@@ -1026,8 +1038,6 @@ ZZ ℤ
 // Miscellaneous letter-likes.
 ell ℓ
 planck ħ
-angstrom Å
-kelvin K
 Re ℜ
 Im ℑ
 dotless
@@ -1042,3 +1052,10 @@ die
   .three ⚂
   .two ⚁
   .one ⚀
+errorbar
+  .square.stroked ⧮
+  .square.filled ⧯
+  .diamond.stroked ⧰
+  .diamond.filled ⧱
+  .circle.stroked ⧲
+  .circle.filled ⧳
