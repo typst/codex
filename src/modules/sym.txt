@@ -712,21 +712,25 @@ parallelogram
   .filled ▰
 star
   .op ⋆
-  .stroked ☆
-  .stroked.small ⭒
-  .stroked.outlined ⚝
-  .stroked.shadowed ✰
-  .stroked.filled.l ⯪
-  .stroked.filled.r ⯫
-  .filled ★
-  .filled.small ⭑
-  .filled.light 🟉
-  .filled.heavy 🟊
-  .filled.l ⯨
-  .filled.r ⯩
-  .filled.outlined ✭
-  .filled.outlined.heavy ✮
-  .pinwheel ✯
+  .five.stroked ☆
+  .five.stroked.small ⭒
+  .five.stroked.outlined ⚝
+  .five.stroked.shadowed ✰
+  .five.stroked.filled.l ⯪
+  .five.stroked.filled.r ⯫
+  .five.filled ★
+  .five.filled.small ⭑
+  .five.filled.light 🟉
+  .five.filled.heavy 🟊
+  .five.filled.l ⯨
+  .five.filled.r ⯩
+  .five.filled.outlined ✭
+  .five.filled.outlined.heavy ✮
+  .five.pinwheel ✯
+  .five.crossing ⛤
+  .five.crossing.inv ⛧
+  .five.crossing.l ⛦
+  .five.crossing.r ⛥
   .three.filled 🟂
   .three.filled.medium 🟁
   .three.filled.light 🟀
@@ -736,16 +740,12 @@ star
   .four.filled.light 🟄
   .four.pinwheel 🟇
   .four.pinwheel.rev 🟈
-  .penta ⛤
-  .penta.inv ⛧
-  .penta.laced.l ⛦
-  .penta.laced.r ⛥
   .six.filled ✶
   .six.filled.medium 🟋
   .six.filled.heavy 🟌
   .six.pinwheel 🟍
-  .six.david ✡
-  .six.david.dot 🔯
+  .six.crossing ✡
+  .six.crossing.dot 🔯
   .eight.filled ✴
   .eight.filled.medium 🟎
   .eight.filled.heavy 🟏
