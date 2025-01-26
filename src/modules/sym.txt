@@ -746,10 +746,10 @@ star
   .six.pinwheel 🟍
   .six.crossing ✡
   .six.crossing.dot 🔯
-  .eight.filled ✴
-  .eight.filled.medium 🟎
-  .eight.filled.heavy 🟏
-  .eight.filled.veryheavy 🟐
+  .eight.filled.light ✴
+  .eight.filled 🟎
+  .eight.filled.medium 🟏
+  .eight.filled.heavy 🟐
   .eight.filled.rect ✷
   .eight.filled.rect.heavy ✸
   .eight.pinwheel ✵
