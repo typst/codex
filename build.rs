@@ -27,7 +27,7 @@ enum Line<'a> {
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
+    Variant(ModifierSet<&'a str>, char),
 }
 
 fn main() {
@@ -97,7 +97,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        Line::Variant(ModifierSet(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
@@ -154,7 +154,7 @@ fn parse<'a>(
 
                 let symbol = if variants.len() > 0 {
                     if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                        variants.insert(0, (ModifierSet::empty(), c));
                     }
                     Symbol::Multi(variants)
                 } else {
