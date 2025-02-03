@@ -4,32 +4,19 @@ use std::path::Path;
 
 type StrResult<T> = Result<T, String>;
 
-/// A module of definitions.
-struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
+include!("src/shared.rs");
+
+declare_types!{
+    <'a>
+    str = &'a str,
+    List = Vec<_>
+}
 
 impl<'a> Module<'a> {
     fn new(mut list: Vec<(&'a str, Binding<'a>)>) -> Self {
         list.sort_by_key(|&(name, _)| name);
         Self(list)
     }
-}
-
-/// A definition bound in a module, with metadata.
-struct Binding<'a> {
-    def: Def<'a>,
-    deprecation: Option<&'a str>,
-}
-
-/// A definition in a module.
-enum Def<'a> {
-    Symbol(Symbol<'a>),
-    Module(Module<'a>),
-}
-
-/// A symbol, either a leaf or with modifiers.
-enum Symbol<'a> {
-    Single(char),
-    Multi(Vec<(&'a str, char)>),
 }
 
 /// A single line during parsing.

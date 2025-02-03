@@ -2,9 +2,14 @@
 Human-friendly notation for Unicode symbols.
 */
 
-/// A module of definitions.
-#[derive(Debug, Copy, Clone)]
-pub struct Module(&'static [(&'static str, Binding)]);
+include!("shared.rs");
+
+type StaticSlice<T> = &'static [T];
+declare_types! {
+    derive(Debug, Copy, Clone),
+    str = &'static str,
+    List = StaticSlice<_>
+}
 
 impl Module {
     /// Try to get a bound definition in the module.
@@ -19,40 +24,6 @@ impl Module {
     pub fn iter(&self) -> impl Iterator<Item = (&'static str, Binding)> {
         self.0.iter().copied()
     }
-}
-
-/// A definition bound in a module, with metadata.
-#[derive(Debug, Copy, Clone)]
-pub struct Binding {
-    /// The bound definition.
-    pub def: Def,
-    /// A deprecation message for the definition, if it is deprecated.
-    pub deprecation: Option<&'static str>,
-}
-
-impl Binding {
-    /// Create a new bound definition.
-    pub const fn new(definition: Def) -> Self {
-        Self { def: definition, deprecation: None }
-    }
-}
-
-/// A definition in a module.
-#[derive(Debug, Copy, Clone)]
-pub enum Def {
-    /// A symbol, potentially with modifiers.
-    Symbol(Symbol),
-    /// A nested module.
-    Module(Module),
-}
-
-/// A symbol, either a leaf or with modifiers.
-#[derive(Debug, Copy, Clone)]
-pub enum Symbol {
-    /// A symbol without modifiers.
-    Single(char),
-    /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(&'static str, char)]),
 }
 
 /// A module that contains the other top-level modules.
