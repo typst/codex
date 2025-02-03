@@ -5,19 +5,19 @@ use std::path::Path;
 type StrResult<T> = Result<T, String>;
 
 /// A module of definitions.
-struct Module<'a>(Vec<(&'a str, Entry<'a>)>);
+struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
 
 impl<'a> Module<'a> {
-    fn new(mut list: Vec<(&'a str, Entry<'a>)>) -> Self {
+    fn new(mut list: Vec<(&'a str, Binding<'a>)>) -> Self {
         list.sort_by_key(|&(name, _)| name);
         Self(list)
     }
 }
 
-/// An entry in a module.
-struct Entry<'a> {
-    definition: Def<'a>,
-    deprecated: Option<&'a str>,
+/// A definition bound in a module, with metadata.
+struct Binding<'a> {
+    def: Def<'a>,
+    deprecation: Option<&'a str>,
 }
 
 /// A definition in a module.
@@ -146,18 +146,18 @@ fn decode_char(text: &str) -> StrResult<char> {
 /// Turns a stream of lines into a list of definitions.
 fn parse<'a>(
     p: &mut Peekable<impl Iterator<Item = StrResult<Line<'a>>>>,
-) -> StrResult<Vec<(&'a str, Entry<'a>)>> {
+) -> StrResult<Vec<(&'a str, Binding<'a>)>> {
     let mut defs = vec![];
-    let mut deprecated = None;
+    let mut deprecation = None;
     loop {
         match p.next().transpose()? {
             None | Some(Line::ModuleEnd) => {
-                if let Some(message) = deprecated {
+                if let Some(message) = deprecation {
                     return Err(format!("dangling `@deprecated: {}`", message));
                 }
                 break;
             }
-            Some(Line::Deprecated(message)) => deprecated = Some(message),
+            Some(Line::Deprecated(message)) => deprecation = Some(message),
             Some(Line::Symbol(name, c)) => {
                 let mut variants = vec![];
                 while let Some(Line::Variant(name, c)) = p.peek().cloned().transpose()? {
@@ -176,19 +176,19 @@ fn parse<'a>(
                     Symbol::Single(c)
                 };
 
-                defs.push((name, Entry { definition: Def::Symbol(symbol), deprecated }));
-                deprecated = None;
+                defs.push((name, Binding { def: Def::Symbol(symbol), deprecation }));
+                deprecation = None;
             }
             Some(Line::ModuleStart(name)) => {
                 let module_defs = parse(p)?;
                 defs.push((
                     name,
-                    Entry {
-                        definition: Def::Module(Module::new(module_defs)),
-                        deprecated,
+                    Binding {
+                        def: Def::Module(Module::new(module_defs)),
+                        deprecation,
                     },
                 ));
-                deprecated = None;
+                deprecation = None;
             }
             other => return Err(format!("expected definition, found {other:?}")),
         }
@@ -200,8 +200,8 @@ fn parse<'a>(
 fn encode(buf: &mut String, module: &Module) {
     buf.push_str("Module(&[");
     for (name, entry) in &module.0 {
-        write!(buf, "({name:?}, Entry {{ definition: ").unwrap();
-        match &entry.definition {
+        write!(buf, "({name:?}, Binding {{ def: ").unwrap();
+        match &entry.def {
             Def::Module(module) => {
                 buf.push_str("Def::Module(");
                 encode(buf, module);
@@ -216,7 +216,7 @@ fn encode(buf: &mut String, module: &Module) {
                 buf.push_str(")");
             }
         }
-        write!(buf, ", deprecated: {:?} }}),", entry.deprecated).unwrap();
+        write!(buf, ", deprecation: {:?} }}),", entry.deprecation).unwrap();
     }
     buf.push_str("])");
 }

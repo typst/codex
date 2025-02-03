@@ -4,11 +4,11 @@ Human-friendly notation for Unicode symbols.
 
 /// A module of definitions.
 #[derive(Debug, Copy, Clone)]
-pub struct Module(&'static [(&'static str, Entry)]);
+pub struct Module(&'static [(&'static str, Binding)]);
 
 impl Module {
-    /// Try to get a definition from the module.
-    pub fn get(&self, name: &str) -> Option<Entry> {
+    /// Try to get a bound definition in the module.
+    pub fn get(&self, name: &str) -> Option<Binding> {
         self.0
             .binary_search_by_key(&name, |(k, _)| k)
             .ok()
@@ -16,30 +16,24 @@ impl Module {
     }
 
     /// Iterate over the module's definition.
-    pub fn iter(&self) -> impl Iterator<Item = (&'static str, Entry)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&'static str, Binding)> {
         self.0.iter().copied()
     }
 }
 
-/// An entry in a module.
+/// A definition bound in a module, with metadata.
 #[derive(Debug, Copy, Clone)]
-pub struct Entry {
-    /// The definition associated with this entry.
-    pub definition: Def,
-    /// Indicates whether the entry is deprecated.
-    ///
-    /// If `Some(s)`, the entry is deprecated, with the deprecation message `s`.
-    /// Otherwise, the entry is not deprecated.
-    pub deprecated: Option<&'static str>,
+pub struct Binding {
+    /// The bound definition.
+    pub def: Def,
+    /// A deprecation message for the definition, if it is deprecated.
+    pub deprecation: Option<&'static str>,
 }
 
-impl Entry {
+impl Binding {
+    /// Create a new bound definition.
     pub const fn new(definition: Def) -> Self {
-        Self { definition, deprecated: None }
-    }
-
-    pub const fn new_deprecated(definition: Def, message: &'static str) -> Self {
-        Self { definition, deprecated: Some(message) }
+        Self { def: definition, deprecation: None }
     }
 }
 
@@ -63,8 +57,8 @@ pub enum Symbol {
 
 /// A module that contains the other top-level modules.
 pub const ROOT: Module = Module(&[
-    ("emoji", Entry::new(Def::Module(EMOJI))),
-    ("sym", Entry::new(Def::Module(SYM))),
+    ("emoji", Binding::new(Def::Module(EMOJI))),
+    ("sym", Binding::new(Def::Module(SYM))),
 ]);
 
 include!(concat!(env!("OUT_DIR"), "/out.rs"));
@@ -79,7 +73,7 @@ mod test {
             assert!(root.0.is_sorted_by_key(|(k, _)| k));
 
             for (_, entry) in root.iter() {
-                if let Def::Module(module) = entry.definition {
+                if let Def::Module(module) = entry.def {
                     assert_sorted_recursively(module)
                 }
             }
