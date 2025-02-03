@@ -433,6 +433,7 @@ union ∪
   .sq ⊔
   .sq.big ⨆
   .sq.double ⩏
+  .vee ⩅
 sect ∩
   .and ⩄
   .big ⋂
@@ -441,6 +442,7 @@ sect ∩
   .sq ⊓
   .sq.big ⨅
   .sq.double ⩎
+  .wedge ⩄
 
 // Calculus.
 infinity ∞
@@ -726,6 +728,16 @@ star
   .op ⋆
   .stroked ☆
   .filled ★
+wedge ∧
+  .big ⋀
+  .curly ⋏
+  .dot ⟑
+  .double ⩓
+vee ∨
+  .big ⋁
+  .curly ⋎
+  .dot ⟇
+  .double ⩔
 
 // Arrows, harpoons, and tacks.
 arrow
