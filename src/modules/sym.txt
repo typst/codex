@@ -477,7 +477,7 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  // Deprecation planned.
+  // Deprecated.
   .sect ⨙
   .slash ⨏
   .square ⨖
