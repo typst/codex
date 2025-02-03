@@ -149,7 +149,6 @@ fn parse<'a>(
                     p.next();
                 }
 
-                println!("{c:?}, {variants:?}, {:?}", p.peek());
                 let symbol = if variants.len() > 0 {
                     if let Some(c) = c {
                         variants.insert(0, ("", c));
