@@ -441,7 +441,7 @@ inter ∩
   .sq ⊓
   .sq.big ⨅
   .sq.double ⩎
-@deprecated: `sect` is deprecated and replaced with `inter`
+@deprecated: `sect` is deprecated, use `inter` instead
 sect ∩
   .and ⩄
   .big ⋂
