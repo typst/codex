@@ -3,12 +3,12 @@ Human-friendly notation for Unicode symbols.
 */
 
 /// A module of definitions.
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-pub struct Module(&'static [(&'static str, Def)]);
+#[derive(Debug, Copy, Clone)]
+pub struct Module(&'static [(&'static str, Binding)]);
 
 impl Module {
-    /// Try to get a definition from the module.
-    pub fn get(&self, name: &str) -> Option<Def> {
+    /// Try to get a bound definition in the module.
+    pub fn get(&self, name: &str) -> Option<Binding> {
         self.0
             .binary_search_by_key(&name, |(k, _)| k)
             .ok()
@@ -16,13 +16,29 @@ impl Module {
     }
 
     /// Iterate over the module's definition.
-    pub fn iter(&self) -> impl Iterator<Item = (&'static str, Def)> {
+    pub fn iter(&self) -> impl Iterator<Item = (&'static str, Binding)> {
         self.0.iter().copied()
     }
 }
 
+/// A definition bound in a module, with metadata.
+#[derive(Debug, Copy, Clone)]
+pub struct Binding {
+    /// The bound definition.
+    pub def: Def,
+    /// A deprecation message for the definition, if it is deprecated.
+    pub deprecation: Option<&'static str>,
+}
+
+impl Binding {
+    /// Create a new bound definition.
+    pub const fn new(definition: Def) -> Self {
+        Self { def: definition, deprecation: None }
+    }
+}
+
 /// A definition in a module.
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub enum Def {
     /// A symbol, potentially with modifiers.
     Symbol(Symbol),
@@ -31,7 +47,7 @@ pub enum Def {
 }
 
 /// A symbol, either a leaf or with modifiers.
-#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+#[derive(Debug, Copy, Clone)]
 pub enum Symbol {
     /// A symbol without modifiers.
     Single(char),
@@ -40,8 +56,10 @@ pub enum Symbol {
 }
 
 /// A module that contains the other top-level modules.
-pub const ROOT: Module =
-    Module(&[("emoji", Def::Module(EMOJI)), ("sym", Def::Module(SYM))]);
+pub const ROOT: Module = Module(&[
+    ("emoji", Binding::new(Def::Module(EMOJI))),
+    ("sym", Binding::new(Def::Module(SYM))),
+]);
 
 include!(concat!(env!("OUT_DIR"), "/out.rs"));
 
@@ -54,8 +72,8 @@ mod test {
         fn assert_sorted_recursively(root: Module) {
             assert!(root.0.is_sorted_by_key(|(k, _)| k));
 
-            for (_, def) in root.iter() {
-                if let Def::Module(module) = def {
+            for (_, entry) in root.iter() {
+                if let Def::Module(module) = entry.def {
                     assert_sorted_recursively(module)
                 }
             }
