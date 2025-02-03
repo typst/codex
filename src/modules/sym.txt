@@ -448,6 +448,7 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo ∞
+diff ∂
 partial ∂
 gradient ∇
 nabla ∇
