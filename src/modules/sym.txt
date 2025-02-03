@@ -113,11 +113,17 @@ backslash \
 co ℅
 colon :
   .double ∷
+  .tri ⁝
+  .tri.op ⫶
   .eq ≔
   .double.eq ⩴
 comma ,
 dagger †
   .double ‡
+  .triple ⹋
+  .l ⸶
+  .r ⸷
+  .inv ⸸
 dash
   .en –
   .em —
@@ -436,6 +442,7 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo @= infinity
+diff @= partial.*
 partial ∂
 gradient ∇
 nabla @= gradient.*
@@ -490,6 +497,7 @@ because ∵
 qed ∎
 
 // Function and category theory.
+mapsto @= arrow.r.bar.*
 compose @= circle.stroked.tiny
 convolve @= ast.op
 multimap ⊸
@@ -531,6 +539,9 @@ join ⨝
   .r ⟖
   .l ⟕
   .l.r ⟗
+hourglass
+  .stroked ⧖
+  .filled ⧗
 degree °
 smash ⨳
 
@@ -1035,3 +1046,10 @@ die
   .three ⚂
   .two ⚁
   .one ⚀
+errorbar
+  .square.stroked ⧮
+  .square.filled ⧯
+  .diamond.stroked ⧰
+  .diamond.filled ⧱
+  .circle.stroked ⧲
+  .circle.filled ⧳

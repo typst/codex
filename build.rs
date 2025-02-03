@@ -6,13 +6,19 @@ use std::path::Path;
 type StrResult<T> = Result<T, String>;
 
 /// A module of definitions.
-struct Module<'a>(Vec<(&'a str, Def<'a>)>);
+struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
 
 impl<'a> Module<'a> {
-    fn new(mut list: Vec<(&'a str, Def<'a>)>) -> Self {
+    fn new(mut list: Vec<(&'a str, Binding<'a>)>) -> Self {
         list.sort_by_key(|&(name, _)| name);
         Self(list)
     }
+}
+
+/// A definition bound in a module, with metadata.
+struct Binding<'a> {
+    def: Def<'a>,
+    deprecation: Option<&'a str>,
 }
 
 /// A definition in a module.
@@ -32,6 +38,7 @@ enum Symbol<'a> {
 #[derive(Debug, Copy, Clone)]
 enum Line<'a> {
     Blank,
+    Deprecated(&'a str),
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
@@ -94,7 +101,9 @@ fn tokenize(line: &str) -> StrResult<Line> {
         None => (line, None),
     };
 
-    Ok(if tail == Some("{") {
+    Ok(if head == "@deprecated:" {
+        Line::Deprecated(tail.ok_or("missing deprecation message")?.trim())
+    } else if tail == Some("{") {
         validate_ident(head)?;
         Line::ModuleStart(head)
     } else if head == "}" && tail.is_none() {
@@ -157,14 +166,22 @@ fn decode_char(text: &str) -> StrResult<char> {
 /// Turns a stream of lines into a list of definitions.
 fn parse<'a>(
     p: &mut Peekable<impl Iterator<Item = StrResult<Line<'a>>>>,
-) -> StrResult<Vec<(&'a str, Def<'a>)>> {
+) -> StrResult<Vec<(&'a str, Binding<'a>)>> {
     let mut defs = vec![];
+    let mut deprecation = None;
     let mut aliases = vec![];
     loop {
         match p.next().transpose()? {
-            None | Some(Line::ModuleEnd) => break,
+            None | Some(Line::ModuleEnd) => {
+                if let Some(message) = deprecation {
+                    return Err(format!("dangling `@deprecated: {}`", message));
+                }
+                break;
+            }
+            Some(Line::Deprecated(message)) => deprecation = Some(message),
             Some(Line::Alias(alias, name, variant, deep)) => {
-                aliases.push((alias, name, variant, deep));
+                aliases.push((alias, name, variant, deep, deprecation));
+                deprecation = None;
             }
             Some(Line::Symbol(name, c)) => {
                 let mut variants = vec![];
@@ -173,7 +190,6 @@ fn parse<'a>(
                     p.next();
                 }
 
-                println!("{c:?}, {variants:?}, {:?}", p.peek());
                 let symbol = if variants.len() > 0 {
                     if let Some(c) = c {
                         variants.insert(0, ("", c));
@@ -184,20 +200,28 @@ fn parse<'a>(
                     Symbol::Single(c)
                 };
 
-                defs.push((name, Def::Symbol(symbol)));
+                defs.push((name, Binding { def: Def::Symbol(symbol), deprecation }));
+                deprecation = None;
             }
             Some(Line::ModuleStart(name)) => {
                 let module_defs = parse(p)?;
-                defs.push((name, Def::Module(Module::new(module_defs))));
+                defs.push((
+                    name,
+                    Binding {
+                        def: Def::Module(Module::new(module_defs)),
+                        deprecation,
+                    },
+                ));
+                deprecation = None;
             }
             other => return Err(format!("expected definition, found {other:?}")),
         }
     }
-    for (alias, name, variant, deep) in aliases {
+    for (alias, name, variant, deep, deprecation) in aliases {
         let aliased_symbol: &Symbol<'a> = defs
             .iter()
             .filter(|(n, _)| *n == name)
-            .find_map(|(_, def)| match def {
+            .find_map(|(_, b)| match &b.def {
                 Def::Symbol(s) => Some(s),
                 _ => None,
             })
@@ -210,7 +234,10 @@ fn parse<'a>(
                         "alias to nonexistent variant: {name}.{variant}"
                     ));
                 }
-                defs.push((alias, Def::Symbol(Symbol::Single(c))));
+                defs.push((
+                    alias,
+                    Binding { def: Def::Symbol(Symbol::Single(c)), deprecation },
+                ));
             }
             Symbol::MultiAlias(_) => {
                 return Err(format!("alias to alias: {name}.{variant}"));
@@ -262,11 +289,20 @@ fn parse<'a>(
                 }
                 if let [(ref s, c)] = variants[..] {
                     if s.is_empty() {
-                        defs.push((alias, Def::Symbol(Symbol::Single(c))));
+                        defs.push((
+                            alias,
+                            Binding { def: Def::Symbol(Symbol::Single(c)), deprecation },
+                        ));
                         continue;
                     }
                 }
-                defs.push((alias, Def::Symbol(Symbol::MultiAlias(variants))));
+                defs.push((
+                    alias,
+                    Binding {
+                        def: Def::Symbol(Symbol::MultiAlias(variants)),
+                        deprecation,
+                    },
+                ));
             }
         }
     }
@@ -276,9 +312,9 @@ fn parse<'a>(
 /// Encodes a `Module` into Rust code.
 fn encode(buf: &mut String, module: &Module) {
     buf.push_str("Module(&[");
-    for (name, def) in &module.0 {
-        write!(buf, "({name:?},").unwrap();
-        match def {
+    for (name, entry) in &module.0 {
+        write!(buf, "({name:?}, Binding {{ def: ").unwrap();
+        match &entry.def {
             Def::Module(module) => {
                 buf.push_str("Def::Module(");
                 encode(buf, module);
@@ -294,7 +330,7 @@ fn encode(buf: &mut String, module: &Module) {
                 buf.push_str(")");
             }
         }
-        buf.push_str("),");
+        write!(buf, ", deprecation: {:?} }}),", entry.deprecation).unwrap();
     }
     buf.push_str("])");
 }
