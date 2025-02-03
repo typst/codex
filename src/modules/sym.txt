@@ -433,6 +433,15 @@ union ∪
   .sq ⊔
   .sq.big ⨆
   .sq.double ⩏
+inter ∩
+  .and ⩄
+  .big ⋂
+  .dot ⩀
+  .double ⋒
+  .sq ⊓
+  .sq.big ⨅
+  .sq.double ⩎
+@deprecated: `sect` is deprecated, use `inter` instead
 sect ∩
   .and ⩄
   .big ⋂
@@ -467,6 +476,8 @@ integral ∫
   .dash.double ⨎
   .double ∬
   .quad ⨌
+  .inter ⨙
+  // Deprecated.
   .sect ⨙
   .slash ⨏
   .square ⨖
