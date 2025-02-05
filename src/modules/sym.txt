@@ -1048,6 +1048,7 @@ YY 𝕐
 ZZ ℤ
 
 // Miscellaneous letter-likes.
+angstrom Å
 ell ℓ
 planck ℎ
   .reduce ℏ
