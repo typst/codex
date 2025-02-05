@@ -79,7 +79,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 
     write!(buf, "#[doc = {desc:?}] pub const {name}: Module = ").unwrap();
     encode(buf, &module);
-    buf.push_str(";");
+    buf.push(';');
 }
 
 /// Tokenizes and classifies a line.
@@ -165,7 +165,7 @@ fn parse<'a>(
                     p.next();
                 }
 
-                let symbol = if variants.len() > 0 {
+                let symbol = if !variants.is_empty() {
                     if let Some(c) = c {
                         variants.insert(0, ("", c));
                     }
@@ -204,7 +204,7 @@ fn encode(buf: &mut String, module: &Module) {
             Def::Module(module) => {
                 buf.push_str("Def::Module(");
                 encode(buf, module);
-                buf.push_str(")");
+                buf.push(')');
             }
             Def::Symbol(symbol) => {
                 buf.push_str("Def::Symbol(Symbol::");
@@ -212,7 +212,7 @@ fn encode(buf: &mut String, module: &Module) {
                     Symbol::Single(c) => write!(buf, "Single({c:?})").unwrap(),
                     Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                 }
-                buf.push_str(")");
+                buf.push(')');
             }
         }
         write!(buf, ", deprecation: {:?} }}),", entry.deprecation).unwrap();
