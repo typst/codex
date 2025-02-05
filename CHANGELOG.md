@@ -1,5 +1,8 @@
 # Changelog
 
+# Version 0.1.1 (February 5, 2025)
+Brings back `angstrom`, but uses U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE, which is the one that should be used in place of the deprecated U+212B ANGSTROM SIGN.
+
 # Version 0.1.0 (February 4, 2025)
 _As this is the first release of codex, the symbol changes are relative to Typst 0.12.0._
 - New
