@@ -563,6 +563,12 @@ hourglass
   .filled ⧗
 degree °
 smash ⨳
+power
+  .standby ⏻
+  .on ⏽
+  .off ⭘
+  .on.off ⏼
+  .sleep ⏾
 
 // Currency.
 bitcoin ₿
