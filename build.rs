@@ -4,32 +4,19 @@ use std::path::Path;
 
 type StrResult<T> = Result<T, String>;
 
-/// A module of definitions.
-struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
+include!("src/shared.rs");
+
+declare_types!{
+    <'a>
+    str = &'a str,
+    List = Vec<_>
+}
 
 impl<'a> Module<'a> {
     fn new(mut list: Vec<(&'a str, Binding<'a>)>) -> Self {
         list.sort_by_key(|&(name, _)| name);
         Self(list)
     }
-}
-
-/// A definition bound in a module, with metadata.
-struct Binding<'a> {
-    def: Def<'a>,
-    deprecation: Option<&'a str>,
-}
-
-/// A definition in a module.
-enum Def<'a> {
-    Symbol(Symbol<'a>),
-    Module(Module<'a>),
-}
-
-/// A symbol, either a leaf or with modifiers.
-enum Symbol<'a> {
-    Single(char),
-    Multi(Vec<(&'a str, char)>),
 }
 
 /// A single line during parsing.
@@ -40,7 +27,7 @@ enum Line<'a> {
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
+    Variant(ModifierSet<&'a str>, char),
 }
 
 fn main() {
@@ -110,7 +97,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        Line::Variant(ModifierSet(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
@@ -167,7 +154,7 @@ fn parse<'a>(
 
                 let symbol = if !variants.is_empty() {
                     if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                        variants.insert(0, (ModifierSet::empty(), c));
                     }
                     Symbol::Multi(variants)
                 } else {

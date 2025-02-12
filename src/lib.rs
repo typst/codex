@@ -1,10 +1,23 @@
 /*!
 Human-friendly notation for Unicode symbols.
+
+## Model
+A [`Symbol`] is a collection of one or more _variants_.
+Each variant is identified by a set of _modifiers_ (see [`ModifierSet`])
+and has a single character as its value.
+The modifiers themselves can in principle be any non-empty strings
+that don't contain the character `.`, but codex only defines
+ones that are entirely made of ASCII alphabetical characters.
 */
 
-/// A module of definitions.
-#[derive(Debug, Copy, Clone)]
-pub struct Module(&'static [(&'static str, Binding)]);
+include!("shared.rs");
+
+type StaticSlice<T> = &'static [T];
+declare_types! {
+    derive(Debug, Copy, Clone),
+    str = &'static str,
+    List = StaticSlice<_>
+}
 
 impl Module {
     /// Try to get a bound definition in the module.
@@ -21,38 +34,45 @@ impl Module {
     }
 }
 
-/// A definition bound in a module, with metadata.
-#[derive(Debug, Copy, Clone)]
-pub struct Binding {
-    /// The bound definition.
-    pub def: Def,
-    /// A deprecation message for the definition, if it is deprecated.
-    pub deprecation: Option<&'static str>,
-}
-
-impl Binding {
-    /// Create a new bound definition.
-    pub const fn new(definition: Def) -> Self {
-        Self { def: definition, deprecation: None }
+impl<'a> ModifierSet<&'a str> {
+    /// Iterate over the list of modifiers with the original lifetime.
+    pub fn to_iter(self) -> impl Iterator<Item = &'a str> {
+        self.0.split('.').filter(|s| !s.is_empty())
     }
 }
 
-/// A definition in a module.
-#[derive(Debug, Copy, Clone)]
-pub enum Def {
-    /// A symbol, potentially with modifiers.
-    Symbol(Symbol),
-    /// A nested module.
-    Module(Module),
-}
+impl Symbol {
+    /// Get the symbol's character for a given set of modifiers.
+    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<char> {
+        match self {
+            Self::Single(c) => modifs.is_empty().then_some(*c),
+            Self::Multi(list) => modifs.best_match_in(list.iter().copied()),
+        }
+    }
 
-/// A symbol, either a leaf or with modifiers.
-#[derive(Debug, Copy, Clone)]
-pub enum Symbol {
-    /// A symbol without modifiers.
-    Single(char),
-    /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(&'static str, char)]),
+    /// The characters that are covered by this symbol.
+    pub fn variants(&self) -> impl Iterator<Item = (ModifierSet<&str>, char)> {
+        enum Variants {
+            Single(std::iter::Once<char>),
+            Multi(std::slice::Iter<'static, (ModifierSet<&'static str>, char)>),
+        }
+        let mut iter = match self {
+            Self::Single(c) => Variants::Single(std::iter::once(*c)),
+            Self::Multi(sl) => Variants::Multi(sl.iter()),
+        };
+        std::iter::from_fn(move || match &mut iter {
+            Variants::Single(iter) => Some((ModifierSet::empty(), iter.next()?)),
+            Variants::Multi(iter) => iter.next().copied(),
+        })
+    }
+
+    /// Possible modifiers for this symbol.
+    pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
+        self.variants()
+            .flat_map(|(m, _)| m.to_iter())
+            .collect::<std::collections::BTreeSet<_>>()
+            .into_iter()
+    }
 }
 
 /// A module that contains the other top-level modules.
