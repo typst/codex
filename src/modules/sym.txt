@@ -731,13 +731,13 @@ star
   .five.crossing.inv ⛧
   .five.crossing.l ⛦
   .five.crossing.r ⛥
-  .three.filled 🟂
-  .three.filled.medium 🟁
+  .three.filled 🟁
   .three.filled.light 🟀
+  .three.filled.heavy 🟂
   .three.pinwheel 🟃
-  .four.filled 🟆
-  .four.filled.medium 🟅
+  .four.filled 🟅
   .four.filled.light 🟄
+  .four.filled.heavy 🟆
   .four.pinwheel 🟇
   .four.pinwheel.rev 🟈
   .six.filled ✶
