@@ -199,7 +199,7 @@ breve ˘
 caret ‸
 caron ˇ
 hat ^
-diaer ¨
+diaer @= dot.double
 grave `
 macron ¯
 quote
@@ -365,8 +365,7 @@ succ ≻
   .not ⊁
   .ntilde ⋩
   .tilde ≿
-equiv ≡
-  .not ≢
+equiv @= eq.triple.*
 smt ⪪
   .eq ⪬
 lat ⪫
@@ -384,12 +383,7 @@ emptyset ∅
   .bar ⦱
   .circle ⦲
   .rev ⦰
-nothing ∅
-  .arrow.r ⦳
-  .arrow.l ⦴
-  .bar ⦱
-  .circle ⦲
-  .rev ⦰
+nothing @= emptyset.*
 without ∖
 complement ∁
 in ∈
@@ -456,11 +450,11 @@ infinity ∞
   .bar ⧞
   .incomplete ⧜
   .tie ⧝
-oo ∞
-diff ∂
+oo @= infinity
+diff @= partial.*
 partial ∂
 gradient ∇
-nabla ∇
+nabla @= gradient.*
 sum ∑
   .integral ⨋
 product ∏
@@ -492,8 +486,8 @@ laplace ∆
 forall ∀
 exists ∃
   .not ∄
-top ⊤
-bot ⊥
+top @= tack.b
+bot @= tack.t
 not ¬
 and ∧
   .big ⋀
@@ -505,8 +499,7 @@ or ∨
   .curly ⋎
   .dot ⟇
   .double ⩔
-xor ⊕
-  .big ⨁
+xor @= plus.circle.*
 models ⊧
 forces ⊩
   .not ⊮
@@ -515,10 +508,9 @@ because ∵
 qed ∎
 
 // Function and category theory.
-mapsto ↦
-  .long ⟼
-compose ∘
-convolve ∗
+mapsto @= arrow.r.bar.*
+compose @= circle.stroked.tiny
+convolve @= ast.op
 multimap ⊸
   .double ⧟
 
@@ -1016,13 +1008,13 @@ Zeta Ζ
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
-alef א
+alef @= aleph
 beth ב
-bet ב
+bet @= beth
 gimmel ג
-gimel ג
+gimel @= gimmel
 daleth ד
-dalet ד
+dalet @= daleth
 shin ש
 
 // Double-struck.
