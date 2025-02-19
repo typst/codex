@@ -765,8 +765,9 @@ arrow
   .r.tail ↣
   .r.tilde ⥲
   .r.triple ⇛
-  .r.twohead.bar ⤅
   .r.twohead ↠
+  .r.twohead.bar ⤅
+  .r.twohead.tail ⤖
   .r.wave ↝
   .l ←
   .l.bar ↤
@@ -793,8 +794,9 @@ arrow
   .l.tail ↢
   .l.tilde ⭉
   .l.triple ⇚
-  .l.twohead.bar ⬶
   .l.twohead ↞
+  .l.twohead.bar ⬶
+  .l.twohead.tail ⬻
   .l.wave ↜
   .t ↑
   .t.bar ↥
