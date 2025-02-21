@@ -764,15 +764,19 @@ arrow
   .r.stop ⇥
   .r.stroked ⇨
   .r.struck ⇸
+  .r.dstruck ⇻
   .r.tail ↣
   .r.tail.struck ⤔
+  .r.tail.dstruck ⤕
   .r.tilde ⥲
   .r.triple ⇛
   .r.twohead ↠
   .r.twohead.bar ⤅
   .r.twohead.struck ⤀
+  .r.twohead.dstruck ⤁
   .r.twohead.tail ⤖
   .r.twohead.tail.struck ⤗
+  .r.twohead.tail.dstruck ⤘
   .r.wave ↝
   .l ←
   .l.bar ↤
@@ -798,15 +802,19 @@ arrow
   .l.stop ⇤
   .l.stroked ⇦
   .l.struck ⇷
+  .l.dstruck ⇺
   .l.tail ↢
   .l.tail.struck ⬹
+  .l.tail.dstruck ⬺
   .l.tilde ⭉
   .l.triple ⇚
   .l.twohead ↞
   .l.twohead.bar ⬶
-  .l.twohad.struck ⬴
+  .l.twohead.struck ⬴
+  .l.twohead.dstruck ⬵
   .l.twohead.tail ⬻
   .l.twohead.tail.struck ⬼
+  .l.twohead.tail.dstruck ⬽
   .l.wave ↜
   .t ↑
   .t.bar ↥
@@ -819,6 +827,7 @@ arrow
   .t.stop ⤒
   .t.stroked ⇧
   .t.struck ⤉
+  .t.dstruck ⇞
   .t.triple ⤊
   .t.twohead ↟
   .b ↓
@@ -832,6 +841,7 @@ arrow
   .b.stop ⤓
   .b.stroked ⇩
   .b.struck ⤈
+  .b.dstruck ⇟
   .b.triple ⤋
   .b.twohead ↡
   .l.r ↔
@@ -844,6 +854,7 @@ arrow
   .l.r.not ↮
   .l.r.stroked ⬄
   .l.r.struck ⇹
+  .l.r.dstruck ⇼
   .l.r.wave ↭
   .t.b ↕
   .t.b.double ⇕
