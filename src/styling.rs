@@ -61,7 +61,7 @@ pub enum MathStyle {
 
 /// Converts a [`char`] to the styled form specified by `style`.
 ///
-/// Note that some styles will convert a charater into multiple characters,
+/// Note that some styles will convert a character into multiple characters,
 /// hence this function always returns an array of two characters.
 ///
 /// # Examples
@@ -110,7 +110,8 @@ pub trait MathStyling {
     /// Converts each [`char`] in the given value to the styled form given by
     /// `style`.
     ///
-    /// Note that some styles will convert a charater into multiple characters.
+    /// Note that some styles will convert a character into multiple
+    /// characters.
     ///
     /// # Examples
     ///
@@ -155,6 +156,7 @@ impl MathStyling for String {
 /// Functions which map a [`char`] to its specified styled form.
 ///
 /// Sourced from:
+/// - [Unicode Core Specification]
 /// - [Mathematical Alphanumeric Symbols]
 /// - [Arabic Mathematical Alphabetic Symbols]
 /// - <https://www.w3.org/TR/mathml-core/#new-text-transform-mappings>
@@ -170,6 +172,7 @@ impl MathStyling for String {
 /// assert_eq!(['𝒫', '\u{FE01}'], to_roundhand('P'));
 /// ```
 ///
+/// [Unicode Core Specification]: <https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-22/#G16021>
 /// [Mathematical Alphanumeric Symbols]: <https://unicode.org/charts/PDF/U1D400.pdf>
 /// [Arabic Mathematical Alphabetic Symbols]: <https://unicode.org/charts/PDF/U1EE00.pdf>
 pub mod mappings {
@@ -402,9 +405,9 @@ pub mod mappings {
     ///
     /// This function returns a variation sequence using the variation selector
     /// `U+FE00`, as specified in the [`StandardizedVariants.txt`] file from
-    /// the Unicode Character Database. Note that only the capital latin
+    /// the Unicode Character Database. Note that only the capital Latin
     /// letters are standardized variation sequences, but this function also
-    /// maps the small latin letters.
+    /// maps the small Latin letters.
     ///
     /// [`StandardizedVariants.txt`]: <https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt>
     pub fn to_chancery(c: char) -> [char; 2] {
@@ -424,9 +427,9 @@ pub mod mappings {
     ///
     /// This function returns a variation sequence using the variation selector
     /// `U+FE01`, as specified in the [`StandardizedVariants.txt`] file from
-    /// the Unicode Character Database. Note that only the capital latin
+    /// the Unicode Character Database. Note that only the capital Latin
     /// letters are standardized variation sequences, but this function also
-    /// maps the small latin letters.
+    /// maps the small Latin letters.
     ///
     /// [`StandardizedVariants.txt`]: <https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt>
     pub fn to_roundhand(c: char) -> [char; 2] {
@@ -488,7 +491,7 @@ pub mod mappings {
 
     /// To double-struck italic symbols.
     ///
-    /// Note that there does not exit codepoints in Unicode for all Latin
+    /// Note that there does not exist codepoints in Unicode for all Latin
     /// letters. There are only a few double-struck italic symbols, and they
     /// are present solely in the Letterlike Symbols block.
     pub fn to_double_struck_italic(c: char) -> char {
