@@ -1,6 +1,4 @@
-/*!
-Style mathematical symbols in Unicode.
-*/
+//! Style mathematical symbols in Unicode.
 
 /// A styled form for mathematical symbols.
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Default)]
