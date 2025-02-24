@@ -758,6 +758,7 @@ arrow
   .r.double.long ⟹
   .r.double.long.bar ⟾
   .r.double.not ⇏
+  .r.double.struck ⤃
   .r.filled ➡
   .r.hook ↪
   .r.long ⟶
@@ -768,11 +769,20 @@ arrow
   .r.squiggly ⇝
   .r.stop ⇥
   .r.stroked ⇨
+  .r.struck ⇸
+  .r.dstruck ⇻
   .r.tail ↣
+  .r.tail.struck ⤔
+  .r.tail.dstruck ⤕
   .r.tilde ⥲
   .r.triple ⇛
-  .r.twohead.bar ⤅
   .r.twohead ↠
+  .r.twohead.bar ⤅
+  .r.twohead.struck ⤀
+  .r.twohead.dstruck ⤁
+  .r.twohead.tail ⤖
+  .r.twohead.tail.struck ⤗
+  .r.twohead.tail.dstruck ⤘
   .r.wave ↝
   .l ←
   .l.bar ↤
@@ -785,6 +795,7 @@ arrow
   .l.double.long ⟸
   .l.double.long.bar ⟽
   .l.double.not ⇍
+  .l.double.struck ⤂
   .l.filled ⬅
   .l.hook ↩
   .l.long ⟵
@@ -796,11 +807,20 @@ arrow
   .l.squiggly ⇜
   .l.stop ⇤
   .l.stroked ⇦
+  .l.struck ⇷
+  .l.dstruck ⇺
   .l.tail ↢
+  .l.tail.struck ⬹
+  .l.tail.dstruck ⬺
   .l.tilde ⭉
   .l.triple ⇚
-  .l.twohead.bar ⬶
   .l.twohead ↞
+  .l.twohead.bar ⬶
+  .l.twohead.struck ⬴
+  .l.twohead.dstruck ⬵
+  .l.twohead.tail ⬻
+  .l.twohead.tail.struck ⬼
+  .l.twohead.tail.dstruck ⬽
   .l.wave ↜
   .t ↑
   .t.bar ↥
@@ -812,6 +832,8 @@ arrow
   .t.quad ⟰
   .t.stop ⤒
   .t.stroked ⇧
+  .t.struck ⤉
+  .t.dstruck ⇞
   .t.triple ⤊
   .t.twohead ↟
   .b ↓
@@ -824,16 +846,21 @@ arrow
   .b.quad ⟱
   .b.stop ⤓
   .b.stroked ⇩
+  .b.struck ⤈
+  .b.dstruck ⇟
   .b.triple ⤋
   .b.twohead ↡
   .l.r ↔
   .l.r.double ⇔
   .l.r.double.long ⟺
   .l.r.double.not ⇎
+  .l.r.double.struck ⤄
   .l.r.filled ⬌
   .l.r.long ⟷
   .l.r.not ↮
   .l.r.stroked ⬄
+  .l.r.struck ⇹
+  .l.r.dstruck ⇼
   .l.r.wave ↭
   .t.b ↕
   .t.b.double ⇕
