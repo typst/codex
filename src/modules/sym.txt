@@ -1083,8 +1083,7 @@ ZZ ℤ
 // Miscellaneous letter-likes.
 angstrom Å
 ell ℓ
-planck ℎ
-  .reduce ℏ
+planck ħ
 Re ℜ
 Im ℑ
 dotless
