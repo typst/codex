@@ -1,5 +1,3 @@
-use std::ops::{AddAssign, Deref};
-
 macro_rules! declare_types {
     ($(<$lt:lifetime>)?
         $(derive($($Der:ident),*),)?
@@ -51,7 +49,18 @@ macro_rules! declare_types {
 #[derive(Debug, Copy, Clone)]
 pub struct ModifierSet<S>(S);
 
-impl<S: Deref<Target = str>> ModifierSet<S> {
+impl<S: Default> Default for ModifierSet<S> {
+    /// Construct the default modifier set.
+    ///
+    /// This is typically the empty set,
+    /// though the remark from [`Self::new_unchecked`] applies
+    /// since `S::default()` could technically be anything.
+    fn default() -> Self {
+        Self(S::default())
+    }
+}
+
+impl<S: std::ops::Deref<Target = str>> ModifierSet<S> {
     /// Convert the underlying string to a slice.
     pub fn as_deref(&self) -> ModifierSet<&str> {
         ModifierSet(&self.0)
@@ -68,14 +77,6 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         Self(s)
     }
 
-    /// Construct an empty modifier set.
-    pub fn empty() -> Self
-    where
-        S: Default,
-    {
-        Self(S::default())
-    }
-
     /// Whether `self` is empty.
     pub fn is_empty(&self) -> bool {
         self.0.is_empty()
@@ -88,7 +89,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// `modifier` is not empty and doesn't contain the character `.`.
     pub fn add_unchecked(&mut self, m: &str)
     where
-        S: for<'a> AddAssign<&'a str>,
+        S: for<'a> std::ops::AddAssign<&'a str>,
     {
         if !self.0.is_empty() {
             self.0 += ".";
@@ -136,13 +137,20 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
                 total += 1;
             }
 
-            let score = (matching, core::cmp::Reverse(total));
-            if best_score.map_or(true, |b| score > b) {
+            let score = (matching, std::cmp::Reverse(total));
+            if best_score.is_none_or(|b| score > b) {
                 best = Some(candidate.1);
                 best_score = Some(score);
             }
         }
 
         best
+    }
+}
+
+impl<'a> ModifierSet<&'a str> {
+    /// Iterate over the list of modifiers with the original lifetime.
+    pub fn to_iter(self) -> impl Iterator<Item = &'a str> {
+        self.0.split('.').filter(|s| !s.is_empty())
     }
 }

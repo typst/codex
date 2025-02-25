@@ -154,7 +154,7 @@ fn parse<'a>(
 
                 let symbol = if variants.len() > 0 {
                     if let Some(c) = c {
-                        variants.insert(0, (ModifierSet::empty(), c));
+                        variants.insert(0, (ModifierSet::default(), c));
                     }
                     Symbol::Multi(variants)
                 } else {

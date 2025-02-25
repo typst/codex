@@ -1,14 +1,12 @@
-/*!
-Human-friendly notation for Unicode symbols.
-
-## Model
-A [`Symbol`] is a collection of one or more _variants_.
-Each variant is identified by a set of _modifiers_ (see [`ModifierSet`])
-and has a single character as its value.
-The modifiers themselves can in principle be any non-empty strings
-that don't contain the character `.`, but codex only defines
-ones that are entirely made of ASCII alphabetical characters.
-*/
+//! Human-friendly notation for Unicode symbols.
+//!
+//! ## Model
+//! A [`Symbol`] is a collection of one or more _variants_.
+//! Each variant is identified by a set of [_modifiers_](ModifierSet)
+//! and has a single character as its value.
+//! The modifiers themselves can in principle be any non-empty strings
+//! that don't contain the character `.`, but codex only defines
+//! ones that are entirely made of ASCII alphabetical characters.
 
 include!("shared.rs");
 
@@ -34,13 +32,6 @@ impl Module {
     }
 }
 
-impl<'a> ModifierSet<&'a str> {
-    /// Iterate over the list of modifiers with the original lifetime.
-    pub fn to_iter(self) -> impl Iterator<Item = &'a str> {
-        self.0.split('.').filter(|s| !s.is_empty())
-    }
-}
-
 impl Symbol {
     /// Get the symbol's character for a given set of modifiers.
     pub fn get(&self, modifs: ModifierSet<&str>) -> Option<char> {
@@ -61,7 +52,7 @@ impl Symbol {
             Self::Multi(sl) => Variants::Multi(sl.iter()),
         };
         std::iter::from_fn(move || match &mut iter {
-            Variants::Single(iter) => Some((ModifierSet::empty(), iter.next()?)),
+            Variants::Single(iter) => Some((ModifierSet::default(), iter.next()?)),
             Variants::Multi(iter) => iter.next().copied(),
         })
     }
