@@ -45,6 +45,8 @@ macro_rules! declare_types {
     };
 }
 
+use std::ops::Deref;
+
 pub(crate) use declare_types;
 
 /// A set of modifiers.
@@ -64,7 +66,7 @@ impl<S: Default> Default for ModifierSet<S> {
     }
 }
 
-impl<S: std::ops::Deref<Target = str>> ModifierSet<S> {
+impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Convert the underlying string to a slice.
     pub fn as_deref(&self) -> ModifierSet<&str> {
         ModifierSet(&self.0)
@@ -103,7 +105,7 @@ impl<S: std::ops::Deref<Target = str>> ModifierSet<S> {
 
     /// Iterate over the list of modifiers in an arbitrary order.
     pub fn iter(&self) -> impl Iterator<Item = &str> {
-        self.0.split('.').filter(|s| !s.is_empty())
+        self.into_iter()
     }
 
     /// Whether the set contains the modifier `m`.
@@ -152,9 +154,22 @@ impl<S: std::ops::Deref<Target = str>> ModifierSet<S> {
     }
 }
 
-impl<'a> ModifierSet<&'a str> {
-    /// Iterate over the list of modifiers with the original lifetime.
-    pub fn to_iter(self) -> impl Iterator<Item = &'a str> {
-        self.0.split('.').filter(|s| !s.is_empty())
+impl<'a, S: Deref<Target = str>> IntoIterator for &'a ModifierSet<S> {
+    type Item = &'a str;
+    type IntoIter = std::str::Split<'a, char>;
+
+    /// Iterate over the list of modifiers in an arbitrary order.
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.split('.')
+    }
+}
+
+impl<'a> IntoIterator for ModifierSet<&'a str> {
+    type Item = &'a str;
+    type IntoIter = std::str::Split<'a, char>;
+
+    /// Iterate over the list of modifiers in an arbitrary order.
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.split('.')
     }
 }
