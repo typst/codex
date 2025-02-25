@@ -8,10 +8,12 @@
 //! that don't contain the character `.`, but codex only defines
 //! ones that are entirely made of ASCII alphabetical characters.
 
-include!("shared.rs");
+pub use self::shared::ModifierSet;
+
+mod shared;
 
 type StaticSlice<T> = &'static [T];
-declare_types! {
+self::shared::declare_types! {
     derive(Debug, Copy, Clone),
     str = &'static str,
     List = StaticSlice<_>

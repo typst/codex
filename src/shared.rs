@@ -45,9 +45,13 @@ macro_rules! declare_types {
     };
 }
 
+pub(crate) use declare_types;
+
 /// A set of modifiers.
 #[derive(Debug, Copy, Clone)]
-pub struct ModifierSet<S>(S);
+// note: the visibility needs to be `pub(crate)`,
+// since build.rs outputs `ModifierSet(...)`
+pub struct ModifierSet<S>(pub(crate) S);
 
 impl<S: Default> Default for ModifierSet<S> {
     /// Construct the default modifier set.

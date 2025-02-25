@@ -1,12 +1,14 @@
+use self::shared::ModifierSet;
 use std::fmt::Write;
 use std::iter::Peekable;
 use std::path::Path;
 
 type StrResult<T> = Result<T, String>;
 
-include!("src/shared.rs");
+#[path = "src/shared.rs"]
+mod shared;
 
-declare_types!{
+self::shared::declare_types! {
     <'a>
     str = &'a str,
     List = Vec<_>
@@ -97,7 +99,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(ModifierSet(rest), c)
+        Line::Variant(ModifierSet::new_unchecked(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
