@@ -1,5 +1,8 @@
 //! Style mathematical symbols in Unicode.
 
+use std::fmt::{self, Write};
+use std::iter::FusedIterator;
+
 /// A styled form for mathematical symbols.
 #[derive(Copy, Clone, Eq, PartialEq, Debug, Default)]
 pub enum MathStyle {
@@ -57,101 +60,128 @@ pub enum MathStyle {
     Stretched,
 }
 
-/// Converts a [`char`] to the styled form specified by `style`.
+/// Returns an iterator that yields the styled equivalent of a `char`.
 ///
-/// Note that some styles will convert a character into multiple characters,
-/// hence this function always returns an array of two characters.
+/// This `struct` is created by the [`to_style`] function. See its
+/// documentation for more.
+#[derive(Debug, Clone)]
+pub struct ToStyle(core::array::IntoIter<char, 2>);
+
+impl ToStyle {
+    fn new(c: char, style: MathStyle) -> ToStyle {
+        use mappings::*;
+        use MathStyle::*;
+        let chars = match style {
+            Serif => [to_serif(c), '\0'],
+            SerifBold => [to_serif_bold(c), '\0'],
+            SerifItalic => [to_serif_italic(c), '\0'],
+            SerifItalicBold => [to_serif_italic_bold(c), '\0'],
+            SansSerif => [to_sans_serif(c), '\0'],
+            SansSerifBold => [to_sans_serif_bold(c), '\0'],
+            SansSerifItalic => [to_sans_serif_italic(c), '\0'],
+            SansSerifItalicBold => [to_sans_serif_italic_bold(c), '\0'],
+            Fraktur => [to_fraktur(c), '\0'],
+            FrakturBold => [to_fraktur_bold(c), '\0'],
+            Script => [to_script(c), '\0'],
+            ScriptBold => [to_script_bold(c), '\0'],
+            Chancery => to_chancery(c),
+            ChanceryBold => to_chancery_bold(c),
+            Roundhand => to_roundhand(c),
+            RoundhandBold => to_roundhand_bold(c),
+            DoubleStruck => [to_double_struck(c), '\0'],
+            DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
+            Monospace => [to_monospace(c), '\0'],
+            Initial => [to_initial(c), '\0'],
+            Tailed => [to_tailed(c), '\0'],
+            Looped => [to_looped(c), '\0'],
+            Stretched => [to_stretched(c), '\0'],
+        };
+
+        let mut iter = chars.into_iter();
+        if chars[1] == '\0' {
+            iter.next_back();
+        }
+        ToStyle(iter)
+    }
+}
+
+impl Iterator for ToStyle {
+    type Item = char;
+
+    fn next(&mut self) -> Option<char> {
+        self.0.next()
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        self.0.size_hint()
+    }
+
+    fn fold<Acc, Fold>(self, init: Acc, fold: Fold) -> Acc
+    where
+        Fold: FnMut(Acc, Self::Item) -> Acc,
+    {
+        self.0.fold(init, fold)
+    }
+
+    fn count(self) -> usize {
+        self.0.count()
+    }
+
+    fn last(self) -> Option<Self::Item> {
+        self.0.last()
+    }
+}
+
+impl DoubleEndedIterator for ToStyle {
+    fn next_back(&mut self) -> Option<char> {
+        self.0.next_back()
+    }
+
+    fn rfold<Acc, Fold>(self, init: Acc, rfold: Fold) -> Acc
+    where
+        Fold: FnMut(Acc, Self::Item) -> Acc,
+    {
+        self.0.rfold(init, rfold)
+    }
+}
+
+impl ExactSizeIterator for ToStyle {
+    fn len(&self) -> usize {
+        self.0.len()
+    }
+}
+
+impl FusedIterator for ToStyle {}
+
+impl fmt::Display for ToStyle {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for c in self.0.clone() {
+            f.write_char(c)?;
+        }
+        Ok(())
+    }
+}
+
+/// Returns an iterator that yields the styled mapping of a `char`, as
+/// specified by `style`, as one or more `char`s.
 ///
 /// # Examples
 ///
 /// ```
 /// use codex::styling::{to_style, MathStyle};
 ///
-/// assert_eq!(['𝑴', '\0'], to_style('M', MathStyle::SerifItalicBold));
-/// assert_eq!(['𞸪', '\0'], to_style('ك', MathStyle::Initial));
-/// assert_eq!(['ⅈ', '\0'], to_style('i', MathStyle::DoubleStruckItalic));
-/// assert_eq!(['𝓴', '\u{fe01}'], to_style('k', MathStyle::RoundhandBold));
+/// assert_eq!("𝑴", to_style('M', MathStyle::SerifItalicBold).to_string());
+/// assert_eq!("𞸪", to_style('ك', MathStyle::Initial).to_string());
+/// assert_eq!("ⅈ", to_style('i', MathStyle::DoubleStruckItalic).to_string());
+/// assert_eq!("𝓴\u{fe01}", to_style('k', MathStyle::RoundhandBold).to_string());
 /// ```
-pub fn to_style(c: char, style: MathStyle) -> [char; 2] {
-    use mappings::*;
-    use MathStyle::*;
-    match style {
-        Serif => [to_serif(c), '\0'],
-        SerifBold => [to_serif_bold(c), '\0'],
-        SerifItalic => [to_serif_italic(c), '\0'],
-        SerifItalicBold => [to_serif_italic_bold(c), '\0'],
-        SansSerif => [to_sans_serif(c), '\0'],
-        SansSerifBold => [to_sans_serif_bold(c), '\0'],
-        SansSerifItalic => [to_sans_serif_italic(c), '\0'],
-        SansSerifItalicBold => [to_sans_serif_italic_bold(c), '\0'],
-        Fraktur => [to_fraktur(c), '\0'],
-        FrakturBold => [to_fraktur_bold(c), '\0'],
-        Script => [to_script(c), '\0'],
-        ScriptBold => [to_script_bold(c), '\0'],
-        Chancery => to_chancery(c),
-        ChanceryBold => to_chancery_bold(c),
-        Roundhand => to_roundhand(c),
-        RoundhandBold => to_roundhand_bold(c),
-        DoubleStruck => [to_double_struck(c), '\0'],
-        DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
-        Monospace => [to_monospace(c), '\0'],
-        Initial => [to_initial(c), '\0'],
-        Tailed => [to_tailed(c), '\0'],
-        Looped => [to_looped(c), '\0'],
-        Stretched => [to_stretched(c), '\0'],
-    }
+#[inline]
+pub fn to_style(c: char, style: MathStyle) -> ToStyle {
+    ToStyle::new(c, style)
 }
 
-/// A trait for converting each [`char`] in a value to its specified styled
-/// form.
-pub trait MathStyling {
-    /// Converts each [`char`] in the given value to the styled form given by
-    /// `style`.
-    ///
-    /// Note that some styles will convert a character into multiple
-    /// characters.
-    ///
-    /// # Examples
-    ///
-    /// Basic usage:
-    ///
-    /// ```
-    /// use codex::styling::{MathStyle, MathStyling};
-    ///
-    /// let s = String::from("mono");
-    ///
-    /// assert_eq!("𝚖𝚘𝚗𝚘", s.to_style(MathStyle::Monospace));
-    /// ```
-    ///
-    /// One character can become multiple:
-    ///
-    /// ```
-    /// # use codex::styling::{MathStyle, MathStyling};
-    /// let s = String::from("foo");
-    ///
-    /// assert_eq!("𝒻\u{fe00}ℴ\u{fe00}ℴ\u{fe00}", s.to_style(MathStyle::Chancery));
-    /// ```
-    fn to_style(&self, style: MathStyle) -> Self;
-}
-
-impl MathStyling for String {
-    fn to_style(&self, style: MathStyle) -> Self {
-        let str = self.as_str();
-        let mut styled = Self::with_capacity(str.len());
-        for c in str.chars() {
-            match to_style(c, style) {
-                [a, '\0'] => styled.push(a),
-                [a, b] => {
-                    styled.push(a);
-                    styled.push(b);
-                }
-            }
-        }
-        styled
-    }
-}
-
-/// Functions which map a [`char`] to its specified styled form.
+/// Functions which map a `char` to its specified styled form.
 ///
 /// Sourced from:
 /// - [Unicode Core Specification]
