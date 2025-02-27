@@ -60,18 +60,27 @@ pub enum MathStyle {
     Stretched,
 }
 
-/// Returns an iterator that yields the styled equivalent of a `char`.
-///
-/// This `struct` is created by the [`to_style`] function. See its
-/// documentation for more.
-#[derive(Debug, Clone)]
-pub struct ToStyle(core::array::IntoIter<char, 2>);
-
-impl ToStyle {
-    fn new(c: char, style: MathStyle) -> ToStyle {
+impl MathStyle {
+    /// Applies the style to a given `char`.
+    ///
+    /// Note that some styles will convert a character into multiple
+    /// characters, hence this function always returns an array of two
+    /// characters.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use codex::styling::MathStyle;
+    ///
+    /// assert_eq!(['𝑴', '\0'], MathStyle::SerifItalicBold.apply('M'));
+    /// assert_eq!(['𞸪', '\0'], MathStyle::Initial.apply('ك'));
+    /// assert_eq!(['ⅈ', '\0'], MathStyle::DoubleStruckItalic.apply('i'));
+    /// assert_eq!(['𝓴', '\u{fe01}'], MathStyle::RoundhandBold.apply('k'));
+    /// ```
+    pub fn apply(self, c: char) -> [char; 2] {
         use mappings::*;
         use MathStyle::*;
-        let chars = match style {
+        match self {
             Serif => [to_serif(c), '\0'],
             SerifBold => [to_serif_bold(c), '\0'],
             SerifItalic => [to_serif_italic(c), '\0'],
@@ -95,8 +104,20 @@ impl ToStyle {
             Tailed => [to_tailed(c), '\0'],
             Looped => [to_looped(c), '\0'],
             Stretched => [to_stretched(c), '\0'],
-        };
+        }
+    }
+}
 
+/// Returns an iterator that yields the styled equivalent of a `char`.
+///
+/// This `struct` is created by the [`to_style`] function. See its
+/// documentation for more.
+#[derive(Debug, Clone)]
+pub struct ToStyle(core::array::IntoIter<char, 2>);
+
+impl ToStyle {
+    #[inline]
+    fn new(chars: [char; 2]) -> ToStyle {
         let mut iter = chars.into_iter();
         if chars[1] == '\0' {
             iter.next_back();
@@ -171,14 +192,18 @@ impl fmt::Display for ToStyle {
 /// ```
 /// use codex::styling::{to_style, MathStyle};
 ///
-/// assert_eq!("𝑴", to_style('M', MathStyle::SerifItalicBold).to_string());
-/// assert_eq!("𞸪", to_style('ك', MathStyle::Initial).to_string());
-/// assert_eq!("ⅈ", to_style('i', MathStyle::DoubleStruckItalic).to_string());
-/// assert_eq!("𝓴\u{fe01}", to_style('k', MathStyle::RoundhandBold).to_string());
+/// assert_eq!("𞺚", to_style('ظ', MathStyle::Looped).to_string());
+/// assert_eq!("𝒬\u{fe00}", to_style('Q', MathStyle::Chancery).to_string());
+///
+/// let s = "xγΩAذح1∑س"
+///     .chars()
+///     .flat_map(|c| to_style(c, MathStyle::DoubleStruck))
+///     .collect::<String>();
+/// assert_eq!("𝕩ℽΩ𝔸𞺸𞺧𝟙⅀𞺮", s);
 /// ```
 #[inline]
 pub fn to_style(c: char, style: MathStyle) -> ToStyle {
-    ToStyle::new(c, style)
+    ToStyle::new(style.apply(c))
 }
 
 /// Functions which map a `char` to its specified styled form.
