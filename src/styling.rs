@@ -60,54 +60,6 @@ pub enum MathStyle {
     Stretched,
 }
 
-impl MathStyle {
-    /// Applies the style to a given `char`.
-    ///
-    /// Note that some styles will convert a character into multiple
-    /// characters, hence this function always returns an array of two
-    /// characters.
-    ///
-    /// # Examples
-    ///
-    /// ```
-    /// use codex::styling::MathStyle;
-    ///
-    /// assert_eq!(['𝑴', '\0'], MathStyle::SerifItalicBold.apply('M'));
-    /// assert_eq!(['𞸪', '\0'], MathStyle::Initial.apply('ك'));
-    /// assert_eq!(['ⅈ', '\0'], MathStyle::DoubleStruckItalic.apply('i'));
-    /// assert_eq!(['𝓴', '\u{fe01}'], MathStyle::RoundhandBold.apply('k'));
-    /// ```
-    pub fn apply(self, c: char) -> [char; 2] {
-        use mappings::*;
-        use MathStyle::*;
-        match self {
-            Serif => [to_serif(c), '\0'],
-            SerifBold => [to_serif_bold(c), '\0'],
-            SerifItalic => [to_serif_italic(c), '\0'],
-            SerifItalicBold => [to_serif_italic_bold(c), '\0'],
-            SansSerif => [to_sans_serif(c), '\0'],
-            SansSerifBold => [to_sans_serif_bold(c), '\0'],
-            SansSerifItalic => [to_sans_serif_italic(c), '\0'],
-            SansSerifItalicBold => [to_sans_serif_italic_bold(c), '\0'],
-            Fraktur => [to_fraktur(c), '\0'],
-            FrakturBold => [to_fraktur_bold(c), '\0'],
-            Script => [to_script(c), '\0'],
-            ScriptBold => [to_script_bold(c), '\0'],
-            Chancery => to_chancery(c),
-            ChanceryBold => to_chancery_bold(c),
-            Roundhand => to_roundhand(c),
-            RoundhandBold => to_roundhand_bold(c),
-            DoubleStruck => [to_double_struck(c), '\0'],
-            DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
-            Monospace => [to_monospace(c), '\0'],
-            Initial => [to_initial(c), '\0'],
-            Tailed => [to_tailed(c), '\0'],
-            Looped => [to_looped(c), '\0'],
-            Stretched => [to_stretched(c), '\0'],
-        }
-    }
-}
-
 /// Returns an iterator that yields the styled equivalent of a `char`.
 ///
 /// This `struct` is created by the [`to_style`] function. See its
@@ -201,9 +153,35 @@ impl fmt::Display for ToStyle {
 ///     .collect::<String>();
 /// assert_eq!("𝕩ℽΩ𝔸𞺸𞺧𝟙⅀𞺮", s);
 /// ```
-#[inline]
 pub fn to_style(c: char, style: MathStyle) -> ToStyle {
-    ToStyle::new(style.apply(c))
+    use mappings::*;
+    use MathStyle::*;
+    let styled = match style {
+        Serif => [to_serif(c), '\0'],
+        SerifBold => [to_serif_bold(c), '\0'],
+        SerifItalic => [to_serif_italic(c), '\0'],
+        SerifItalicBold => [to_serif_italic_bold(c), '\0'],
+        SansSerif => [to_sans_serif(c), '\0'],
+        SansSerifBold => [to_sans_serif_bold(c), '\0'],
+        SansSerifItalic => [to_sans_serif_italic(c), '\0'],
+        SansSerifItalicBold => [to_sans_serif_italic_bold(c), '\0'],
+        Fraktur => [to_fraktur(c), '\0'],
+        FrakturBold => [to_fraktur_bold(c), '\0'],
+        Script => [to_script(c), '\0'],
+        ScriptBold => [to_script_bold(c), '\0'],
+        Chancery => to_chancery(c),
+        ChanceryBold => to_chancery_bold(c),
+        Roundhand => to_roundhand(c),
+        RoundhandBold => to_roundhand_bold(c),
+        DoubleStruck => [to_double_struck(c), '\0'],
+        DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
+        Monospace => [to_monospace(c), '\0'],
+        Initial => [to_initial(c), '\0'],
+        Tailed => [to_tailed(c), '\0'],
+        Looped => [to_looped(c), '\0'],
+        Stretched => [to_stretched(c), '\0'],
+    };
+    ToStyle::new(styled)
 }
 
 /// Functions which map a `char` to its specified styled form.
