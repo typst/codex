@@ -29,4 +29,4 @@ _As this is the first release of codex, the symbol changes are relative to Typst
   - `sect` and all its variants
   - `integral.sect`
 - Removed
-  - `degree.c`, `degree.f`, `ohm.inv`, `angstrom`, `kelvin`
+  - `degree.c`, `degree.f`, `ohm`, `ohm.inv`, `angstrom`, `kelvin`
