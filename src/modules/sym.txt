@@ -457,6 +457,7 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo ∞
+@deprecated: `diff` is deprecated, use `partial` instead
 diff ∂
 partial ∂
 gradient ∇
