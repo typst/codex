@@ -783,6 +783,7 @@ arrow
   .r.twohead.tail ⤖
   .r.twohead.tail.struck ⤗
   .r.twohead.tail.dstruck ⤘
+  .r.open ⇾
   .r.wave ↝
   .l ←
   .l.bar ↤
@@ -821,6 +822,7 @@ arrow
   .l.twohead.tail ⬻
   .l.twohead.tail.struck ⬼
   .l.twohead.tail.dstruck ⬽
+  .l.open ⇽
   .l.wave ↜
   .t ↑
   .t.bar ↥
@@ -861,6 +863,7 @@ arrow
   .l.r.stroked ⬄
   .l.r.struck ⇹
   .l.r.dstruck ⇼
+  .l.r.open ⇿
   .l.r.wave ↭
   .t.b ↕
   .t.b.double ⇕
