@@ -8,17 +8,32 @@ type StrResult<T> = Result<T, String>;
 #[path = "src/shared.rs"]
 mod shared;
 
-self::shared::declare_types! {
-    <'a>
-    str = &'a str,
-    List = Vec<_>
-}
+/// A module of definitions.
+struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
 
 impl<'a> Module<'a> {
     fn new(mut list: Vec<(&'a str, Binding<'a>)>) -> Self {
         list.sort_by_key(|&(name, _)| name);
         Self(list)
     }
+}
+
+/// A definition bound in a module, with metadata.
+struct Binding<'a> {
+    def: Def<'a>,
+    deprecation: Option<&'a str>,
+}
+
+/// A definition in a module.
+enum Def<'a> {
+    Symbol(Symbol<'a>),
+    Module(Module<'a>),
+}
+
+/// A symbol, either a leaf or with modifiers.
+enum Symbol<'a> {
+    Single(char),
+    Multi(Vec<(ModifierSet<&'a str>, char)>),
 }
 
 /// A single line during parsing.
