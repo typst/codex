@@ -1,7 +1,12 @@
 use std::ops::Deref;
 
 /// A set of modifiers.
-#[derive(Debug, Copy, Clone)]
+///
+/// Beware: The [`Eq`] and [`Hash`] implementations are dependent on the ordering
+/// of the modifiers, in opposition to what a set would usually constitute.
+/// To test for set-wise equality, use [`iter`](Self::iter) and collect into a
+/// true set type like [`HashSet`](std::collections::HashSet).
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 // note: the visibility needs to be `pub(crate)`,
 // since build.rs outputs `ModifierSet(...)`
 pub struct ModifierSet<S>(pub(crate) S);
