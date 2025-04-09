@@ -121,7 +121,12 @@ impl<'a, S: Deref<Target = str>> IntoIterator for &'a ModifierSet<S> {
 
     /// Iterate over the list of modifiers in an arbitrary order.
     fn into_iter(self) -> Self::IntoIter {
-        self.0.split('.')
+        let mut iter = self.0.split('.');
+        if self.0.is_empty() {
+            // empty the iterator
+            let _ = iter.next();
+        }
+        iter
     }
 }
 
@@ -131,6 +136,21 @@ impl<'a> IntoIterator for ModifierSet<&'a str> {
 
     /// Iterate over the list of modifiers in an arbitrary order.
     fn into_iter(self) -> Self::IntoIter {
-        self.0.split('.')
+        let mut iter = self.0.split('.');
+        if self.0.is_empty() {
+            // empty the iterator
+            let _ = iter.next();
+        }
+        iter
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    type ModifierSet = super::ModifierSet<&'static str>;
+
+    #[test]
+    fn empty_set_empty_iter() {
+        assert_eq!(ModifierSet::default().iter().count(), 0);
     }
 }
