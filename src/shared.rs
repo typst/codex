@@ -28,6 +28,11 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         ModifierSet(&self.0)
     }
 
+    /// Get the string of modifiers separated by `.`.
+    pub fn as_str(&self) -> &str {
+        &self.0
+    }
+
     /// Construct a modifier set from a string,
     /// where modifiers are separated by the character `.`.
     ///
