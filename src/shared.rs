@@ -86,6 +86,8 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// by the following two criteria (in order):
     /// 1. Number of modifiers in common with `self` (more is better).
     /// 2. Total number of modifiers (fewer is better).
+    ///
+    /// If there are multiple best matches, the first of them is returned.
     pub fn best_match_in<'a, T>(
         &self,
         variants: impl Iterator<Item = (ModifierSet<&'a str>, T)>,
@@ -150,7 +152,63 @@ mod tests {
     type ModifierSet = super::ModifierSet<&'static str>;
 
     #[test]
-    fn empty_set_empty_iter() {
+    fn default_is_empty() {
+        assert!(ModifierSet::default().is_empty());
+    }
+
+    #[test]
+    fn iter_count() {
         assert_eq!(ModifierSet::default().iter().count(), 0);
+        assert_eq!(ModifierSet::new_unchecked("a").iter().count(), 1);
+        assert_eq!(ModifierSet::new_unchecked("a.b").iter().count(), 2);
+        assert_eq!(ModifierSet::new_unchecked("a.b.c").iter().count(), 3);
+    }
+
+    #[test]
+    fn subset() {
+        assert!(
+            ModifierSet::new_unchecked("a").is_subset(ModifierSet::new_unchecked("a.b"))
+        );
+        assert!(
+            ModifierSet::new_unchecked("a").is_subset(ModifierSet::new_unchecked("b.a"))
+        );
+        assert!(ModifierSet::new_unchecked("a.b")
+            .is_subset(ModifierSet::new_unchecked("b.c.a")));
+    }
+
+    #[test]
+    fn best_match() {
+        // 1. more modifiers in common with self
+        assert_eq!(
+            ModifierSet::new_unchecked("a.b").best_match_in([
+                (ModifierSet::new_unchecked("a.c"), 1),
+                (ModifierSet::new_unchecked("a.b"), 2),
+            ].into_iter()),
+            Some(2)
+        );
+        // 2. fewer modifiers in general
+        assert_eq!(
+            ModifierSet::new_unchecked("a").best_match_in([
+                (ModifierSet::new_unchecked("a"), 1),
+                (ModifierSet::new_unchecked("a.b"), 2),
+            ].into_iter()),
+            Some(1)
+        );
+        // the first rule takes priority over the second
+        assert_eq!(
+            ModifierSet::new_unchecked("a.b").best_match_in([
+                (ModifierSet::new_unchecked("a"), 1),
+                (ModifierSet::new_unchecked("a.b"), 2),
+            ].into_iter()),
+            Some(2)
+        );
+        // among multiple best matches, the first one is returned
+        assert_eq!(
+            ModifierSet::default().best_match_in([
+                (ModifierSet::new_unchecked("a"), 1),
+                (ModifierSet::new_unchecked("b"), 2)
+            ].into_iter()),
+            Some(1)
+        );
     }
 }
