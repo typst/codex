@@ -3,61 +3,166 @@
 use std::fmt::{self, Write};
 use std::iter::FusedIterator;
 
-/// A styled form for mathematical symbols.
-#[derive(Copy, Clone, Eq, PartialEq, Debug, Default)]
+/// The version of [Unicode](https://www.unicode.org/) that this version of the
+/// styling module is based on.
+pub const UNICODE_VERSION: (u8, u8, u8) = (16, 0, 0);
+
+/// A style for mathematical symbols.
+///
+/// Notation in mathematics uses a basic set of characters which can be styled.
+/// The following groupings are used in the documentation:
+/// - digits: The basic Latin digits 0–9 (U+0030..U+0039).
+/// - latin: The basic uppercase and lowercase Latin letters, a–z
+///   (U+0061..U+007A) and A–Z (U+0041..U+005A).
+/// - greek: The uppercase Greek letters Α–Ω (U+0391..U+03A9), plus nabla ∇
+///   (U+2207) and theta ϴ (U+03F4). The lowercase Greek letters α–ω
+///   (U+03B1..U+03C9), plus the partial differential sign ∂ (U+2202), and the
+///   glyph variants ϵ (U+03F5), ϑ (U+03D1), ϰ (U+03F0), ϕ (U+03D5), ϱ
+///   (U+03F1), ϖ (U+03D6).
+/// - arabic: The Arabic letters ا (U+0627), ب (U+0628), ت–غ (U+062A..U+063A),
+///   ف–و (U+0641..U+0648), ي (U+064A).
+/// - arabic-dotless: The dotless Arabic letter variants ٮ (U+066E), ٯ
+///   (U+066F), ڡ (U+06A1), ں (U+06BA)
+/// - digamma: The uppercase and lowercase digamma, Ϝ (U+03DC) and ϝ (U+03DD).
+/// - dotless: The dotless variants of the lowercase Latin letters i and j, ı
+///   (U+0131) and ȷ (U+0237).
+///
+/// Note that some styles support only a subset of a group. The characters each
+/// style supports are given in their documentation.
+///
+/// # Script style variants
+///
+/// There are two widely recognized variants of the script style: chancery and
+/// roundhand. They can be distinguished with variation sequences, by using the
+/// variation selectors U+FE00 and U+FE01 for chancery and roundhand
+/// respectively. These are specified in the [StandardizedVariants.txt] file
+/// from the Unicode Character Database.
+///
+/// Only the uppercase Latin letters are standardized variation sequences, but
+/// the [`Chancery`](MathStyle::Chancery) and
+/// [`Roundhand`](MathStyle::Roundhand) styles also support the lowercase Latin
+/// letters. In addition, the bold styles
+/// [`BoldChancery`](MathStyle::BoldChancery) and
+/// [`BoldRoundhand`](MathStyle::BoldRoundhand) are provided, which support
+/// both the uppercase and lowercase Latin letters despite not being specified
+/// as standardized variation sequences by Unicode.
+///
+/// # Shaping
+///
+/// The Arabic styles (including those from the
+/// [`Doublestruck`](MathStyle::Doublestruck) style) are not subject to
+/// shaping. However, [`Plain`](MathStyle::Plain) should still be shaped, as
+/// the characters are Arabic letters in the Arabic block (U+0600..U+06FF).
+///
+/// [StandardizedVariants.txt]: <https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt>
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash, Default)]
 pub enum MathStyle {
-    /// Normal style and isolated style (for Arabic). May be serif or
-    /// sans-serif depending upon the font.
-    ///
-    /// This is the default.
+    /// Unstyled default. May be serif or sans-serif depending on the font.
     #[default]
-    Serif,
-    /// Normal bold style. May be serif or sans-serif depending upon the font.
-    SerifBold,
-    /// Normal italic style. May be serif or sans-serif depending upon the
-    /// font.
-    SerifItalic,
-    /// Normal bold italic style. May be serif or sans-serif depending upon the
-    /// font.
-    SerifItalicBold,
-    /// Sans-serif style.
-    SansSerif,
-    /// Sans-serif bold style.
-    SansSerifBold,
-    /// Sans-serif italic style.
-    SansSerifItalic,
-    /// Sans-serif bold italic style.
-    SansSerifItalicBold,
-    /// Fraktur style. Also known as black-letter.
-    Fraktur,
-    /// Bold fraktur style.
-    FrakturBold,
+    Plain,
+    /// Bold style. May be serif or sans-serif depending on the font.
+    ///
+    /// Supported characters: digits, latin, greek, digamma.
+    Bold,
+    /// Italic style. May be serif or sans-serif depending on the font.
+    ///
+    /// Supported characters: latin, greek, dotless, and the extra ħ (U+0127).
+    Italic,
+    /// Bold italic style. May be serif or sans-serif depending on the font.
+    ///
+    /// Supported characters: latin, greek.
+    BoldItalic,
     /// Script style.
+    ///
+    /// Supported characters: latin.
     Script,
     /// Bold script style.
-    ScriptBold,
+    ///
+    /// Supported characters: latin.
+    BoldScript,
+    /// Fraktur style. Also known as black-letter style.
+    ///
+    /// Supported characters: latin.
+    Fraktur,
+    /// Bold fraktur style. Also known as bold black-letter style.
+    ///
+    /// Supported characters: latin.
+    BoldFraktur,
+    /// Sans-serif style.
+    ///
+    /// Supported characters: digits, latin.
+    Sansserif,
+    /// Bold sans-serif style.
+    ///
+    /// Supported characters: digits, latin, greek.
+    SansserifBold,
+    /// Italic sans-serif style.
+    ///
+    /// Supported characters: latin.
+    SansserifItalic,
+    /// Bold italic sans-serif style.
+    ///
+    /// Supported characters: latin, greek.
+    SansserifBoldItalic,
+    /// Monospace style.
+    ///
+    /// Supported characters: digits, latin.
+    Monospace,
+    /// Isolated style.
+    ///
+    /// Supported characters: arabic excluding ه (U+0647), arabic-dotless.
+    Isolated,
+    /// Initial style.
+    ///
+    /// Supported characters: arabic excluding ا (U+0627), د–ز
+    /// (U+062F..U+0632), ط (U+0637), ظ (U+0638), و (U+0648).
+    Initial,
+    /// Tailed style.
+    ///
+    /// Supported characters: arabic excluding ا (U+0627), ب (U+0628),
+    /// ت (U+062A), ث (U+062B),  د–ز (U+062F..U+0632), ط (U+0637), ظ (U+0638),
+    /// ف (U+0641), ك (U+0643), م (U+0645), ه (U+0647), و (U+0648), and
+    /// arabic-dotless excluding ٮ (U+066E), ڡ (U+06A1).
+    Tailed,
+    /// Stretched style.
+    ///
+    /// Supported characters: arabic excluding ا (U+0627), د–ز
+    /// (U+062F..U+0632), ل (U+0644), و (U+0648), and arabic-dotless excluding
+    /// ٯ (U+066F), ں (U+06BA).
+    Stretched,
+    /// Looped style.
+    ///
+    /// Supported characters: arabic excluding ك (U+0643).
+    Looped,
+    /// Double-struck style. Also known as open-face style or blackboard-bold
+    /// style.
+    ///
+    /// Supported characters: digits, latin, arabic excluding ا (U+0627),
+    /// ك (U+0643), ه (U+0647), and the extras ∑ (U+2211), Γ (U+0393), Π
+    /// (U+03A0), γ (U+03B3), π (U+03C0).
+    Doublestruck,
+    /// Italic double-struck style. Also known as italic open-face style or
+    /// italic blackboard-bold style.
+    ///
+    /// This is an exceptional style as only the following Latin letters are
+    /// supported: D (U+0044), d (U+0064), e (U+0065), i (U+0069), j (U+006A).
+    DoublestruckItalic,
     /// Chancery variant of script style.
+    ///
+    /// Supported characters: latin.
     Chancery,
     /// Chancery variant of bold script style.
-    ChanceryBold,
+    ///
+    /// Supported characters: latin.
+    BoldChancery,
     /// Roundhand variant of script style.
+    ///
+    /// Supported characters: latin.
     Roundhand,
     /// Roundhand variant of bold script style.
-    RoundhandBold,
-    /// Double-struck style. Also known as open-face or blackboard-bold.
-    DoubleStruck,
-    /// Double-struck italic style.
-    DoubleStruckItalic,
-    /// Monospace style.
-    Monospace,
-    /// Initial style (for Arabic).
-    Initial,
-    /// Tailed style (for Arabic).
-    Tailed,
-    /// Looped style (for Arabic).
-    Looped,
-    /// Stretched style (for Arabic).
-    Stretched,
+    ///
+    /// Supported characters: latin.
+    BoldRoundhand,
 }
 
 /// Returns an iterator that yields the styled equivalent of a `char`.
@@ -136,7 +241,7 @@ impl fmt::Display for ToStyle {
     }
 }
 
-/// Returns an iterator that yields the styled mapping of a `char`, as
+/// Returns an iterator that yields the styled conversion of a `char`, as
 /// specified by `style`, as one or more `char`s.
 ///
 /// # Examples
@@ -149,64 +254,55 @@ impl fmt::Display for ToStyle {
 ///
 /// let s = "xγΩAذح1∑س"
 ///     .chars()
-///     .flat_map(|c| to_style(c, MathStyle::DoubleStruck))
+///     .flat_map(|c| to_style(c, MathStyle::Doublestruck))
 ///     .collect::<String>();
 /// assert_eq!("𝕩ℽΩ𝔸𞺸𞺧𝟙⅀𞺮", s);
 /// ```
 pub fn to_style(c: char, style: MathStyle) -> ToStyle {
-    use mappings::*;
+    use conversions::*;
     use MathStyle::*;
     let styled = match style {
-        Serif => [to_serif(c), '\0'],
-        SerifBold => [to_serif_bold(c), '\0'],
-        SerifItalic => [to_serif_italic(c), '\0'],
-        SerifItalicBold => [to_serif_italic_bold(c), '\0'],
-        SansSerif => [to_sans_serif(c), '\0'],
-        SansSerifBold => [to_sans_serif_bold(c), '\0'],
-        SansSerifItalic => [to_sans_serif_italic(c), '\0'],
-        SansSerifItalicBold => [to_sans_serif_italic_bold(c), '\0'],
-        Fraktur => [to_fraktur(c), '\0'],
-        FrakturBold => [to_fraktur_bold(c), '\0'],
+        Plain => [c, '\0'],
+        Bold => [to_bold(c), '\0'],
+        Italic => [to_italic(c), '\0'],
+        BoldItalic => [to_bold_italic(c), '\0'],
         Script => [to_script(c), '\0'],
-        ScriptBold => [to_script_bold(c), '\0'],
-        Chancery => to_chancery(c),
-        ChanceryBold => to_chancery_bold(c),
-        Roundhand => to_roundhand(c),
-        RoundhandBold => to_roundhand_bold(c),
-        DoubleStruck => [to_double_struck(c), '\0'],
-        DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
+        BoldScript => [to_bold_script(c), '\0'],
+        Fraktur => [to_fraktur(c), '\0'],
+        BoldFraktur => [to_bold_fraktur(c), '\0'],
+        Sansserif => [to_sansserif(c), '\0'],
+        SansserifBold => [to_sansserif_bold(c), '\0'],
+        SansserifItalic => [to_sansserif_italic(c), '\0'],
+        SansserifBoldItalic => [to_sansserif_bold_italic(c), '\0'],
         Monospace => [to_monospace(c), '\0'],
+        Isolated => [to_isolated(c), '\0'],
         Initial => [to_initial(c), '\0'],
         Tailed => [to_tailed(c), '\0'],
-        Looped => [to_looped(c), '\0'],
         Stretched => [to_stretched(c), '\0'],
+        Looped => [to_looped(c), '\0'],
+        Doublestruck => [to_doublestruck(c), '\0'],
+        DoublestruckItalic => [to_doublestruck_italic(c), '\0'],
+        Chancery => to_chancery(c),
+        BoldChancery => to_bold_chancery(c),
+        Roundhand => to_roundhand(c),
+        BoldRoundhand => to_bold_roundhand(c),
     };
     ToStyle::new(styled)
 }
 
-/// Functions which map a `char` to its specified styled form.
+/// Functions which convert a `char` to its specified styled form.
 ///
 /// Sourced from:
-/// - [Unicode Core Specification]
+/// - [Unicode Core Specification - Section 22.2, Letterlike Symbols]
+/// - [Letterlike Symbols]
 /// - [Mathematical Alphanumeric Symbols]
 /// - [Arabic Mathematical Alphabetic Symbols]
-/// - <https://www.w3.org/TR/mathml-core/#new-text-transform-mappings>
 ///
-/// ## Examples
-///
-/// ```
-/// use codex::styling::mappings::*;
-///
-/// assert_eq!('𝔭', to_fraktur('p'));
-/// assert_eq!('𝞌', to_sans_serif_bold('ϰ'));
-/// assert_eq!('𞺰', to_double_struck('ف'));
-/// assert_eq!(['𝒫', '\u{FE01}'], to_roundhand('P'));
-/// ```
-///
-/// [Unicode Core Specification]: <https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-22/#G16021>
+/// [Unicode Core Specification - Section 22.2, Letterlike Symbols]: <https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-22/#G14143>
+/// [Letterlike Symbols]: <https://unicode.org/charts/PDF/U2100.pdf>
 /// [Mathematical Alphanumeric Symbols]: <https://unicode.org/charts/PDF/U1D400.pdf>
 /// [Arabic Mathematical Alphabetic Symbols]: <https://unicode.org/charts/PDF/U1EE00.pdf>
-pub mod mappings {
+mod conversions {
     const VARIATION_SELECTOR_1: char = '\u{FE00}';
     const VARIATION_SELECTOR_2: char = '\u{FE01}';
 
@@ -216,29 +312,19 @@ pub mod mappings {
         std::char::from_u32((c as u32) + delta).unwrap()
     }
 
-    /// To normal and isolated symbols.
-    ///
-    /// This is the normal unstyled form, and may be serif or sans-serif
-    /// depending upon the font.
-    ///
-    /// This is also the isolated style, the normal form for Arabic.
-    pub fn to_serif(c: char) -> char {
-        c
-    }
-
-    /// To bold symbols.
-    ///
-    /// This is the normal bold form, and may be serif or sans-serif depending
-    /// upon the font.
-    pub fn to_serif_bold(c: char) -> char {
+    pub fn to_bold(c: char) -> char {
         let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Bold symbols (U+1D400..U+1D433)
             'A'..='Z' => 0x1D3BF,
             'a'..='z' => 0x1D3B9,
+            // Bold Greek symbols (U+1D6A8..U+1D6DA)
             'Α'..='Ρ' => 0x1D317,
             'ϴ' => 0x1D2C5,
             'Σ'..='Ω' => 0x1D317,
             '∇' => 0x1B4BA,
             'α'..='ω' => 0x1D311,
+            // Additional bold Greek symbols (U+1D6DB..U+1D6E1)
             '∂' => 0x1B4D9,
             'ϵ' => 0x1D2E7,
             'ϑ' => 0x1D30C,
@@ -246,29 +332,36 @@ pub mod mappings {
             'ϕ' => 0x1D30A,
             'ϱ' => 0x1D2EF,
             'ϖ' => 0x1D30B,
-            'Ϝ' | 'ϝ' => 0x1D3EE,
+            // Additional bold Greek symbols (U+1D7CA..U+1D7CB)
+            'Ϝ'..='ϝ' => 0x1D3EE,
+            // Bold digits (U+1D7CE..U+1D7D7)
             '0'..='9' => 0x1D79E,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To italic symbols.
-    ///
-    /// This is the normal italic form, and may be serif or sans-serif
-    /// depending upon the font.
-    pub fn to_serif_italic(c: char) -> char {
+    pub fn to_italic(c: char) -> char {
         let delta = match c {
-            'A'..='Z' => 0x1D3F3,
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Letterlike symbols (U+2100..U+2134)
             'h' => 0x20A6,
+            'ħ' => 0x1FE8,
+
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Italic symbols (U+1D434..U+1D467)
+            'A'..='Z' => 0x1D3F3,
             'a'..='z' => 0x1D3ED,
+            // Dotless symbols (U+1D6A4..U+1D6A5)
             'ı' => 0x1D573,
             'ȷ' => 0x1D46E,
+            // Italic Greek symbols (U+1D6E2..U+1D714)
             'Α'..='Ρ' => 0x1D351,
             'ϴ' => 0x1D2FF,
             'Σ'..='Ω' => 0x1D351,
             '∇' => 0x1B4F4,
             'α'..='ω' => 0x1D34B,
+            // Additional italic Greek symbols (U+1D715..U+1D71B)
             '∂' => 0x1B513,
             'ϵ' => 0x1D321,
             'ϑ' => 0x1D346,
@@ -276,26 +369,24 @@ pub mod mappings {
             'ϕ' => 0x1D344,
             'ϱ' => 0x1D329,
             'ϖ' => 0x1D345,
-            // Missing from MathML Core.
-            'ħ' => 0x1FE8,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To bold italic symbols.
-    ///
-    /// This is the normal bold italic form, and may be serif or sans-serif
-    /// depending upon the font.
-    pub fn to_serif_italic_bold(c: char) -> char {
+    pub fn to_bold_italic(c: char) -> char {
         let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Bold italic symbols (U+1D468..U+1D49B)
             'A'..='Z' => 0x1D427,
             'a'..='z' => 0x1D421,
+            // Bold italic Greek symbols (U+1D71C..U+1D74E)
             'Α'..='Ρ' => 0x1D38B,
             'ϴ' => 0x1D339,
             'Σ'..='Ω' => 0x1D38B,
             '∇' => 0x1B52E,
             'α'..='ω' => 0x1D385,
+            // Additional bold italic Greek symbols (U+1D74F..U+1D755)
             '∂' => 0x1B54D,
             'ϵ' => 0x1D35B,
             'ϑ' => 0x1D380,
@@ -308,123 +399,34 @@ pub mod mappings {
         apply_delta(c, delta)
     }
 
-    /// To sans-serif symbols.
-    pub fn to_sans_serif(c: char) -> char {
-        let delta = match c {
-            'A'..='Z' => 0x1D55F,
-            'a'..='z' => 0x1D559,
-            '0'..='9' => 0x1D7B2,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To sans-serif bold symbols.
-    pub fn to_sans_serif_bold(c: char) -> char {
-        let delta = match c {
-            'A'..='Z' => 0x1D593,
-            'a'..='z' => 0x1D58D,
-            'Α'..='Ρ' => 0x1D3C5,
-            'ϴ' => 0x1D373,
-            'Σ'..='Ω' => 0x1D3C5,
-            '∇' => 0x1B568,
-            'α'..='ω' => 0x1D3BF,
-            '∂' => 0x1B587,
-            'ϵ' => 0x1D395,
-            'ϑ' => 0x1D3BA,
-            'ϰ' => 0x1D39C,
-            'ϕ' => 0x1D3B8,
-            'ϱ' => 0x1D39D,
-            'ϖ' => 0x1D3B9,
-            '0'..='9' => 0x1D7BC,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To sans-serif italic symbols.
-    pub fn to_sans_serif_italic(c: char) -> char {
-        let delta = match c {
-            'A'..='Z' => 0x1D5C7,
-            'a'..='z' => 0x1D5C1,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To sans-serif bold italic symbols.
-    pub fn to_sans_serif_italic_bold(c: char) -> char {
-        let delta = match c {
-            'A'..='Z' => 0x1D593,
-            'a'..='z' => 0x1D58D,
-            'Α'..='Ρ' => 0x1D3C5,
-            'ϴ' => 0x1D373,
-            'Σ'..='Ω' => 0x1D3C5,
-            '∇' => 0x1B568,
-            'α'..='ω' => 0x1D3BF,
-            '∂' => 0x1B587,
-            'ϵ' => 0x1D395,
-            'ϑ' => 0x1D3BA,
-            'ϰ' => 0x1D39C,
-            'ϕ' => 0x1D3B8,
-            'ϱ' => 0x1D39D,
-            'ϖ' => 0x1D3B9,
-            '0'..='9' => 0x1D7BC,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To fraktur symbols.
-    ///
-    /// This style is sometimes known as black-letter.
-    pub fn to_fraktur(c: char) -> char {
-        let delta = match c {
-            'C' => 0x20EA,
-            'H' => 0x20C4,
-            'I' => 0x20C8,
-            'R' => 0x20CA,
-            'Z' => 0x20CE,
-            'A'..='Z' => 0x1D4C3,
-            'a'..='z' => 0x1D4BD,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To bold fraktur symbols.
-    pub fn to_fraktur_bold(c: char) -> char {
-        let delta = match c {
-            'A'..='Z' => 0x1D52B,
-            'a'..='z' => 0x1D525,
-            _ => return c,
-        };
-        apply_delta(c, delta)
-    }
-
-    /// To script symbols.
     pub fn to_script(c: char) -> char {
         let delta = match c {
-            'B' => 0x20EA,
-            'E'..='F' => 0x20EB,
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Letterlike symbols (U+2100..U+2134)
+            'g' => 0x20A3,
             'H' => 0x20C3,
             'I' => 0x20C7,
             'L' => 0x20C6,
-            'M' => 0x20E6,
             'R' => 0x20C9,
-            'A'..='Z' => 0x1D45B,
+            'B' => 0x20EA,
             'e' => 0x20CA,
-            'g' => 0x20A3,
+            'E'..='F' => 0x20EB,
+            'M' => 0x20E6,
             'o' => 0x20C5,
+
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Script symbols (U+1D49C..U+1D4CF)
+            'A'..='Z' => 0x1D45B,
             'a'..='z' => 0x1D455,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To bold script symbols.
-    pub fn to_script_bold(c: char) -> char {
+    pub fn to_bold_script(c: char) -> char {
         let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Bold script symbols (U+1D4D0..U+1D503)
             'A'..='Z' => 0x1D48F,
             'a'..='z' => 0x1D489,
             _ => return c,
@@ -432,131 +434,172 @@ pub mod mappings {
         apply_delta(c, delta)
     }
 
-    /// To chancery style of script symbols.
-    ///
-    /// This function returns a variation sequence using the variation selector
-    /// `U+FE00`, as specified in the [`StandardizedVariants.txt`] file from
-    /// the Unicode Character Database. Note that only the capital Latin
-    /// letters are standardized variation sequences, but this function also
-    /// maps the small Latin letters.
-    ///
-    /// [`StandardizedVariants.txt`]: <https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt>
-    pub fn to_chancery(c: char) -> [char; 2] {
-        [to_script(c), VARIATION_SELECTOR_1]
-    }
-
-    /// To chancery style of bold script symbols.
-    ///
-    /// This function returns a variation sequence using the variation selector
-    /// `U+FE00`. Note however that the bold script symbols are _not_ specified
-    /// as standardized variation sequences by Unicode.
-    pub fn to_chancery_bold(c: char) -> [char; 2] {
-        [to_script_bold(c), VARIATION_SELECTOR_1]
-    }
-
-    /// To roundhand style of script symbols.
-    ///
-    /// This function returns a variation sequence using the variation selector
-    /// `U+FE01`, as specified in the [`StandardizedVariants.txt`] file from
-    /// the Unicode Character Database. Note that only the capital Latin
-    /// letters are standardized variation sequences, but this function also
-    /// maps the small Latin letters.
-    ///
-    /// [`StandardizedVariants.txt`]: <https://www.unicode.org/Public/UNIDATA/StandardizedVariants.txt>
-    pub fn to_roundhand(c: char) -> [char; 2] {
-        [to_script(c), VARIATION_SELECTOR_2]
-    }
-
-    /// To roundhand style of bold script symbols.
-    ///
-    /// This function returns a variation sequence using the variation selector
-    /// `U+FE01`. Note however that the bold script symbols are _not_ specified
-    /// as standardized variation sequences by Unicode.
-    pub fn to_roundhand_bold(c: char) -> [char; 2] {
-        [to_script_bold(c), VARIATION_SELECTOR_2]
-    }
-
-    /// To double-struck symbols.
-    ///
-    /// This style is sometimes known as open-face or blackboard-bold.
-    pub fn to_double_struck(c: char) -> char {
+    pub fn to_fraktur(c: char) -> char {
         let delta = match c {
-            'C' => 0x20BF,
-            'H' => 0x20C5,
-            'N' => 0x20C7,
-            'P'..='Q' => 0x20C9,
-            'R' => 0x20CB,
-            'Z' => 0x20CA,
-            'A'..='Z' => 0x1D4F7,
-            'a'..='z' => 0x1D4F1,
-            '0'..='9' => 0x1D7A8,
-            'ب' => 0x1E879,
-            'ج' | 'ع' => 0x1E876,
-            'د' | 'ز' => 0x1E874,
-            'و' => 0x1E85D,
-            'ح' => 0x1E87A,
-            'ط' => 0x1E871,
-            'ي' => 0x1E85F,
-            'ل'..='ن' => 0x1E867,
-            'س' => 0x1E87B,
-            'ف' => 0x1E86F,
-            'ص' => 0x1E87C,
-            'ق' => 0x1E870,
-            'ر' | 'ظ' => 0x1E882,
-            'ش' => 0x1E880,
-            'ت'..='ث' => 0x1E88B,
-            'خ' => 0x1E889,
-            'ذ' => 0x1E888,
-            'ض' => 0x1E883,
-            'غ' => 0x1E881,
-            // Missing from MathML Core.
-            'Γ' => 0x1DAB,
-            'Π' => 0x1D9F,
-            'γ' => 0x1D8A,
-            'π' => 0x1D7C,
-            '∑' => return '⅀', // Delta is negative.
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Letterlike symbols (U+2100..U+2134)
+            'H' => 0x20C4,
+            'I' => 0x20C8,
+            'R' => 0x20CA,
+            'Z' => 0x20CE,
+            'C' => 0x20EA,
+
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Fraktur symbols (U+1D504..U+1D537)
+            'A'..='Z' => 0x1D4C3,
+            'a'..='z' => 0x1D4BD,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To double-struck italic symbols.
-    ///
-    /// Note that there does not exist codepoints in Unicode for all Latin
-    /// letters. There are only a few double-struck italic symbols, and they
-    /// are present solely in the Letterlike Symbols block.
-    pub fn to_double_struck_italic(c: char) -> char {
+    pub fn to_bold_fraktur(c: char) -> char {
         let delta = match c {
-            // Missing from MathML Core.
-            'D' => 0x2101,
-            'd'..='e' => 0x20E2,
-            'i'..='j' => 0x20DF,
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Bold Fraktur symbols (U+1D56C..U+1D59F)
+            'A'..='Z' => 0x1D52B,
+            'a'..='z' => 0x1D525,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To monospace symbols.
+    pub fn to_sansserif(c: char) -> char {
+        let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Sans-serif symbols (U+1D5A0..U+1D5D3)
+            'A'..='Z' => 0x1D55F,
+            'a'..='z' => 0x1D559,
+            // Sans-serif digits (U+1D7E2..U+1D7EB)
+            '0'..='9' => 0x1D7B2,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
+    pub fn to_sansserif_bold(c: char) -> char {
+        let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Sans-serif bold symbols (U+1D5D4..U+1D607)
+            'A'..='Z' => 0x1D593,
+            'a'..='z' => 0x1D58D,
+            // Sans-serif bold Greek symbols (U+1D756..U+1D788)
+            'Α'..='Ρ' => 0x1D3C5,
+            'ϴ' => 0x1D373,
+            'Σ'..='Ω' => 0x1D3C5,
+            '∇' => 0x1B568,
+            'α'..='ω' => 0x1D3BF,
+            // Additional sans-serif bold Greek symbols (U+1D789..U+1D78F)
+            '∂' => 0x1B587,
+            'ϵ' => 0x1D395,
+            'ϑ' => 0x1D3BA,
+            'ϰ' => 0x1D39C,
+            'ϕ' => 0x1D3B8,
+            'ϱ' => 0x1D39D,
+            'ϖ' => 0x1D3B9,
+            // Sans-serif bold digits (U+1D7EC..U+1D7F5)
+            '0'..='9' => 0x1D7BC,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
+    pub fn to_sansserif_italic(c: char) -> char {
+        let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Sans-serif italic symbols (U+1D608..U+1D63B)
+            'A'..='Z' => 0x1D5C7,
+            'a'..='z' => 0x1D5C1,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
+    pub fn to_sansserif_bold_italic(c: char) -> char {
+        let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Sans-serif bold italic symbols (U+1D63C..U+1D66F)
+            'A'..='Z' => 0x1D5FB,
+            'a'..='z' => 0x1D5F5,
+            // Sans-serif bold italic Greek symbols (U+1D790..U+1D7C2)
+            'Α'..='Ρ' => 0x1D3FF,
+            'ϴ' => 0x1D3AD,
+            'Σ'..='Ω' => 0x1D3FF,
+            '∇' => 0x1B5A2,
+            'α'..='ω' => 0x1D3F9,
+            // Additional sans-serif bold italic Greek symbols (U+1D7C3..U+1D7C9)
+            '∂' => 0x1B5C1,
+            'ϵ' => 0x1D3CF,
+            'ϑ' => 0x1D3F4,
+            'ϰ' => 0x1D3D6,
+            'ϕ' => 0x1D3F2,
+            'ϱ' => 0x1D3D7,
+            'ϖ' => 0x1D3F3,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
     pub fn to_monospace(c: char) -> char {
         let delta = match c {
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Monospace symbols (U+1D670..U+1D6A3)
             'A'..='Z' => 0x1D62F,
             'a'..='z' => 0x1D629,
+            // Monospace digits (U+1D7F6..U+1D7FF)
             '0'..='9' => 0x1D7C6,
             _ => return c,
         };
         apply_delta(c, delta)
     }
 
-    /// To initial symbols.
+    pub fn to_isolated(c: char) -> char {
+        let delta = match c {
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Isolated symbols (U+1EE00..U+1EE1F)
+            'ا'..='ب' => 0x1E7D9,
+            'ج' => 0x1E7D6,
+            'د' => 0x1E7D4,
+            'و' => 0x1E7BD,
+            'ز' => 0x1E7D4,
+            'ح' => 0x1E7DA,
+            'ط' => 0x1E7D1,
+            'ي' => 0x1E7BF,
+            'ك'..='ن' => 0x1E7C7,
+            'س' => 0x1E7DB,
+            'ع' => 0x1E7D6,
+            'ف' => 0x1E7CF,
+            'ص' => 0x1E7DC,
+            'ق' => 0x1E7D0,
+            'ر' => 0x1E7E2,
+            'ش' => 0x1E7E0,
+            'ت'..='ث' => 0x1E7EB,
+            'خ' => 0x1E7E9,
+            'ذ' => 0x1E7E8,
+            'ض' => 0x1E7E3,
+            'ظ' => 0x1E7E2,
+            'غ' => 0x1E7E1,
+            'ٮ' => 0x1E7AE,
+            'ں' => 0x1E763,
+            'ڡ' => 0x1E77D,
+            'ٯ' => 0x1E7B0,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
     pub fn to_initial(c: char) -> char {
         let delta = match c {
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Initial symbols (U+1EE21..U+1EE3B)
             'ب' => 0x1E7F9,
-            'ج' | 'ع' => 0x1E7F6,
+            'ج' => 0x1E7F6,
             'ه' => 0x1E7DD,
             'ح' => 0x1E7FA,
             'ي' => 0x1E7DF,
             'ك'..='ن' => 0x1E7E7,
             'س' => 0x1E7FB,
+            'ع' => 0x1E7F6,
             'ف' => 0x1E7EF,
             'ص' => 0x1E7FC,
             'ق' => 0x1E7F0,
@@ -570,14 +613,17 @@ pub mod mappings {
         apply_delta(c, delta)
     }
 
-    /// To tailed symbols.
     pub fn to_tailed(c: char) -> char {
         let delta = match c {
-            'ج' | 'ع' => 0x1E816,
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Tailed symbols (U+1EE42..U+1EE5F)
+            'ج' => 0x1E816,
             'ح' => 0x1E81A,
             'ي' => 0x1E7FF,
-            'ل' | 'ن' => 0x1E807,
+            'ل' => 0x1E807,
+            'ن' => 0x1E807,
             'س' => 0x1E81B,
+            'ع' => 0x1E816,
             'ص' => 0x1E81C,
             'ق' => 0x1E810,
             'ش' => 0x1E820,
@@ -591,17 +637,20 @@ pub mod mappings {
         apply_delta(c, delta)
     }
 
-    /// To stretched symbols.
     pub fn to_stretched(c: char) -> char {
         let delta = match c {
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Stretched symbols (U+1EE61..U+1EE7E)
             'ب' => 0x1E839,
-            'ج' | 'ع' => 0x1E836,
+            'ج' => 0x1E836,
             'ه' => 0x1E81D,
             'ح' => 0x1E83A,
             'ط' => 0x1E831,
             'ي' => 0x1E81F,
-            'ك' | 'م'..='ن' => 0x1E827,
+            'ك' => 0x1E827,
+            'م'..='ن' => 0x1E827,
             'س' => 0x1E83B,
+            'ع' => 0x1E836,
             'ف' => 0x1E82F,
             'ص' => 0x1E83C,
             'ق' => 0x1E830,
@@ -618,30 +667,122 @@ pub mod mappings {
         apply_delta(c, delta)
     }
 
-    /// To looped symbols.
     pub fn to_looped(c: char) -> char {
         let delta = match c {
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Looped symbols (U+1EE80..U+1EE9B)
             'ا'..='ب' => 0x1E859,
-            'ج' | 'ع' => 0x1E856,
-            'د' | 'ز' => 0x1E854,
-            'ه'..='و' => 0x1E83D,
+            'ج' => 0x1E856,
+            'د' => 0x1E854,
+            'ه'..'و' => 0x1E83D,
+            'ز' => 0x1E854,
             'ح' => 0x1E85A,
             'ط' => 0x1E851,
             'ي' => 0x1E83F,
             'ل'..='ن' => 0x1E847,
             'س' => 0x1E85B,
+            'ع' => 0x1E856,
             'ف' => 0x1E84F,
             'ص' => 0x1E85C,
             'ق' => 0x1E850,
-            'ر' | 'ظ' => 0x1E862,
+            'ر' => 0x1E862,
             'ش' => 0x1E860,
             'ت'..='ث' => 0x1E86B,
             'خ' => 0x1E869,
             'ذ' => 0x1E868,
             'ض' => 0x1E863,
+            'ظ' => 0x1E862,
             'غ' => 0x1E861,
             _ => return c,
         };
         apply_delta(c, delta)
+    }
+
+    pub fn to_doublestruck(c: char) -> char {
+        let delta = match c {
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Letterlike symbols (U+2100..U+2134)
+            'C' => 0x20BF,
+            'H' => 0x20C5,
+            'N' => 0x20C7,
+            'P'..='Q' => 0x20C9,
+            'R' => 0x20CB,
+            'Z' => 0x20CA,
+            // Additional letterlike symbols (U+2139..U+213F)
+            'π' => 0x1D7C,
+            'γ' => 0x1D8A,
+            'Γ' => 0x1DAB,
+            'Π' => 0x1D9F,
+            // Double-struck large operator (U+2140)
+            '∑' => return '⅀', // delta is negative
+
+            // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
+            // Double-struck symbols (U+1D538..U+1D56B)
+            'A'..='Z' => 0x1D4F7,
+            'a'..='z' => 0x1D4F1,
+            // Double-struck digits (U+1D7D8..U+1D7E1)
+            '0'..='9' => 0x1D7A8,
+
+            // Arabic Mathematical Alphabetic Symbols Block (U+1EE00..U+1EEFF)
+            // Double-struck symbols (U+1EEA1..U+1EEBB)
+            'ب' => 0x1E879,
+            'ج' => 0x1E876,
+            'د' => 0x1E874,
+            'و' => 0x1E85D,
+            'ز' => 0x1E874,
+            'ح' => 0x1E87A,
+            'ط' => 0x1E871,
+            'ي' => 0x1E85F,
+            'ل'..='ن' => 0x1E867,
+            'س' => 0x1E87B,
+            'ع' => 0x1E876,
+            'ف' => 0x1E86F,
+            'ص' => 0x1E87C,
+            'ق' => 0x1E870,
+            'ر' => 0x1E882,
+            'ش' => 0x1E880,
+            'ت'..='ث' => 0x1E88B,
+            'خ' => 0x1E889,
+            'ذ' => 0x1E888,
+            'ض' => 0x1E883,
+            'ظ' => 0x1E882,
+            'غ' => 0x1E881,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
+    pub fn to_doublestruck_italic(c: char) -> char {
+        let delta = match c {
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Double-struck italic math symbols (U+2145..U+2149)
+            'D' => 0x2101,
+            'd'..='e' => 0x20E2,
+            'i'..='j' => 0x20DF,
+            _ => return c,
+        };
+        apply_delta(c, delta)
+    }
+
+    pub fn to_chancery(c: char) -> [char; 2] {
+        // Standardized Variation Sequences (uppercase Latin script characters)
+        // Variation Sequences (lowercase Latin script characters)
+        [to_script(c), VARIATION_SELECTOR_1]
+    }
+
+    pub fn to_bold_chancery(c: char) -> [char; 2] {
+        // Variation Sequences (Latin script characters)
+        [to_bold_script(c), VARIATION_SELECTOR_1]
+    }
+
+    pub fn to_roundhand(c: char) -> [char; 2] {
+        // Standardized Variation Sequences (uppercase Latin script characters)
+        // Variation Sequences (lowercase Latin script characters)
+        [to_script(c), VARIATION_SELECTOR_2]
+    }
+
+    pub fn to_bold_roundhand(c: char) -> [char; 2] {
+        // Variation Sequences (Latin script characters)
+        [to_bold_script(c), VARIATION_SELECTOR_2]
     }
 }
