@@ -72,11 +72,11 @@ pub enum MathStyle {
     ///
     /// Supported characters: latin, greek.
     BoldItalic,
-    /// Script style.
+    /// Script style. May be chancery or roundhand depending on the font.
     ///
     /// Supported characters: latin.
     Script,
-    /// Bold script style.
+    /// Bold script style. May be chancery or roundhand depending on the font.
     ///
     /// Supported characters: latin.
     BoldScript,
