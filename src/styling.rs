@@ -91,19 +91,19 @@ pub enum MathStyle {
     /// Sans-serif style.
     ///
     /// Supported characters: digits, latin.
-    Sansserif,
+    SansSerif,
     /// Bold sans-serif style.
     ///
     /// Supported characters: digits, latin, greek.
-    SansserifBold,
+    SansSerifBold,
     /// Italic sans-serif style.
     ///
     /// Supported characters: latin.
-    SansserifItalic,
+    SansSerifItalic,
     /// Bold italic sans-serif style.
     ///
     /// Supported characters: latin, greek.
-    SansserifBoldItalic,
+    SansSerifBoldItalic,
     /// Monospace style.
     ///
     /// Supported characters: digits, latin.
@@ -270,10 +270,10 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
         BoldScript => [to_bold_script(c), '\0'],
         Fraktur => [to_fraktur(c), '\0'],
         BoldFraktur => [to_bold_fraktur(c), '\0'],
-        Sansserif => [to_sansserif(c), '\0'],
-        SansserifBold => [to_sansserif_bold(c), '\0'],
-        SansserifItalic => [to_sansserif_italic(c), '\0'],
-        SansserifBoldItalic => [to_sansserif_bold_italic(c), '\0'],
+        SansSerif => [to_sans_serif(c), '\0'],
+        SansSerifBold => [to_sans_serif_bold(c), '\0'],
+        SansSerifItalic => [to_sans_serif_italic(c), '\0'],
+        SansSerifBoldItalic => [to_sans_serif_bold_italic(c), '\0'],
         Monospace => [to_monospace(c), '\0'],
         Isolated => [to_isolated(c), '\0'],
         Initial => [to_initial(c), '\0'],
@@ -464,7 +464,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_sansserif(c: char) -> char {
+    pub fn to_sans_serif(c: char) -> char {
         let delta = match c {
             // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
             // Sans-serif symbols (U+1D5A0..U+1D5D3)
@@ -477,7 +477,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_sansserif_bold(c: char) -> char {
+    pub fn to_sans_serif_bold(c: char) -> char {
         let delta = match c {
             // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
             // Sans-serif bold symbols (U+1D5D4..U+1D607)
@@ -504,7 +504,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_sansserif_italic(c: char) -> char {
+    pub fn to_sans_serif_italic(c: char) -> char {
         let delta = match c {
             // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
             // Sans-serif italic symbols (U+1D608..U+1D63B)
@@ -515,7 +515,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_sansserif_bold_italic(c: char) -> char {
+    pub fn to_sans_serif_bold_italic(c: char) -> char {
         let delta = match c {
             // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
             // Sans-serif bold italic symbols (U+1D63C..U+1D66F)
