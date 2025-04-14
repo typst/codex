@@ -50,7 +50,7 @@ pub const UNICODE_VERSION: (u8, u8, u8) = (16, 0, 0);
 /// # Shaping
 ///
 /// The Arabic styles (including those from the
-/// [`Doublestruck`](MathStyle::Doublestruck) style) are not subject to
+/// [`DoubleStruck`](MathStyle::DoubleStruck) style) are not subject to
 /// shaping. However, [`Plain`](MathStyle::Plain) should still be shaped, as
 /// the characters are Arabic letters in the Arabic block (U+0600..U+06FF).
 ///
@@ -140,13 +140,13 @@ pub enum MathStyle {
     /// Supported characters: digits, latin, arabic excluding ا (U+0627),
     /// ك (U+0643), ه (U+0647), and the extras ∑ (U+2211), Γ (U+0393), Π
     /// (U+03A0), γ (U+03B3), π (U+03C0).
-    Doublestruck,
+    DoubleStruck,
     /// Italic double-struck style. Also known as italic open-face style or
     /// italic blackboard-bold style.
     ///
     /// This is an exceptional style as only the following Latin letters are
     /// supported: D (U+0044), d (U+0064), e (U+0065), i (U+0069), j (U+006A).
-    DoublestruckItalic,
+    DoubleStruckItalic,
     /// Chancery variant of script style.
     ///
     /// Supported characters: latin.
@@ -254,7 +254,7 @@ impl fmt::Display for ToStyle {
 ///
 /// let s = "xγΩAذح1∑س"
 ///     .chars()
-///     .flat_map(|c| to_style(c, MathStyle::Doublestruck))
+///     .flat_map(|c| to_style(c, MathStyle::DoubleStruck))
 ///     .collect::<String>();
 /// assert_eq!("𝕩ℽΩ𝔸𞺸𞺧𝟙⅀𞺮", s);
 /// ```
@@ -280,8 +280,8 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
         Tailed => [to_tailed(c), '\0'],
         Stretched => [to_stretched(c), '\0'],
         Looped => [to_looped(c), '\0'],
-        Doublestruck => [to_doublestruck(c), '\0'],
-        DoublestruckItalic => [to_doublestruck_italic(c), '\0'],
+        DoubleStruck => [to_double_struck(c), '\0'],
+        DoubleStruckItalic => [to_double_struck_italic(c), '\0'],
         Chancery => to_chancery(c),
         BoldChancery => to_bold_chancery(c),
         Roundhand => to_roundhand(c),
@@ -698,7 +698,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_doublestruck(c: char) -> char {
+    pub fn to_double_struck(c: char) -> char {
         let delta = match c {
             // Letterlike Symbols Block (U+2100..U+214F)
             // Letterlike symbols (U+2100..U+2134)
@@ -752,7 +752,7 @@ mod conversions {
         apply_delta(c, delta)
     }
 
-    pub fn to_doublestruck_italic(c: char) -> char {
+    pub fn to_double_struck_italic(c: char) -> char {
         let delta = match c {
             // Letterlike Symbols Block (U+2100..U+214F)
             // Double-struck italic math symbols (U+2145..U+2149)
