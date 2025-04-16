@@ -574,6 +574,8 @@ power
 // Currency.
 bitcoin ₿
 dollar $
+Cent ₵
+cent ¢
 euro €
 franc ₣
 lira ₺
