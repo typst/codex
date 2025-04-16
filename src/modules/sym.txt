@@ -570,6 +570,8 @@ power
   .off ⭘
   .on.off ⏼
   .sleep ⏾
+smile ⌣
+frown ⌢
 
 // Currency.
 bitcoin ₿
