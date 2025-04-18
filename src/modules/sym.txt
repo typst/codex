@@ -573,9 +573,9 @@ power
 
 // Currency.
 bitcoin ₿
-dollar $
 cedi ₵
 cent ¢
+dollar $
 euro €
 franc ₣
 lira ₺
