@@ -573,6 +573,8 @@ power
 
 // Currency.
 bitcoin ₿
+cedi ₵
+cent ¢
 dollar $
 euro €
 franc ₣
