@@ -574,23 +574,39 @@ smile ⌣
 frown ⌢
 
 // Currency.
+afghani ؋
+baht ฿
 bitcoin ₿
 cedi ₵
 cent ¢
 dollar $
+dong ₫
+dorome ߾
+dram ֏
 euro €
 @deprecated: `franc` is deprecated, unadopted symbol for currency no longer in use
 franc ₣
+guarani ₲
+hryvnia ₴
+kip ₭
+lari ₾
 lira ₺
+manat ₼
+naira ₦
 peso ₱
 pound £
+riel ៛
 ruble ₽
 rupee
   .indian ₹
   .general ₨
   .tamil ௹
   .wancho 𞋿
+shekel ₪
 taka ৳
+taman ߿
+tenge ₸
+tugrik ₮
 won ₩
 yen ¥
 
