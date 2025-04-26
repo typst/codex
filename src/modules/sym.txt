@@ -112,6 +112,7 @@ backslash \
   .not ⧷
 co ℅
 colon :
+  .currency ₡
   .double ∷
   .tri ⁝
   .tri.op ⫶
