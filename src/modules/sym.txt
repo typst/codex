@@ -585,7 +585,12 @@ lira ₺
 peso ₱
 pound £
 ruble ₽
-rupee ₹
+rupee
+  .indian ₹
+  .general ₨
+  .tamil ௹
+  .wancho 𞋿
+taka ৳
 won ₩
 yen ¥
 
