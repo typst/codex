@@ -1058,6 +1058,7 @@ gimmel ג
 gimel ג
 daleth ד
 dalet ד
+@deprecated: `shin` is deprecated and will be removed
 shin ש
 
 // Double-struck.
