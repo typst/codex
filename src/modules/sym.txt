@@ -604,10 +604,11 @@ rupee
   .tamil ௹
   .wancho 𞋿
 shekel ₪
+som ⃀
 taka ৳
 taman ߿
 tenge ₸
-tugrik ₮
+togrog ₮
 won ₩
 yen ¥
 
