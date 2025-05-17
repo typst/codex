@@ -1051,12 +1051,16 @@ Zeta Ζ
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
+@deprecated: `alef` is deprecated, use `aleph` instead
 alef א
 beth ב
+@deprecated: `bet` is deprecated, use `beth` instead
 bet ב
+@deprecated: `gimmel` is deprecated, use `gimel` instead
 gimmel ג
 gimel ג
 daleth ד
+@deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
 shin ש
 
