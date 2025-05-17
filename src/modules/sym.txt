@@ -551,7 +551,9 @@ qed ∎
 mapsto ↦
   .long ⟼
 compose ∘
+  .o ⊚
 convolve ∗
+  .o ⊛
 multimap ⊸
   .double ⧟
 
