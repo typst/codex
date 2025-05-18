@@ -537,6 +537,7 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angzarr ⍼
 parallel ∥
   .struck ⫲
   .circle ⦷
