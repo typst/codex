@@ -162,6 +162,7 @@ hyph ‐
 numero №
 percent %
 permille ‰
+permyriad ‱
 pilcrow ¶
   .rev ⁋
 section §
