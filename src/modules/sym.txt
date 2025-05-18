@@ -103,7 +103,6 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
-  .small ﹡
   .circle ⊛
   .square ⧆
 at @
@@ -236,7 +235,6 @@ plus +
   .dot ∔
   .double ⧺
   .minus ±
-  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
@@ -280,7 +278,6 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
-  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
@@ -302,7 +299,6 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
-  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -328,7 +324,6 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
-  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
