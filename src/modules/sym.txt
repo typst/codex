@@ -1043,6 +1043,12 @@ Upsilon Υ
 Xi Ξ
 Zeta Ζ
 
+// Lowercase Cyrillic.
+sha ш
+
+// Uppercase Cyrillic.
+Sha Ш
+
 // Hebrew.
 // In math, the following symbols are replaced with corresponding characters
 // from Letterlike Symbols.
