@@ -1058,7 +1058,7 @@ beth ב
 bet ב
 gimel ג
 @deprecated: `gimmel` is deprecated, use `gimel` instead
- gimmel ג
+gimmel ג
 daleth ד
 @deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
