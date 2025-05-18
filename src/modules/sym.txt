@@ -699,7 +699,6 @@ bullet •
 circle
   .stroked ○
   .stroked.tiny ∘
-  .stroked.tiny.o ⊚ 
   .stroked.small ⚬
   .stroked.big ◯
   .filled ●
@@ -707,7 +706,7 @@ circle
   .filled.small ∙
   .filled.big ⬤
   .dotted ◌
-  //Deprecated
+  //Deprecated, use compose.o
   .nested ⊚
 ellipse
   .stroked.h ⬭
