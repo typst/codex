@@ -550,6 +550,20 @@ parallel ∥
 perp ⟂
   .circle ⦹
 
+// Astronomical.
+earth 🜨
+  .alt ♁
+jupiter ♃
+mars ♂
+mercury ☿
+neptune ♆
+  .alt ⯉
+saturn ♄
+sun ☉
+uranus ⛢
+  .alt ♅
+venus ♀
+
 // Miscellaneous Technical.
 diameter ⌀
 interleave ⫴
