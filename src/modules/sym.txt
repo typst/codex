@@ -546,6 +546,7 @@ angle ∠
   .acute ⦟
   .arc ∡
   .arc.rev ⦛
+  .azimuth ⍼
   .oblique ⦦
   .rev ⦣
   .right ∟
