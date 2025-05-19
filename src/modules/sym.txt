@@ -72,38 +72,6 @@ chevron
   .r.curly ⧽
   .r.dot ⦒
   .r.double ⟫
-angle ∠
-  //Deprecated, use chevron.l
-  .l ⟨
-  //Deprecated, use chevron.l.curly
-  .l.curly ⧼
-  //Deprecated, use chevron.l.dot
-  .l.dot ⦑
-  //Deprecated, use chevron.l.double
-  .l.double ⟪
-  //Deprecated, use chevron.r
-  .r ⟩
-  //Deprecated, use chevron.r.curly
-  .r.curly ⧽
-  //Deprecated, use chevron.r.dot
-  .r.dot ⦒
-  //Deprecated, use chevron.r.double
-  .r.double ⟫
-  .acute ⦟
-  .arc ∡
-  .arc.rev ⦛
-  .oblique ⦦
-  .rev ⦣
-  .right ∟
-  .right.rev ⯾
-  .right.arc ⊾
-  .right.dot ⦝
-  .right.sq ⦜
-  .s ⦞
-  .spatial ⟀
-  .spheric ∢
-  .spheric.rev ⦠
-  .spheric.top ⦡
 ceil
   .l ⌈
   .r ⌉
@@ -550,6 +518,38 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angle ∠
+  //Deprecated, use chevron.l
+  .l ⟨
+  //Deprecated, use chevron.l.curly
+  .l.curly ⧼
+  //Deprecated, use chevron.l.dot
+  .l.dot ⦑
+  //Deprecated, use chevron.l.double
+  .l.double ⟪
+  //Deprecated, use chevron.r
+  .r ⟩
+  //Deprecated, use chevron.r.curly
+  .r.curly ⧽
+  //Deprecated, use chevron.r.dot
+  .r.dot ⦒
+  //Deprecated, use chevron.r.double
+  .r.double ⟫
+  .acute ⦟
+  .arc ∡
+  .arc.rev ⦛
+  .oblique ⦦
+  .rev ⦣
+  .right ∟
+  .right.rev ⯾
+  .right.arc ⊾
+  .right.dot ⦝
+  .right.sq ⦜
+  .s ⦞
+  .spatial ⟀
+  .spheric ∢
+  .spheric.rev ⦠
+  .spheric.top ⦡
 angzarr ⍼
 parallel ∥
   .struck ⫲
