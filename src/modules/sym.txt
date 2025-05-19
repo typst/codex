@@ -63,7 +63,7 @@ fence
   .r ⧙
   .r.double ⧛
   .dotted ⦙
-angle ∠
+chevron
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
@@ -71,6 +71,23 @@ angle ∠
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
+  .r.double ⟫
+angle ∠
+  //Deprecated, use chevron.l
+  .l ⟨
+  //Deprecated, use chevron.l.curly
+  .l.curly ⧼
+  //Deprecated, use chevron.l.dot
+  .l.dot ⦑
+  //Deprecated, use chevron.l.double
+  .l.double ⟪
+  //Deprecated, use chevron.r
+  .r ⟩
+  //Deprecated, use chevron.r.curly
+  .r.curly ⧽
+  //Deprecated, use chevron.r.dot
+  .r.dot ⦒
+  //Deprecated, use chevron.r.double
   .r.double ⟫
   .acute ⦟
   .arc ∡
