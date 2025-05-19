@@ -194,9 +194,17 @@ quote
   .l.single ‘
   .r.double ”
   .r.single ’
+  .chevron.l.double «
+  .chevron.l.single ‹
+  .chevron.r.double »
+  .chevron.r.single ›
+  //Deprecated, use quote.chevron.l.double
   .angle.l.double «
+  //Deprecated, use quote.chevron.l.single
   .angle.l.single ‹
+  //Deprecated, use quote.chevron.r.double
   .angle.r.double »
+  //Deprecated, use quote.chevron.r.single
   .angle.r.single ›
   .high.double ‟
   .high.single ‛
