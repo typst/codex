@@ -117,6 +117,8 @@ colon :
   .eq ≔
   .double.eq ⩴
 comma ,
+  .inv ⸲
+  .rev ⹁
 dagger †
   .double ‡
   .triple ⹋
@@ -167,6 +169,7 @@ pilcrow ¶
   .rev ⁋
 section §
 semi ;
+  .inv ⸵
   .rev ⁏
 slash /
   .double ⫽
