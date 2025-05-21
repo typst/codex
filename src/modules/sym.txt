@@ -616,6 +616,39 @@ suit
   .spade.filled ♠
   .spade.stroked ♤
 
+chess {
+    king
+      .white ♔
+      .black ♚
+      .neutral 🨀
+    queen
+      .white ♕
+      .black ♛
+      .neutral 🨁
+    rook
+      .white ♖
+      .black ♜
+      .neutral 🨂
+    bishop
+      .white ♗
+      .black ♝
+      .neutral 🨃
+    knight
+      .white ♘
+      .black ♞
+      .neutral 🨄
+    pawn
+      .white ♙
+      .black ♟
+      .neutral 🨅
+    shogi
+      .white ☖
+      .white.inv ⛉
+      .black ☗
+      .black.inv ⛊
+}
+
+
 // Music.
 note
   .up 🎜
