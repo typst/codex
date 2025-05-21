@@ -1065,6 +1065,7 @@ gimmel ג
 daleth ד
 @deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
+@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
 // Double-struck.
