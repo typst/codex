@@ -619,29 +619,47 @@ suit
 chess {
     king
       .white ♔
+      .white.inv 🨞
       .black ♚
+      .black.inv 🨤
       .neutral 🨀
+      .neutral.inv 🨪
     queen
       .white ♕
+      .white.inv 🨟
       .black ♛
+      .black.inv 🨥
       .neutral 🨁
+      .neutral.inv 🨫
     rook
       .white ♖
+      .white.inv 🨠
       .black ♜
+      .black.inv 🨦
       .neutral 🨂
+      .neutral.inv 🨬
     bishop
       .white ♗
+      .white.inv 🨡
       .black ♝
+      .black.inv 🨧
       .neutral 🨃
+      .neutral.inv 🨭
     knight
       .white ♘
+      .white.inv 🨢
       .black ♞
+      .black.inv 🨨
       .neutral 🨄
+      .neutral 🨮
     pawn
       .white ♙
+      .white.inv 🨣
       .black ♟
+      .black.inv 🨩
       .neutral 🨅
-    shogi
+      .neutral.inv 🨯
+    koma
       .white ☖
       .white.inv ⛉
       .black ☗
