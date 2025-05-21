@@ -152,6 +152,7 @@ quest ?
   .excl ⁈
   .inv ¿
 interrobang ‽
+  .inv ⸘
 hash #
 hyph ‐
   .minus U+2D
