@@ -599,6 +599,13 @@ floral ❦
   .l ☙
   .r ❧
 refmark ※
+cc 🅭
+  .by 🅯
+  .nc 🄏
+  .nd ⊜
+  .public 🅮
+  .sa 🄎
+  .zero 🄍
 copyright ©
   .sound ℗
 copyleft 🄯
