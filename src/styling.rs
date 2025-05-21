@@ -309,24 +309,16 @@ pub fn resolve_style(
     use conversions::*;
     use MathVariant::*;
     match (variant.unwrap_or(Plain), bold, italic) {
-        (Plain, false, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::Italic,
-        (Plain, true, Some(false)) if is_latin(c) | is_greek(c) => MathStyle::Bold,
-        (Plain, true, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::BoldItalic,
-        (Plain, true, _) if is_digit(c) | matches!(c, 'Ϝ' | 'ϝ') => MathStyle::Bold,
-        (Plain, _, Some(true)) if matches!(c, 'ı' | 'ȷ' | 'ħ') => MathStyle::Italic,
-        (Plain, _, None) => resolve_style(c, variant, bold, Some(is_italic(c))),
-        (Plain, _, _) => MathStyle::Plain,
-
         (SansSerif, false, Some(false)) if is_latin(c) => MathStyle::SansSerif,
-        (SansSerif, false, Some(true)) if is_latin(c) => MathStyle::SansSerifItalic,
+        (SansSerif, false, _) if is_latin(c) => MathStyle::SansSerifItalic,
         (SansSerif, true, Some(false)) if is_latin(c) => MathStyle::SansSerifBold,
-        (SansSerif, true, Some(true)) if is_latin(c) => MathStyle::SansSerifBoldItalic,
+        (SansSerif, true, _) if is_latin(c) => MathStyle::SansSerifBoldItalic,
         (SansSerif, false, _) if is_digit(c) => MathStyle::SansSerif,
         (SansSerif, true, _) if is_digit(c) => MathStyle::SansSerifBold,
         (SansSerif, _, Some(false)) if is_greek(c) => MathStyle::SansSerifBold,
         (SansSerif, _, Some(true)) if is_greek(c) => MathStyle::SansSerifBoldItalic,
-        (SansSerif, _, None) => resolve_style(c, variant, bold, Some(is_italic(c))),
-
+        (SansSerif, _, None) if is_upper_greek(c) => MathStyle::SansSerifBold,
+        (SansSerif, _, None) if is_lower_greek(c) => MathStyle::SansSerifBoldItalic,
         (Script, false, _) if is_latin(c) => MathStyle::Script,
         (Script, true, _) if is_latin(c) => MathStyle::BoldScript,
         (Fraktur, false, _) if is_latin(c) => MathStyle::Fraktur,
@@ -340,7 +332,15 @@ pub fn resolve_style(
         {
             MathStyle::DoubleStruck
         }
-        (_, _, _) => resolve_style(c, None, bold, italic),
+        (_, false, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::Italic,
+        (_, false, None) if is_latin(c) | is_lower_greek(c) => MathStyle::Italic,
+        (_, true, Some(false)) if is_latin(c) | is_greek(c) => MathStyle::Bold,
+        (_, true, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::BoldItalic,
+        (_, true, None) if is_latin(c) | is_lower_greek(c) => MathStyle::BoldItalic,
+        (_, true, None) if is_upper_greek(c) => MathStyle::Bold,
+        (_, true, _) if is_digit(c) | matches!(c, 'Ϝ' | 'ϝ') => MathStyle::Bold,
+        (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ') => MathStyle::Italic,
+        _ => MathStyle::Plain,
     }
 }
 
@@ -361,11 +361,6 @@ mod conversions {
     const VARIATION_SELECTOR_2: char = '\u{FE01}';
 
     #[inline]
-    pub fn is_italic(c: char) -> bool {
-        matches!(c, 'a'..='z' | 'ħ' | 'ı' | 'ȷ' | 'A'..='Z' | 'α'..='ω' | '∂' | 'ϵ' | 'ϑ' | 'ϰ' | 'ϕ' | 'ϱ' | 'ϖ')
-    }
-
-    #[inline]
     pub fn is_digit(c: char) -> bool {
         c.is_ascii_digit()
     }
@@ -377,7 +372,17 @@ mod conversions {
 
     #[inline]
     pub fn is_greek(c: char) -> bool {
-        matches!(c, 'Α'..='Ω' | '∇' | 'ϴ' | 'α'..='ω' | '∂' | 'ϵ' | 'ϑ' | 'ϰ' | 'ϕ' | 'ϱ' | 'ϖ')
+        is_upper_greek(c) || is_lower_greek(c)
+    }
+
+    #[inline]
+    pub fn is_upper_greek(c: char) -> bool {
+        matches!(c, 'Α'..='Ω' | '∇' | 'ϴ')
+    }
+
+    #[inline]
+    pub fn is_lower_greek(c: char) -> bool {
+        matches!(c, 'α'..='ω' | '∂' | 'ϵ' | 'ϑ' | 'ϰ' | 'ϕ' | 'ϱ' | 'ϖ')
     }
 
     /// The character given by adding `delta` to the codepoint of `c`.
