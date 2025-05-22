@@ -24,32 +24,64 @@ space U+20
 // Delimiters.
 paren
   .l (
+  .l.flat ⟮
+  .l.bar ⦇
+  .l.stroked ⦅
+  //Deprecated, use paren.l.stroked
   .l.double ⦅
   .r )
+  .r.flat ⟯
+  .r.bar ⦈
+  .r.stroked ⦆
+  //Deprecated, use paren.r.stroked
   .r.double ⦆
   .t ⏜
   .b ⏝
 brace
   .l U+7B
+  .l.stroked ⦃
+  //Deprecated, use brace.l.stroked
   .l.double ⦃
   .r U+7D
+  .r.stroked ⦄
+  //Deprecated, use brace.r.stroked
   .r.double ⦄
   .t ⏞
   .b ⏟
 bracket
   .l [
+  .l.tick.t ⦍
+  .l.tick.b ⦏
+  .l.stroked ⟦
+  //Deprecated, use bracket.l.stroked
   .l.double ⟦
   .r ]
+  .r.tick.t ⦐
+  .r.tick.b ⦎
+  .r.stroked ⟧
+  //Deprecated, use bracket.r.stroked
   .r.double ⟧
   .t ⎴
   .b ⎵
 shell
   .l ❲
+  .l.stroked ⟬
+  .l.filled ⦗
+  //Deprecated, use shell.l.stroked
   .l.double ⟬
   .r ❳
+  .r.stroked ⟭
+  .r.filled ⦘
+  //Deprecated, use shell.r.stroked
   .r.double ⟭
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+moustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
@@ -63,14 +95,21 @@ fence
   .r ⧙
   .r.double ⧛
   .dotted ⦙
+corner
+  .l.t ⌜
+  .l.b ⌞
+  .r.t ⌝
+  .r.b ⌟
 angle ∠
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
+  .l.bar ⦉
   .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
+  .r.bar ⦊
   .r.double ⟫
   .acute ⦟
   .arc ∡
@@ -93,10 +132,10 @@ ceil
 floor
   .l ⌊
   .r ⌋
-amp &
-  .inv ⅋
 
 // Punctuation.
+amp &
+  .inv ⅋
 ast
   .op ∗
   .basic *
