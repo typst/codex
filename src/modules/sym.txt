@@ -707,11 +707,48 @@ chess {
       .neutral.r 🨚
       .neutral.inv 🨯
       .neutral.l 🩄
+    equihopper
+      .white 🩈
+      .white.rot 🩋
+      .black 🩉
+      .black.rot 🩌
+      .neutral 🩊
+      .neutral.rot 🩍
+    amazon
+      .white 🩎
+      .black 🩑
+    empress
+      .white 🩏
+      .black 🩒
+    princess
+      .white 🩐
+      .black 🩓
     koma
       .white ☖
       .white.inv ⛉
       .black ☗
       .black.inv ⛊
+    general
+      .red 🩠
+      .black 🩧
+    mandarin
+      .red 🩡
+      .black 🩨
+    elephant
+      .red 🩢
+      .black 🩩
+    horse
+      .red 🩣
+      .black 🩪
+    chariot
+      .red 🩤
+      .black 🩫
+    cannon
+      .red 🩥
+      .black 🩬
+    soldier
+      .red 🩦
+      .black 🩭
 }
 
 
