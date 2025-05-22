@@ -675,11 +675,13 @@ chess {
       .neutral.bl 🨲
     pawn
       .white ♙
+      .white.r 🨎
       .white.inv 🨣
       .black ♟
       .black.r 🨔
       .black.inv 🨩
       .neutral 🨅
+      .neutral.r 🨚
       .neutral.inv 🨯
     koma
       .white ☖
