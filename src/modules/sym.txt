@@ -693,7 +693,7 @@ chess {
       .neutral.inv 🨮
       .neutral.bl 🨲
       .neutral.l 🩃
-      .neutral.tl
+      .neutral.tl 🩇
     pawn
       .white ♙
       .white.r 🨎
