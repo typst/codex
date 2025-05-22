@@ -117,6 +117,8 @@ colon :
   .eq ≔
   .double.eq ⩴
 comma ,
+  .inv ⸲
+  .rev ⹁
 dagger †
   .double ‡
   .triple ⹋
@@ -152,6 +154,7 @@ quest ?
   .excl ⁈
   .inv ¿
 interrobang ‽
+  .inv ⸘
 hash #
 hyph ‐
   .minus U+2D
@@ -166,6 +169,7 @@ pilcrow ¶
   .rev ⁋
 section §
 semi ;
+  .inv ⸵
   .rev ⁏
 slash /
   .double ⫽
