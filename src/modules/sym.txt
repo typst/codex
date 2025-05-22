@@ -662,14 +662,17 @@ chess {
       .white.tr 🨆
       .white.r 🨍
       .white.inv 🨢
+      .white.bl 🨰
       .black ♞
       .black.tr 🨇
       .black.r 🨓
       .black.inv 🨨
+      .black.bl 🨱
       .neutral 🨄
       .neutral.tr 🨈
       .neutral.r 🨙
       .neutral.inv 🨮
+      .neutral.bl 🨲
     pawn
       .white ♙
       .white.inv 🨣
