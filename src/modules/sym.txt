@@ -679,9 +679,9 @@ card {
     .king 🃞
   back 🂠
   joker
-    red 🂿
-    black 🃏︎
-    white 🃟
+    .red 🂿
+    .black 🃏︎
+    .white 🃟
   fool 🃠
   trump
     .one 🃡
