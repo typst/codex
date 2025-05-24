@@ -638,7 +638,7 @@ recycle
   .plastic.five ♷
   .plastic.six ♸
   .plastic.seven ♹
-  .paper.fully ♼
+  .paper ♼
   .paper.partial ♽
   .paper.permanent ♾︎
 
