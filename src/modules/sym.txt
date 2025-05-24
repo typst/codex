@@ -1132,6 +1132,117 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
+domino {
+  back
+    .h 🀰
+    .v 🁢
+  zero
+    .zero.h 🀱
+    .zero.v 🁣
+    .one.h 🀲
+    .one.v 🁤
+    .two.h 🀳
+    .two.v 🁥
+    .three.h 🀴
+    .three.v 🁦
+    .four.h 🀵
+    .four.v 🁧
+    .five.h 🀶
+    .five.v 🁨
+    .six.h 🀷
+    .six.v 🁩
+  one
+    .zero.h 🀸
+    .zero.v 🁪
+    .one.h 🀹
+    .one.v 🁫
+    .two.h 🀺
+    .two.v 🁬
+    .three.h 🀻
+    .three.v 🁭
+    .four.h 🀼
+    .four.v 🁮
+    .five.h 🀽
+    .five.v 🁯
+    .six.h 🀾
+    .six.v 🁰
+  two
+    .zero.h 🀿
+    .zero.v 🁱
+    .one.h 🁀
+    .one.v 🁲
+    .two.h 🁁
+    .two.v 🁳
+    .three.h 🁂
+    .three.v 🁴
+    .four.h 🁃
+    .four.v 🁵
+    .five.h 🁄
+    .five.v 🁶
+    .six.h 🁅
+    .six.v 🁷
+  three
+    .zero.h 🁆
+    .zero.v 🁸
+    .one.h 🁇
+    .one.v 🁹
+    .two.h 🁈
+    .two.v 🁺
+    .three.h 🁉
+    .three.v 🁻
+    .four.h 🁊
+    .four.v 🁼
+    .five.h 🁋
+    .five.v 🁽
+    .six.h 🁌
+    .six.v 🁾
+  four
+    .zero.h 🁍
+    .zero.v 🁿
+    .one.h 🁎
+    .one.v 🂀
+    .two.h 🁏
+    .two.v 🂁
+    .three.h 🁐
+    .three.v 🂂
+    .four.h 🁑
+    .four.v 🂃
+    .five.h 🁒
+    .five.v 🂄
+    .six.h 🁓
+    .six.v 🂅
+  five
+    .zero.h 🁔
+    .zero.v 🂆
+    .one.h 🁕
+    .one.v 🂇
+    .two.h 🁖
+    .two.v 🂈
+    .three.h 🁗
+    .three.v 🂉
+    .four.h 🁘
+    .four.v 🂊
+    .five.h 🁙
+    .five.v 🂋
+    .six.h 🁚
+    .six.v 🂌
+  six
+    .zero.h 🁛
+    .zero.v 🂍
+    .one.h 🁜
+    .one.v 🂎
+    .two.h 🁝
+    .two.v 🂏
+    .three.h 🁞
+    .three.v 🂐
+    .four.h 🁟
+    .four.v 🂑
+    .five.h 🁠
+    .five.v 🂒
+    .six.h 🁡
+    .six.v 🂓
+}
+
 gender {
   female ♀
     .double ⚢
