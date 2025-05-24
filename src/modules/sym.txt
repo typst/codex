@@ -699,7 +699,7 @@ chess {
       .white.r 🨎
       .white.inv 🨣
       .white.l 🨸
-      .black ♟
+      .black ♟︎
       .black.r 🨔
       .black.inv 🨩
       .black.l 🨾
