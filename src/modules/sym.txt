@@ -616,7 +616,7 @@ suit
   .spade.filled ♠
   .spade.stroked ♤
 
-card {
+playingcard {
   spade
     .ace 🂡
     .two 🂢
