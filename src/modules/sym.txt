@@ -172,6 +172,7 @@ semi ;
   .inv ⸵
   .rev ⁏
 slash /
+  .circle ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
