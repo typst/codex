@@ -3,7 +3,7 @@ abc 🔤
 abcd 🔡
 ABCD 🔠
 accordion 🪗
-aesculapius ⚕
+asclepius ⚕
 airplane ✈
   .landing 🛬
   .small 🛩
@@ -49,7 +49,7 @@ ast *
   .box ✳
 atm 🏧
 atom ⚛
-aubergine 🍆
+eggplant 🍆
 avocado 🥑
 axe 🪓
 baby 👶
@@ -72,7 +72,7 @@ banjo 🪕
 bank 🏦
 barberpole 💈
 baseball ⚾
-basecap 🧢
+cap 🧢
 basket 🧺
 basketball ⛹
   .ball 🏀
@@ -95,7 +95,7 @@ beer 🍺
   .clink 🍻
 beet 🫜
 beetle 🪲
-  .lady 🐞
+ladybug 🐞
 bell 🔔
   .ding 🛎
   .not 🔕
@@ -106,7 +106,7 @@ bike 🚲
   .not 🚳
 bikini 👙
 billiards 🎱
-bin 🗑
+wastebasket 🗑
 biohazard ☣
 bird 🐦
 bison 🦬
@@ -195,7 +195,7 @@ calendar 📅
   .spiral 🗓
   .tearoff 📆
 camel 🐫
-  .dromedar 🐪
+  .dromedary 🐪
 camera 📷
   .flash 📸
   .movie 🎥
@@ -217,10 +217,10 @@ car 🚗
 card
   .credit 💳
   .id 🪪
-cardindex 📇
+rolodex 📇
 carrot 🥕
 cart 🛒
-cassette 📼
+vhs 📼
 castle
   .eu 🏰
   .jp 🏯
@@ -284,9 +284,9 @@ city 🏙
 clamp 🗜
 clapperboard 🎬
 climbing 🧗
-clip 📎
+paperclip 📎
+  .linked 🖇
 clipboard 📋
-clips 🖇
 clock
   .one 🕐
   .one.thirty 🕜
@@ -363,7 +363,7 @@ crossmark ❌
   .box ❎
 crown 👑
 crutch 🩼
-crystal 🔮
+crystalball 🔮
 cucumber 🥒
 cup
   .straw 🥤
@@ -372,7 +372,7 @@ curling 🥌
 curry 🍛
 custard 🍮
 customs 🛃
-cutlery 🍴
+silverware 🍴
 cyclone 🌀
 dancing
   .man 🕺
@@ -392,8 +392,8 @@ diamond
   .dot 💠
 die 🎲
 dino
-  .pod 🦕
-  .rex 🦖
+  .sauropod 🦕
+  .trex 🦖
 disc
   .cd 💿
   .dvd 📀
@@ -562,8 +562,7 @@ falafel 🧆
 family 👪
 fax 📠
 feather 🪶
-feeding
-  .breast 🤱
+breastfeeding 🤱
 fencing 🤺
 ferriswheel 🎡
 filebox 🗃
@@ -633,7 +632,7 @@ fries 🍟
 frisbee 🥏
 frog
   .face 🐸
-fuelpump ⛽
+gaspump ⛽
 garlic 🧄
 gear ⚙
 gem 💎
@@ -730,7 +729,7 @@ heart ❤
   .yellow 💛
 hedgehog 🦔
 helicopter 🚁
-helix 🧬
+dna 🧬
 helmet
   .cross ⛑
   .military 🪖
@@ -940,7 +939,7 @@ mouse 🐁
 mousetrap 🪤
 mouth 👄
   .bite 🫦
-moyai 🗿
+moai 🗿
 museum 🏛
 mushroom 🍄
 musicalscore 🎼
@@ -995,7 +994,7 @@ parachute 🪂
 park 🏞
 parking 🅿
 parrot 🦜
-partalteration 〽
+partalternation 〽
 party 🎉
 peach 🍑
 peacock 🦚
@@ -1060,7 +1059,7 @@ planet 🪐
 plant 🪴
 plaster 🩹
 plate
-  .cutlery 🍽
+  .silverware 🍽
 playback
   .down ⏬
   .eject ⏏
@@ -1110,14 +1109,13 @@ rabbit 🐇
 raccoon 🦝
 radio 📻
 radioactive ☢
-railway 🛤
+railroad 🛤
 rainbow 🌈
 ram 🐏
 rat 🐀
 razor 🪒
 receipt 🧾
 recycling ♻
-reg ®
 restroom 🚻
 rhino 🦏
 ribbon 🎀
@@ -1127,7 +1125,7 @@ rice 🍚
   .ear 🌾
   .onigiri 🍙
 ring 💍
-ringbuoy 🛟
+lifebuoy 🛟
 robot 🤖
 rock 🪨
 rocket 🚀
@@ -1146,8 +1144,8 @@ sandwich 🥪
 santa
   .man 🎅
   .woman 🤶
-satdish 📡
 satellite 🛰
+  .dish 📡
 saw 🪚
 saxophone 🎷
 scales ⚖
@@ -1184,7 +1182,7 @@ shoe 👞
   .ski 🎿
   .sneaker 👟
   .tall 👢
-  .thong 🩴
+  .flipflop 🩴
 shopping 🛍
 shorts 🩳
 shoshinsha 🔰
@@ -1317,7 +1315,8 @@ ticket
   .travel 🎫
 tiger 🐅
   .face 🐯
-tm ™
+trademark ™
+  .registered ®
 toilet 🚽
 toiletpaper 🧻
 tomato 🍅
@@ -1350,8 +1349,9 @@ train 🚆
 transgender ⚧
 tray
   .inbox 📥
-  .mail 📨
   .outbox 📤
+envelope ✉️
+  .incoming 📨
 tree
   .deciduous 🌳
   .evergreen 🌲
@@ -1382,7 +1382,6 @@ umbrella
   .rain ☔
   .sun ⛱
 unicorn 🦄
-unknown 🦳
 up 🆙
 urn ⚱
 vampire 🧛
