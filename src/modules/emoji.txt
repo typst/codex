@@ -551,6 +551,7 @@ fairy 🧚
 faith
   .christ ✝
   .dharma ☸
+  .khanda 🪯
   .islam ☪
   .judaism ✡
   .menorah 🕎
@@ -611,6 +612,7 @@ fleur ⚜
 floppy 💾
 flower
   .hibiscus 🌺
+  .hyacinth 🪻
   .lotus 🪷
   .pink 🌸
   .rose 🌹
@@ -771,7 +773,6 @@ house 🏠
   .multiple 🏘
 hundred 💯
 hut 🛖
-hyacinth 🪻
 ice 🧊
 icecream 🍨
   .shaved 🍧
@@ -796,7 +797,6 @@ hi ㊙
 ka 🉑
 kachi 🈹
 kara 🈳
-khanda 🪯
 kon 🈲
 man 👨
   .box 🚹
