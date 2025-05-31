@@ -407,6 +407,7 @@ dog 🐕
   .poodle 🐩
 dollar 💲
 dolphin 🐬
+donkey 🫏
 donut 🍩
 door 🚪
 dove
@@ -507,6 +508,7 @@ face
   .rofl 🤣
   .sad 😔
   .salute 🫡
+  .shaking 🫨
   .shock 😱
   .shush 🤫
   .skeptic 🤨
@@ -549,6 +551,7 @@ fairy 🧚
 faith
   .christ ✝
   .dharma ☸
+  .khanda 🪯
   .islam ☪
   .judaism ✡
   .menorah 🕎
@@ -609,6 +612,7 @@ fleur ⚜
 floppy 💾
 flower
   .hibiscus 🌺
+  .hyacinth 🪻
   .lotus 🪷
   .pink 🌸
   .rose 🌹
@@ -617,6 +621,7 @@ flower
   .white 💮
   .wilted 🥀
   .yellow 🌼
+flute 🪈
 fly 🪰
 fog 🌫
 folder 📁
@@ -639,6 +644,7 @@ gear ⚙
 gem 💎
 genie 🧞
 ghost 👻
+ginger 🫚
 giraffe 🦒
 girl 👧
 glass
@@ -658,6 +664,7 @@ goal 🥅
 goat 🐐
 goggles 🥽
 golfing 🏌
+goose 🪿
 gorilla 🦍
 grapes 🍇
 guard
@@ -665,6 +672,7 @@ guard
 guitar 🎸
 gymnastics 🤸
 haircut 💇
+hairpick 🪮
 hammer 🔨
   .pick ⚒
   .wrench 🛠
@@ -684,12 +692,15 @@ hand
   .part 🖖
   .peace ✌
   .pinch 🤏
+  .pushing.l 🫷
+  .pushing.r 🫸
   .rock 🤘
   .splay 🖐
   .wave 👋
   .write ✍
 handbag 👜
 handball 🤾
+handfan 🪭
 handholding
   .man.man 👬
   .woman.man 👫
@@ -713,14 +724,17 @@ heart ❤
   .beat 💓
   .black 🖤
   .blue 💙
+  .blue.light 🩵
   .box 💟
   .broken 💔
   .brown 🤎
   .double 💕
   .excl ❣
+  .gray 🩶
   .green 💚
   .grow 💗
   .orange 🧡
+  .pink 🩷
   .purple 💜
   .real 🫀
   .revolve 💞
@@ -768,6 +782,7 @@ id 🆔
 info ℹ
 izakaya 🏮
 jar 🫙
+jellyfish 🪼
 jeans 👖
 jigsaw 🧩
 joystick 🕹
@@ -876,6 +891,7 @@ mango 🥭
 map
   .world 🗺
   .jp 🗾
+maracas 🪇
 martialarts 🥋
 masks 🎭
 mate 🧉
@@ -926,6 +942,7 @@ moon
   .wax.two 🌓
   .wax.two.face 🌛
   .wax.three 🌔
+moose 🫎
 mortarboard 🎓
 mosque 🕌
 mosquito 🦟
@@ -1000,6 +1017,7 @@ party 🎉
 peach 🍑
 peacock 🦚
 peanuts 🥜
+peapod 🫛
 pear 🍐
 pedestrian 🚶
   .not 🚷
@@ -1410,6 +1428,8 @@ wind 🌬
 windchime 🎐
 window 🪟
 wine 🍷
+wing 🪽
+wireless 🛜
 wolf 🐺
 woman 👩
   .box 🚺
