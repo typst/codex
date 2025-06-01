@@ -391,7 +391,6 @@ diamond
   .orange.small 🔸
   .dot 💠
 die 🎲
-dino
 sauropod 🦕
 trex 🦖
 disc
@@ -1058,7 +1057,6 @@ placard 🪧
 planet 🪐
 plant 🪴
 plaster 🩹
-plate
 plate 🍽
 playback
   .down ⏬
