@@ -1143,7 +1143,7 @@ santa
   .man 🎅
   .woman 🤶
 satellite 🛰
-  .dish 📡
+antenna 📡
 saw 🪚
 saxophone 🎷
 scales ⚖
