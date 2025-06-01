@@ -392,8 +392,8 @@ diamond
   .dot 💠
 die 🎲
 dino
-  .sauropod 🦕
-  .trex 🦖
+sauropod 🦕
+trex 🦖
 disc
   .cd 💿
   .dvd 📀
