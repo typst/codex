@@ -1059,7 +1059,7 @@ planet 🪐
 plant 🪴
 plaster 🩹
 plate
-  .silverware 🍽
+plate 🍽
 playback
   .down ⏬
   .eject ⏏
