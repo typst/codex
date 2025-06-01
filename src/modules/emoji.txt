@@ -195,7 +195,7 @@ calendar 📅
   .spiral 🗓
   .tearoff 📆
 camel 🐫
-  .dromedary 🐪
+dromedary 🐪
 camera 📷
   .flash 📸
   .movie 🎥
