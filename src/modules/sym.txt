@@ -1002,6 +1002,7 @@ epsilon ε
 eta η
 gamma γ
 iota ι
+@deprecated: `kai` is deprecated
 kai ϗ
 kappa κ
   .alt ϰ
@@ -1035,6 +1036,7 @@ Epsilon Ε
 Eta Η
 Gamma Γ
 Iota Ι
+@deprecated: `Kai` is deprecated
 Kai Ϗ
 Kappa Κ
 Lambda Λ
