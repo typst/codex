@@ -997,6 +997,7 @@ beta β
   .alt ϐ
 chi χ
 delta δ
+digamma ϝ
 epsilon ε
   .alt ϵ
 eta η
@@ -1031,6 +1032,7 @@ Alpha Α
 Beta Β
 Chi Χ
 Delta Δ
+Digamma Ϝ
 Epsilon Ε
 Eta Η
 Gamma Γ
