@@ -1036,7 +1036,7 @@ Epsilon Ε
 Eta Η
 Gamma Γ
 Iota Ι
-@deprecated: `Kai` is deprecated. Use Ϗ or \u{3c5}.
+@deprecated: `Kai` is deprecated, use Ϗ or `\u{3c5}` instead
 Kai Ϗ
 Kappa Κ
 Lambda Λ
