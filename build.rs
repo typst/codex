@@ -1,7 +1,8 @@
-use self::shared::ModifierSet;
 use std::fmt::Write;
 use std::iter::Peekable;
 use std::path::Path;
+
+use self::shared::ModifierSet;
 
 type StrResult<T> = Result<T, String>;
 
