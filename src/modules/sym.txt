@@ -87,7 +87,7 @@ angle ∠
   .spheric ∢
   .spheric.rev ⦠
   .spheric.t ⦡
-  //Deprecated
+  // Deprecated.
   .spheric.top ⦡
 ceil
   .l ⌈
