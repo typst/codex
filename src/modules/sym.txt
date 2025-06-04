@@ -1002,7 +1002,7 @@ epsilon ε
 eta η
 gamma γ
 iota ι
-@deprecated: `kai` is deprecated. Use ϗ or \u{3d7}.
+@deprecated: `kai` is deprecated, use ϗ or `\u{3d7}` instead
 kai ϗ
 kappa κ
   .alt ϰ
