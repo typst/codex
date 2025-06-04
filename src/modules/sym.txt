@@ -1002,7 +1002,7 @@ epsilon ε
 eta η
 gamma γ
 iota ι
-@deprecated: `kai` is deprecated
+@deprecated: `kai` is deprecated. Use ϗ or \u{3d7}.
 kai ϗ
 kappa κ
   .alt ϰ
@@ -1036,7 +1036,7 @@ Epsilon Ε
 Eta Η
 Gamma Γ
 Iota Ι
-@deprecated: `Kai` is deprecated
+@deprecated: `Kai` is deprecated. Use Ϗ or \u{3c5}.
 Kai Ϗ
 Kappa Κ
 Lambda Λ
