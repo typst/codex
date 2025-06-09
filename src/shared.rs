@@ -40,12 +40,12 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         ModifierSet(&self.0)
     }
 
-    /// Add a modifier to the set, without checking that it is a valid modifier.
+    /// Inserts a modifier into the set, without checking that it is a valid modifier.
     ///
     /// It is not unsafe to use this method incorrectly, but that can produce
     /// unexpected results down the line. Correct usage should ensure that
     /// `modifier` is not empty and doesn't contain the character `.`.
-    pub fn add_unchecked(&mut self, m: &str)
+    pub fn insert_unchecked(&mut self, m: &str)
     where
         S: for<'a> std::ops::AddAssign<&'a str>,
     {
