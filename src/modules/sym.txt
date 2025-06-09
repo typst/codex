@@ -595,7 +595,9 @@ lari ₾
 lira ₺
 manat ₼
 naira ₦
-peso ₱
+pataca $
+peso $
+  .philippine ₱
 pound £
 riel ៛
 ruble ₽
@@ -612,6 +614,7 @@ tenge ₸
 togrog ₮
 won ₩
 yen ¥
+yuan ¥
 
 // Miscellaneous.
 ballot ☐
