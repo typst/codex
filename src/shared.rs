@@ -17,7 +17,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Constructs a modifier set from a string, where modifiers are separated by
     /// the character `.`.
     ///
-    /// It is not unsafe to use this function wrongly, but it can produce
+    /// It is not unsafe to use this function incorrectly, but it can produce
     /// unexpected results down the line. Correct usage should ensure that `s`
     /// does not contain any empty modifiers (i.e. the sequence `..`) and that
     /// no modifier occurs twice.
@@ -42,7 +42,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
 
     /// Add a modifier to the set, without checking that it is a valid modifier.
     ///
-    /// It is not unsafe to use this method wrongly, but that can produce
+    /// It is not unsafe to use this method incorrectly, but that can produce
     /// unexpected results down the line. Correct usage should ensure that
     /// `modifier` is not empty and doesn't contain the character `.`.
     pub fn add_unchecked(&mut self, m: &str)
