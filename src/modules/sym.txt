@@ -106,7 +106,6 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
-  .small ﹡
   //Deprecated
   .circle ⊛
   .square ⧆
@@ -124,6 +123,8 @@ colon :
   .eq ≔
   .double.eq ⩴
 comma ,
+  .inv ⸲
+  .rev ⹁
 dagger †
   .double ‡
   .triple ⹋
@@ -165,6 +166,7 @@ quest ?
   .excl ⁈
   .inv ¿
 interrobang ‽
+  .inv ⸘
 hash #
 hyph ‐
   .minus U+2D
@@ -174,12 +176,15 @@ hyph ‐
 numero №
 percent %
 permille ‰
+permyriad ‱
 pilcrow ¶
   .rev ⁋
 section §
 semi ;
+  .inv ⸵
   .rev ⁏
 slash /
+  .circle ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
@@ -253,7 +258,6 @@ plus +
   .dot ∔
   .double ⧺
   .minus ±
-  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
@@ -307,7 +311,6 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
-  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
@@ -331,7 +334,6 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
-  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -359,7 +361,6 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
-  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
@@ -571,6 +572,7 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angzarr ⍼
 parallel ∥
   .struck ⫲
   .o ⦷
@@ -640,6 +642,13 @@ floral ❦
   .l ☙
   .r ❧
 refmark ※
+cc 🅭
+  .by 🅯
+  .nc 🄏
+  .nd ⊜
+  .public 🅮
+  .sa 🄎
+  .zero 🄍
 copyright ©
   .sound ℗
 copyleft 🄯
@@ -1085,18 +1094,29 @@ Upsilon Υ
 Xi Ξ
 Zeta Ζ
 
+// Lowercase Cyrillic.
+sha ш
+
+// Uppercase Cyrillic.
+Sha Ш
+
 // Hebrew.
 // In math, the following symbols are replaced with corresponding characters
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
+@deprecated: `alef` is deprecated, use `aleph` instead
 alef א
 beth ב
+@deprecated: `bet` is deprecated, use `beth` instead
 bet ב
-gimmel ג
 gimel ג
+@deprecated: `gimmel` is deprecated, use `gimel` instead
+gimmel ג
 daleth ד
+@deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
+@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
 // Double-struck.
