@@ -184,7 +184,7 @@ semi ;
   .inv ⸵
   .rev ⁏
 slash /
-  .circle ⊘
+  .o ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
