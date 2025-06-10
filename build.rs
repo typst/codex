@@ -2,7 +2,12 @@ use std::fmt::Write;
 use std::iter::Peekable;
 use std::path::Path;
 
+use self::shared::ModifierSet;
+
 type StrResult<T> = Result<T, String>;
+
+#[path = "src/shared.rs"]
+mod shared;
 
 /// A module of definitions.
 struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
@@ -29,7 +34,7 @@ enum Def<'a> {
 /// A symbol, either a leaf or with modifiers.
 enum Symbol<'a> {
     Single(char),
-    Multi(Vec<(&'a str, char)>),
+    Multi(Vec<(ModifierSet<&'a str>, char)>),
 }
 
 /// A single line during parsing.
@@ -40,7 +45,7 @@ enum Line<'a> {
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
+    Variant(ModifierSet<&'a str>, char),
 }
 
 fn main() {
@@ -110,7 +115,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        Line::Variant(ModifierSet::from_raw_dotted(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
@@ -167,7 +172,7 @@ fn parse<'a>(
 
                 let symbol = if !variants.is_empty() {
                     if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                        variants.insert(0, (ModifierSet::default(), c));
                     }
                     Symbol::Multi(variants)
                 } else {
