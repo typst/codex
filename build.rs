@@ -115,7 +115,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(ModifierSet::new_unchecked(rest), c)
+        Line::Variant(ModifierSet::from_raw_dotted(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;

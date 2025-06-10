@@ -17,11 +17,16 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Constructs a modifier set from a string, where modifiers are separated by
     /// the character `.`.
     ///
-    /// It is not unsafe to use this function incorrectly, but it can produce
-    /// unexpected results down the line. Correct usage should ensure that `s`
-    /// does not contain any empty modifiers (i.e. the sequence `..`) and that
-    /// no modifier occurs twice.
-    pub fn new_unchecked(s: S) -> Self {
+    /// `s` should not contain any empty modifiers (i.e. it shouldn't contain the
+    /// sequence `..`) and no modifier should occur twice. Otherwise, unexpected
+    /// errors can occur.
+    pub fn from_raw_dotted(s: S) -> Self {
+        // checking the other requirement too feels like it would be a bit too
+        // expensive, even for debug mode.
+        debug_assert!(
+            !s.contains(".."),
+            "ModifierSet::from_dotted called with string containing empty modifier"
+        );
         Self(s)
     }
 
@@ -40,12 +45,11 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         ModifierSet(&self.0)
     }
 
-    /// Inserts a modifier into the set, without checking that it is a valid modifier.
+    /// Inserts a new modifier into the set.
     ///
-    /// It is not unsafe to use this method incorrectly, but that can produce
-    /// unexpected results down the line. Correct usage should ensure that
-    /// `modifier` is not empty and doesn't contain the character `.`.
-    pub fn insert_unchecked(&mut self, m: &str)
+    /// `m` should not be empty, contain the character `.`,
+    /// or already be in the set. Otherwise, unexpected errors can occur.
+    pub fn insert_raw(&mut self, m: &str)
     where
         S: for<'a> std::ops::AddAssign<&'a str>,
     {
@@ -161,31 +165,29 @@ mod tests {
     #[test]
     fn iter_count() {
         assert_eq!(ModifierSet::default().iter().count(), 0);
-        assert_eq!(ModifierSet::new_unchecked("a").iter().count(), 1);
-        assert_eq!(ModifierSet::new_unchecked("a.b").iter().count(), 2);
-        assert_eq!(ModifierSet::new_unchecked("a.b.c").iter().count(), 3);
+        assert_eq!(ModifierSet::from_raw_dotted("a").iter().count(), 1);
+        assert_eq!(ModifierSet::from_raw_dotted("a.b").iter().count(), 2);
+        assert_eq!(ModifierSet::from_raw_dotted("a.b.c").iter().count(), 3);
     }
 
     #[test]
     fn subset() {
-        assert!(
-            ModifierSet::new_unchecked("a").is_subset(ModifierSet::new_unchecked("a.b"))
-        );
-        assert!(
-            ModifierSet::new_unchecked("a").is_subset(ModifierSet::new_unchecked("b.a"))
-        );
-        assert!(ModifierSet::new_unchecked("a.b")
-            .is_subset(ModifierSet::new_unchecked("b.c.a")));
+        assert!(ModifierSet::from_raw_dotted("a")
+            .is_subset(ModifierSet::from_raw_dotted("a.b")));
+        assert!(ModifierSet::from_raw_dotted("a")
+            .is_subset(ModifierSet::from_raw_dotted("b.a")));
+        assert!(ModifierSet::from_raw_dotted("a.b")
+            .is_subset(ModifierSet::from_raw_dotted("b.c.a")));
     }
 
     #[test]
     fn best_match() {
         // 1. more modifiers in common with self
         assert_eq!(
-            ModifierSet::new_unchecked("a.b").best_match_in(
+            ModifierSet::from_raw_dotted("a.b").best_match_in(
                 [
-                    (ModifierSet::new_unchecked("a.c"), 1),
-                    (ModifierSet::new_unchecked("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a.c"), 1),
+                    (ModifierSet::from_raw_dotted("a.b"), 2),
                 ]
                 .into_iter()
             ),
@@ -193,10 +195,10 @@ mod tests {
         );
         // 2. fewer modifiers in general
         assert_eq!(
-            ModifierSet::new_unchecked("a").best_match_in(
+            ModifierSet::from_raw_dotted("a").best_match_in(
                 [
-                    (ModifierSet::new_unchecked("a"), 1),
-                    (ModifierSet::new_unchecked("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a"), 1),
+                    (ModifierSet::from_raw_dotted("a.b"), 2),
                 ]
                 .into_iter()
             ),
@@ -204,10 +206,10 @@ mod tests {
         );
         // the first rule takes priority over the second
         assert_eq!(
-            ModifierSet::new_unchecked("a.b").best_match_in(
+            ModifierSet::from_raw_dotted("a.b").best_match_in(
                 [
-                    (ModifierSet::new_unchecked("a"), 1),
-                    (ModifierSet::new_unchecked("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a"), 1),
+                    (ModifierSet::from_raw_dotted("a.b"), 2),
                 ]
                 .into_iter()
             ),
@@ -217,8 +219,8 @@ mod tests {
         assert_eq!(
             ModifierSet::default().best_match_in(
                 [
-                    (ModifierSet::new_unchecked("a"), 1),
-                    (ModifierSet::new_unchecked("b"), 2)
+                    (ModifierSet::from_raw_dotted("a"), 1),
+                    (ModifierSet::from_raw_dotted("b"), 2)
                 ]
                 .into_iter()
             ),
