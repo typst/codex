@@ -724,7 +724,6 @@ heart ❤
   .beat 💓
   .black 🖤
   .blue 💙
-  .blue.light 🩵
   .box 💟
   .broken 💔
   .brown 🤎
@@ -733,6 +732,7 @@ heart ❤
   .gray 🩶
   .green 💚
   .grow 💗
+  .lightblue 🩵
   .orange 🧡
   .pink 🩷
   .purple 💜
