@@ -86,6 +86,8 @@ angle ∠
   .spatial ⟀
   .spheric ∢
   .spheric.rev ⦠
+  .spheric.t ⦡
+  // Deprecated.
   .spheric.top ⦡
 ceil
   .l ⌈
@@ -172,6 +174,7 @@ semi ;
   .inv ⸵
   .rev ⁏
 slash /
+  .circle ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
@@ -550,6 +553,20 @@ parallel ∥
   .tilde ⫳
 perp ⟂
   .circle ⦹
+
+// Astronomical.
+earth 🜨
+  .alt ♁
+jupiter ♃
+mars ♂
+mercury ☿
+neptune ♆
+  .alt ⯉
+saturn ♄
+sun ☉
+uranus ⛢
+  .alt ♅
+venus ♀
 
 // Miscellaneous Technical.
 diameter ⌀
@@ -997,11 +1014,14 @@ beta β
   .alt ϐ
 chi χ
 delta δ
+digamma ϝ
 epsilon ε
   .alt ϵ
+  .alt.rev ϶
 eta η
 gamma γ
 iota ι
+  .inv ℩
 kai ϗ
 kappa κ
   .alt ϰ
@@ -1031,6 +1051,7 @@ Alpha Α
 Beta Β
 Chi Χ
 Delta Δ
+Digamma Ϝ
 Epsilon Ε
 Eta Η
 Gamma Γ
@@ -1050,6 +1071,7 @@ Rho Ρ
 Sigma Σ
 Tau Τ
 Theta Θ
+  .alt ϴ
 Upsilon Υ
 Xi Ξ
 Zeta Ζ
@@ -1076,6 +1098,7 @@ gimmel ג
 daleth ד
 @deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
+@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
 // Double-struck.
