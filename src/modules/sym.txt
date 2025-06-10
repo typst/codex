@@ -86,6 +86,8 @@ angle ∠
   .spatial ⟀
   .spheric ∢
   .spheric.rev ⦠
+  .spheric.t ⦡
+  // Deprecated.
   .spheric.top ⦡
 ceil
   .l ⌈
@@ -103,7 +105,6 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
-  .small ﹡
   .circle ⊛
   .square ⧆
 at @
@@ -118,6 +119,8 @@ colon :
   .eq ≔
   .double.eq ⩴
 comma ,
+  .inv ⸲
+  .rev ⹁
 dagger †
   .double ‡
   .triple ⹋
@@ -153,6 +156,7 @@ quest ?
   .excl ⁈
   .inv ¿
 interrobang ‽
+  .inv ⸘
 hash #
 hyph ‐
   .minus U+2D
@@ -162,12 +166,15 @@ hyph ‐
 numero №
 percent %
 permille ‰
+permyriad ‱
 pilcrow ¶
   .rev ⁋
 section §
 semi ;
+  .inv ⸵
   .rev ⁏
 slash /
+  .circle ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
@@ -235,7 +242,6 @@ plus +
   .dot ∔
   .double ⧺
   .minus ±
-  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
@@ -279,7 +285,6 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
-  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
@@ -301,7 +306,6 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
-  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -327,7 +331,6 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
-  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
@@ -427,6 +430,15 @@ union ∪
   .sq ⊔
   .sq.big ⨆
   .sq.double ⩏
+inter ∩
+  .and ⩄
+  .big ⋂
+  .dot ⩀
+  .double ⋒
+  .sq ⊓
+  .sq.big ⨅
+  .sq.double ⩎
+@deprecated: `sect` is deprecated, use `inter` instead
 sect ∩
   .and ⩄
   .big ⋂
@@ -442,6 +454,7 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo @= infinity
+@deprecated: `diff` is deprecated, use `partial` instead
 diff @= partial.*
 partial ∂
 gradient ∇
@@ -461,6 +474,8 @@ integral ∫
   .dash.double ⨎
   .double ∬
   .quad ⨌
+  .inter ⨙
+  // Deprecated.
   .sect ⨙
   .slash ⨏
   .square ⨖
@@ -517,6 +532,7 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angzarr ⍼
 parallel ∥
   .struck ⫲
   .circle ⦷
@@ -529,6 +545,20 @@ parallel ∥
   .tilde ⫳
 perp ⟂
   .circle ⦹
+
+// Astronomical.
+earth 🜨
+  .alt ♁
+jupiter ♃
+mars ♂
+mercury ☿
+neptune ♆
+  .alt ⯉
+saturn ♄
+sun ☉
+uranus ⛢
+  .alt ♅
+venus ♀
 
 // Miscellaneous Technical.
 diameter ⌀
@@ -544,9 +574,19 @@ hourglass
   .filled ⧗
 degree °
 smash ⨳
+power
+  .standby ⏻
+  .on ⏽
+  .off ⭘
+  .on.off ⏼
+  .sleep ⏾
+smile ⌣
+frown ⌢
 
 // Currency.
 bitcoin ₿
+cedi ₵
+cent ¢
 dollar $
 euro €
 franc ₣
@@ -572,6 +612,13 @@ floral ❦
   .l ☙
   .r ❧
 refmark ※
+cc 🅭
+  .by 🅯
+  .nc 🄏
+  .nd ⊜
+  .public 🅮
+  .sa 🄎
+  .zero 🄍
 copyright ©
   .sound ℗
 copyleft 🄯
@@ -733,6 +780,7 @@ arrow
   .r.double.long ⟹
   .r.double.long.bar ⟾
   .r.double.not ⇏
+  .r.double.struck ⤃
   .r.filled ➡
   .r.hook ↪
   .r.long ⟶
@@ -743,11 +791,21 @@ arrow
   .r.squiggly ⇝
   .r.stop ⇥
   .r.stroked ⇨
+  .r.struck ⇸
+  .r.dstruck ⇻
   .r.tail ↣
+  .r.tail.struck ⤔
+  .r.tail.dstruck ⤕
   .r.tilde ⥲
   .r.triple ⇛
-  .r.twohead.bar ⤅
   .r.twohead ↠
+  .r.twohead.bar ⤅
+  .r.twohead.struck ⤀
+  .r.twohead.dstruck ⤁
+  .r.twohead.tail ⤖
+  .r.twohead.tail.struck ⤗
+  .r.twohead.tail.dstruck ⤘
+  .r.open ⇾
   .r.wave ↝
   .l ←
   .l.bar ↤
@@ -760,6 +818,7 @@ arrow
   .l.double.long ⟸
   .l.double.long.bar ⟽
   .l.double.not ⇍
+  .l.double.struck ⤂
   .l.filled ⬅
   .l.hook ↩
   .l.long ⟵
@@ -771,11 +830,21 @@ arrow
   .l.squiggly ⇜
   .l.stop ⇤
   .l.stroked ⇦
+  .l.struck ⇷
+  .l.dstruck ⇺
   .l.tail ↢
+  .l.tail.struck ⬹
+  .l.tail.dstruck ⬺
   .l.tilde ⭉
   .l.triple ⇚
-  .l.twohead.bar ⬶
   .l.twohead ↞
+  .l.twohead.bar ⬶
+  .l.twohead.struck ⬴
+  .l.twohead.dstruck ⬵
+  .l.twohead.tail ⬻
+  .l.twohead.tail.struck ⬼
+  .l.twohead.tail.dstruck ⬽
+  .l.open ⇽
   .l.wave ↜
   .t ↑
   .t.bar ↥
@@ -787,6 +856,8 @@ arrow
   .t.quad ⟰
   .t.stop ⤒
   .t.stroked ⇧
+  .t.struck ⤉
+  .t.dstruck ⇞
   .t.triple ⤊
   .t.twohead ↟
   .b ↓
@@ -799,16 +870,22 @@ arrow
   .b.quad ⟱
   .b.stop ⤓
   .b.stroked ⇩
+  .b.struck ⤈
+  .b.dstruck ⇟
   .b.triple ⤋
   .b.twohead ↡
   .l.r ↔
   .l.r.double ⇔
   .l.r.double.long ⟺
   .l.r.double.not ⇎
+  .l.r.double.struck ⤄
   .l.r.filled ⬌
   .l.r.long ⟷
   .l.r.not ↮
   .l.r.stroked ⬄
+  .l.r.struck ⇹
+  .l.r.dstruck ⇼
+  .l.r.open ⇿
   .l.r.wave ↭
   .t.b ↕
   .t.b.double ⇕
@@ -929,11 +1006,14 @@ beta β
   .alt ϐ
 chi χ
 delta δ
+digamma ϝ
 epsilon ε
   .alt ϵ
+  .alt.rev ϶
 eta η
 gamma γ
 iota ι
+  .inv ℩
 kai ϗ
 kappa κ
   .alt ϰ
@@ -963,6 +1043,7 @@ Alpha Α
 Beta Β
 Chi Χ
 Delta Δ
+Digamma Ϝ
 Epsilon Ε
 Eta Η
 Gamma Γ
@@ -982,22 +1063,34 @@ Rho Ρ
 Sigma Σ
 Tau Τ
 Theta Θ
+  .alt ϴ
 Upsilon Υ
 Xi Ξ
 Zeta Ζ
+
+// Lowercase Cyrillic.
+sha ш
+
+// Uppercase Cyrillic.
+Sha Ш
 
 // Hebrew.
 // In math, the following symbols are replaced with corresponding characters
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
+@deprecated: `alef` is deprecated, use `aleph` instead
 alef @= aleph
 beth ב
+@deprecated: `bet` is deprecated, use `beth` instead
 bet @= beth
-gimmel ג
-gimel @= gimmel
+gimel ג
+@deprecated: `gimmel` is deprecated, use `gimel` instead
+gimmel @= gimel
 daleth ד
+@deprecated: `dalet` is deprecated, use `daleth` instead
 dalet @= daleth
+@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
 // Double-struck.
@@ -1029,9 +1122,9 @@ YY 𝕐
 ZZ ℤ
 
 // Miscellaneous letter-likes.
+angstrom Å
 ell ℓ
-planck ℎ
-  .reduce ℏ
+planck ħ
 Re ℜ
 Im ℑ
 dotless
@@ -1053,3 +1146,18 @@ errorbar
   .diamond.filled ⧱
   .circle.stroked ⧲
   .circle.filled ⧳
+
+gender {
+  female ♀
+    .double ⚢
+    .male ⚤
+  intersex ⚥
+  male ♂
+    .double ⚣
+    .female ⚤
+    .stroke ⚦
+    .stroke.t ⚨
+    .stroke.r ⚩
+  neuter ⚲
+  trans ⚧
+}

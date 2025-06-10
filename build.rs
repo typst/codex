@@ -1,9 +1,13 @@
-use std::borrow::Cow;
 use std::fmt::Write;
 use std::iter::Peekable;
 use std::path::Path;
 
+use self::shared::ModifierSet;
+
 type StrResult<T> = Result<T, String>;
+
+#[path = "src/shared.rs"]
+mod shared;
 
 /// A module of definitions.
 struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
@@ -30,8 +34,8 @@ enum Def<'a> {
 /// A symbol, either a leaf or with modifiers.
 enum Symbol<'a> {
     Single(char),
-    Multi(Vec<(&'a str, char)>),
-    MultiAlias(Vec<(Cow<'a, str>, char)>),
+    Multi(Vec<(ModifierSet<&'a str>, char)>),
+    MultiAlias(Vec<(ModifierSet<String>, char)>),
 }
 
 /// A single line during parsing.
@@ -42,8 +46,8 @@ enum Line<'a> {
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
-    Alias(&'a str, &'a str, &'a str, bool),
+    Variant(ModifierSet<&'a str>, char),
+    Alias(&'a str, &'a str, ModifierSet<&'a str>, bool),
 }
 
 fn main() {
@@ -82,7 +86,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 
     write!(buf, "#[doc = {desc:?}] pub const {name}: Module = ").unwrap();
     encode(buf, &module);
-    buf.push_str(";");
+    buf.push(';');
 }
 
 /// Tokenizes and classifies a line.
@@ -113,7 +117,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        Line::Variant(ModifierSet::from_raw_dotted(rest), c)
     } else if let Some(mut value) = tail.and_then(|tail| tail.strip_prefix("@= ")) {
         let alias = head;
         validate_ident(alias)?;
@@ -130,7 +134,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             }
         }
 
-        Line::Alias(alias, head, rest, deep)
+        Line::Alias(alias, head, ModifierSet::from_raw_dotted(rest), deep)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
@@ -190,9 +194,9 @@ fn parse<'a>(
                     p.next();
                 }
 
-                let symbol = if variants.len() > 0 {
+                let symbol = if !variants.is_empty() {
                     if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                        variants.insert(0, (ModifierSet::default(), c));
                     }
                     Symbol::Multi(variants)
                 } else {
@@ -229,9 +233,10 @@ fn parse<'a>(
 
         match aliased_symbol {
             &Symbol::Single(c) => {
-                if variant != "" {
+                if !variant.is_empty() {
                     return Err(format!(
-                        "alias to nonexistent variant: {name}.{variant}"
+                        "alias to nonexistent variant: {name}.{}",
+                        variant.as_str()
                     ));
                 }
                 defs.push((
@@ -240,51 +245,35 @@ fn parse<'a>(
                 ));
             }
             Symbol::MultiAlias(_) => {
-                return Err(format!("alias to alias: {name}.{variant}"));
+                return Err(format!("alias to alias: {name}.{}", variant.as_str()));
             }
             Symbol::Multi(variants) => {
-                let variants: Vec<(Cow<'a, str>, char)> = variants
+                let variants: Vec<(ModifierSet<String>, char)> = variants
                     .iter()
                     .filter_map(|&(var, c)| {
-                        if var == variant {
-                            Some((Cow::Borrowed(""), c))
-                        } else if deep {
-                            var.strip_prefix(variant)?
-                                .strip_prefix('.')
-                                .map(|v| (Cow::Borrowed(v), c))
-                                .or_else(|| {
-                                    // might just be in a different order
-
-                                    let mut alias_modifs = if variant.is_empty() {
-                                        vec![]
-                                    } else {
-                                        variant.split('.').collect()
-                                    };
-
-                                    let mut new_variant = Cow::Borrowed("");
-                                    for modif in var.split('.') {
-                                        if let Some(i) =
-                                            alias_modifs.iter().position(|m| *m == modif)
-                                        {
-                                            alias_modifs.swap_remove(i);
-                                        } else if new_variant.is_empty() {
-                                            new_variant = Cow::Borrowed(modif);
-                                        } else {
-                                            new_variant = Cow::Owned(format!(
-                                                "{new_variant}.{modif}"
-                                            ));
-                                        }
-                                    }
-                                    alias_modifs.is_empty().then_some((new_variant, c))
-                                })
-                        } else {
-                            None
+                        if !variant.is_subset(var) {
+                            return None;
                         }
+
+                        let new_var = var.iter().filter(|&v| !variant.contains(v)).fold(
+                            ModifierSet::default(),
+                            |mut set, m| {
+                                set.insert_raw(m);
+                                set
+                            },
+                        );
+
+                        if !(deep || new_var.is_empty()) {
+                            return None;
+                        }
+
+                        Some((new_var, c))
                     })
                     .collect();
                 if variants.is_empty() {
                     return Err(format!(
-                        "alias to nonexistent variant: {name}.{variant}"
+                        "alias to nonexistent variant: {name}.{}",
+                        variant.as_str()
                     ));
                 }
                 if let [(ref s, c)] = variants[..] {
@@ -318,7 +307,7 @@ fn encode(buf: &mut String, module: &Module) {
             Def::Module(module) => {
                 buf.push_str("Def::Module(");
                 encode(buf, module);
-                buf.push_str(")");
+                buf.push(')');
             }
             Def::Symbol(symbol) => {
                 buf.push_str("Def::Symbol(Symbol::");
@@ -327,7 +316,7 @@ fn encode(buf: &mut String, module: &Module) {
                     Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                     Symbol::MultiAlias(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                 }
-                buf.push_str(")");
+                buf.push(')');
             }
         }
         write!(buf, ", deprecation: {:?} }}),", entry.deprecation).unwrap();
