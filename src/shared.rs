@@ -14,14 +14,14 @@ pub struct ModifierSet<S>(
 );
 
 impl<S: Deref<Target = str>> ModifierSet<S> {
-    /// Constructs a modifier set from a string, where modifiers are separated by
-    /// the character `.`.
+    /// Constructs a modifier set from a string, where modifiers are separated
+    /// by the character `.`.
     ///
-    /// `s` should not contain any empty modifiers (i.e. it shouldn't contain the
-    /// sequence `..`) and no modifier should occur twice. Otherwise, unexpected
-    /// errors can occur.
+    /// `s` should not contain any empty modifiers (i.e. it shouldn't contain
+    /// the sequence `..`) and no modifier should occur twice. Otherwise,
+    /// unexpected errors can occur.
     pub fn from_raw_dotted(s: S) -> Self {
-        // checking the other requirement too feels like it would be a bit too
+        // Checking the other requirement too feels like it would be a bit too
         // expensive, even for debug mode.
         debug_assert!(
             !s.contains(".."),
@@ -47,8 +47,8 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
 
     /// Inserts a new modifier into the set.
     ///
-    /// `m` should not be empty, contain the character `.`,
-    /// or already be in the set. Otherwise, unexpected errors can occur.
+    /// `m` should not be empty, contain the character `.`, or already be in the
+    /// set. Otherwise, unexpected errors can occur.
     pub fn insert_raw(&mut self, m: &str)
     where
         S: for<'a> std::ops::AddAssign<&'a str>,
@@ -71,9 +71,9 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
 
     /// Finds the best match from the list.
     ///
-    /// To be considered a match, the modifier set must be a superset of
-    /// (or equal to) `self`. Among different matches, the best one is selected
-    /// by the following two criteria (in order):
+    /// To be considered a match, the modifier set must be a superset of (or
+    /// equal to) `self`. Among different matches, the best one is selected by
+    /// the following two criteria (in order):
     /// 1. Number of modifiers in common with `self` (more is better).
     /// 2. Total number of modifiers (fewer is better).
     ///
@@ -116,7 +116,7 @@ impl<S: Default> Default for ModifierSet<S> {
     /// Constructs the default modifier set.
     ///
     /// This is typically the empty set, though the remark from
-    /// [`Self::new_unchecked`] applies since `S::default()` could technically
+    /// [`Self::from_raw_dotted`] applies since `S::default()` could technically
     /// be anything.
     fn default() -> Self {
         Self(S::default())
@@ -131,7 +131,7 @@ impl<'a, S: Deref<Target = str>> IntoIterator for &'a ModifierSet<S> {
     fn into_iter(self) -> Self::IntoIter {
         let mut iter = self.0.split('.');
         if self.0.is_empty() {
-            // empty the iterator
+            // Empty the iterator
             let _ = iter.next();
         }
         iter
@@ -146,7 +146,7 @@ impl<'a> IntoIterator for ModifierSet<&'a str> {
     fn into_iter(self) -> Self::IntoIter {
         let mut iter = self.0.split('.');
         if self.0.is_empty() {
-            // empty the iterator
+            // Empty the iterator
             let _ = iter.next();
         }
         iter
