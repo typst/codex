@@ -55,36 +55,48 @@ pub enum Def {
     Module(Module),
 }
 
-/// A symbol, either a leaf or with modifiers.
+/// A symbol, either a leaf or with modifiers and optional deprecation.
 #[derive(Debug, Copy, Clone)]
 pub enum Symbol {
     /// A symbol without modifiers.
     Single(char),
     /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(ModifierSet<&'static str>, char)]),
+    Multi(&'static [(ModifierSet<&'static str>, char, Option<&'static str>)]),
 }
 
 impl Symbol {
-    /// Get the symbol's character for a given set of modifiers.
-    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<char> {
+    /// Get the symbol's character for a given set of modifiers, alongside an optional deprecation
+    /// message.
+    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(char, Option<&str>)> {
         match self {
-            Self::Single(c) => modifs.is_empty().then_some(*c),
-            Self::Multi(list) => modifs.best_match_in(list.iter().copied()),
+            Self::Single(c) => modifs.is_empty().then_some((*c, None)),
+            Self::Multi(list) => {
+                modifs.best_match_in(list.iter().copied().map(|(m, c, d)| (m, (c, d))))
+            }
         }
     }
 
     /// The characters that are covered by this symbol.
-    pub fn variants(&self) -> impl Iterator<Item = (ModifierSet<&str>, char)> {
+    ///
+    /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
+    pub fn variants(
+        &self,
+    ) -> impl Iterator<Item = (ModifierSet<&str>, char, Option<&str>)> {
         enum Variants {
             Single(std::iter::Once<char>),
-            Multi(std::slice::Iter<'static, (ModifierSet<&'static str>, char)>),
+            Multi(
+                std::slice::Iter<
+                    'static,
+                    (ModifierSet<&'static str>, char, Option<&'static str>),
+                >,
+            ),
         }
         let mut iter = match self {
             Self::Single(c) => Variants::Single(std::iter::once(*c)),
             Self::Multi(sl) => Variants::Multi(sl.iter()),
         };
         std::iter::from_fn(move || match &mut iter {
-            Variants::Single(iter) => Some((ModifierSet::default(), iter.next()?)),
+            Variants::Single(iter) => Some((ModifierSet::default(), iter.next()?, None)),
             Variants::Multi(iter) => iter.next().copied(),
         })
     }
@@ -92,7 +104,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _)| m.into_iter())
+            .flat_map(|(m, _, _)| m.into_iter())
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
