@@ -1017,9 +1017,11 @@ delta δ
 digamma ϝ
 epsilon ε
   .alt ϵ
+  .alt.rev ϶
 eta η
 gamma γ
 iota ι
+  .inv ℩
 kai ϗ
 kappa κ
   .alt ϰ
