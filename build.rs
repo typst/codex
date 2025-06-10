@@ -1,4 +1,5 @@
 use std::fmt::Write;
+use std::iter;
 use std::iter::Peekable;
 use std::path::Path;
 
@@ -46,6 +47,7 @@ enum Line<'a> {
     ModuleEnd,
     Symbol(&'a str, Option<char>),
     Variant(ModifierSet<&'a str>, char),
+    Eof,
 }
 
 #[derive(Debug, Copy, Clone)]
@@ -79,6 +81,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
         .lines()
         .inspect(|_| line_nr += 1)
         .map(tokenize)
+        .chain(iter::once(Ok(Line::Eof)))
         .filter_map(|line| match line {
             Err(message) => Some(Err(message)),
             Ok(Line::Blank) => None,
@@ -93,12 +96,21 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
             Ok(Line::ModuleStart(name)) => {
                 Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
             }
-            Ok(Line::ModuleEnd) => Some(Ok(Declaration::ModuleEnd)),
+            Ok(Line::ModuleEnd) => {
+                if deprecation.is_some() {
+                    Some(Err(String::from("dangling `@deprecated:`")))
+                } else {
+                    Some(Ok(Declaration::ModuleEnd))
+                }
+            }
             Ok(Line::Symbol(name, c)) => {
                 Some(Ok(Declaration::Symbol(name, c, deprecation.take())))
             }
             Ok(Line::Variant(modifiers, c)) => {
                 Some(Ok(Declaration::Variant(modifiers, c, deprecation.take())))
+            }
+            Ok(Line::Eof) => {
+                deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
             }
         })
         .peekable();
