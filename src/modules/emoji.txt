@@ -17,6 +17,7 @@ anchor ⚓
 anger 💢
 ant 🐜
 apple
+  .core 🫝
   .green 🍏
   .red 🍎
 arm
@@ -102,6 +103,7 @@ bell 🔔
 bento 🍱
 bicyclist 🚴
   .mountain 🚵
+bigfoot 🫈
 bike 🚲
   .not 🚳
 bikini 👙
@@ -317,6 +319,7 @@ clock
   .timer ⏲
 cloud ☁
   .dust 💨
+  .fight 🫯
   .rain 🌧
   .snow 🌨
   .storm ⛈
@@ -460,6 +463,7 @@ face
   .devil.frown 👿
   .diagonal 🫤
   .disguise 🥸
+  .distorted 🫪
   .distress 😫
   .dizzy 😵
   .dotted 🫥
@@ -902,6 +906,7 @@ mirror 🪞
 mixer 🎛
 money
   .bag 💰
+  .chest 🪎
   .dollar 💵
   .euro 💶
   .pound 💷
@@ -1130,6 +1135,7 @@ ring 💍
 ringbuoy 🛟
 robot 🤖
 rock 🪨
+  .slide 🛘
 rocket 🚀
 rollercoaster 🎢
 rosette 🏵
@@ -1367,6 +1373,7 @@ triangle
   .b.red 🔻
 trident 🔱
 troll 🧌
+trombone 🪊
 trophy 🏆
 truck 🚚
   .trailer 🚛
@@ -1401,6 +1408,7 @@ wave 🌊
 wc 🚾
 weightlifting 🏋
 whale 🐋
+  .orca 🫍
   .spout 🐳
 wheel 🛞
 wheelchair 🦽
