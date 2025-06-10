@@ -1069,6 +1069,7 @@ Rho Ρ
 Sigma Σ
 Tau Τ
 Theta Θ
+  .alt ϴ
 Upsilon Υ
 Xi Ξ
 Zeta Ζ
