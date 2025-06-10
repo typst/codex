@@ -102,6 +102,7 @@ bell 🔔
 bento 🍱
 bicyclist 🚴
   .mountain 🚵
+bigfoot 🫈
 bike 🚲\vs{emoji}
   .not 🚳
 bikini 👙
@@ -250,6 +251,7 @@ checkmark
 cheese 🧀
 cherries 🍒
 chess ♟\vs{emoji}
+chest 🪎
 chestnut 🌰
 chicken 🐔
   .baby 🐥
@@ -317,6 +319,7 @@ clock
   .timer ⏲\vs{emoji}
 cloud ☁\vs{emoji}
   .dust 💨
+  .fight 🫯
   .rain 🌧\vs{emoji}
   .snow 🌨\vs{emoji}
   .storm ⛈\vs{emoji}
@@ -463,6 +466,7 @@ face
   .devil.frown 👿
   .diagonal 🫤
   .disguise 🥸
+  .distorted 🫪
   .distress 😫
   .dizzy 😵
   .dotted 🫥
@@ -836,6 +840,7 @@ lacrosse 🥍
 ladder 🪜
 lamp
   .diya 🪔
+landslide 🛘
 laptop 💻\vs{emoji}
 a 🅰\vs{emoji}
 ab 🆎
@@ -994,6 +999,7 @@ olive 🫒
 oni 👹
 onion 🧅
 orangutan 🦧
+orca 🫍
 otter 🦦
 owl 🦉
 ox 🐂
@@ -1387,6 +1393,7 @@ triangle
   .b.red 🔻
 trident 🔱
 troll 🧌
+trombone 🪊
 trophy 🏆\vs{emoji}
 truck 🚚
   .trailer 🚛
