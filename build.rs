@@ -112,8 +112,8 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
                 Ok(Line::Variant(modifiers, c)) => {
                     Some(Ok(Declaration::Variant(modifiers, c, deprecation.take())))
                 }
-                Ok(Line::Alias(alias, head, variants, deep)) => Some(Ok(
-                    Declaration::Alias(alias, head, variants, deep, deprecation.take()),
+                Ok(Line::Alias(alias, head, variant, deep)) => Some(Ok(
+                    Declaration::Alias(alias, head, variant, deep, deprecation.take()),
                 )),
                 Ok(Line::Eof) => {
                     deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
