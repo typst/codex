@@ -56,7 +56,7 @@ bar
   .v.triple ⦀
   .v.broken ¦
   .v.o ⦶
-  //Deprecated
+  @deprecated: `bar.v.circle` is deprecated, use `bar.v.o` instead
   .v.circle ⦶
   .h ―
 fence
@@ -108,13 +108,13 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
-  //Deprecated
+  @deprecated: `ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead
   .circle ⊛
   .square ⧆
 at @
 backslash \
   .o ⦸
-  //Deprecated
+  @deprecated: `backslash.circle` is deprecated, use `backslash.o` instead
   .circle ⦸
   .not ⧷
 co ℅
@@ -142,7 +142,7 @@ dash
   .wave 〜
   .colon ∹
   .o ⊝
-  //Deprecated
+  @deprecated: `dash.circle` is deprecated, use `dash.o` instead
   .circle ⊝
   .wave.double 〰
 dot
@@ -151,9 +151,9 @@ dot
   .c ·
   .o ⊙
   .o.big ⨀
-  //Deprecated
+  @deprecated: `dot.circle` is deprecated, use `dot.o` instead
   .circle ⊙
-  //Deprecated
+  @deprecated: `dot.circle.big` is deprecated, use `dot.o.big` instead
   .circle.big ⨀
   .square ⊡
   .double ¨
@@ -251,11 +251,11 @@ plus +
   .o ⊕
   .o.arrow ⟴
   .o.big ⨁
-  //Deprecated
+  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
   .circle ⊕
-  //Deprecated
+  @deprecated: `plus.circle.arrow` is deprecated, use `plus.o.arrow` instead
   .circle.arrow ⟴
-  //Deprecated
+  @deprecated: `plus.circle.big` is deprecated, use `plus.o.big` instead
   .circle.big ⨁
   .dot ∔
   .double ⧺
@@ -265,7 +265,7 @@ plus +
   .triple ⧻
 minus −
   .o ⊖
-  //Deprecated
+  @deprecated: `minus.circle` is deprecated, use `minus.o` instead
   .circle ⊖
   .dot ∸
   .plus ∓
@@ -274,15 +274,15 @@ minus −
   .triangle ⨺
 div ÷
   .o ⨸
-  //Deprecated
+  @deprecated: `div.circle` is deprecated, use `div.o` instead
   .circle ⨸
 times ×
   .big ⨉
   .o ⊗
   .o.big ⨂
-  //Deprecated
+  @deprecated: `times.circle` is deprecated, use `times.o` instead
   .circle ⊗
-  //Deprecated
+  @deprecated: `times.circle.big` is deprecated, use `times.o.big` instead
   .circle.big ⨂
   .div ⋇
   .three.l ⋋
@@ -297,7 +297,7 @@ ratio ∶
 eq =
   .star ≛
   .o ⊜
-  //Deprecated
+  @deprecated: `eq.circle` is deprecated, use `eq.o` instead
   .circle ⊜
   .colon ≕
   .dots ≑
@@ -319,7 +319,7 @@ eq =
   .quad ≣
 gt >
   .o ⧁
-  //Deprecated
+  @deprecated: `gt.circle` is deprecated, use `gt.o` instead
   .circle ⧁
   .dot ⋗
   .approx ⪆
@@ -346,7 +346,7 @@ gt >
   .triple.nested ⫸
 lt <
   .o ⧀
-  //Deprecated
+  @deprecated: `lt.circle` is deprecated, use `lt.o` instead
   .circle ⧀
   .dot ⋖
   .approx ⪅
@@ -578,7 +578,7 @@ angzarr ⍼
 parallel ∥
   .struck ⫲
   .o ⦷
-  //Deprecated
+  @deprecated: `parallel.circle` is deprecated, use `parallel.o` instead
   .circle ⦷
   .eq ⋕
   .equiv ⩨
@@ -589,7 +589,7 @@ parallel ∥
   .tilde ⫳
 perp ⟂
   .o ⦹
-  //Deprecated
+  @deprecated: `perp.circle` is deprecated, use `perp.o` instead
   .circle ⦹
 
 // Astronomical.
@@ -724,6 +724,8 @@ bullet •
 circle
   .stroked ○
   .stroked.tiny ∘
+  @deprecated: `circled.stroked.tiny.o` is deprecated, use `compose.o` instead
+  .stroked.tiny.o 
   .stroked.small ⚬
   .stroked.big ◯
   .filled ●
@@ -731,7 +733,7 @@ circle
   .filled.small ∙
   .filled.big ⬤
   .dotted ◌
-  //Deprecated, use compose.o
+  @deprecated: `circle.nested` is deprecated, use `compose.o` instead
   .nested ⊚
 ellipse
   .stroked.h ⬭
