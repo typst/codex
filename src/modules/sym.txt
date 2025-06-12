@@ -203,13 +203,13 @@ quote
   .chevron.l.single ‹
   .chevron.r.double »
   .chevron.r.single ›
-  //Deprecated, use quote.chevron.l.double
+  @deprecated: `quote.angle.l.double` is deprecated, use `quote.chevron.l.double` instead
   .angle.l.double «
-  //Deprecated, use quote.chevron.l.single
+  @deprecated: `quote.angle.l.single` is deprecated, use `quote.chevron.l.single` instead
   .angle.l.single ‹
-  //Deprecated, use quote.chevron.r.double
+  @deprecated: `quote.angle.r.double` is deprecated, use `quote.chevron.r.double` instead
   .angle.r.double »
-  //Deprecated, use quote.chevron.r.single
+  @deprecated: `quote.angle.r.single` is deprecated, use `quote.chevron.r.single` instead
   .angle.r.single ›
   .high.double ‟
   .high.single ‛
@@ -532,21 +532,21 @@ wreath ≀
 
 // Geometry.
 angle ∠
-  //Deprecated, use chevron.l
+  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
   .l ⟨
-  //Deprecated, use chevron.l.curly
+  @deprecated: `angle.l.curly` is deprecated, use `chevron.l.curly` instead
   .l.curly ⧼
-  //Deprecated, use chevron.l.dot
+  @deprecated: `angle.l.dot` is deprecated, use `chevron.l.dot` instead
   .l.dot ⦑
-  //Deprecated, use chevron.l.double
+  @deprecated: `angle.l.double` is deprecated, use `chevron.l.double` instead
   .l.double ⟪
-  //Deprecated, use chevron.r
+  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
   .r ⟩
-  //Deprecated, use chevron.r.curly
+  @deprecated: `angle.r.curly` is deprecated, use `chevron.r.curly` instead
   .r.curly ⧽
-  //Deprecated, use chevron.r.dot
+  @deprecated: `angle.r.dot` is deprecated, use `chevron.r.dot` instead
   .r.dot ⦒
-  //Deprecated, use chevron.r.double
+  @deprecated: `angle.r.double` is deprecated, use `chevron.r.double` instead
   .r.double ⟫
   .acute ⦟
   .arc ∡
