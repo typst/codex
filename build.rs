@@ -1,8 +1,14 @@
 use std::fmt::Write;
+use std::iter;
 use std::iter::Peekable;
 use std::path::Path;
 
+use self::shared::ModifierSet;
+
 type StrResult<T> = Result<T, String>;
+
+#[path = "src/shared.rs"]
+mod shared;
 
 /// A module of definitions.
 struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
@@ -26,10 +32,10 @@ enum Def<'a> {
     Module(Module<'a>),
 }
 
-/// A symbol, either a leaf or with modifiers.
+/// A symbol, either a leaf or with modifiers with optional deprecation.
 enum Symbol<'a> {
     Single(char),
-    Multi(Vec<(&'a str, char)>),
+    Multi(Vec<(ModifierSet<&'a str>, char, Option<&'a str>)>),
 }
 
 /// A single line during parsing.
@@ -40,7 +46,16 @@ enum Line<'a> {
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
+    Variant(ModifierSet<&'a str>, char),
+    Eof,
+}
+
+#[derive(Debug, Copy, Clone)]
+enum Declaration<'a> {
+    ModuleStart(&'a str, Option<&'a str>),
+    ModuleEnd,
+    Symbol(&'a str, Option<char>, Option<&'a str>),
+    Variant(ModifierSet<&'a str>, char, Option<&'a str>),
 }
 
 fn main() {
@@ -61,11 +76,43 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 
     let text = std::fs::read_to_string(file).unwrap();
     let mut line_nr = 0;
+    let mut deprecation = None;
     let mut iter = text
         .lines()
         .inspect(|_| line_nr += 1)
         .map(tokenize)
-        .filter(|line| !matches!(line, Ok(Line::Blank)))
+        .chain(iter::once(Ok(Line::Eof)))
+        .filter_map(|line| match line {
+            Err(message) => Some(Err(message)),
+            Ok(Line::Blank) => None,
+            Ok(Line::Deprecated(message)) => {
+                if deprecation.is_some() {
+                    Some(Err(String::from("duplicate `@deprecated:`")))
+                } else {
+                    deprecation = Some(message);
+                    None
+                }
+            }
+            Ok(Line::ModuleStart(name)) => {
+                Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
+            }
+            Ok(Line::ModuleEnd) => {
+                if deprecation.is_some() {
+                    Some(Err(String::from("dangling `@deprecated:`")))
+                } else {
+                    Some(Ok(Declaration::ModuleEnd))
+                }
+            }
+            Ok(Line::Symbol(name, c)) => {
+                Some(Ok(Declaration::Symbol(name, c, deprecation.take())))
+            }
+            Ok(Line::Variant(modifiers, c)) => {
+                Some(Ok(Declaration::Variant(modifiers, c, deprecation.take())))
+            }
+            Ok(Line::Eof) => {
+                deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
+            }
+        })
         .peekable();
 
     let module = match parse(&mut iter) {
@@ -110,7 +157,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
             validate_ident(part)?;
         }
         let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        Line::Variant(ModifierSet::from_raw_dotted(rest), c)
     } else {
         validate_ident(head)?;
         let c = tail.map(decode_char).transpose()?;
@@ -145,29 +192,26 @@ fn decode_char(text: &str) -> StrResult<char> {
 
 /// Turns a stream of lines into a list of definitions.
 fn parse<'a>(
-    p: &mut Peekable<impl Iterator<Item = StrResult<Line<'a>>>>,
+    p: &mut Peekable<impl Iterator<Item = StrResult<Declaration<'a>>>>,
 ) -> StrResult<Vec<(&'a str, Binding<'a>)>> {
     let mut defs = vec![];
-    let mut deprecation = None;
     loop {
         match p.next().transpose()? {
-            None | Some(Line::ModuleEnd) => {
-                if let Some(message) = deprecation {
-                    return Err(format!("dangling `@deprecated: {}`", message));
-                }
+            None | Some(Declaration::ModuleEnd) => {
                 break;
             }
-            Some(Line::Deprecated(message)) => deprecation = Some(message),
-            Some(Line::Symbol(name, c)) => {
+            Some(Declaration::Symbol(name, c, deprecation)) => {
                 let mut variants = vec![];
-                while let Some(Line::Variant(name, c)) = p.peek().cloned().transpose()? {
-                    variants.push((name, c));
+                while let Some(Declaration::Variant(name, c, deprecation)) =
+                    p.peek().cloned().transpose()?
+                {
+                    variants.push((name, c, deprecation));
                     p.next();
                 }
 
                 let symbol = if !variants.is_empty() {
                     if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                        variants.insert(0, (ModifierSet::default(), c, None));
                     }
                     Symbol::Multi(variants)
                 } else {
@@ -176,9 +220,8 @@ fn parse<'a>(
                 };
 
                 defs.push((name, Binding { def: Def::Symbol(symbol), deprecation }));
-                deprecation = None;
             }
-            Some(Line::ModuleStart(name)) => {
+            Some(Declaration::ModuleStart(name, deprecation)) => {
                 let module_defs = parse(p)?;
                 defs.push((
                     name,
@@ -187,7 +230,6 @@ fn parse<'a>(
                         deprecation,
                     },
                 ));
-                deprecation = None;
             }
             other => return Err(format!("expected definition, found {other:?}")),
         }
