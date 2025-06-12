@@ -27,24 +27,24 @@ paren
   .l.flat ⟮
   .l.bar ⦇
   .l.stroked ⦅
-  //Deprecated, use paren.l.stroked
+  @deprecated: `paren.l.double` is deprecated, use `paren.l.stroked` instead
   .l.double ⦅
   .r )
   .r.flat ⟯
   .r.bar ⦈
   .r.stroked ⦆
-  //Deprecated, use paren.r.stroked
+  @deprecated: `paren.r.double` is deprecated, use `paren.r.stroked` instead
   .r.double ⦆
   .t ⏜
   .b ⏝
 brace
   .l U+7B
   .l.stroked ⦃
-  //Deprecated, use brace.l.stroked
+  @deprecated: `brace.l.double` is deprecated, use `brace.l.stroked` instead
   .l.double ⦃
   .r U+7D
   .r.stroked ⦄
-  //Deprecated, use brace.r.stroked
+  @deprecated: `brace.r.double` is deprecated, use `brace.r.stroked` instead
   .r.double ⦄
   .t ⏞
   .b ⏟
@@ -53,13 +53,13 @@ bracket
   .l.tick.t ⦍
   .l.tick.b ⦏
   .l.stroked ⟦
-  //Deprecated, use bracket.l.stroked
+  @deprecated: `bracket.l.double` is deprecated, use `bracket.l.stroked` instead
   .l.double ⟦
   .r ]
   .r.tick.t ⦐
   .r.tick.b ⦎
   .r.stroked ⟧
-  //Deprecated, use bracket.r.stroked
+  @deprecated: `bracket.r.double` is deprecated, use `bracket.r.stroked` instead
   .r.double ⟧
   .t ⎴
   .b ⎵
@@ -67,12 +67,12 @@ shell
   .l ❲
   .l.stroked ⟬
   .l.filled ⦗
-  //Deprecated, use shell.l.stroked
+  @deprecated: `shell.l.double` is deprecated, use `shell.l.stroked` instead
   .l.double ⟬
   .r ❳
   .r.stroked ⟭
   .r.filled ⦘
-  //Deprecated, use shell.r.stroked
+  @deprecated: `shell.r.double` is deprecated, use `shell.r.stroked` instead
   .r.double ⟭
   .t ⏠
   .b ⏡
