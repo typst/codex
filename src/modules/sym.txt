@@ -125,6 +125,8 @@ angle ∠
   .spatial ⟀
   .spheric ∢
   .spheric.rev ⦠
+  .spheric.t ⦡
+  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
   .spheric.top ⦡
 ceil
   .l ⌈
@@ -156,6 +158,8 @@ colon :
   .eq ≔
   .double.eq ⩴
 comma ,
+  .inv ⸲
+  .rev ⹁
 dagger †
   .double ‡
   .triple ⹋
@@ -191,6 +195,7 @@ quest ?
   .excl ⁈
   .inv ¿
 interrobang ‽
+  .inv ⸘
 hash #
 hyph ‐
   .minus U+2D
@@ -205,8 +210,10 @@ pilcrow ¶
   .rev ⁋
 section §
 semi ;
+  .inv ⸵
   .rev ⁏
 slash /
+  .circle ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
@@ -513,7 +520,7 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  // Deprecated.
+  @deprecated: `integral.sect` is deprecated, use `integral.inter` instead
   .sect ⨙
   .slash ⨏
   .square ⨖
@@ -586,6 +593,20 @@ parallel ∥
 perp ⟂
   .circle ⦹
 
+// Astronomical.
+earth 🜨
+  .alt ♁
+jupiter ♃
+mars ♂
+mercury ☿
+neptune ♆
+  .alt ⯉
+saturn ♄
+sun ☉
+uranus ⛢
+  .alt ♅
+venus ♀
+
 // Miscellaneous Technical.
 diameter ⌀
 interleave ⫴
@@ -638,6 +659,13 @@ floral ❦
   .l ☙
   .r ❧
 refmark ※
+cc 🅭
+  .by 🅯
+  .nc 🄏
+  .nd ⊜
+  .public 🅮
+  .sa 🄎
+  .zero 🄍
 copyright ©
   .sound ℗
 copyleft 🄯
@@ -1025,11 +1053,14 @@ beta β
   .alt ϐ
 chi χ
 delta δ
+digamma ϝ
 epsilon ε
   .alt ϵ
+  .alt.rev ϶
 eta η
 gamma γ
 iota ι
+  .inv ℩
 kai ϗ
 kappa κ
   .alt ϰ
@@ -1059,6 +1090,7 @@ Alpha Α
 Beta Β
 Chi Χ
 Delta Δ
+Digamma Ϝ
 Epsilon Ε
 Eta Η
 Gamma Γ
@@ -1078,9 +1110,16 @@ Rho Ρ
 Sigma Σ
 Tau Τ
 Theta Θ
+  .alt ϴ
 Upsilon Υ
 Xi Ξ
 Zeta Ζ
+
+// Lowercase Cyrillic.
+sha ш
+
+// Uppercase Cyrillic.
+Sha Ш
 
 // Hebrew.
 // In math, the following symbols are replaced with corresponding characters
@@ -1098,6 +1137,7 @@ gimmel ג
 daleth ד
 @deprecated: `dalet` is deprecated, use `daleth` instead
 dalet ד
+@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
 // Double-struck.
