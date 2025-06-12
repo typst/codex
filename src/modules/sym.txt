@@ -88,6 +88,8 @@ angle ∠
   .spatial ⟀
   .spheric ∢
   .spheric.rev ⦠
+  .spheric.t ⦡
+  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
   .spheric.top ⦡
 ceil
   .l ⌈
@@ -511,7 +513,7 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  // Deprecated.
+  @deprecated: `integral.sect` is deprecated, use `integral.inter` instead
   .sect ⨙
   .slash ⨏
   .square ⨖
@@ -589,6 +591,20 @@ perp ⟂
   .o ⦹
   //Deprecated
   .circle ⦹
+
+// Astronomical.
+earth 🜨
+  .alt ♁
+jupiter ♃
+mars ♂
+mercury ☿
+neptune ♆
+  .alt ⯉
+saturn ♄
+sun ☉
+uranus ⛢
+  .alt ♅
+venus ♀
 
 // Miscellaneous Technical.
 diameter ⌀
@@ -1037,11 +1053,14 @@ beta β
   .alt ϐ
 chi χ
 delta δ
+digamma ϝ
 epsilon ε
   .alt ϵ
+  .alt.rev ϶
 eta η
 gamma γ
 iota ι
+  .inv ℩
 kai ϗ
 kappa κ
   .alt ϰ
@@ -1071,6 +1090,7 @@ Alpha Α
 Beta Β
 Chi Χ
 Delta Δ
+Digamma Ϝ
 Epsilon Ε
 Eta Η
 Gamma Γ
@@ -1090,6 +1110,7 @@ Rho Ρ
 Sigma Σ
 Tau Τ
 Theta Θ
+  .alt ϴ
 Upsilon Υ
 Xi Ξ
 Zeta Ζ
