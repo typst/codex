@@ -272,6 +272,8 @@ eq =
   .star ≛
   .circle ⊜
   .colon ≕
+  .dot.up ≐
+  .dot.down ⩦
   .dots ≑
   .dots.down ≒
   .dots.up ≓
