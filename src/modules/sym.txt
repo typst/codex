@@ -24,32 +24,64 @@ space U+20
 // Delimiters.
 paren
   .l (
+  .l.flat ⟮
+  .l.bar ⦇
+  .l.stroked ⦅
+  @deprecated: `paren.l.double` is deprecated, use `paren.l.stroked` instead
   .l.double ⦅
   .r )
+  .r.flat ⟯
+  .r.bar ⦈
+  .r.stroked ⦆
+  @deprecated: `paren.r.double` is deprecated, use `paren.r.stroked` instead
   .r.double ⦆
   .t ⏜
   .b ⏝
 brace
   .l U+7B
+  .l.stroked ⦃
+  @deprecated: `brace.l.double` is deprecated, use `brace.l.stroked` instead
   .l.double ⦃
   .r U+7D
+  .r.stroked ⦄
+  @deprecated: `brace.r.double` is deprecated, use `brace.r.stroked` instead
   .r.double ⦄
   .t ⏞
   .b ⏟
 bracket
   .l [
+  .l.tick.t ⦍
+  .l.tick.b ⦏
+  .l.stroked ⟦
+  @deprecated: `bracket.l.double` is deprecated, use `bracket.l.stroked` instead
   .l.double ⟦
   .r ]
+  .r.tick.t ⦐
+  .r.tick.b ⦎
+  .r.stroked ⟧
+  @deprecated: `bracket.r.double` is deprecated, use `bracket.r.stroked` instead
   .r.double ⟧
   .t ⎴
   .b ⎵
 shell
   .l ❲
+  .l.stroked ⟬
+  .l.filled ⦗
+  @deprecated: `shell.l.double` is deprecated, use `shell.l.stroked` instead
   .l.double ⟬
   .r ❳
+  .r.stroked ⟭
+  .r.filled ⦘
+  @deprecated: `shell.r.double` is deprecated, use `shell.r.stroked` instead
   .r.double ⟭
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+moustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
@@ -63,14 +95,21 @@ fence
   .r ⧙
   .r.double ⧛
   .dotted ⦙
+corner
+  .l.t ⌜
+  .l.b ⌞
+  .r.t ⌝
+  .r.b ⌟
 angle ∠
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
+  .l.bar ⦉
   .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
+  .r.bar ⦊
   .r.double ⟫
   .acute ⦟
   .arc ∡
@@ -95,10 +134,10 @@ ceil
 floor
   .l ⌊
   .r ⌋
-amp &
-  .inv ⅋
 
 // Punctuation.
+amp &
+  .inv ⅋
 ast
   .op ∗
   .basic *
