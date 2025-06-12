@@ -724,8 +724,6 @@ bullet •
 circle
   .stroked ○
   .stroked.tiny ∘
-  @deprecated: `circled.stroked.tiny.o` is deprecated, use `compose.o` instead
-  .stroked.tiny.o 
   .stroked.small ⚬
   .stroked.big ◯
   .filled ●
