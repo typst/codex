@@ -581,6 +581,7 @@ baht ฿
 bitcoin ₿
 cedi ₵
 cent ¢
+currency ¤
 dollar $
 dong ₫
 dorome ߾
@@ -603,7 +604,7 @@ riel ៛
 ruble ₽
 rupee
   .indian ₹
-  .general ₨
+  .generic ₨
   .tamil ௹
   .wancho 𞋿
 shekel ₪
