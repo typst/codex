@@ -307,6 +307,7 @@ gt >
   .eq.lt ⋛
   .eq.not ≱
   .equiv ≧
+  .sequiv ⫺
   .lt ≷
   .lt.not ≹
   .neq ⪈
@@ -335,6 +336,7 @@ lt <
   .eq.gt ⋚
   .eq.not ≰
   .equiv ≦
+  .sequiv ⫹
   .gt ≶
   .gt.not ≸
   .neq ⪇
@@ -389,6 +391,9 @@ succ ≻
   .tilde ≿
 equiv ≡
   .not ≢
+sequiv
+  .lt ⪛
+  .gt ⪜
 smt ⪪
   .eq ⪬
 lat ⪫
