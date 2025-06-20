@@ -693,6 +693,15 @@ sharp ♯
 
 // Shapes.
 bullet •
+  .op ∙
+  .o ⦿
+  .stroked ◦
+  .stroked.o ⦾
+  .hole ◘
+  .hyph ⁃
+  .tri ‣
+  .l ⁌
+  .r ⁍
 circle
   .stroked ○
   .stroked.tiny ∘
