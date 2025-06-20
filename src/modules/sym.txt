@@ -105,6 +105,8 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
+  @deprecated: `ast.small` is deprecated (CJK compatibility character), use ﹡ or `\u{fe61}` instead
+  .small ﹡
   .circle ⊛
   .square ⧆
 at @
@@ -242,6 +244,8 @@ plus +
   .dot ∔
   .double ⧺
   .minus ±
+  @deprecated: `plus.small` is deprecated (CJK compatibility character), use ﹢ or `\u{fe62}` instead
+  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
@@ -285,6 +289,8 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
+  @deprecated: `eq.small` is deprecated (CJK compatibility character), use ﹦ or `\u{fe66}` instead
+  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
@@ -306,6 +312,8 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
+  @deprecated: `gt.small` is deprecated (CJK compatibility character), use ﹥ or `\u{fe65}` instead
+  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -331,6 +339,8 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
+  @deprecated: `lt.small` is deprecated (CJK compatibility character), use ﹤ or `\u{fe64}` instead
+  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
@@ -1133,6 +1143,8 @@ ZZ ℤ
 angstrom Å
 ell ℓ
 planck ħ
+  @deprecated: `planck.reduce` is deprecated, use `planck` instead
+  .reduce ħ
 Re ℜ
 Im ℑ
 dotless
