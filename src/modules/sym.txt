@@ -208,7 +208,7 @@ breve ˘
 caret ‸
 caron ˇ
 hat ^
-diaer ¨
+diaer @= dot.double
 grave `
 macron ¯
 quote
@@ -378,8 +378,7 @@ succ ≻
   .not ⊁
   .ntilde ⋩
   .tilde ≿
-equiv ≡
-  .not ≢
+equiv @= eq.triple.*
 smt ⪪
   .eq ⪬
 lat ⪫
@@ -397,12 +396,7 @@ emptyset ∅
   .bar ⦱
   .circle ⦲
   .rev ⦰
-nothing ∅
-  .arrow.r ⦳
-  .arrow.l ⦴
-  .bar ⦱
-  .circle ⦲
-  .rev ⦰
+nothing @= emptyset.*
 without ∖
 complement ∁
 in ∈
@@ -469,12 +463,12 @@ infinity ∞
   .bar ⧞
   .incomplete ⧜
   .tie ⧝
-oo ∞
+oo @= infinity
 @deprecated: `diff` is deprecated, use `partial` instead
-diff ∂
+diff @= partial.*
 partial ∂
 gradient ∇
-nabla ∇
+nabla @= gradient.*
 sum ∑
   .integral ⨋
 product ∏
@@ -506,8 +500,8 @@ laplace ∆
 forall ∀
 exists ∃
   .not ∄
-top ⊤
-bot ⊥
+top @= tack.b
+bot @= tack.t
 not ¬
 and ∧
   .big ⋀
@@ -519,8 +513,7 @@ or ∨
   .curly ⋎
   .dot ⟇
   .double ⩔
-xor ⊕
-  .big ⨁
+xor @= plus.circle.*
 models ⊧
 forces ⊩
   .not ⊮
@@ -529,10 +522,9 @@ because ∵
 qed ∎
 
 // Function and category theory.
-mapsto ↦
-  .long ⟼
-compose ∘
-convolve ∗
+mapsto @= arrow.r.bar.*
+compose @= circle.stroked.tiny
+convolve @= ast.op
 multimap ⊸
   .double ⧟
 
@@ -1098,16 +1090,16 @@ Sha Ш
 // See https://github.com/typst/typst/pull/3375.
 aleph א
 @deprecated: `alef` is deprecated, use `aleph` instead
-alef א
+alef @= aleph
 beth ב
 @deprecated: `bet` is deprecated, use `beth` instead
-bet ב
+bet @= beth
 gimel ג
 @deprecated: `gimmel` is deprecated, use `gimel` instead
-gimmel ג
+gimmel @= gimel
 daleth ד
 @deprecated: `dalet` is deprecated, use `daleth` instead
-dalet ד
+dalet @= daleth
 @deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
 shin ש
 
