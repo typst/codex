@@ -165,6 +165,112 @@ pub enum MathStyle {
     BoldRoundhand,
 }
 
+/// Base [`MathStyle`]s used in Typst.
+#[non_exhaustive]
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
+pub enum MathVariant {
+    Plain,
+    Script,
+    Fraktur,
+    SansSerif,
+    Monospace,
+    DoubleStruck,
+    Chancery,
+    Roundhand,
+}
+
+impl MathStyle {
+    /// Selects an appropriate [`MathStyle`] for the given `char`.
+    ///
+    /// If `variant` is `None`, then [`Plain`](MathVariant::Plain) is used. If
+    /// `italic` is `None`, then the TeX auto-italic rules are followed: only
+    /// Latin and lowercase Greek are italicized.
+    ///
+    /// If the combination of inputs leads to a style which does not support
+    /// the given `char`, then fallback occurs, prioritizing the
+    /// [`MathVariant`] given.
+    ///
+    /// # Examples
+    ///
+    /// In the following example, as Greek letters are not supported by
+    /// [`MathStyle::Fraktur`], the variant falls back to
+    /// [`Plain`](MathVariant::Plain). Since auto-italic was requested and the
+    /// given char is lowercase Greek, the selected style is italicized.
+    ///
+    /// ```
+    /// use codex::styling::{MathStyle, MathVariant};
+    ///
+    /// assert_eq!(
+    ///     MathStyle::BoldItalic,
+    ///     MathStyle::select('α', Some(MathVariant::Fraktur), true, None)
+    /// );
+    /// ```
+    ///
+    /// In this example, the request for bold fell back to `false` as there is
+    /// no bold double-struck style, and the request for italic fell back to
+    /// `Some(false)` as [`MathStyle::DoubleStruckItalic`] does not support
+    /// `'R'`.
+    ///
+    /// ```
+    /// # use codex::styling::{MathStyle, MathVariant};
+    /// assert_eq!(
+    ///     MathStyle::DoubleStruck,
+    ///     MathStyle::select('R', Some(MathVariant::DoubleStruck), true, Some(true))
+    /// );
+    /// ```
+    pub fn select(
+        c: char,
+        variant: Option<MathVariant>,
+        bold: bool,
+        italic: Option<bool>,
+    ) -> MathStyle {
+        use conversions::*;
+        use MathVariant::*;
+        match (variant.unwrap_or(Plain), bold, italic) {
+            (SansSerif, false, Some(false)) if is_latin(c) => MathStyle::SansSerif,
+            (SansSerif, false, _) if is_latin(c) => MathStyle::SansSerifItalic,
+            (SansSerif, true, Some(false)) if is_latin(c) => MathStyle::SansSerifBold,
+            (SansSerif, true, _) if is_latin(c) => MathStyle::SansSerifBoldItalic,
+            (SansSerif, false, _) if is_digit(c) => MathStyle::SansSerif,
+            (SansSerif, true, _) if is_digit(c) => MathStyle::SansSerifBold,
+            (SansSerif, _, Some(false)) if is_greek(c) => MathStyle::SansSerifBold,
+            (SansSerif, _, Some(true)) if is_greek(c) => MathStyle::SansSerifBoldItalic,
+            (SansSerif, _, None) if is_upper_greek(c) => MathStyle::SansSerifBold,
+            (SansSerif, _, None) if is_lower_greek(c) => MathStyle::SansSerifBoldItalic,
+            (Script, false, _) if is_latin(c) => MathStyle::Script,
+            (Script, true, _) if is_latin(c) => MathStyle::BoldScript,
+            (Fraktur, false, _) if is_latin(c) => MathStyle::Fraktur,
+            (Fraktur, true, _) if is_latin(c) => MathStyle::BoldFraktur,
+            (Monospace, _, _) if is_digit(c) | is_latin(c) => MathStyle::Monospace,
+            (DoubleStruck, _, Some(true)) if matches!(c, 'D' | 'd' | 'e' | 'i' | 'j') => {
+                MathStyle::DoubleStruckItalic
+            }
+            (DoubleStruck, _, _)
+                if is_digit(c)
+                    | is_latin(c)
+                    | matches!(c, '∑' | 'Γ' | 'Π' | 'γ' | 'π') =>
+            {
+                MathStyle::DoubleStruck
+            }
+            (Chancery, false, _) if is_latin(c) => MathStyle::Chancery,
+            (Chancery, true, _) if is_latin(c) => MathStyle::BoldChancery,
+            (Roundhand, false, _) if is_latin(c) => MathStyle::Roundhand,
+            (Roundhand, true, _) if is_latin(c) => MathStyle::BoldRoundhand,
+            (_, false, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::Italic,
+            (_, false, None) if is_latin(c) | is_lower_greek(c) => MathStyle::Italic,
+            (_, true, Some(false)) if is_latin(c) | is_greek(c) => MathStyle::Bold,
+            (_, true, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::BoldItalic,
+            (_, true, None) if is_latin(c) | is_lower_greek(c) => MathStyle::BoldItalic,
+            (_, true, None) if is_upper_greek(c) => MathStyle::Bold,
+            (_, true, _) if is_digit(c) | matches!(c, 'Ϝ' | 'ϝ') => MathStyle::Bold,
+            (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ') => {
+                MathStyle::Italic
+            }
+            _ => MathStyle::Plain,
+        }
+    }
+}
+
 /// Returns an iterator that yields the styled equivalent of a `char`.
 ///
 /// This `struct` is created by the [`to_style`] function. See its
@@ -288,60 +394,6 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
         BoldRoundhand => to_bold_roundhand(c),
     };
     ToStyle::new(styled)
-}
-
-#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
-pub enum MathVariant {
-    Plain,
-    Script,
-    Fraktur,
-    SansSerif,
-    Monospace,
-    DoubleStruck,
-}
-
-pub fn resolve_style(
-    c: char,
-    variant: Option<MathVariant>,
-    bold: bool,
-    italic: Option<bool>,
-) -> MathStyle {
-    use conversions::*;
-    use MathVariant::*;
-    match (variant.unwrap_or(Plain), bold, italic) {
-        (SansSerif, false, Some(false)) if is_latin(c) => MathStyle::SansSerif,
-        (SansSerif, false, _) if is_latin(c) => MathStyle::SansSerifItalic,
-        (SansSerif, true, Some(false)) if is_latin(c) => MathStyle::SansSerifBold,
-        (SansSerif, true, _) if is_latin(c) => MathStyle::SansSerifBoldItalic,
-        (SansSerif, false, _) if is_digit(c) => MathStyle::SansSerif,
-        (SansSerif, true, _) if is_digit(c) => MathStyle::SansSerifBold,
-        (SansSerif, _, Some(false)) if is_greek(c) => MathStyle::SansSerifBold,
-        (SansSerif, _, Some(true)) if is_greek(c) => MathStyle::SansSerifBoldItalic,
-        (SansSerif, _, None) if is_upper_greek(c) => MathStyle::SansSerifBold,
-        (SansSerif, _, None) if is_lower_greek(c) => MathStyle::SansSerifBoldItalic,
-        (Script, false, _) if is_latin(c) => MathStyle::Script,
-        (Script, true, _) if is_latin(c) => MathStyle::BoldScript,
-        (Fraktur, false, _) if is_latin(c) => MathStyle::Fraktur,
-        (Fraktur, true, _) if is_latin(c) => MathStyle::BoldFraktur,
-        (Monospace, _, _) if is_digit(c) | is_latin(c) => MathStyle::Monospace,
-        (DoubleStruck, _, Some(true)) if matches!(c, 'D' | 'd' | 'e' | 'i' | 'j') => {
-            MathStyle::DoubleStruckItalic
-        }
-        (DoubleStruck, _, _)
-            if is_digit(c) | is_latin(c) | matches!(c, '∑' | 'Γ' | 'Π' | 'γ' | 'π') =>
-        {
-            MathStyle::DoubleStruck
-        }
-        (_, false, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::Italic,
-        (_, false, None) if is_latin(c) | is_lower_greek(c) => MathStyle::Italic,
-        (_, true, Some(false)) if is_latin(c) | is_greek(c) => MathStyle::Bold,
-        (_, true, Some(true)) if is_latin(c) | is_greek(c) => MathStyle::BoldItalic,
-        (_, true, None) if is_latin(c) | is_lower_greek(c) => MathStyle::BoldItalic,
-        (_, true, None) if is_upper_greek(c) => MathStyle::Bold,
-        (_, true, _) if is_digit(c) | matches!(c, 'Ϝ' | 'ϝ') => MathStyle::Bold,
-        (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ') => MathStyle::Italic,
-        _ => MathStyle::Plain,
-    }
 }
 
 /// Functions which convert a `char` to its specified styled form.
