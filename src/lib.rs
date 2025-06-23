@@ -59,15 +59,15 @@ pub enum Def {
 #[derive(Debug, Copy, Clone)]
 pub enum Symbol {
     /// A symbol without modifiers.
-    Single(char),
+    Single(&'static str),
     /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(ModifierSet<&'static str>, char, Option<&'static str>)]),
+    Multi(&'static [(ModifierSet<&'static str>, &'static str, Option<&'static str>)]),
 }
 
 impl Symbol {
     /// Get the symbol's character for a given set of modifiers, alongside an optional deprecation
     /// message.
-    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(char, Option<&str>)> {
+    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(&'static str, Option<&str>)> {
         match self {
             Self::Single(c) => modifs.is_empty().then_some((*c, None)),
             Self::Multi(list) => {
@@ -81,13 +81,13 @@ impl Symbol {
     /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
     pub fn variants(
         &self,
-    ) -> impl Iterator<Item = (ModifierSet<&str>, char, Option<&str>)> {
+    ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
         enum Variants {
-            Single(std::iter::Once<char>),
+            Single(std::iter::Once<&'static str>),
             Multi(
                 std::slice::Iter<
                     'static,
-                    (ModifierSet<&'static str>, char, Option<&'static str>),
+                    (ModifierSet<&'static str>, &'static str, Option<&'static str>),
                 >,
             ),
         }
