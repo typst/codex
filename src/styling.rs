@@ -170,7 +170,6 @@ pub enum MathStyle {
 #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
 pub enum MathVariant {
     Plain,
-    Script,
     Fraktur,
     SansSerif,
     Monospace,
@@ -237,8 +236,6 @@ impl MathStyle {
             (SansSerif, _, Some(true)) if is_greek(c) => MathStyle::SansSerifBoldItalic,
             (SansSerif, _, None) if is_upper_greek(c) => MathStyle::SansSerifBold,
             (SansSerif, _, None) if is_lower_greek(c) => MathStyle::SansSerifBoldItalic,
-            (Script, false, _) if is_latin(c) => MathStyle::Script,
-            (Script, true, _) if is_latin(c) => MathStyle::BoldScript,
             (Fraktur, false, _) if is_latin(c) => MathStyle::Fraktur,
             (Fraktur, true, _) if is_latin(c) => MathStyle::BoldFraktur,
             (Monospace, _, _) if is_digit(c) | is_latin(c) => MathStyle::Monospace,
