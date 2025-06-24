@@ -26,6 +26,7 @@ pub const UNICODE_VERSION: (u8, u8, u8) = (16, 0, 0);
 /// - digamma: The uppercase and lowercase digamma, Ϝ (U+03DC) and ϝ (U+03DD).
 /// - dotless: The dotless variants of the lowercase Latin letters i and j, ı
 ///   (U+0131) and ȷ (U+0237).
+/// - hebrew: The Hebrew letters א–ד (U+05D0..U+05D3).
 ///
 /// Note that some styles support only a subset of a group. The characters each
 /// style supports are given in their documentation.
@@ -163,6 +164,10 @@ pub enum MathStyle {
     ///
     /// Supported characters: latin.
     BoldRoundhand,
+    /// Hebrew letterlike math symbols.
+    ///
+    /// Supported characters: hebrew.
+    Hebrew,
 }
 
 /// Base [`MathStyle`]s used in Typst.
@@ -263,6 +268,7 @@ impl MathStyle {
             (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ') => {
                 MathStyle::Italic
             }
+            (_, _, Some(true) | None) if is_hebrew(c) => MathStyle::Hebrew,
             _ => MathStyle::Plain,
         }
     }
@@ -389,6 +395,7 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
         BoldChancery => to_bold_chancery(c),
         Roundhand => to_roundhand(c),
         BoldRoundhand => to_bold_roundhand(c),
+        Hebrew => [to_hebrew(c), '\0'],
     };
     ToStyle::new(styled)
 }
@@ -432,6 +439,11 @@ mod conversions {
     #[inline]
     pub fn is_lower_greek(c: char) -> bool {
         matches!(c, 'α'..='ω' | '∂' | 'ϵ' | 'ϑ' | 'ϰ' | 'ϕ' | 'ϱ' | 'ϖ')
+    }
+
+    #[inline]
+    pub fn is_hebrew(c: char) -> bool {
+        matches!(c, 'א'..='ד')
     }
 
     /// The character given by adding `delta` to the codepoint of `c`.
@@ -912,5 +924,15 @@ mod conversions {
     pub fn to_bold_roundhand(c: char) -> [char; 2] {
         // Variation Sequences (Latin script characters)
         [to_bold_script(c), VARIATION_SELECTOR_2]
+    }
+
+    pub fn to_hebrew(c: char) -> char {
+        let delta = match c {
+            // Letterlike Symbols Block (U+2100..U+214F)
+            // Hebrew letterlike math symbols (U+2135..U+2138)
+            'א'..='ד' => 0x1B65,
+            _ => return c,
+        };
+        apply_delta(c, delta)
     }
 }
