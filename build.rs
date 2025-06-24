@@ -174,17 +174,20 @@ fn validate_ident(string: &str) -> StrResult<()> {
     Err(format!("invalid identifier: {string:?}"))
 }
 
-/// Extracts the value of a variant, parsing U+XXXX escapes
+/// Extracts the value of a variant, parsing `\u{XXXX}` escapes
 fn decode_value(text: &str) -> StrResult<String> {
-    let mut iter = text.split("U+");
+    let mut iter = text.split("\\u{");
     let mut res = iter.next().unwrap().to_string();
     for other in iter {
-        let hex_end = other.find(|c: char| !c.is_ascii_hexdigit()).unwrap_or(other.len());
-        let (hex, rest) = other.split_at(hex_end);
-        res.push(u32::from_str_radix(hex, 16)
-            .ok()
-            .and_then(|n| char::try_from(n).ok())
-            .ok_or_else(|| format!("invalid unicode escape U+{hex:?}"))?);
+        let (hex, rest) = other.split_once("}").ok_or_else(|| {
+            format!("unclosed unicode escape \\u{{{}", other.escape_debug())
+        })?;
+        res.push(
+            u32::from_str_radix(hex, 16)
+                .ok()
+                .and_then(|n| char::try_from(n).ok())
+                .ok_or_else(|| format!("invalid unicode escape \\u{{{hex}}}"))?,
+        );
         res += rest;
     }
     Ok(res)
