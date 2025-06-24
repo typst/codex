@@ -907,23 +907,27 @@ mod conversions {
     pub fn to_chancery(c: char) -> [char; 2] {
         // Standardized Variation Sequences (uppercase Latin script characters)
         // Variation Sequences (lowercase Latin script characters)
-        [to_script(c), VARIATION_SELECTOR_1]
+        let next = if is_latin(c) { VARIATION_SELECTOR_1 } else { '\0' };
+        [to_script(c), next]
     }
 
     pub fn to_bold_chancery(c: char) -> [char; 2] {
         // Variation Sequences (Latin script characters)
-        [to_bold_script(c), VARIATION_SELECTOR_1]
+        let next = if is_latin(c) { VARIATION_SELECTOR_1 } else { '\0' };
+        [to_bold_script(c), next]
     }
 
     pub fn to_roundhand(c: char) -> [char; 2] {
         // Standardized Variation Sequences (uppercase Latin script characters)
         // Variation Sequences (lowercase Latin script characters)
-        [to_script(c), VARIATION_SELECTOR_2]
+        let next = if is_latin(c) { VARIATION_SELECTOR_2 } else { '\0' };
+        [to_script(c), next]
     }
 
     pub fn to_bold_roundhand(c: char) -> [char; 2] {
         // Variation Sequences (Latin script characters)
-        [to_bold_script(c), VARIATION_SELECTOR_2]
+        let next = if is_latin(c) { VARIATION_SELECTOR_2 } else { '\0' };
+        [to_bold_script(c), next]
     }
 
     pub fn to_hebrew(c: char) -> char {
