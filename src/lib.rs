@@ -11,6 +11,9 @@ pub use self::shared::ModifierSet;
 
 mod shared;
 
+#[cfg(feature = "styling")]
+pub mod styling;
+
 /// A module of definitions.
 #[derive(Debug, Copy, Clone)]
 pub struct Module(&'static [(&'static str, Binding)]);
