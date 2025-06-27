@@ -136,4 +136,16 @@ mod test {
 
         assert_sorted_recursively(ROOT);
     }
+
+    #[test]
+    fn unicode_escapes() {
+        let Def::Symbol(wj) = SYM.get("wj").unwrap().def else { panic!() };
+        assert_eq!(wj.get(ModifierSet::default()).unwrap().0, "\u{2060}");
+        let Def::Symbol(space) = SYM.get("space").unwrap().def else { panic!() };
+        assert_eq!(space.get(ModifierSet::default()).unwrap().0, " ");
+        assert_eq!(
+            space.get(ModifierSet::from_raw_dotted("nobreak")).unwrap().0,
+            "\u{A0}"
+        );
+    }
 }
