@@ -1161,6 +1161,40 @@ sha ш
 // Uppercase Cyrillic.
 Sha Ш
 
+// Arabic.
+alef ا
+beh ب
+  .dotless ٮ
+jeem ج
+dal د
+heh ه
+waw و
+zain ز
+hah ح
+tah ط
+yeh ي
+kaf ك
+lam ل
+meem م
+noon ن
+  .dotless ں
+seen س
+ain ع
+feh ف
+  .dotless ڡ
+sad ص
+qaf ق
+  .dotless ٯ
+reh ر
+sheen ش
+teh ت
+theh ث
+khah خ
+thal ذ
+dad ض
+zah ظ
+ghain غ
+
 // Hebrew.
 // In math, the following symbols are replaced with corresponding characters
 // from Letterlike Symbols.
