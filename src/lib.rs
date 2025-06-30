@@ -156,7 +156,7 @@ mod test {
     #[test]
     fn random_sample() {
         for (key, control) in [
-            ("backslash", [("", "\\"), ("o", "⦸"), ("not", "⧷")].as_slice()),
+            ("backslash", [("", "\\"), ("not", "⧷"), ("o", "⦸")].as_slice()),
             ("chi", &[("", "χ")]),
             ("forces", &[("", "⊩"), ("not", "⊮")]),
             ("interleave", &[("", "⫴"), ("big", "⫼"), ("struck", "⫵")]),
