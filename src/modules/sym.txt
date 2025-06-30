@@ -584,10 +584,20 @@ diameter ⌀
 interleave ⫴
   .big ⫼
   .struck ⫵
+@deprecated: `join` is deprecated, use `bowtie.large` instead
 join ⨝
   .r ⟖
   .l ⟕
   .l.r ⟗
+bowtie
+  .stroked ⋈
+  .filled ⧓
+  .filled.l ⧑
+  .filled.r ⧒
+  .large ⨝
+  .large.r ⟖
+  .large.l ⟕
+  .large.l.r ⟗
 hourglass
   .stroked ⧖
   .filled ⧗
