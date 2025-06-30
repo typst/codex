@@ -34,30 +34,30 @@ enum Def<'a> {
 
 /// A symbol, either a leaf or with modifiers with optional deprecation.
 enum Symbol<'a> {
-    Single(char),
-    Multi(Vec<(ModifierSet<&'a str>, char, Option<&'a str>)>),
-    MultiAlias(Vec<(ModifierSet<String>, char, Option<&'a str>)>),
+    Single(String),
+    Multi(Vec<(ModifierSet<&'a str>, String, Option<&'a str>)>),
+    MultiAlias(Vec<(ModifierSet<String>, String, Option<&'a str>)>),
 }
 
 /// A single line during parsing.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Clone)]
 enum Line<'a> {
     Blank,
     Deprecated(&'a str),
     ModuleStart(&'a str),
     ModuleEnd,
-    Symbol(&'a str, Option<char>),
-    Variant(ModifierSet<&'a str>, char),
+    Symbol(&'a str, Option<String>),
+    Variant(ModifierSet<&'a str>, String),
     Alias(&'a str, &'a str, ModifierSet<&'a str>, bool),
     Eof,
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Clone)]
 enum Declaration<'a> {
     ModuleStart(&'a str, Option<&'a str>),
     ModuleEnd,
-    Symbol(&'a str, Option<char>, Option<&'a str>),
-    Variant(ModifierSet<&'a str>, char, Option<&'a str>),
+    Symbol(&'a str, Option<String>, Option<&'a str>),
+    Variant(ModifierSet<&'a str>, String, Option<&'a str>),
     Alias(&'a str, &'a str, ModifierSet<&'a str>, bool, Option<&'a str>),
 }
 
@@ -106,11 +106,11 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
                         Some(Ok(Declaration::ModuleEnd))
                     }
                 }
-                Ok(Line::Symbol(name, c)) => {
-                    Some(Ok(Declaration::Symbol(name, c, deprecation.take())))
+                Ok(Line::Symbol(name, value)) => {
+                    Some(Ok(Declaration::Symbol(name, value, deprecation.take())))
                 }
-                Ok(Line::Variant(modifiers, c)) => {
-                    Some(Ok(Declaration::Variant(modifiers, c, deprecation.take())))
+                Ok(Line::Variant(modifiers, value)) => {
+                    Some(Ok(Declaration::Variant(modifiers, value, deprecation.take())))
                 }
                 Ok(Line::Alias(alias, head, variant, deep)) => Some(Ok(
                     Declaration::Alias(alias, head, variant, deep, deprecation.take()),
@@ -162,8 +162,8 @@ fn tokenize(line: &str) -> StrResult<Line> {
         for part in rest.split('.') {
             validate_ident(part)?;
         }
-        let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(ModifierSet::from_raw_dotted(rest), c)
+        let value = decode_value(tail.ok_or("missing char")?)?;
+        Line::Variant(ModifierSet::from_raw_dotted(rest), value)
     } else if let Some(mut value) = tail.and_then(|tail| tail.strip_prefix("@= ")) {
         let alias = head;
         validate_ident(alias)?;
@@ -183,8 +183,8 @@ fn tokenize(line: &str) -> StrResult<Line> {
         Line::Alias(alias, head, ModifierSet::from_raw_dotted(rest), deep)
     } else {
         validate_ident(head)?;
-        let c = tail.map(decode_char).transpose()?;
-        Line::Symbol(head, c)
+        let value = tail.map(decode_value).transpose()?;
+        Line::Symbol(head, value)
     })
 }
 
@@ -197,20 +197,23 @@ fn validate_ident(string: &str) -> StrResult<()> {
     Err(format!("invalid identifier: {string:?}"))
 }
 
-/// Extracts either a single char or parses a U+XXXX escape.
-fn decode_char(text: &str) -> StrResult<char> {
-    if let Some(hex) = text.strip_prefix("U+") {
-        u32::from_str_radix(hex, 16)
-            .ok()
-            .and_then(|n| char::try_from(n).ok())
-            .ok_or_else(|| format!("invalid unicode escape {text:?}"))
-    } else {
-        let mut chars = text.chars();
-        match (chars.next(), chars.next()) {
-            (Some(c), None) => Ok(c),
-            _ => Err(format!("expected exactly one char, found {text:?}")),
-        }
+/// Extracts the value of a variant, parsing `\u{XXXX}` escapes
+fn decode_value(text: &str) -> StrResult<String> {
+    let mut iter = text.split("\\u{");
+    let mut res = iter.next().unwrap().to_string();
+    for other in iter {
+        let (hex, rest) = other.split_once("}").ok_or_else(|| {
+            format!("unclosed unicode escape \\u{{{}", other.escape_debug())
+        })?;
+        res.push(
+            u32::from_str_radix(hex, 16)
+                .ok()
+                .and_then(|n| char::try_from(n).ok())
+                .ok_or_else(|| format!("invalid unicode escape \\u{{{hex}}}"))?,
+        );
+        res += rest;
     }
+    Ok(res)
 }
 
 /// Turns a stream of lines into a list of definitions.
@@ -227,23 +230,23 @@ fn parse<'a>(
             Some(Declaration::Alias(alias, name, variant, deep, deprecation)) => {
                 aliases.push((alias, name, variant, deep, deprecation));
             }
-            Some(Declaration::Symbol(name, c, deprecation)) => {
+            Some(Declaration::Symbol(name, value, deprecation)) => {
                 let mut variants = vec![];
-                while let Some(Declaration::Variant(name, c, deprecation)) =
+                while let Some(Declaration::Variant(name, value, deprecation)) =
                     p.peek().cloned().transpose()?
                 {
-                    variants.push((name, c, deprecation));
+                    variants.push((name, value, deprecation));
                     p.next();
                 }
 
                 let symbol = if !variants.is_empty() {
-                    if let Some(c) = c {
-                        variants.insert(0, (ModifierSet::default(), c, None));
+                    if let Some(value) = value {
+                        variants.insert(0, (ModifierSet::default(), value, None));
                     }
                     Symbol::Multi(variants)
                 } else {
-                    let c = c.ok_or("symbol needs char or variants")?;
-                    Symbol::Single(c)
+                    let value = value.ok_or("symbol needs char or variants")?;
+                    Symbol::Single(value)
                 };
 
                 defs.push((name, Binding { def: Def::Symbol(symbol), deprecation }));
@@ -272,7 +275,7 @@ fn parse<'a>(
             .ok_or_else(|| format!("alias to nonexistent symbol: {name}"))?;
 
         match aliased_symbol {
-            &Symbol::Single(c) => {
+            Symbol::Single(value) => {
                 if !variant.is_empty() {
                     return Err(format!(
                         "alias to nonexistent variant: {name}.{}",
@@ -281,16 +284,19 @@ fn parse<'a>(
                 }
                 defs.push((
                     alias,
-                    Binding { def: Def::Symbol(Symbol::Single(c)), deprecation },
+                    Binding {
+                        def: Def::Symbol(Symbol::Single(value.clone())),
+                        deprecation,
+                    },
                 ));
             }
             Symbol::MultiAlias(_) => {
                 return Err(format!("alias to alias: {name}.{}", variant.as_str()));
             }
             Symbol::Multi(variants) => {
-                let variants: Vec<(ModifierSet<String>, char, Option<&str>)> = variants
+                let variants: Vec<(ModifierSet<String>, String, Option<&str>)> = variants
                     .iter()
-                    .filter_map(|&(var, c, deprecation)| {
+                    .filter_map(|&(var, ref value, deprecation)| {
                         if !variant.is_subset(var) {
                             return None;
                         }
@@ -307,7 +313,7 @@ fn parse<'a>(
                             return None;
                         }
 
-                        Some((new_var, c, deprecation))
+                        Some((new_var, value.clone(), deprecation))
                     })
                     .collect();
                 if variants.is_empty() {
@@ -316,11 +322,14 @@ fn parse<'a>(
                         variant.as_str()
                     ));
                 }
-                if let [(ref s, c, deprecation)] = variants[..] {
+                if let [(ref s, ref value, deprecation)] = variants[..] {
                     if s.is_empty() {
                         defs.push((
                             alias,
-                            Binding { def: Def::Symbol(Symbol::Single(c)), deprecation },
+                            Binding {
+                                def: Def::Symbol(Symbol::Single(value.clone())),
+                                deprecation,
+                            },
                         ));
                         continue;
                     }
@@ -352,7 +361,7 @@ fn encode(buf: &mut String, module: &Module) {
             Def::Symbol(symbol) => {
                 buf.push_str("Def::Symbol(Symbol::");
                 match symbol {
-                    Symbol::Single(c) => write!(buf, "Single({c:?})").unwrap(),
+                    Symbol::Single(value) => write!(buf, "Single({value:?})").unwrap(),
                     Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                     Symbol::MultiAlias(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                 }
