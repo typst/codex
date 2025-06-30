@@ -115,6 +115,7 @@ backslash \
   .not ⧷
 co ℅
 colon :
+  .currency ₡
   .double ∷
   .tri ⁝
   .tri.op ⫶
@@ -602,19 +603,46 @@ smile ⌣
 frown ⌢
 
 // Currency.
+afghani ؋
+baht ฿
 bitcoin ₿
 cedi ₵
 cent ¢
+currency ¤
 dollar $
+dong ₫
+dorome ߾
+dram ֏
 euro €
+@deprecated: `franc` is deprecated, unadopted symbol for currency no longer in use
 franc ₣
+guarani ₲
+hryvnia ₴
+kip ₭
+lari ₾
 lira ₺
-peso ₱
+manat ₼
+naira ₦
+pataca $
+peso $
+  .philippine ₱
 pound £
+riel ៛
 ruble ₽
-rupee ₹
+rupee
+  .indian ₹
+  .generic ₨
+  .tamil ௹
+  .wancho 𞋿
+shekel ₪
+som ⃀
+taka ৳
+taman ߿
+tenge ₸
+togrog ₮
 won ₩
 yen ¥
+yuan ¥
 
 // Miscellaneous.
 ballot ☐
