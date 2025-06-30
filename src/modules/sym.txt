@@ -1,25 +1,25 @@
 // Control.
-wj U+2060
-zwj U+200D
-zwnj U+200C
-zws U+200B
-lrm U+200E
-rlm U+200F
+wj \u{2060}
+zwj \u{200D}
+zwnj \u{200C}
+zws \u{200B}
+lrm \u{200E}
+rlm \u{200F}
 
 // Spaces.
-space U+20
-  .nobreak U+A0
-  .nobreak.narrow U+202F
-  .en U+2002
-  .quad U+2003
-  .third U+2004
-  .quarter U+2005
-  .sixth U+2006
-  .med U+205F
-  .fig U+2007
-  .punct U+2008
-  .thin U+2009
-  .hair U+200A
+space \u{20}
+  .nobreak \u{A0}
+  .nobreak.narrow \u{202F}
+  .en \u{2002}
+  .quad \u{2003}
+  .third \u{2004}
+  .quarter \u{2005}
+  .sixth \u{2006}
+  .med \u{205F}
+  .fig \u{2007}
+  .punct \u{2008}
+  .thin \u{2009}
+  .hair \u{200A}
 
 // Delimiters.
 paren
@@ -30,9 +30,9 @@ paren
   .t ⏜
   .b ⏝
 brace
-  .l U+7B
+  .l \u{7B}
   .l.double ⦃
-  .r U+7D
+  .r \u{7D}
   .r.double ⦄
   .t ⏞
   .b ⏟
@@ -108,6 +108,8 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
+  @deprecated: `ast.small` is deprecated (CJK compatibility character), use ﹡ or `\u{fe61}` instead
+  .small ﹡
   @deprecated: `ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead
   .circle ⊛
   .square ⧆
@@ -119,6 +121,7 @@ backslash \
   .not ⧷
 co ℅
 colon :
+  .currency ₡
   .double ∷
   .tri ⁝
   .tri.op ⫶
@@ -147,7 +150,7 @@ dash
   .wave.double 〰
 dot
   .op ⋅
-  .basic U+2E
+  .basic \u{2E}
   .c ·
   .o ⊙
   .o.big ⨀
@@ -157,8 +160,8 @@ dot
   .circle.big ⨀
   .square ⊡
   .double ¨
-  .triple U+20DB
-  .quad U+20DC
+  .triple \u{20DB}
+  .quad \u{20DC}
 excl !
   .double ‼
   .inv ¡
@@ -171,10 +174,10 @@ interrobang ‽
   .inv ⸘
 hash #
 hyph ‐
-  .minus U+2D
-  .nobreak U+2011
+  .minus \u{2D}
+  .nobreak \u{2011}
   .point ‧
-  .soft U+AD
+  .soft \u{AD}
 numero №
 percent %
 permille ‰
@@ -260,6 +263,8 @@ plus +
   .dot ∔
   .double ⧺
   .minus ±
+  @deprecated: `plus.small` is deprecated (CJK compatibility character), use ﹢ or `\u{fe62}` instead
+  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
@@ -313,6 +318,8 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
+  @deprecated: `eq.small` is deprecated (CJK compatibility character), use ﹦ or `\u{fe66}` instead
+  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
@@ -336,6 +343,8 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
+  @deprecated: `gt.small` is deprecated (CJK compatibility character), use ﹥ or `\u{fe65}` instead
+  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -363,6 +372,8 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
+  @deprecated: `lt.small` is deprecated (CJK compatibility character), use ﹤ or `\u{fe64}` instead
+  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
@@ -630,19 +641,46 @@ smile ⌣
 frown ⌢
 
 // Currency.
+afghani ؋
+baht ฿
 bitcoin ₿
 cedi ₵
 cent ¢
+currency ¤
 dollar $
+dong ₫
+dorome ߾
+dram ֏
 euro €
+@deprecated: `franc` is deprecated, unadopted symbol for currency no longer in use
 franc ₣
+guarani ₲
+hryvnia ₴
+kip ₭
+lari ₾
 lira ₺
-peso ₱
+manat ₼
+naira ₦
+pataca $
+peso $
+  .philippine ₱
 pound £
+riel ៛
 ruble ₽
-rupee ₹
+rupee
+  .indian ₹
+  .generic ₨
+  .tamil ௹
+  .wancho 𞋿
+shekel ₪
+som ⃀
+taka ৳
+taman ߿
+tenge ₸
+togrog ₮
 won ₩
 yen ¥
+yuan ¥
 
 // Miscellaneous.
 ballot ☐
@@ -1172,6 +1210,8 @@ ZZ ℤ
 angstrom Å
 ell ℓ
 planck ħ
+  @deprecated: `planck.reduce` is deprecated, use `planck` instead
+  .reduce ħ
 Re ℜ
 Im ℑ
 dotless
