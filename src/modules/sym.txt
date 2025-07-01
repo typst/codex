@@ -55,6 +55,8 @@ bar
   .v.double ‖
   .v.triple ⦀
   .v.broken ¦
+  .v.o ⦶
+  @deprecated: `bar.v.circle` is deprecated, use `bar.v.o` instead
   .v.circle ⦶
   .h ―
 fence
@@ -101,16 +103,20 @@ amp &
 // Punctuation.
 ast
   .op ∗
+  .op.o ⊛
   .basic *
   .low ⁎
   .double ⁑
   .triple ⁂
   @deprecated: `ast.small` is deprecated (CJK compatibility character), use ﹡ or `\u{fe61}` instead
   .small ﹡
+  @deprecated: `ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead
   .circle ⊛
   .square ⧆
 at @
 backslash \
+  .o ⦸
+  @deprecated: `backslash.circle` is deprecated, use `backslash.o` instead
   .circle ⦸
   .not ⧷
 co ℅
@@ -138,13 +144,19 @@ dash
   .fig ‒
   .wave 〜
   .colon ∹
+  .o ⊝
+  @deprecated: `dash.circle` is deprecated, use `dash.o` instead
   .circle ⊝
   .wave.double 〰
 dot
   .op ⋅
   .basic \u{2E}
   .c ·
+  .o ⊙
+  .o.big ⨀
+  @deprecated: `dot.circle` is deprecated, use `dot.o` instead
   .circle ⊙
+  @deprecated: `dot.circle.big` is deprecated, use `dot.o.big` instead
   .circle.big ⨀
   .square ⊡
   .double ¨
@@ -177,7 +189,7 @@ semi ;
   .inv ⸵
   .rev ⁏
 slash /
-  .circle ⊘
+  .o ⊘
   .double ⫽
   .triple ⫻
   .big ⧸
@@ -239,8 +251,14 @@ prime ′
 
 // Arithmetic.
 plus +
+  .o ⊕
+  .o.arrow ⟴
+  .o.big ⨁
+  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
   .circle ⊕
+  @deprecated: `plus.circle.arrow` is deprecated, use `plus.o.arrow` instead
   .circle.arrow ⟴
+  @deprecated: `plus.circle.big` is deprecated, use `plus.o.big` instead
   .circle.big ⨁
   .dot ∔
   .double ⧺
@@ -251,6 +269,8 @@ plus +
   .triangle ⨹
   .triple ⧻
 minus −
+  .o ⊖
+  @deprecated: `minus.circle` is deprecated, use `minus.o` instead
   .circle ⊖
   .dot ∸
   .plus ∓
@@ -258,10 +278,16 @@ minus −
   .tilde ≂
   .triangle ⨺
 div ÷
+  .o ⨸
+  @deprecated: `div.circle` is deprecated, use `div.o` instead
   .circle ⨸
 times ×
   .big ⨉
+  .o ⊗
+  .o.big ⨂
+  @deprecated: `times.circle` is deprecated, use `times.o` instead
   .circle ⊗
+  @deprecated: `times.circle.big` is deprecated, use `times.o.big` instead
   .circle.big ⨂
   .div ⋇
   .three.l ⋋
@@ -275,6 +301,8 @@ ratio ∶
 // Relations.
 eq =
   .star ≛
+  .o ⊜
+  @deprecated: `eq.circle` is deprecated, use `eq.o` instead
   .circle ⊜
   .colon ≕
   .dots ≑
@@ -297,6 +325,8 @@ eq =
   .triple.not ≢
   .quad ≣
 gt >
+  .o ⧁
+  @deprecated: `gt.circle` is deprecated, use `gt.o` instead
   .circle ⧁
   .dot ⋗
   .approx ⪆
@@ -324,6 +354,8 @@ gt >
   .triple ⋙
   .triple.nested ⫸
 lt <
+  .o ⧀
+  @deprecated: `lt.circle` is deprecated, use `lt.o` instead
   .circle ⧀
   .dot ⋖
   .approx ⪅
@@ -514,7 +546,7 @@ or ∨
   .curly ⋎
   .dot ⟇
   .double ⩔
-xor @= plus.circle.*
+xor @= plus.o.*
 models ⊧
 forces ⊩
   .not ⊮
@@ -523,9 +555,11 @@ because ∵
 qed ∎
 
 // Function and category theory.
-mapsto @= arrow.r.bar.*
-compose @= circle.stroked.tiny
-convolve @= ast.op
+mapsto ↦
+  .long ⟼
+compose ∘
+  .o ⊚
+convolve @= ast.op.*
 multimap ⊸
   .double ⧟
 
@@ -546,6 +580,8 @@ wreath ≀
 angzarr ⍼
 parallel ∥
   .struck ⫲
+  .o ⦷
+  @deprecated: `parallel.circle` is deprecated, use `parallel.o` instead
   .circle ⦷
   .eq ⋕
   .equiv ⩨
@@ -555,6 +591,8 @@ parallel ∥
   .slanted.equiv ⧥
   .tilde ⫳
 perp ⟂
+  .o ⦹
+  @deprecated: `perp.circle` is deprecated, use `perp.o` instead
   .circle ⦹
 
 // Astronomical.
@@ -723,6 +761,7 @@ circle
   .filled.small ∙
   .filled.big ⬤
   .dotted ◌
+  @deprecated: `circle.nested` is deprecated, use `compose.o` instead
   .nested ⊚
 ellipse
   .stroked.h ⬭
