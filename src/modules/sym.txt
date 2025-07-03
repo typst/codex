@@ -50,6 +50,12 @@ shell
   .r.double ⟭
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+moustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
