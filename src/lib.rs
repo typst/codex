@@ -2,10 +2,10 @@
 //!
 //! ## Model
 //! A [`Symbol`] is a collection of one or more _variants_. Each variant is
-//! identified by a set of [_modifiers_](ModifierSet) and has a single character
-//! as its value. The modifiers themselves can in principle be any non-empty
-//! strings that don't contain the character `.`, but codex only defines ones
-//! that are entirely made of ASCII alphabetical characters.
+//! identified by a set of [_modifiers_](ModifierSet) and has a string as its
+//! value. The modifiers themselves can in principle be any non-empty strings
+//! that don't contain the character `.`, but codex only defines ones that are
+//! entirely made of ASCII alphabetical characters.
 
 pub use self::shared::ModifierSet;
 
