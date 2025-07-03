@@ -81,7 +81,7 @@ impl Symbol {
 
     /// Iterate over the variants of this symbol.
     ///
-    /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
+    /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
     pub fn variants(
         &self,
     ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
