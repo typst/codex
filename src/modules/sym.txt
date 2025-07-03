@@ -97,6 +97,11 @@ ceil
 floor
   .l ⌊
   .r ⌋
+corner
+  .l.t ⌜
+  .l.b ⌞
+  .r.t ⌝
+  .r.b ⌟
 amp &
   .inv ⅋
 
