@@ -281,7 +281,7 @@ minus −
   .triangle ⨺
 div ÷
   .o ⨸
-  .o.slant ⦼
+  .slanted.o ⦼
   @deprecated: `div.circle` is deprecated, use `div.o` instead
   .circle ⨸
 times ×
