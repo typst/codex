@@ -1,6 +1,6 @@
 use std::ops::Deref;
 
-/// A set of modifiers.
+/// A set of modifiers, some of which are marked as "optional".
 ///
 /// Beware: The [`Eq`] and [`Hash`] implementations are dependent on the
 /// ordering of the modifiers, in opposition to what a set would usually
@@ -15,16 +15,17 @@ pub struct ModifierSet<S>(
 
 impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Constructs a modifier set from a string, where modifiers are separated
-    /// by the character `.`.
+    /// by the character `.` and optional modifiers end in the character `?`.
+    /// (The `?` is not considered part of the modifier.)
     ///
     /// `s` should not contain any empty modifiers (i.e. it shouldn't contain
-    /// the sequence `..`) and no modifier should occur twice. Otherwise,
+    /// the sequences `..` or `.?.`) and no modifier should occur twice. Otherwise,
     /// unexpected errors can occur.
     pub fn from_raw_dotted(s: S) -> Self {
         // Checking the other requirement too feels like it would be a bit too
         // expensive, even for debug mode.
         debug_assert!(
-            !s.contains(".."),
+            !s.contains("..") && !s.contains(".?."),
             "ModifierSet::from_dotted called with string containing empty modifier"
         );
         Self(s)
@@ -33,6 +34,11 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Whether `self` is empty.
     pub fn is_empty(&self) -> bool {
         self.0.is_empty()
+    }
+
+    /// Whether `self` has any optional modifiers.
+    pub fn has_optional(&self) -> bool {
+        self.0.ends_with('?') || self.0.contains("?.")
     }
 
     /// Gets the string of modifiers separated by `.`.
@@ -45,10 +51,15 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         ModifierSet(&self.0)
     }
 
-    /// Inserts a new modifier into the set.
+    /// Inserts a new required or optional modifier into the set.
     ///
-    /// `m` should not be empty, contain the character `.`, or already be in the
-    /// set. Otherwise, unexpected errors can occur.
+    /// `m` should not
+    /// - be empty,
+    /// - contain the character `.`,
+    /// - contain the character `?` other than at the end, or
+    /// - already be in the set.
+    ///
+    /// Otherwise, unexpected errors can occur.
     pub fn insert_raw(&mut self, m: &str)
     where
         S: for<'a> std::ops::AddAssign<&'a str>,
@@ -65,15 +76,27 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     }
 
     /// Whether the set contains the modifier `m`.
+    ///
+    /// Note that the final `?` for optional modifiers is not considered part
+    /// of the modifier, so they must be passed without it.
+    /// ```rust
+    /// # use codex::ModifierSet;
+    /// let ms = ModifierSet::from_raw_dotted("a?.b");
+    /// assert!(ms.contains("a"));
+    /// assert!(ms.contains("b"));
+    /// assert!(!ms.contains("c"));
+    /// ```
     pub fn contains(&self, m: &str) -> bool {
-        self.iter().any(|lhs| lhs == m)
+        self.iter()
+            .any(|lhs| lhs == m || lhs.strip_suffix('?').is_some_and(|lhs| lhs == m))
     }
 
     /// Finds the best match from the list.
     ///
-    /// To be considered a match, the modifier set must be a superset of (or
-    /// equal to) `self`. Among different matches, the best one is selected by
-    /// the following two criteria (in order):
+    /// To be considered a match, the modifier set must satisfy
+    /// `it.required_is_subset(self) && self.is_subset(it)`.
+    /// Among different matches, the best one is selected by the following two
+    /// criteria (in order):
     /// 1. Number of modifiers in common with `self` (more is better).
     /// 2. Total number of modifiers (fewer is better).
     ///
@@ -86,7 +109,9 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         let mut best_score = None;
 
         // Find the best table entry with this name.
-        for candidate in variants.filter(|(set, _)| self.is_subset(*set)) {
+        for candidate in variants.filter(|(set, _)| {
+            set.required_is_subset(self.as_deref()) && self.is_subset(*set)
+        }) {
             let mut matching = 0;
             let mut total = 0;
             for modifier in candidate.0.iter() {
@@ -107,8 +132,15 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     }
 
     /// Whether all modifiers in `self` are also present in `other`.
+    /// Ignores whether modifiers are optional or not.
     pub fn is_subset(&self, other: ModifierSet<&str>) -> bool {
-        self.iter().all(|m| other.contains(m))
+        self.iter().all(|m| other.contains(m.strip_suffix('?').unwrap_or(m)))
+    }
+
+    /// Whether all *non-optional* modifiers in `self` are also present in `other`,
+    /// optional or not.
+    pub fn required_is_subset(&self, other: ModifierSet<&str>) -> bool {
+        self.iter().filter(|m| !m.ends_with('?')).all(|m| other.contains(m))
     }
 }
 
@@ -178,6 +210,12 @@ mod tests {
             .is_subset(ModifierSet::from_raw_dotted("b.a")));
         assert!(ModifierSet::from_raw_dotted("a.b")
             .is_subset(ModifierSet::from_raw_dotted("b.c.a")));
+        assert!(ModifierSet::from_raw_dotted("a")
+            .is_subset(ModifierSet::from_raw_dotted("a?.b")));
+        assert!(ModifierSet::from_raw_dotted("a?")
+            .is_subset(ModifierSet::from_raw_dotted("a.b")));
+        assert!(ModifierSet::from_raw_dotted("a?")
+            .is_subset(ModifierSet::from_raw_dotted("a?.b")));
     }
 
     #[test]
@@ -186,8 +224,8 @@ mod tests {
         assert_eq!(
             ModifierSet::from_raw_dotted("a.b").best_match_in(
                 [
-                    (ModifierSet::from_raw_dotted("a.c"), 1),
-                    (ModifierSet::from_raw_dotted("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a?.c?"), 1),
+                    (ModifierSet::from_raw_dotted("a?.b?"), 2),
                 ]
                 .into_iter()
             ),
@@ -197,8 +235,8 @@ mod tests {
         assert_eq!(
             ModifierSet::from_raw_dotted("a").best_match_in(
                 [
-                    (ModifierSet::from_raw_dotted("a"), 1),
-                    (ModifierSet::from_raw_dotted("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a?"), 1),
+                    (ModifierSet::from_raw_dotted("a?.b?"), 2),
                 ]
                 .into_iter()
             ),
@@ -208,8 +246,8 @@ mod tests {
         assert_eq!(
             ModifierSet::from_raw_dotted("a.b").best_match_in(
                 [
-                    (ModifierSet::from_raw_dotted("a"), 1),
-                    (ModifierSet::from_raw_dotted("a.b"), 2),
+                    (ModifierSet::from_raw_dotted("a?"), 1),
+                    (ModifierSet::from_raw_dotted("a?.b?"), 2),
                 ]
                 .into_iter()
             ),
@@ -219,8 +257,8 @@ mod tests {
         assert_eq!(
             ModifierSet::default().best_match_in(
                 [
-                    (ModifierSet::from_raw_dotted("a"), 1),
-                    (ModifierSet::from_raw_dotted("b"), 2)
+                    (ModifierSet::from_raw_dotted("a?"), 1),
+                    (ModifierSet::from_raw_dotted("b?"), 2)
                 ]
                 .into_iter()
             ),
