@@ -68,7 +68,7 @@ pub enum Symbol {
 }
 
 impl Symbol {
-    /// Get the symbol's character for a given set of modifiers, alongside an optional deprecation
+    /// Get the symbol's variant for a given set of modifiers, alongside an optional deprecation
     /// message.
     pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(&'static str, Option<&str>)> {
         match self {
@@ -79,7 +79,7 @@ impl Symbol {
         }
     }
 
-    /// The characters that are covered by this symbol.
+    /// Iterate over the variants of this symbol.
     ///
     /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
     pub fn variants(
