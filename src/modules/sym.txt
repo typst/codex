@@ -591,13 +591,13 @@ join ⨝
   .l.r ⟗
 bowtie
   .stroked ⋈
+  .stroked.big ⨝
+  .stroked.big.l ⟕
+  .stroked.big.r ⟖
+  .stroked.big.l.r ⟗
   .filled ⧓
   .filled.l ⧑
   .filled.r ⧒
-  .big ⨝
-  .big.r ⟖
-  .big.l ⟕
-  .big.l.r ⟗
 hourglass
   .stroked ⧖
   .filled ⧗
