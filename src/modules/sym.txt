@@ -82,8 +82,8 @@ angle ∠
   .right ∟
   .right.rev ⯾
   .right.arc ⊾
-  .right.dot ⦝
-  .right.sq ⦜
+  .right.arc.dot ⦝
+  .right.arc.sq ⦜
   .s ⦞
   .spatial ⟀
   .spheric ∢
