@@ -107,7 +107,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _, _)| m.into_iter())
+            .flat_map(|(m, _, _)| m.into_iter().map(|m| m.strip_suffix('?').unwrap_or(m)))
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
