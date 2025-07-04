@@ -107,7 +107,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _, _)| m.into_iter().map(|m| m.strip_suffix('?').unwrap_or(m)))
+            .flat_map(|(m, _, _)| m.into_iter().map(|m| m.name()))
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
@@ -170,7 +170,9 @@ mod test {
             };
             let variants = s
                 .variants()
-                .map(|(m, v, _)| (m.into_iter().collect::<BTreeSet<_>>(), v))
+                .map(|(m, v, _)| {
+                    (m.into_iter().map(|m| m.as_str()).collect::<BTreeSet<_>>(), v)
+                })
                 .collect::<BTreeSet<_>>();
             let control = control
                 .iter()
@@ -178,6 +180,7 @@ mod test {
                     (
                         ModifierSet::from_raw_dotted(m)
                             .into_iter()
+                            .map(|m| m.as_str())
                             .collect::<BTreeSet<_>>(),
                         v,
                     )

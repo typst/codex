@@ -71,7 +71,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     }
 
     /// Iterates over the list of modifiers in an arbitrary order.
-    pub fn iter(&self) -> impl Iterator<Item = &str> {
+    pub fn iter(&self) -> impl Iterator<Item = Modifier> {
         self.into_iter()
     }
 
@@ -87,8 +87,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// assert!(!ms.contains("c"));
     /// ```
     pub fn contains(&self, m: &str) -> bool {
-        self.iter()
-            .any(|lhs| lhs == m || lhs.strip_suffix('?').is_some_and(|lhs| lhs == m))
+        self.iter().any(|lhs| lhs.name() == m)
     }
 
     /// Finds the best match from the list.
@@ -115,7 +114,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
             let mut matching = 0;
             let mut total = 0;
             for modifier in candidate.0.iter() {
-                if self.contains(modifier) {
+                if self.contains(modifier.name()) {
                     matching += 1;
                 }
                 total += 1;
@@ -134,13 +133,13 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Whether all modifiers in `self` are also present in `other`.
     /// Ignores whether modifiers are optional or not.
     pub fn is_subset(&self, other: ModifierSet<&str>) -> bool {
-        self.iter().all(|m| other.contains(m.strip_suffix('?').unwrap_or(m)))
+        self.iter().all(|m| other.contains(m.name()))
     }
 
     /// Whether all *non-optional* modifiers in `self` are also present in `other`,
     /// optional or not.
     pub fn required_is_subset(&self, other: ModifierSet<&str>) -> bool {
-        self.iter().filter(|m| !m.ends_with('?')).all(|m| other.contains(m))
+        self.iter().filter(|m| !m.is_optional()).all(|m| other.contains(m.as_str()))
     }
 }
 
@@ -155,9 +154,49 @@ impl<S: Default> Default for ModifierSet<S> {
     }
 }
 
+#[derive(Copy, Clone)]
+pub struct Modifier<'a>(&'a str);
+
+impl<'a> Modifier<'a> {
+    pub fn as_str(self) -> &'a str {
+        self.0
+    }
+
+    pub fn name_and_is_optional(self) -> (&'a str, bool) {
+        match self.0.strip_suffix('?') {
+            Some(name) => (name, true),
+            None => (self.0, false),
+        }
+    }
+
+    pub fn name(self) -> &'a str {
+        self.0.strip_suffix('?').unwrap_or(self.0)
+    }
+
+    pub fn is_optional(self) -> bool {
+        self.0.ends_with('?')
+    }
+}
+
+pub struct ModifierSetIter<'a> {
+    inner: std::str::Split<'a, char>,
+}
+
+impl<'a> Iterator for ModifierSetIter<'a> {
+    type Item = Modifier<'a>;
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        self.inner.size_hint()
+    }
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.inner.next().map(Modifier)
+    }
+}
+
 impl<'a, S: Deref<Target = str>> IntoIterator for &'a ModifierSet<S> {
-    type Item = &'a str;
-    type IntoIter = std::str::Split<'a, char>;
+    type Item = Modifier<'a>;
+    type IntoIter = ModifierSetIter<'a>;
 
     /// Iterate over the list of modifiers in an arbitrary order.
     fn into_iter(self) -> Self::IntoIter {
@@ -166,13 +205,13 @@ impl<'a, S: Deref<Target = str>> IntoIterator for &'a ModifierSet<S> {
             // Empty the iterator
             let _ = iter.next();
         }
-        iter
+        ModifierSetIter { inner: iter }
     }
 }
 
 impl<'a> IntoIterator for ModifierSet<&'a str> {
-    type Item = &'a str;
-    type IntoIter = std::str::Split<'a, char>;
+    type Item = Modifier<'a>;
+    type IntoIter = ModifierSetIter<'a>;
 
     /// Iterate over the list of modifiers in an arbitrary order.
     fn into_iter(self) -> Self::IntoIter {
@@ -181,7 +220,7 @@ impl<'a> IntoIterator for ModifierSet<&'a str> {
             // Empty the iterator
             let _ = iter.next();
         }
-        iter
+        ModifierSetIter { inner: iter }
     }
 }
 
