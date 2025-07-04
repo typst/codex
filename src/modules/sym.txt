@@ -97,10 +97,10 @@ ceil
 floor
   .l ⌊
   .r ⌋
-amp &
-  .inv ⅋
 
 // Punctuation.
+amp &
+  .inv ⅋
 ast
   .op ∗
   .op.o ⊛
