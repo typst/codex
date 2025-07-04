@@ -154,7 +154,7 @@ fn tokenize(line: &str) -> StrResult<Line> {
         Line::ModuleEnd
     } else if let Some(rest) = head.strip_prefix('.') {
         for part in rest.split('.') {
-            validate_ident(part)?;
+            validate_ident(part.strip_suffix('?').unwrap_or(part))?;
         }
         let value = decode_value(tail.ok_or("missing char")?)?;
         Line::Variant(ModifierSet::from_raw_dotted(rest), value)
