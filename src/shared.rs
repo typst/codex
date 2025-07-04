@@ -25,7 +25,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         // expensive, even for debug mode.
         debug_assert!(
             !s.contains(".."),
-            "ModifierSet::from_dotted called with string containing empty modifier"
+            "ModifierSet::from_raw_dotted called with string containing empty modifier"
         );
         Self(s)
     }

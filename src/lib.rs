@@ -2,10 +2,10 @@
 //!
 //! ## Model
 //! A [`Symbol`] is a collection of one or more _variants_. Each variant is
-//! identified by a set of [_modifiers_](ModifierSet) and has a single character
-//! as its value. The modifiers themselves can in principle be any non-empty
-//! strings that don't contain the character `.`, but codex only defines ones
-//! that are entirely made of ASCII alphabetical characters.
+//! identified by a set of [_modifiers_](ModifierSet) and has a string as its
+//! value. The modifiers themselves can in principle be any non-empty strings
+//! that don't contain the character `.`, but codex only defines ones that are
+//! entirely made of ASCII alphabetical characters.
 
 pub use self::shared::ModifierSet;
 
@@ -68,7 +68,7 @@ pub enum Symbol {
 }
 
 impl Symbol {
-    /// Get the symbol's character for a given set of modifiers, alongside an optional deprecation
+    /// Get the symbol's variant for a given set of modifiers, alongside an optional deprecation
     /// message.
     pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(&'static str, Option<&str>)> {
         match self {
@@ -79,9 +79,9 @@ impl Symbol {
         }
     }
 
-    /// The characters that are covered by this symbol.
+    /// Iterate over the variants of this symbol.
     ///
-    /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
+    /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
     pub fn variants(
         &self,
     ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
