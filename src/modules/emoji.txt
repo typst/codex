@@ -703,7 +703,7 @@ hand
 handbag 👜
 handball 🤾
 handfan 🪭
-handholding
+handholding 🧑‍🤝‍🧑
   .man.man 👬
   .woman.man 👫
   .woman.woman 👭
