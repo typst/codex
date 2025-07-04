@@ -53,7 +53,7 @@ shell
 bag
   .l ⟅
   .r ⟆
-moustache
+mustache
   .l ⎰
   .r ⎱
 bar
