@@ -108,9 +108,7 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         let mut best_score = None;
 
         // Find the best table entry with this name.
-        for candidate in variants.filter(|(set, _)| {
-            set.required_is_subset(self.as_deref()) && self.is_subset(*set)
-        }) {
+        for candidate in variants.filter(|(set, _)| self.is_candidate(*set)) {
             let mut matching = 0;
             let mut total = 0;
             for modifier in candidate.0.iter() {
@@ -139,7 +137,13 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// Whether all *non-optional* modifiers in `self` are also present in `other`,
     /// optional or not.
     pub fn required_is_subset(&self, other: ModifierSet<&str>) -> bool {
-        self.iter().filter(|m| !m.is_optional()).all(|m| other.contains(m.as_str()))
+        self.iter()
+            .filter(|m| !m.is_optional())
+            .all(|m| other.contains(m.as_str()))
+    }
+
+    pub(crate) fn is_candidate(&self, other: ModifierSet<&str>) -> bool {
+        other.required_is_subset(self.as_deref()) && self.is_subset(other)
     }
 }
 
