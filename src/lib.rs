@@ -107,7 +107,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _, _)| m.into_iter())
+            .flat_map(|(m, _, _)| m.into_iter().map(|m| m.name()))
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
@@ -170,7 +170,9 @@ mod test {
             };
             let variants = s
                 .variants()
-                .map(|(m, v, _)| (m.into_iter().collect::<BTreeSet<_>>(), v))
+                .map(|(m, v, _)| {
+                    (m.into_iter().map(|m| m.as_str()).collect::<BTreeSet<_>>(), v)
+                })
                 .collect::<BTreeSet<_>>();
             let control = control
                 .iter()
@@ -178,6 +180,7 @@ mod test {
                     (
                         ModifierSet::from_raw_dotted(m)
                             .into_iter()
+                            .map(|m| m.as_str())
                             .collect::<BTreeSet<_>>(),
                         v,
                     )
@@ -185,6 +188,91 @@ mod test {
                 .collect::<BTreeSet<_>>();
 
             assert_eq!(variants, control);
+        }
+    }
+
+    #[test]
+    fn no_overlap() {
+        recur("", ROOT);
+
+        /// Iterate over all symbols in a module, recursing into submodules.
+        fn recur(prefix: &str, m: Module) {
+            for (name, b) in m.iter() {
+                match b.def {
+                    Def::Module(m) => {
+                        let new_prefix = if prefix.is_empty() {
+                            name.to_string()
+                        } else {
+                            prefix.to_string() + "." + name
+                        };
+                        recur(&new_prefix, m);
+                    }
+                    Def::Symbol(s) => check_symbol(prefix, name, s),
+                }
+            }
+        }
+
+        /// Check the no overlap rule for a single symbol
+        fn check_symbol(prefix: &str, name: &str, sym: Symbol) {
+            // maximum number of modifiers per variant (we don't need to check more than this).
+            let max_modifs =
+                sym.variants().map(|(m, ..)| m.iter().count()).max().unwrap();
+            let modifs = sym.modifiers().collect::<Vec<_>>();
+            let max_index = modifs.len().saturating_sub(1);
+
+            for k in 0..=max_modifs {
+                let mut indices = (0..k).collect::<Vec<_>>();
+                loop {
+                    let mset = indices.iter().map(|i| modifs[*i]).fold(
+                        ModifierSet::<String>::default(),
+                        |mut res, m| {
+                            res.insert_raw(m);
+                            res
+                        },
+                    );
+
+                    if sym.variants().filter(|(m, ..)| mset.is_candidate(*m)).count() > 1
+                    {
+                        panic!(
+                            "Overlap in symbol {prefix}.{name} for modifiers {}",
+                            mset.as_str()
+                        );
+                    }
+
+                    if next_subseq(&mut indices, max_index).is_none() {
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// Produce the next term in a sequence like
+        /// ```text
+        /// [0,1,2], [0,1,3], [0,1,4], [0,2,3], [0,2,4], [0,3,4], [1,2,3], [1,2,4], [1,3,4], [2,3,4]
+        /// ```
+        fn next_subseq(indices: &mut [usize], max_index: usize) -> Option<()> {
+            // invariant: indices.len() <= max_index + 1
+            match indices {
+                [] => None,
+                [single] => {
+                    if *single < max_index {
+                        *single += 1;
+                        Some(())
+                    } else {
+                        None
+                    }
+                }
+                [left @ .., last] => {
+                    assert_ne!(max_index, 0);
+                    if *last < max_index {
+                        *last += 1;
+                    } else {
+                        next_subseq(left, max_index - 1)?;
+                        *last = left.last().copied().map_or(*last, |x| x + 1);
+                    }
+                    Some(())
+                }
+            }
         }
     }
 }

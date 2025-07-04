@@ -23,53 +23,53 @@ space \u{20}
 
 // Delimiters.
 paren
-  .l (
-  .l.double ⦅
+  .l? (
+  .l?.double ⦅
   .r )
   .r.double ⦆
   .t ⏜
   .b ⏝
 brace
-  .l \u{7B}
-  .l.double ⦃
+  .l? \u{7B}
+  .l?.double ⦃
   .r \u{7D}
   .r.double ⦄
   .t ⏞
   .b ⏟
 bracket
-  .l [
-  .l.double ⟦
+  .l? [
+  .l?.double ⟦
   .r ]
   .r.double ⟧
   .t ⎴
   .b ⎵
 shell
-  .l ❲
-  .l.double ⟬
+  .l? ❲
+  .l?.double ⟬
   .r ❳
   .r.double ⟭
   .t ⏠
   .b ⏡
 bar
-  .v |
-  .v.double ‖
-  .v.triple ⦀
-  .v.broken ¦
-  .v.o ⦶
+  .v? |
+  .v?.double ‖
+  .v?.triple ⦀
+  .v?.broken ¦
+  .v?.o ⦶
   @deprecated: `bar.v.circle` is deprecated, use `bar.v.o` instead
-  .v.circle ⦶
+  .v?.circle ⦶
   .h ―
 fence
-  .l ⧘
-  .l.double ⧚
+  .l? ⧘
+  .l?.double ⧚
   .r ⧙
   .r.double ⧛
   .dotted ⦙
 angle ∠
   .l ⟨
-  .l.curly ⧼
-  .l.dot ⦑
-  .l.double ⟪
+  .l?.curly ⧼
+  .l?.dot ⦑
+  .l?.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
@@ -83,7 +83,7 @@ angle ∠
   .right.rev ⯾
   .right.arc ⊾
   .right.dot ⦝
-  .right.sq ⦜
+  .right?.sq ⦜
   .s ⦞
   .spatial ⟀
   .spheric ∢
@@ -92,18 +92,18 @@ angle ∠
   @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
   .spheric.top ⦡
 ceil
-  .l ⌈
+  .l? ⌈
   .r ⌉
 floor
-  .l ⌊
+  .l? ⌊
   .r ⌋
 
 // Punctuation.
 amp &
   .inv ⅋
 ast
-  .op ∗
-  .op.o ⊛
+  .op? ∗
+  .op?.o ⊛
   .basic *
   .low ⁎
   .double ⁑
@@ -137,7 +137,7 @@ dagger †
   .r ⸷
   .inv ⸸
 dash
-  .en –
+  .en? –
   .em —
   .em.two ⸺
   .em.three ⸻
@@ -149,7 +149,7 @@ dash
   .circle ⊝
   .wave.double 〰
 dot
-  .op ⋅
+  .op? ⋅
   .basic \u{2E}
   .c ·
   .o ⊙
@@ -194,13 +194,13 @@ slash /
   .triple ⫻
   .big ⧸
 dots
-  .h.c ⋯
-  .h …
+  .h? …
+  .h?.c ⋯
   .v ⋮
   .down ⋱
   .up ⋰
 tilde
-  .op ∼
+  .op? ∼
   .basic ~
   .dot ⩪
   .eq ≃
@@ -225,19 +225,19 @@ diaer ¨
 grave `
 macron ¯
 quote
-  .double "
+  .double? "
   .single '
-  .l.double “
+  .l.double? “
   .l.single ‘
-  .r.double ”
+  .r.double? ”
   .r.single ’
-  .angle.l.double «
-  .angle.l.single ‹
-  .angle.r.double »
+  .angle.l?.double? «
+  .angle.l?.single ‹
+  .angle.r.double? »
   .angle.r.single ›
-  .high.double ‟
+  .high.double? ‟
   .high.single ‛
-  .low.double „
+  .low.double? „
   .low.single ‚
 prime ′
   .rev ‵
@@ -290,7 +290,7 @@ times ×
   @deprecated: `times.circle.big` is deprecated, use `times.o.big` instead
   .circle.big ⨂
   .div ⋇
-  .three.l ⋋
+  .three.l? ⋋
   .three.r ⋌
   .l ⋉
   .r ⋊
@@ -425,13 +425,13 @@ asymp ≍
 
 // Set theory.
 emptyset ∅
-  .arrow.r ⦳
+  .arrow.r? ⦳
   .arrow.l ⦴
   .bar ⦱
   .circle ⦲
   .rev ⦰
 nothing ∅
-  .arrow.r ⦳
+  .arrow.r? ⦳
   .arrow.l ⦴
   .bar ⦱
   .circle ⦲
@@ -513,7 +513,7 @@ sum ∑
 product ∏
   .co ∐
 integral ∫
-  .arrow.hook ⨗
+  .arrow.hook? ⨗
   .ccw ⨑
   .cont ∮
   .cont.ccw ∳
@@ -595,7 +595,7 @@ parallel ∥
   .equiv ⩨
   .not ∦
   .slanted.eq ⧣
-  .slanted.eq.tilde ⧤
+  .slanted?.eq.tilde ⧤
   .slanted.equiv ⧥
   .tilde ⫳
 perp ⟂
@@ -627,12 +627,12 @@ join ⨝
   .l ⟕
   .l.r ⟗
 hourglass
-  .stroked ⧖
+  .stroked? ⧖
   .filled ⧗
 degree °
 smash ⨳
 power
-  .standby ⏻
+  .standby? ⏻
   .on ⏽
   .off ⭘
   .on.off ⏼
@@ -668,7 +668,7 @@ pound £
 riel ៛
 ruble ₽
 rupee
-  .indian ₹
+  .indian? ₹
   .generic ₨
   .tamil ௹
   .wancho 𞋿
@@ -711,18 +711,18 @@ trademark ™
   .service ℠
 maltese ✠
 suit
-  .club.filled ♣
+  .club.filled? ♣
   .club.stroked ♧
-  .diamond.filled ♦
+  .diamond.filled? ♦
   .diamond.stroked ♢
-  .heart.filled ♥
+  .heart.filled? ♥
   .heart.stroked ♡
-  .spade.filled ♠
+  .spade.filled? ♠
   .spade.stroked ♤
 
 // Music.
 note
-  .up 🎜
+  .up? 🎜
   .down 🎝
   .whole 𝅝
   .half 𝅗𝅥
@@ -736,7 +736,7 @@ note
   .grace 𝆕
   .grace.slash 𝆔
 rest
-  .whole 𝄻
+  .whole? 𝄻
   .multiple 𝄺
   .multiple.measure 𝄩
   .half 𝄼
@@ -769,10 +769,10 @@ bullet •
   .l ⁌
   .r ⁍
 circle
-  .stroked ○
-  .stroked.tiny ∘
-  .stroked.small ⚬
-  .stroked.big ◯
+  .stroked? ○
+  .stroked?.tiny ∘
+  .stroked?.small ⚬
+  .stroked?.big ◯
   .filled ●
   .filled.tiny ⦁
   .filled.small ∙
@@ -781,27 +781,27 @@ circle
   @deprecated: `circle.nested` is deprecated, use `compose.o` instead
   .nested ⊚
 ellipse
-  .stroked.h ⬭
-  .stroked.v ⬯
-  .filled.h ⬬
+  .stroked?.h? ⬭
+  .stroked?.v ⬯
+  .filled.h? ⬬
   .filled.v ⬮
 triangle
-  .stroked.t △
-  .stroked.b ▽
-  .stroked.r ▷
-  .stroked.l ◁
-  .stroked.bl ◺
-  .stroked.br ◿
-  .stroked.tl ◸
-  .stroked.tr ◹
-  .stroked.small.t ▵
-  .stroked.small.b ▿
-  .stroked.small.r ▹
-  .stroked.small.l ◃
-  .stroked.rounded 🛆
-  .stroked.nested ⟁
-  .stroked.dot ◬
-  .filled.t ▲
+  .stroked?.t? △
+  .stroked?.b ▽
+  .stroked?.r ▷
+  .stroked?.l ◁
+  .stroked?.bl ◺
+  .stroked?.br ◿
+  .stroked?.tl ◸
+  .stroked?.tr ◹
+  .stroked?.small.t? ▵
+  .stroked?.small.b ▿
+  .stroked?.small.r ▹
+  .stroked?.small.l ◃
+  .stroked?.rounded 🛆
+  .stroked?.nested ⟁
+  .stroked?.dot ◬
+  .filled.t? ▲
   .filled.b ▼
   .filled.r ▶
   .filled.l ◀
@@ -809,98 +809,98 @@ triangle
   .filled.br ◢
   .filled.tl ◤
   .filled.tr ◥
-  .filled.small.t ▴
+  .filled.small.t? ▴
   .filled.small.b ▾
   .filled.small.r ▸
   .filled.small.l ◂
 square
-  .stroked □
-  .stroked.tiny ▫
-  .stroked.small ◽
-  .stroked.medium ◻
-  .stroked.big ⬜
-  .stroked.dotted ⬚
-  .stroked.rounded ▢
+  .stroked? □
+  .stroked?.tiny ▫
+  .stroked?.small ◽
+  .stroked?.medium ◻
+  .stroked?.big ⬜
+  .stroked?.dotted ⬚
+  .stroked?.rounded ▢
   .filled ■
   .filled.tiny ▪
   .filled.small ◾
   .filled.medium ◼
   .filled.big ⬛
 rect
-  .stroked.h ▭
-  .stroked.v ▯
-  .filled.h ▬
+  .stroked?.h? ▭
+  .stroked?.v ▯
+  .filled.h? ▬
   .filled.v ▮
 penta
-  .stroked ⬠
+  .stroked? ⬠
   .filled ⬟
 hexa
-  .stroked ⬡
+  .stroked? ⬡
   .filled ⬢
 diamond
-  .stroked ◇
-  .stroked.small ⋄
-  .stroked.medium ⬦
-  .stroked.dot ⟐
+  .stroked? ◇
+  .stroked?.small ⋄
+  .stroked?.medium ⬦
+  .stroked?.dot ⟐
   .filled ◆
   .filled.medium ⬥
   .filled.small ⬩
 lozenge
-  .stroked ◊
-  .stroked.small ⬫
-  .stroked.medium ⬨
+  .stroked? ◊
+  .stroked?.small ⬫
+  .stroked?.medium ⬨
   .filled ⧫
   .filled.small ⬪
   .filled.medium ⬧
 parallelogram
-  .stroked ▱
+  .stroked? ▱
   .filled ▰
 star
-  .op ⋆
+  .op? ⋆
   .stroked ☆
   .filled ★
 
 // Arrows, harpoons, and tacks.
 arrow
-  .r →
-  .r.long.bar ⟼
-  .r.bar ↦
-  .r.curve ⤷
-  .r.turn ⮎
-  .r.dashed ⇢
-  .r.dotted ⤑
-  .r.double ⇒
-  .r.double.bar ⤇
-  .r.double.long ⟹
-  .r.double.long.bar ⟾
-  .r.double.not ⇏
-  .r.double.struck ⤃
-  .r.filled ➡
-  .r.hook ↪
-  .r.long ⟶
-  .r.long.squiggly ⟿
-  .r.loop ↬
-  .r.not ↛
-  .r.quad ⭆
-  .r.squiggly ⇝
-  .r.stop ⇥
-  .r.stroked ⇨
-  .r.struck ⇸
-  .r.dstruck ⇻
-  .r.tail ↣
-  .r.tail.struck ⤔
-  .r.tail.dstruck ⤕
-  .r.tilde ⥲
-  .r.triple ⇛
-  .r.twohead ↠
-  .r.twohead.bar ⤅
-  .r.twohead.struck ⤀
-  .r.twohead.dstruck ⤁
-  .r.twohead.tail ⤖
-  .r.twohead.tail.struck ⤗
-  .r.twohead.tail.dstruck ⤘
-  .r.open ⇾
-  .r.wave ↝
+  .r? →
+  .r?.long.bar ⟼
+  .r?.bar ↦
+  .r?.curve ⤷
+  .r?.turn ⮎
+  .r?.dashed ⇢
+  .r?.dotted ⤑
+  .r?.double ⇒
+  .r?.double.bar ⤇
+  .r?.double.long ⟹
+  .r?.double.long.bar ⟾
+  .r?.double.not ⇏
+  .r?.double.struck ⤃
+  .r?.filled ➡
+  .r?.hook ↪
+  .r?.long ⟶
+  .r?.long.squiggly ⟿
+  .r?.loop ↬
+  .r?.not ↛
+  .r?.quad ⭆
+  .r?.squiggly ⇝
+  .r?.stop ⇥
+  .r?.stroked ⇨
+  .r?.struck ⇸
+  .r?.dstruck ⇻
+  .r?.tail ↣
+  .r?.tail.struck ⤔
+  .r?.tail.dstruck ⤕
+  .r?.tilde ⥲
+  .r?.triple ⇛
+  .r?.twohead ↠
+  .r?.twohead.bar ⤅
+  .r?.twohead.struck ⤀
+  .r?.twohead.dstruck ⤁
+  .r?.twohead.tail ⤖
+  .r?.twohead.tail.struck ⤗
+  .r?.twohead.tail.dstruck ⤘
+  .r?.open ⇾
+  .r?.wave ↝
   .l ←
   .l.bar ↤
   .l.curve ⤶
@@ -1013,7 +1013,7 @@ arrow
   .cw.half ↷
   .zigzag ↯
 arrows
-  .rr ⇉
+  .rr? ⇉
   .ll ⇇
   .tt ⇈
   .bb ⇊
@@ -1025,12 +1025,12 @@ arrows
   .rrr ⇶
   .lll ⬱
 arrowhead
-  .t ⌃
+  .t? ⌃
   .b ⌄
 harpoon
-  .rt ⇀
-  .rt.bar ⥛
-  .rt.stop ⥓
+  .rt? ⇀
+  .rt?.bar ⥛
+  .rt?.stop ⥓
   .rb ⇁
   .rb.bar ⥟
   .rb.stop ⥗
@@ -1061,7 +1061,7 @@ harpoon
   .tl.br ⥍
   .tr.bl ⥌
 harpoons
-  .rtrb ⥤
+  .rtrb? ⥤
   .blbr ⥥
   .bltr ⥯
   .lbrb ⥧
@@ -1074,18 +1074,18 @@ harpoons
   .tlbr ⥮
   .tltr ⥣
 tack
-  .r ⊢
-  .r.not ⊬
-  .r.long ⟝
-  .r.short ⊦
-  .r.double ⊨
-  .r.double.not ⊭
+  .r? ⊢
+  .r?.not ⊬
+  .r?.long ⟝
+  .r?.short ⊦
+  .r?.double ⊨
+  .r?.double.not ⊭
   .l ⊣
   .l.long ⟞
   .l.short ⫞
   .l.double ⫤
   .t ⊥
-  .t.big ⟘
+  .t?.big ⟘
   .t.double ⫫
   .t.short ⫠
   .b ⊤
@@ -1103,7 +1103,7 @@ delta δ
 digamma ϝ
 epsilon ε
   .alt ϵ
-  .alt.rev ϶
+  .alt?.rev ϶
 eta η
 gamma γ
 iota ι
@@ -1226,23 +1226,23 @@ planck ħ
 Re ℜ
 Im ℑ
 dotless
-  .i ı
+  .i? ı
   .j ȷ
 
 // Miscellany.
 die
-  .six ⚅
+  .six? ⚅
   .five ⚄
   .four ⚃
   .three ⚂
   .two ⚁
   .one ⚀
 errorbar
-  .square.stroked ⧮
-  .square.filled ⧯
-  .diamond.stroked ⧰
+  .square?.stroked? ⧮
+  .square?.filled ⧯
+  .diamond.stroked? ⧰
   .diamond.filled ⧱
-  .circle.stroked ⧲
+  .circle.stroked? ⧲
   .circle.filled ⧳
 
 gender {
