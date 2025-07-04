@@ -78,6 +78,8 @@ angle ∠
   .arc ∡
   .arc.rev ⦛
   .oblique ⦦
+  .oblique.rev.inv ⦧
+  .inv ⦢
   .rev ⦣
   .right ∟
   .right.rev ⯾
