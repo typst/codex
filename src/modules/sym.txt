@@ -24,8 +24,10 @@ space \u{20}
 // Delimiters.
 paren
   .l (
+  .l.flat ⟮
   .l.double ⦅
   .r )
+  .r.flat ⟯
   .r.double ⦆
   .t ⏜
   .b ⏝
