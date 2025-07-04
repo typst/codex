@@ -377,7 +377,9 @@ cyclone 🌀
 dancing
   .man 🕺
   .woman 💃
-  .women.bunny 👯
+  .bunny 👯
+  .bunny.men 👯‍♂
+  .bunny.women 👯‍♀
 darts 🎯
 dash
   .wave.double 〰
