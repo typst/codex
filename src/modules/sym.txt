@@ -24,29 +24,49 @@ space \u{20}
 // Delimiters.
 paren
   .l (
+  .l.closed ⦇
+  .l.stroked ⦅
+  @deprecated: `paren.l.double` is deprecated, use `paren.l.stroked` instead
   .l.double ⦅
   .r )
+  .r.closed ⦈
+  .r.stroked ⦆
+  @deprecated: `paren.r.double` is deprecated, use `paren.r.stroked` instead
   .r.double ⦆
   .t ⏜
   .b ⏝
 brace
   .l \u{7B}
+  .l.stroked ⦃
+  @deprecated: `brace.l.double` is deprecated, use `brace.l.stroked` instead
   .l.double ⦃
   .r \u{7D}
+  .r.stroked ⦄
+  @deprecated: `brace.r.double` is deprecated, use `brace.r.stroked` instead
   .r.double ⦄
   .t ⏞
   .b ⏟
 bracket
   .l [
+  .l.stroked ⟦
+  @deprecated: `bracket.l.double` is deprecated, use `bracket.l.stroked` instead
   .l.double ⟦
   .r ]
+  .r.stroked ⟧
+  @deprecated: `bracket.r.double` is deprecated, use `bracket.r.stroked` instead
   .r.double ⟧
   .t ⎴
   .b ⎵
 shell
   .l ❲
+  .l.stroked ⟬
+  .l.filled ⦗
+  @deprecated: `shell.l.double` is deprecated, use `shell.l.stroked` instead
   .l.double ⟬
   .r ❳
+  .r.stroked ⟭
+  .r.filled ⦘
+  @deprecated: `shell.r.double` is deprecated, use `shell.r.stroked` instead
   .r.double ⟭
   .t ⏠
   .b ⏡
@@ -69,10 +89,12 @@ angle ∠
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
+  .l.closed ⦉
   .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
+  .r.closed ⦊
   .r.double ⟫
   .acute ⦟
   .arc ∡
