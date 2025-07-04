@@ -77,6 +77,8 @@ angle ∠
   .acute ⦟
   .arc ∡
   .arc.rev ⦛
+  .obtuse ⦦
+  @deprecated: `angle.oblique` is deprecated, use `angle.obtuse` instead
   .oblique ⦦
   .rev ⦣
   .right ∟
