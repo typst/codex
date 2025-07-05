@@ -82,7 +82,9 @@ angle ∠
   .right ∟
   .right.rev ⯾
   .right.arc ⊾
-  .right.dot ⦝
+  .right.arc.dot ⦝
+  .right.square ⦜
+  @deprecated: `angle.right.sq` is deprecated, use `angle.right.square` instead
   .right.sq ⦜
   .s ⦞
   .spatial ⟀
