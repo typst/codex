@@ -313,7 +313,9 @@ eq =
   .equi ≚
   .est ≙
   .gt ⋝
+  .gt.slant ⪖
   .lt ⋜
+  .lt.slant ⪕
   .m ≞
   .not ≠
   .prec ⋞
@@ -333,9 +335,11 @@ gt >
   .double ≫
   .eq ≥
   .eq.slant ⩾
+  .eq.slant.dot ⪀
   .eq.lt ⋛
   .eq.not ≱
   .equiv ≧
+  .equiv.slant ⫺
   .lt ≷
   .lt.not ≹
   .neq ⪈
@@ -362,9 +366,11 @@ lt <
   .double ≪
   .eq ≤
   .eq.slant ⩽
+  .eq.slant.dot ⩿
   .eq.gt ⋚
   .eq.not ≰
   .equiv ≦
+  .equiv.slant ⫹
   .gt ≶
   .gt.not ≸
   .neq ⪇
@@ -387,10 +393,14 @@ approx ≈
   .not ≉
 prec ≺
   .approx ⪷
+  @deprecated: `prec.curly.eq` is deprecated, use `prec.eq.slant` instead
   .curly.eq ≼
+  @deprecated: `prec.curly.eq.not` is deprecated, use `prec.eq.slant.not` instead
   .curly.eq.not ⋠
   .double ⪻
   .eq ⪯
+  .eq.slant ≼
+  .eq.slant.not ⋠
   .equiv ⪳
   .napprox ⪹
   .neq ⪱
@@ -400,10 +410,14 @@ prec ≺
   .tilde ≾
 succ ≻
   .approx ⪸
+  @deprecated: `succ.curly.eq` is deprecated, use `succ.eq.slant` instead
   .curly.eq ≽
+  @deprecated: `succ.curly.eq.not` is deprecated, use `succ.eq.slant.not` instead
   .curly.eq.not ⋡
   .double ⪼
   .eq ⪰
+  .eq.slant ≽
+  .eq.slant.not ⋡
   .equiv ⪴
   .napprox ⪺
   .neq ⪲
@@ -412,6 +426,10 @@ succ ≻
   .ntilde ⋩
   .tilde ≿
 equiv ≡
+  .gt ⪚
+  .gt.slant ⪜
+  .lt ⪙
+  .lt.slant ⪛
   .not ≢
 smt ⪪
   .eq ⪬
