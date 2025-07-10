@@ -50,6 +50,12 @@ shell
   .r.double ⟭
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+mustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
@@ -102,10 +108,10 @@ corner
   .l.b ⌞
   .r.t ⌝
   .r.b ⌟
-amp &
-  .inv ⅋
 
 // Punctuation.
+amp &
+  .inv ⅋
 ast
   .op ∗
   .op.o ⊛
