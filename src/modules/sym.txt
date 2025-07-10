@@ -269,6 +269,8 @@ prime ′
 // Arithmetic.
 plus +
   .o ⊕
+  .o.l ⨭
+  .o.r ⨮
   .o.arrow ⟴
   .o.big ⨁
   @deprecated: `plus.circle` is deprecated, use `plus.o` instead
@@ -296,11 +298,15 @@ minus −
   .triangle ⨺
 div ÷
   .o ⨸
+  .slanted.o ⦼
   @deprecated: `div.circle` is deprecated, use `div.o` instead
   .circle ⨸
 times ×
   .big ⨉
   .o ⊗
+  .o.l ⨴
+  .o.r ⨵
+  .o.hat ⨶
   .o.big ⨂
   @deprecated: `times.circle` is deprecated, use `times.o` instead
   .circle ⊗
