@@ -40,8 +40,12 @@ brace
   .b ⏟
 bracket
   .l [
+  .l.tick.t ⦍
+  .l.tick.b ⦏
   .l.double ⟦
   .r ]
+  .r.tick.t ⦐
+  .r.tick.b ⦎
   .r.double ⟧
   .t ⎴
   .b ⎵
