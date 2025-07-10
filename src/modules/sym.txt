@@ -287,7 +287,6 @@ div ÷
 times ×
   .big ⨉
   .o ⊗
-  .o.double ⨷
   .o.l ⨴
   .o.r ⨵
   .o.hat ⨶
