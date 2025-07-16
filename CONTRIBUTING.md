@@ -1,9 +1,12 @@
-# Proposals
+# Contributing Guidelines
+Contributions are welcome! This document provides some resources and guidelines to help with the process.
+
+## Proposals
 Proposals used to be written in the [Proposals document](https://typst.app/project/riXtMSim5zLCo7DWngIFbT),
 although it is now preferred to have a GitHub issue for each one.
 Nonetheless, the document still contains a lot of useful information.
 
-# Conventions
+## Conventions
 When adding new modules, symbols or variants, please try to be consistent with
 existing ones. Below are some guidelines based on existing symbols. These aren't
 always hard rules, especially because of how messy Unicode can be, but you should
