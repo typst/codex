@@ -9,7 +9,7 @@ existing ones. Below are some guidelines based on existing symbols. These aren't
 always hard rules, especially because of how messy Unicode can be, but you should
 adhere to them if possible.
 
-**General conventions:**
+### General Conventions
 - Modifier and module names are entirely lowercase.
 	Symbol names are lowercase unless the symbol is an uppercase letter.
 - When a symbol is added to a base, the symbol name is used as a modifier on the base.[^modifname]
@@ -24,7 +24,10 @@ adhere to them if possible.
 	- When `.eq` is used in the second sense (stacked below), it only adds a single line and not two.
 		For two lines below, `.equiv` is used.
 
-**Established generic modifiers:**
+[^modifname]: Though a modifier can also just coincidentally be a symbol name, e.g. `.not`.
+
+### Established Generic Modifiers
+These have a broad meaning and can have varying interpretations.
 - `.l`/`.r`/`.t`/`.b`: The four main directions (left/right/top/bottom), e.g. `arrow.l`, `times.r`.
 	- For delimiters, `.l` means opening and `.r` means closing, e.g. `paren.l`, `quote.r`.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
@@ -37,7 +40,8 @@ adhere to them if possible.
 - `.dotted`: A shape with a dotted line instead of a full stroke, e.g. `circle.dotted`.
 - `.alt`: An alternate glyph for the symbol, e.g. `phi.alt`.
 
-**Established concrete modifiers:**
+### Established Concrete Modifiers
+These have a specific meaning that is not open to much interpretation.
 - `.big`: A [large](https://www.unicode.org/Public/math/latest/MathClassEx-15.html) (n-ary) version
 	of an operator, e.g. `union.big`.
 - `.not`: A negation of the symbol, e.g. `eq.not`.
@@ -50,5 +54,3 @@ adhere to them if possible.
 - `.inv`: Either vertically mirrored or a 180° rotated version of a symbol, e.g. `amp.inv`, `Omega.inv`.
 	- See also [#108](https://github.com/typst/codex/issues/108).
 - `.cw`/`.ccw`: Clockwise/Counterclockwise, e.g. `arrow.cw`, `integral.ccw`.
-
-[^modifname]: Though a modifier can also just coincidentally be a symbol name, e.g. `.not`.
