@@ -21,8 +21,8 @@ adhere to them if possible.
 	- The symbol is overlaid at the center of the base, e.g. `integral.dash`.
 	- The symbol surrounds the base, e.g. `plus.square`.
 - Notable exceptions to the previous convention:
-	- When `.eq` is used in the second sense (stacked below), it only adds a single line and not two.
-		For two lines below, `.equiv` is used.
+	- When `.eq` is used in the second sense (stacked below), it only adds a single line and not two,
+		e.g. `lt.eq`. For two lines below, `.equiv` is used, e.g. `lt.equiv`.
 
 [^modifname]: Though a modifier can also just coincidentally be a symbol name, e.g. `.not`.
 
