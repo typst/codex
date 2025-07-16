@@ -24,28 +24,28 @@ arm
   .muscle 💪
   .selfie 🤳
 arrow
-  .r.filled ➡
-  .r.hook ↪
+  .r.filled ➡\u{FE0F}
+  .r.hook ↪\u{FE0F}
   .r.soon 🔜
-  .l.filled ⬅
-  .l.hook ↩
+  .l.filled ⬅\u{FE0F}
+  .l.hook ↩\u{FE0F}
   .l.back 🔙
   .l.end 🔚
-  .t.filled ⬆
-  .t.curve ⤴
+  .t.filled ⬆\u{FE0F}
+  .t.curve ⤴\u{FE0F}
   .t.top 🔝
-  .b.filled ⬇
-  .b.curve ⤵
-  .l.r ↔
+  .b.filled ⬇\u{FE0F}
+  .b.curve ⤵\u{FE0F}
+  .l.r ↔\u{FE0F}
   .l.r.on 🔛
-  .t.b ↕
-  .bl ↙
-  .br ↘
-  .tl ↖
-  .tr ↗
+  .t.b ↕\u{FE0F}
+  .bl ↙\u{FE0F}
+  .br ↘\u{FE0F}
+  .tl ↖\u{FE0F}
+  .tr ↗\u{FE0F}
 arrows
   .cycle 🔄
-ast *
+ast *\u{FE0F}
   .box ✳
 atm 🏧
 atom ⚛
@@ -65,7 +65,7 @@ baggageclaim 🛄
 baguette 🥖
 balloon 🎈
 ballot
-  .check ☑
+  .check ☑\u{FE0F}
 ballotbox 🗳
 banana 🍌
 banjo 🪕
@@ -245,7 +245,7 @@ chart
   .down 📉
   .yen.up 💹
 checkmark
-  .heavy ✔
+  .heavy ✔\u{FE0F}
   .box ✅
 cheese 🧀
 cherries 🍒
@@ -345,7 +345,7 @@ cookie 🍪
   .fortune 🥠
 cooking 🍳
 cool 🆒
-copyright ©
+copyright ©\u{FE0F}
 coral 🪸
 corn 🌽
 couch 🛋
@@ -380,7 +380,7 @@ dancing
   .women.bunny 👯
 darts 🎯
 dash
-  .wave.double 〰
+  .wave.double 〰\u{FE0F}
 deer 🦌
 desert 🏜
 detective 🕵
@@ -435,8 +435,8 @@ elf 🧝
 email 📧
 excl ❗
   .white ❕
-  .double ‼
-  .quest ⁉
+  .double ‼\u{FE0F}
+  .quest ⁉\u{FE0F}
 explosion 💥
 extinguisher 🧯
 eye 👁
@@ -714,7 +714,7 @@ hands
   .raised 🙌
   .shake 🤝
 harp 🪉
-hash #
+hash #\u{FE0F}
 hat
   .ribbon 👒
   .top 🎩
@@ -1135,7 +1135,7 @@ rat 🐀
 razor 🪒
 receipt 🧾
 recycling ♻
-reg ®
+reg ®\u{FE0F}
 restroom 🚻
 rhino 🦏
 ribbon 🎀
@@ -1259,14 +1259,14 @@ splatter 🫟
 sponge 🧽
 spoon 🥄
 square
-  .black ⬛
-  .black.tiny ▪
-  .black.small ◾
-  .black.medium ◼
-  .white ⬜
-  .white.tiny ▫
-  .white.small ◽
-  .white.medium ◻
+  .black ⬛\u{FE0F}
+  .black.tiny ▪\u{FE0F}
+  .black.small ◾\u{FE0F}
+  .black.medium ◼\u{FE0F}
+  .white ⬜\u{FE0F}
+  .white.tiny ▫\u{FE0F}
+  .white.small ◽\u{FE0F}
+  .white.medium ◻\u{FE0F}
   .blue 🟦
   .brown 🟫
   .green 🟩
@@ -1287,10 +1287,10 @@ store
   .small 🏪
 strawberry 🍓
 suit
-  .club ♣
-  .diamond ♦
-  .heart ♥
-  .spade ♠
+  .club ♣\u{FE0F}
+  .diamond ♦\u{FE0F}
+  .heart ♥\u{FE0F}
+  .spade ♠\u{FE0F}
 sun ☀
   .cloud 🌤
   .face 🌞
@@ -1335,7 +1335,7 @@ ticket
   .travel 🎫
 tiger 🐅
   .face 🐯
-tm ™
+tm ™\u{FE0F}
 toilet 🚽
 toiletpaper 🧻
 tomato 🍅
@@ -1377,8 +1377,8 @@ tree
   .palm 🌴
   .xmas 🎄
 triangle
-  .r ▶
-  .l ◀
+  .r ▶\u{FE0F}
+  .l ◀\u{FE0F}
   .t 🔼
   .b 🔽
   .t.red 🔺
