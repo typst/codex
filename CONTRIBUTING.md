@@ -9,7 +9,7 @@ existing ones. Below are some guidelines based on existing symbols. These aren't
 always hard rules, especially because of how messy Unicode can be, but you should
 adhere to them if possible.
 
-General conventions:
+**General conventions:**
 - Modifier and module names are entirely lowercase.
 	Symbol names are lowercase unless the symbol is an uppercase letter.
 - When a symbol is added to a base, the symbol name is used as a modifier on the base.[^modifname]
@@ -23,7 +23,8 @@ General conventions:
 - Notable exceptions to the previous convention:
 	- When `.eq` is used in the second sense (stacked below), it only adds a single line and not two.
 		For two lines below, `.equiv` is used.
-Established generic modifiers:
+
+**Established generic modifiers:**
 - `.l`/`.r`/`.t`/`.b`: The four main directions (left/right/top/bottom), e.g. `arrow.l`, `times.r`.
 	- For delimiters, `.l` means opening and `.r` means closing, e.g. `paren.l`, `quote.r`.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
@@ -35,7 +36,8 @@ Established generic modifiers:
 - `.light`/`.heavy`: A shape with a certain stroke weight, e.g. `checkmark.heavy`.
 - `.dotted`: A shape with a dotted line instead of a full stroke, e.g. `circle.dotted`.
 - `.alt`: An alternate glyph for the symbol, e.g. `phi.alt`.
-Established concrete modifiers:
+
+**Established concrete modifiers:**
 - `.big`: A [large](https://www.unicode.org/Public/math/latest/MathClassEx-15.html) (n-ary) version
 	of an operator, e.g. `union.big`.
 - `.not`: A negation of the symbol, e.g. `eq.not`.
