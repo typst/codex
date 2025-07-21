@@ -35,6 +35,7 @@ adhere to them if possible.
 
 ### Established Generic Modifiers
 These have a broad meaning and can have varying interpretations.
+<!-- Geometry -->
 - `.l`/`.r`/`.t`/`.b`: The four main directions (left/right/top/bottom), e.g. `arrow.l`, `times.r`.
 	- For delimiters, `.l` means opening and `.r` means closing, e.g. `paren.l`, `quote.r`.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
@@ -42,25 +43,28 @@ These have a broad meaning and can have varying interpretations.
 		whereas combinations of two main directions (like `.t.l`) are used to mean both of them at once,
 		e.g. `arrow.t.l`, if it existed, would be an arrow that points both top and left,
 		similarly to how `arrow.l.r` is an arrow pointing both left and right.
-- `.double`, `.triple`, `.quad`: A symbol that has 2-4 of something, e.g. `excl.double`, `eq.quad`.
+- `.cw`/`.ccw`: Clockwise/Counterclockwise, e.g. `arrow.cw`, `integral.ccw`.
+- `.tiny`/`.small`/`.medium`/`.big`: A geometric shape with a certain size, e.g. `square.stroked.small`.
+<!-- Strokes -->
 - `.stroked`/`.filled`: A symbol that has an empty/filled interior, e.g. `circle.stroked`, `arrow.r.filled`.
 	(They correspond to Unicode's "white"/"black".)
-- `.tiny`/`.small`/`.medium`/`.big`: A geometric shape with a certain size, e.g. `square.stroked.small`.
-- `.light`/`.heavy`: A shape with a certain stroke weight, e.g. `checkmark.heavy`.
 - `.dotted`: A shape with a dotted line instead of a full stroke, e.g. `circle.dotted`.
+- `.light`/`.heavy`: A shape with a certain stroke weight, e.g. `checkmark.heavy`.
+<!-- Other (in alphabetic order) -->
 - `.alt`: An alternate glyph for the symbol, e.g. `phi.alt`.
+- `.double`, `.triple`, `.quad`: A symbol that has 2-4 of something, e.g. `excl.double`, `eq.quad`.
 
 ### Established Concrete Modifiers
 These have a specific meaning that is not open to much interpretation.
+<!-- (in alphabetic order) -->
 - `.big`: A [large](https://www.unicode.org/Public/math/latest/MathClassEx-15.html) (n-ary) version
 	of an operator, e.g. `union.big`.
+- `.inv`: Either vertically mirrored or a 180° rotated version of a symbol, e.g. `amp.inv`, `Omega.inv`.
+	- See also [#108](https://github.com/typst/codex/issues/108).
 - `.not`: A negation of the symbol, e.g. `eq.not`.
 - `.o`: A symbol with a circle around it, e.g. `plus.circle`.
 	- See also [#62](https://github.com/typst/codex/pull/62)
-- `.sq`: A "squarified" version of a symbol, e.g. `subset.eq`.
-	- See also [#110](https://github.com/typst/codex/pull/110)
 - `.rev`: A horizontally mirrored version of a symbol, e.g. `in.rev`.
 	- See also [#108](https://github.com/typst/codex/issues/108).
-- `.inv`: Either vertically mirrored or a 180° rotated version of a symbol, e.g. `amp.inv`, `Omega.inv`.
-	- See also [#108](https://github.com/typst/codex/issues/108).
-- `.cw`/`.ccw`: Clockwise/Counterclockwise, e.g. `arrow.cw`, `integral.ccw`.
+- `.sq`: A "squarified" version of a symbol, e.g. `subset.eq`.
+	- See also [#110](https://github.com/typst/codex/pull/110)
