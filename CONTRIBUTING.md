@@ -18,7 +18,7 @@ adhere to them if possible.
 ### General Conventions
 - Modifier and module names are entirely lowercase.
 - Symbol names are lowercase unless the symbol is an uppercase letter.
-- Symbol names should be at least two characters long so they can be used easily in typst's math mode.
+- Symbol names should be at least two characters long so they can be used easily in Typst's math mode.
 - When a symbol is added to a base, the symbol name is used as a modifier on the base.[^modifname]
 	This can have the following meanings:
 	- The symbol is added around or inside the base as a subordinate (smaller than the base),
