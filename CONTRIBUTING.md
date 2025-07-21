@@ -38,7 +38,10 @@ These have a broad meaning and can have varying interpretations.
 - `.l`/`.r`/`.t`/`.b`: The four main directions (left/right/top/bottom), e.g. `arrow.l`, `times.r`.
 	- For delimiters, `.l` means opening and `.r` means closing, e.g. `paren.l`, `quote.r`.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
-	<!-- TODO: Do we have or want to have conventions about when to choose `.tl` vs. `.t.l`? -->
+	- Generally, these are used for a single, diagonal direction,
+		whereas combinations of two main directions (like `.t.l`) are used to mean both of them at once,
+		e.g. `arrow.t.l`, if it existed, would be an arrow that points both top and left,
+		similarly to how `arrow.l.r` is an arrow pointing both left and right.
 - `.double`, `.triple`, `.quad`: A symbol that has 2-4 of something, e.g. `excl.double`, `eq.quad`.
 - `.stroked`/`.filled`: A symbol that has an empty/filled interior, e.g. `circle.stroked`, `arrow.r.filled`.
 	(They correspond to Unicode's "white"/"black".)
