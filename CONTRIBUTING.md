@@ -66,5 +66,5 @@ These have a specific meaning that is not open to much interpretation.
 	- See also [#62](https://github.com/typst/codex/pull/62)
 - `.rev`: A horizontally mirrored version of a symbol, e.g. `in.rev`.
 	- See also [#108](https://github.com/typst/codex/issues/108).
-- `.sq`: A "squarified" version of a symbol, e.g. `subset.eq`.
+- `.sq`: A "squarified" version of a symbol, e.g. `subset.sq`.
 	- See also [#110](https://github.com/typst/codex/pull/110)
