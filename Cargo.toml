@@ -13,3 +13,6 @@ keywords = ["unicode", "symbols"]
 [features]
 default = ["styling"]
 styling = []
+
+[dev-dependencies]
+reqwest = { version = "0.12.22", features = ["blocking"] }
