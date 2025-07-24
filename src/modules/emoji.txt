@@ -3,17 +3,17 @@ abc 🔤
 abcd 🔡
 ABCD 🔠
 accordion 🪗
-aesculapius ⚕
-airplane ✈
+aesculapius ⚕\u{FE0F}
+airplane ✈\u{FE0F}
   .landing 🛬
-  .small 🛩
+  .small 🛩\u{FE0F}
   .takeoff 🛫
-alembic ⚗
-alien 👽
+alembic ⚗\u{FE0F}
+alien 👽\u{FE0F}
   .monster 👾
-ambulance 🚑
+ambulance 🚑\u{FE0F}
 amphora 🏺
-anchor ⚓
+anchor ⚓\u{FE0F}
 anger 💢
 ant 🐜
 apple
@@ -24,37 +24,37 @@ arm
   .muscle 💪
   .selfie 🤳
 arrow
-  .r.filled ➡
-  .r.hook ↪
+  .r.filled ➡\u{FE0F}
+  .r.hook ↪\u{FE0F}
   .r.soon 🔜
-  .l.filled ⬅
-  .l.hook ↩
+  .l.filled ⬅\u{FE0F}
+  .l.hook ↩\u{FE0F}
   .l.back 🔙
   .l.end 🔚
-  .t.filled ⬆
-  .t.curve ⤴
+  .t.filled ⬆\u{FE0F}
+  .t.curve ⤴\u{FE0F}
   .t.top 🔝
-  .b.filled ⬇
-  .b.curve ⤵
-  .l.r ↔
+  .b.filled ⬇\u{FE0F}
+  .b.curve ⤵\u{FE0F}
+  .l.r ↔\u{FE0F}
   .l.r.on 🔛
-  .t.b ↕
-  .bl ↙
-  .br ↘
-  .tl ↖
-  .tr ↗
+  .t.b ↕\u{FE0F}
+  .bl ↙\u{FE0F}
+  .br ↘\u{FE0F}
+  .tl ↖\u{FE0F}
+  .tr ↗\u{FE0F}
 arrows
   .cycle 🔄
-ast *
-  .box ✳
+ast *\u{FE0F}
+  .box ✳\u{FE0F}
 atm 🏧
-atom ⚛
+atom ⚛\u{FE0F}
 aubergine 🍆
 avocado 🥑
 axe 🪓
 baby 👶
   .angel 👼
-  .box 🚼
+  .box 🚼\u{FE0F}
 babybottle 🍼
 backpack 🎒
 bacon 🥓
@@ -65,16 +65,16 @@ baggageclaim 🛄
 baguette 🥖
 balloon 🎈
 ballot
-  .check ☑
-ballotbox 🗳
+  .check ☑\u{FE0F}
+ballotbox 🗳\u{FE0F}
 banana 🍌
 banjo 🪕
 bank 🏦
 barberpole 💈
-baseball ⚾
+baseball ⚾\u{FE0F}
 basecap 🧢
 basket 🧺
-basketball ⛹
+basketball ⛹\u{FE0F}
   .ball 🏀
 bat 🦇
 bathtub 🛀
@@ -82,13 +82,13 @@ bathtub 🛀
 battery 🔋
   .low 🪫
 beach
-  .palm 🏝
-  .umbrella 🏖
+  .palm 🏝\u{FE0F}
+  .umbrella 🏖\u{FE0F}
 beads 📿
 beans 🫘
 bear 🐻
 beaver 🦫
-bed 🛏
+bed 🛏\u{FE0F}
   .person 🛌
 bee 🐝
 beer 🍺
@@ -97,18 +97,18 @@ beet 🫜
 beetle 🪲
   .lady 🐞
 bell 🔔
-  .ding 🛎
+  .ding 🛎\u{FE0F}
   .not 🔕
 bento 🍱
 bicyclist 🚴
   .mountain 🚵
-bike 🚲
+bike 🚲\u{FE0F}
   .not 🚳
 bikini 👙
 billiards 🎱
-bin 🗑
-biohazard ☣
-bird 🐦
+bin 🗑\u{FE0F}
+biohazard ☣\u{FE0F}
+bird 🐦\u{FE0F}
 bison 🦬
 blood 🩸
 blouse 👚
@@ -116,13 +116,13 @@ blowfish 🐡
 blueberries 🫐
 boar 🐗
 boat
-  .sail ⛵
+  .sail ⛵\u{FE0F}
   .row 🚣
-  .motor 🛥
+  .motor 🛥\u{FE0F}
   .speed 🚤
   .canoe 🛶
 bolt 🔩
-bomb 💣
+bomb 💣\u{FE0F}
 bone 🦴
 book
   .red 📕
@@ -132,7 +132,7 @@ book
   .spiral 📒
   .open 📖
 bookmark 🔖
-books 📚
+books 📚\u{FE0F}
 boomerang 🪃
 bordercontrol 🛂
 bouquet 💐
@@ -157,12 +157,12 @@ brightness
   .low 🔅
 broccoli 🥦
 broom 🧹
-brush 🖌
+brush 🖌\u{FE0F}
 bubble
   .speech.r 💬
-  .speech.l 🗨
+  .speech.l 🗨\u{FE0F}
   .thought 💭
-  .anger.r 🗯
+  .anger.r 🗯\u{FE0F}
 bubbles 🫧
 bubbletea 🧋
 bucket 🪣
@@ -173,7 +173,7 @@ builder 👷
 burger 🍔
 burrito 🌯
 bus 🚌
-  .front 🚍
+  .front 🚍\u{FE0F}
   .small 🚐
   .stop 🚏
   .trolley 🚎
@@ -183,7 +183,7 @@ button 🔲
   .alt 🔳
   .radio 🔘
 cabinet
-  .file 🗄
+  .file 🗄\u{FE0F}
 cablecar 🚠
   .small 🚡
 cactus 🌵
@@ -192,30 +192,30 @@ cake 🎂
   .moon 🥮
   .slice 🍰
 calendar 📅
-  .spiral 🗓
+  .spiral 🗓\u{FE0F}
   .tearoff 📆
 camel 🐫
   .dromedar 🐪
-camera 📷
+camera 📷\u{FE0F}
   .flash 📸
   .movie 🎥
   .movie.box 🎦
-  .video 📹
-camping 🏕
+  .video 📹\u{FE0F}
+camping 🏕\u{FE0F}
 can 🥫
-candle 🕯
+candle 🕯\u{FE0F}
 candy 🍬
 cane 🦯
 car 🚗
-  .front 🚘
+  .front 🚘\u{FE0F}
   .pickup 🛻
   .police 🚓
-  .police.front 🚔
-  .racing 🏎
+  .police.front 🚔\u{FE0F}
+  .racing 🏎\u{FE0F}
   .rickshaw 🛺
   .suv 🚙
 card
-  .credit 💳
+  .credit 💳\u{FE0F}
   .id 🪪
 cardindex 📇
 carrot 🥕
@@ -224,7 +224,7 @@ cassette 📼
 castle
   .eu 🏰
   .jp 🏯
-cat 🐈
+cat 🐈\u{FE0F}
   .face 🐱
   .face.angry 😾
   .face.cry 😿
@@ -236,7 +236,7 @@ cat 🐈
   .face.smile 😺
   .face.smirk 😼
 chain 🔗
-chains ⛓
+chains ⛓\u{FE0F}
 chair 🪑
 champagne 🍾
 chart
@@ -245,11 +245,11 @@ chart
   .down 📉
   .yen.up 💹
 checkmark
-  .heavy ✔
-  .box ✅
+  .heavy ✔\u{FE0F}
+  .box ✅\u{FE0F}
 cheese 🧀
 cherries 🍒
-chess ♟
+chess ♟\u{FE0F}
 chestnut 🌰
 chicken 🐔
   .baby 🐥
@@ -258,109 +258,109 @@ chicken 🐔
   .leg 🍗
   .male 🐓
 child 🧒
-chipmunk 🐿
+chipmunk 🐿\u{FE0F}
 chocolate 🍫
 chopsticks 🥢
-church ⛪
+church ⛪\u{FE0F}
   .love 💒
 cigarette 🚬
-  .not 🚭
+  .not 🚭\u{FE0F}
 circle
-  .black ⚫
+  .black ⚫\u{FE0F}
   .blue 🔵
   .brown 🟤
   .green 🟢
   .orange 🟠
   .purple 🟣
-  .white ⚪
+  .white ⚪\u{FE0F}
   .red 🔴
   .yellow 🟡
-  .stroked ⭕
+  .stroked ⭕\u{FE0F}
 circus 🎪
-city 🏙
+city 🏙\u{FE0F}
   .dusk 🌆
   .night 🌃
   .sunset 🌇
-clamp 🗜
-clapperboard 🎬
+clamp 🗜\u{FE0F}
+clapperboard 🎬\u{FE0F}
 climbing 🧗
 clip 📎
-clipboard 📋
-clips 🖇
+clipboard 📋\u{FE0F}
+clips 🖇\u{FE0F}
 clock
-  .one 🕐
-  .one.thirty 🕜
-  .two 🕑
-  .two.thirty 🕝
-  .three 🕒
-  .three.thirty 🕞
-  .four 🕓
-  .four.thirty 🕟
-  .five 🕔
-  .five.thirty 🕠
-  .six 🕕
-  .six.thirty 🕡
-  .seven 🕖
-  .seven.thirty 🕢
-  .eight 🕗
-  .eight.thirty 🕣
-  .nine 🕘
-  .nine.thirty 🕤
-  .ten 🕙
-  .ten.thirty 🕥
-  .eleven 🕚
-  .eleven.thirty 🕦
-  .twelve 🕛
-  .twelve.thirty 🕧
-  .alarm ⏰
-  .old 🕰
-  .timer ⏲
-cloud ☁
+  .one 🕐\u{FE0F}
+  .one.thirty 🕜\u{FE0F}
+  .two 🕑\u{FE0F}
+  .two.thirty 🕝\u{FE0F}
+  .three 🕒\u{FE0F}
+  .three.thirty 🕞\u{FE0F}
+  .four 🕓\u{FE0F}
+  .four.thirty 🕟\u{FE0F}
+  .five 🕔\u{FE0F}
+  .five.thirty 🕠\u{FE0F}
+  .six 🕕\u{FE0F}
+  .six.thirty 🕡\u{FE0F}
+  .seven 🕖\u{FE0F}
+  .seven.thirty 🕢\u{FE0F}
+  .eight 🕗\u{FE0F}
+  .eight.thirty 🕣\u{FE0F}
+  .nine 🕘\u{FE0F}
+  .nine.thirty 🕤\u{FE0F}
+  .ten 🕙\u{FE0F}
+  .ten.thirty 🕥\u{FE0F}
+  .eleven 🕚\u{FE0F}
+  .eleven.thirty 🕦\u{FE0F}
+  .twelve 🕛\u{FE0F}
+  .twelve.thirty 🕧\u{FE0F}
+  .alarm ⏰\u{FE0F}
+  .old 🕰\u{FE0F}
+  .timer ⏲\u{FE0F}
+cloud ☁\u{FE0F}
   .dust 💨
-  .rain 🌧
-  .snow 🌨
-  .storm ⛈
-  .sun ⛅
-  .sun.hidden 🌥
-  .sun.rain 🌦
-  .thunder 🌩
+  .rain 🌧\u{FE0F}
+  .snow 🌨\u{FE0F}
+  .storm ⛈\u{FE0F}
+  .sun ⛅\u{FE0F}
+  .sun.hidden 🌥\u{FE0F}
+  .sun.rain 🌦\u{FE0F}
+  .thunder 🌩\u{FE0F}
 coat 🧥
   .lab 🥼
 cockroach 🪳
 cocktail
-  .martini 🍸
+  .martini 🍸\u{FE0F}
   .tropical 🍹
 coconut 🥥
-coffee ☕
-coffin ⚰
+coffee ☕\u{FE0F}
+coffin ⚰\u{FE0F}
 coin 🪙
-comet ☄
+comet ☄\u{FE0F}
 compass 🧭
-computer 🖥
-computermouse 🖱
+computer 🖥\u{FE0F}
+computermouse 🖱\u{FE0F}
 confetti 🎊
 construction 🚧
-controller 🎮
+controller 🎮\u{FE0F}
 cookie 🍪
   .fortune 🥠
 cooking 🍳
 cool 🆒
-copyright ©
+copyright ©\u{FE0F}
 coral 🪸
 corn 🌽
-couch 🛋
+couch 🛋\u{FE0F}
 couple 💑
 cow 🐄
   .face 🐮
 crab 🦀
-crane 🏗
-crayon 🖍
+crane 🏗\u{FE0F}
+crayon 🖍\u{FE0F}
 cricket 🦗
 cricketbat 🏏
 crocodile 🐊
 croissant 🥐
-crossmark ❌
-  .box ❎
+crossmark ❌\u{FE0F}
+  .box ❎\u{FE0F}
 crown 👑
 crutch 🩼
 crystal 🔮
@@ -380,10 +380,10 @@ dancing
   .women.bunny 👯
 darts 🎯
 dash
-  .wave.double 〰
+  .wave.double 〰\u{FE0F}
 deer 🦌
-desert 🏜
-detective 🕵
+desert 🏜\u{FE0F}
+detective 🕵\u{FE0F}
 diamond
   .blue 🔷
   .blue.small 🔹
@@ -395,13 +395,13 @@ dino
   .pod 🦕
   .rex 🦖
 disc
-  .cd 💿
+  .cd 💿\u{FE0F}
   .dvd 📀
   .mini 💽
 discoball 🪩
 diving 🤿
 dodo 🦤
-dog 🐕
+dog 🐕\u{FE0F}
   .face 🐶
   .guide 🦮
   .poodle 🐩
@@ -411,7 +411,7 @@ donkey 🫏
 donut 🍩
 door 🚪
 dove
-  .peace 🕊
+  .peace 🕊\u{FE0F}
 dragon 🐉
   .face 🐲
 dress 👗
@@ -424,7 +424,7 @@ drum 🥁
 duck 🦆
 dumpling 🥟
 eagle 🦅
-ear 👂
+ear 👂\u{FE0F}
   .aid 🦻
 egg 🥚
 eighteen
@@ -433,13 +433,13 @@ elephant 🐘
 elevator 🛗
 elf 🧝
 email 📧
-excl ❗
-  .white ❕
-  .double ‼
-  .quest ⁉
+excl ❗\u{FE0F}
+  .white ❕\u{FE0F}
+  .double ‼\u{FE0F}
+  .quest ⁉\u{FE0F}
 explosion 💥
 extinguisher 🧯
-eye 👁
+eye 👁\u{FE0F}
 eyes 👀
 face
   .grin 😀
@@ -469,12 +469,12 @@ face
   .drool 🤤
   .explode 🤯
   .eyeroll 🙄
-  .friendly ☺
+  .friendly ☺\u{FE0F}
   .fear 😨
   .fear.sweat 😰
   .fever 🤒
   .flush 😳
-  .frown ☹
+  .frown ☹\u{FE0F}
   .frown.slight 🙁
   .frust 😣
   .goofy 🤪
@@ -499,7 +499,7 @@ face
   .monocle 🧐
   .nausea 🤢
   .nerd 🤓
-  .neutral 😐
+  .neutral 😐\u{FE0F}
   .open 😃
   .party 🥳
   .peek 🫣
@@ -546,38 +546,38 @@ face
   .wow 😮
   .yawn 🥱
   .zip 🤐
-factory 🏭
+factory 🏭\u{FE0F}
 fairy 🧚
 faith
-  .christ ✝
-  .dharma ☸
+  .christ ✝\u{FE0F}
+  .dharma ☸\u{FE0F}
   .khanda 🪯
-  .islam ☪
-  .judaism ✡
+  .islam ☪\u{FE0F}
+  .judaism ✡\u{FE0F}
   .menorah 🕎
-  .om 🕉
-  .orthodox ☦
-  .peace ☮
+  .om 🕉\u{FE0F}
+  .orthodox ☦\u{FE0F}
+  .peace ☮\u{FE0F}
   .star.dot 🔯
   .worship 🛐
-  .yinyang ☯
+  .yinyang ☯\u{FE0F}
 falafel 🧆
-family 👪
+family 👪\u{FE0F}
 fax 📠
 feather 🪶
 feeding
   .breast 🤱
 fencing 🤺
 ferriswheel 🎡
-filebox 🗃
-filedividers 🗂
-film 🎞
+filebox 🗃\u{FE0F}
+filedividers 🗂\u{FE0F}
+film 🎞\u{FE0F}
 finger
-  .r 👉
-  .l 👈
-  .t 👆
-  .t.alt ☝
-  .b 👇
+  .r 👉\u{FE0F}
+  .l 👈\u{FE0F}
+  .t 👆\u{FE0F}
+  .t.alt ☝\u{FE0F}
+  .b 👇\u{FE0F}
   .front 🫵
   .m 🖕
 fingerprint 🫆
@@ -589,26 +589,26 @@ fire 🔥
 firecracker 🧨
 fireengine 🚒
 fireworks 🎆
-fish 🐟
+fish 🐟\u{FE0F}
   .tropical 🐠
 fishing 🎣
 fist
   .front 👊
   .r 🤜
   .l 🤛
-  .raised ✊
+  .raised ✊\u{FE0F}
 flag
   .black 🏴
-  .white 🏳
+  .white 🏳\u{FE0F}
   .goal 🏁
-  .golf ⛳
+  .golf ⛳\u{FE0F}
   .red 🚩
 flags
   .jp.crossed 🎌
 flamingo 🦩
 flashlight 🔦
 flatbread 🫓
-fleur ⚜
+fleur ⚜\u{FE0F}
 floppy 💾
 flower
   .hibiscus 🌺
@@ -623,24 +623,24 @@ flower
   .yellow 🌼
 flute 🪈
 fly 🪰
-fog 🌫
+fog 🌫\u{FE0F}
 folder 📁
   .open 📂
 fondue 🫕
 foot 🦶
-football ⚽
+football ⚽\u{FE0F}
   .am 🏈
 forex 💱
-fountain ⛲
+fountain ⛲\u{FE0F}
 fox 🦊
 free 🆓
 fries 🍟
 frisbee 🥏
 frog
   .face 🐸
-fuelpump ⛽
+fuelpump ⛽\u{FE0F}
 garlic 🧄
-gear ⚙
+gear ⚙\u{FE0F}
 gem 💎
 genie 🧞
 ghost 👻
@@ -652,18 +652,18 @@ glass
   .milk 🥛
   .pour 🫗
   .tumbler 🥃
-glasses 👓
-  .sun 🕶
+glasses 👓\u{FE0F}
+  .sun 🕶\u{FE0F}
 globe
-  .am 🌎
-  .as.au 🌏
-  .eu.af 🌍
+  .am 🌎\u{FE0F}
+  .as.au 🌏\u{FE0F}
+  .eu.af 🌍\u{FE0F}
   .meridian 🌐
 gloves 🧤
 goal 🥅
 goat 🐐
 goggles 🥽
-golfing 🏌
+golfing 🏌\u{FE0F}
 goose 🪿
 gorilla 🦍
 grapes 🍇
@@ -674,13 +674,13 @@ gymnastics 🤸
 haircut 💇
 hairpick 🪮
 hammer 🔨
-  .pick ⚒
-  .wrench 🛠
+  .pick ⚒\u{FE0F}
+  .wrench 🛠\u{FE0F}
 hamsa 🪬
 hamster
   .face 🐹
 hand
-  .raised ✋
+  .raised ✋\u{FE0F}
   .raised.alt 🤚
   .r 🫱
   .l 🫲
@@ -690,14 +690,14 @@ hand
   .call 🤙
   .love 🤟
   .part 🖖
-  .peace ✌
+  .peace ✌\u{FE0F}
   .pinch 🤏
   .pushing.l 🫷
   .pushing.r 🫸
   .rock 🤘
-  .splay 🖐
+  .splay 🖐\u{FE0F}
   .wave 👋
-  .write ✍
+  .write ✍\u{FE0F}
 handbag 👜
 handball 🤾
 handfan 🪭
@@ -714,12 +714,12 @@ hands
   .raised 🙌
   .shake 🤝
 harp 🪉
-hash #
+hash #\u{FE0F}
 hat
   .ribbon 👒
   .top 🎩
-headphone 🎧
-heart ❤
+headphone 🎧\u{FE0F}
+heart ❤\u{FE0F}
   .arrow 💘
   .beat 💓
   .black 🖤
@@ -728,7 +728,7 @@ heart ❤
   .broken 💔
   .brown 🤎
   .double 💕
-  .excl ❣
+  .excl ❣\u{FE0F}
   .gray 🩶
   .green 💚
   .grow 💗
@@ -746,11 +746,11 @@ hedgehog 🦔
 helicopter 🚁
 helix 🧬
 helmet
-  .cross ⛑
+  .cross ⛑\u{FE0F}
   .military 🪖
 hippo 🦛
 hockey 🏑
-hole 🕳
+hole 🕳\u{FE0F}
 honey 🍯
 hongbao 🧧
 hook 🪝
@@ -764,13 +764,13 @@ hospital 🏥
 hotdog 🌭
 hotel 🏨
   .love 🏩
-hotspring ♨
-hourglass ⌛
-  .flow ⏳
-house 🏠
-  .derelict 🏚
+hotspring ♨\u{FE0F}
+hourglass ⌛\u{FE0F}
+  .flow ⏳\u{FE0F}
+house 🏠\u{FE0F}
+  .derelict 🏚\u{FE0F}
   .garden 🏡
-  .multiple 🏘
+  .multiple 🏘\u{FE0F}
 hundred 💯
 hut 🛖
 ice 🧊
@@ -779,69 +779,69 @@ icecream 🍨
   .soft 🍦
 icehockey 🏒
 id 🆔
-info ℹ
+info ℹ\u{FE0F}
 izakaya 🏮
 jar 🫙
 jellyfish 🪼
 jeans 👖
 jigsaw 🧩
-joystick 🕹
+joystick 🕹\u{FE0F}
 juggling 🤹
 juice 🧃
 kaaba 🕋
 kadomatsu 🎍
 kangaroo 🦘
-gachi 🈷
+gachi 🈷\u{FE0F}
 go 🈴
-hi ㊙
+hi ㊙\u{FE0F}
 ka 🉑
 kachi 🈹
 kara 🈳
 kon 🈲
 man 👨
-  .box 🚹
+  .box 🚹\u{FE0F}
   .crown 🤴
   .guapimao 👲
-  .levitate 🕴
+  .levitate 🕴\u{FE0F}
   .old 👴
   .pregnant 🫃
   .turban 👳
   .tuxedo 🤵
-muryo 🈚
+muryo 🈚\u{FE0F}
 shin 🈸
-shuku ㊗
+shuku ㊗\u{FE0F}
 toku 🉐
 yo 🈺
-yubi 🈯
+yubi 🈯\u{FE0F}
 yuryo 🈶
 koko 🈁
-sa 🈂
+sa 🈂\u{FE0F}
 kebab 🥙
 key 🔑
-  .old 🗝
-keyboard ⌨
+  .old 🗝\u{FE0F}
+keyboard ⌨\u{FE0F}
 kiss 💏
 kissmark 💋
 kite 🪁
 kiwi 🥝
 knife 🔪
-  .dagger 🗡
+  .dagger 🗡\u{FE0F}
 knot 🪢
 koala 🐨
 koinobori 🎏
-label 🏷
+label 🏷\u{FE0F}
 lacrosse 🥍
 ladder 🪜
 lamp
   .diya 🪔
-laptop 💻
-a 🅰
+laptop 💻\u{FE0F}
+a 🅰\u{FE0F}
 ab 🆎
-b 🅱
+b 🅱\u{FE0F}
 cl 🆑
-o 🅾
+o 🅾\u{FE0F}
 leaf
-  .clover.three ☘
+  .clover.three ☘\u{FE0F}
   .clover.four 🍀
   .fall 🍂
   .herb 🌿
@@ -856,7 +856,7 @@ letter
   .love 💌
 liberty 🗽
 lightbulb 💡
-lightning ⚡
+lightning ⚡\u{FE0F}
 lion 🦁
 lipstick 💄
 litter 🚮
@@ -864,9 +864,9 @@ litter 🚮
 lizard 🦎
 llama 🦙
 lobster 🦞
-lock 🔒
+lock 🔒\u{FE0F}
   .key 🔐
-  .open 🔓
+  .open 🔓\u{FE0F}
   .pen 🔏
 lollipop 🍭
 lotion 🧴
@@ -876,24 +876,24 @@ mage 🧙
 magnet 🧲
 magnify
   .r 🔎
-  .l 🔍
+  .l 🔍\u{FE0F}
 mahjong
-  .dragon.red 🀄
-mail ✉
+  .dragon.red 🀄\u{FE0F}
+mail ✉\u{FE0F}
   .arrow 📩
 mailbox
-  .closed.empty 📪
-  .closed.full 📫
-  .open.empty 📭
-  .open.full 📬
+  .closed.empty 📪\u{FE0F}
+  .closed.full 📫\u{FE0F}
+  .open.empty 📭\u{FE0F}
+  .open.full 📬\u{FE0F}
 mammoth 🦣
 mango 🥭
 map
-  .world 🗺
+  .world 🗺\u{FE0F}
   .jp 🗾
 maracas 🪇
 martialarts 🥋
-masks 🎭
+masks 🎭\u{FE0F}
 mate 🧉
 matryoshka 🪆
 meat 🥩
@@ -903,21 +903,21 @@ medal
   .second 🥈
   .third 🥉
   .sports 🏅
-  .military 🎖
+  .military 🎖\u{FE0F}
 megaphone 📢
   .simple 📣
 melon 🍈
 merperson 🧜
-metro Ⓜ
+metro Ⓜ\u{FE0F}
 microbe 🦠
 microphone 🎤
-  .studio 🎙
+  .studio 🎙\u{FE0F}
 microscope 🔬
 milkyway 🌌
 mirror 🪞
-mixer 🎛
+mixer 🎛\u{FE0F}
 money
-  .bag 💰
+  .bag 💰\u{FE0F}
   .dollar 💵
   .euro 💶
   .pound 💷
@@ -930,27 +930,27 @@ monkey 🐒
   .speak.not 🙊
 moon
   .crescent 🌙
-  .full 🌕
+  .full 🌕\u{FE0F}
   .full.face 🌝
   .new 🌑
   .new.face 🌚
   .wane.one 🌖
   .wane.two 🌗
-  .wane.three.face 🌜
+  .wane.three.face 🌜\u{FE0F}
   .wane.three 🌘
   .wax.one 🌒
   .wax.two 🌓
   .wax.two.face 🌛
   .wax.three 🌔
 moose 🫎
-mortarboard 🎓
+mortarboard 🎓\u{FE0F}
 mosque 🕌
 mosquito 🦟
-motorcycle 🏍
-motorway 🛣
-mountain ⛰
+motorcycle 🏍\u{FE0F}
+motorway 🛣\u{FE0F}
+mountain ⛰\u{FE0F}
   .fuji 🗻
-  .snow 🏔
+  .snow 🏔\u{FE0F}
   .sunrise 🌄
 mouse 🐁
   .face 🐭
@@ -958,7 +958,7 @@ mousetrap 🪤
 mouth 👄
   .bite 🫦
 moyai 🗿
-museum 🏛
+museum 🏛\u{FE0F}
 mushroom 🍄
 musicalscore 🎼
 nails
@@ -972,21 +972,21 @@ nest
   .eggs 🪺
 new 🆕
 newspaper 📰
-  .rolled 🗞
+  .rolled 🗞\u{FE0F}
 ng 🆖
 ningyo 🎎
 ninja 🥷
-noentry ⛔
+noentry ⛔\u{FE0F}
 nose 👃
 notebook 📓
   .deco 📔
-notepad 🗒
+notepad 🗒\u{FE0F}
 notes 🎵
   .triple 🎶
 numbers 🔢
 octopus 🐙
 office 🏢
-oil 🛢
+oil 🛢\u{FE0F}
 ok 🆗
 olive 🫒
 oni 👹
@@ -996,23 +996,23 @@ otter 🦦
 owl 🦉
 ox 🐂
 oyster 🦪
-package 📦
+package 📦\u{FE0F}
 paella 🥘
 page 📄
   .curl 📃
   .pencil 📝
-pager 📟
+pager 📟\u{FE0F}
 pages
   .tabs 📑
-painting 🖼
+painting 🖼\u{FE0F}
 palette 🎨
 pancakes 🥞
 panda 🐼
 parachute 🪂
-park 🏞
-parking 🅿
+park 🏞\u{FE0F}
+parking 🅿\u{FE0F}
 parrot 🦜
-partalteration 〽
+partalteration 〽\u{FE0F}
 party 🎉
 peach 🍑
 peacock 🦚
@@ -1022,12 +1022,12 @@ pear 🍐
 pedestrian 🚶
   .not 🚷
 pen
-  .ball 🖊
-  .fountain 🖋
-pencil ✏
+  .ball 🖊\u{FE0F}
+  .fountain 🖋\u{FE0F}
+pencil ✏\u{FE0F}
 penguin 🐧
 pepper 🫑
-  .hot 🌶
+  .hot 🌶\u{FE0F}
 person 🧑
   .angry 🙎
   .beard 🧔
@@ -1053,14 +1053,14 @@ person 🧑
 petri 🧫
 phone 📱
   .arrow 📲
-  .classic ☎
+  .classic ☎\u{FE0F}
   .not 📵
   .off 📴
   .receiver 📞
   .signal 📶
   .vibrate 📳
 piano 🎹
-pick ⛏
+pick ⛏\u{FE0F}
 pie 🥧
 pig 🐖
   .face 🐷
@@ -1078,23 +1078,23 @@ planet 🪐
 plant 🪴
 plaster 🩹
 plate
-  .cutlery 🍽
+  .cutlery 🍽\u{FE0F}
 playback
-  .down ⏬
-  .eject ⏏
-  .forward ⏩
-  .pause ⏸
-  .record ⏺
+  .down ⏬\u{FE0F}
+  .eject ⏏\u{FE0F}
+  .forward ⏩\u{FE0F}
+  .pause ⏸\u{FE0F}
+  .record ⏺\u{FE0F}
   .repeat 🔁
   .repeat.once 🔂
   .repeat.v 🔃
-  .restart ⏮
-  .rewind ⏪
+  .restart ⏮\u{FE0F}
+  .rewind ⏪\u{FE0F}
   .shuffle 🔀
-  .skip ⏭
-  .stop ⏹
-  .toggle ⏯
-  .up ⏫
+  .skip ⏭\u{FE0F}
+  .stop ⏹\u{FE0F}
+  .toggle ⏯\u{FE0F}
+  .up ⏫\u{FE0F}
 playingcard
   .flower 🎴
   .joker 🃏
@@ -1112,34 +1112,34 @@ pouch 👝
 powerplug 🔌
 present 🎁
 pretzel 🥨
-printer 🖨
+printer 🖨\u{FE0F}
 prints
   .foot 👣
   .paw 🐾
 prohibited 🚫
-projector 📽
+projector 📽\u{FE0F}
 pumpkin
   .lantern 🎃
 purse 👛
-quest ❓
-  .white ❔
+quest ❓\u{FE0F}
+  .white ❔\u{FE0F}
 rabbit 🐇
   .face 🐰
 raccoon 🦝
-radio 📻
-radioactive ☢
-railway 🛤
+radio 📻\u{FE0F}
+radioactive ☢\u{FE0F}
+railway 🛤\u{FE0F}
 rainbow 🌈
 ram 🐏
 rat 🐀
 razor 🪒
 receipt 🧾
-recycling ♻
-reg ®
+recycling ♻\u{FE0F}
+reg ®\u{FE0F}
 restroom 🚻
 rhino 🦏
 ribbon 🎀
-  .remind 🎗
+  .remind 🎗\u{FE0F}
 rice 🍚
   .cracker 🍘
   .ear 🌾
@@ -1150,7 +1150,7 @@ robot 🤖
 rock 🪨
 rocket 🚀
 rollercoaster 🎢
-rosette 🏵
+rosette 🏵\u{FE0F}
 rugby 🏉
 ruler 📏
   .triangle 📐
@@ -1165,13 +1165,13 @@ santa
   .man 🎅
   .woman 🤶
 satdish 📡
-satellite 🛰
+satellite 🛰\u{FE0F}
 saw 🪚
 saxophone 🎷
-scales ⚖
+scales ⚖\u{FE0F}
 scarf 🧣
 school 🏫
-scissors ✂
+scissors ✂\u{FE0F}
 scooter 🛴
   .motor 🛵
 scorpion 🦂
@@ -1184,10 +1184,10 @@ shark 🦈
 sheep 🐑
 shell
   .spiral 🐚
-shield 🛡
+shield 🛡\u{FE0F}
 ship 🚢
-  .cruise 🛳
-  .ferry ⛴
+  .cruise 🛳\u{FE0F}
+  .ferry ⛴\u{FE0F}
 shirt
   .sports 🎽
   .t 👕
@@ -1196,48 +1196,48 @@ shoe 👞
   .flat 🥿
   .heel 👠
   .hike 🥾
-  .ice ⛸
+  .ice ⛸\u{FE0F}
   .roller 🛼
   .sandal.heel 👡
   .ski 🎿
   .sneaker 👟
   .tall 👢
   .thong 🩴
-shopping 🛍
+shopping 🛍\u{FE0F}
 shorts 🩳
 shoshinsha 🔰
 shovel 🪏
 shower 🚿
 shrimp 🦐
   .fried 🍤
-shrine ⛩
+shrine ⛩\u{FE0F}
 sign
   .crossing 🚸
   .stop 🛑
 silhouette 👤
   .double 👥
   .hug 🫂
-  .speak 🗣
+  .speak 🗣\u{FE0F}
 siren 🚨
 skateboard 🛹
 skewer
   .dango 🍡
   .oden 🍢
-skiing ⛷
+skiing ⛷\u{FE0F}
 skull 💀
-  .bones ☠
+  .bones ☠\u{FE0F}
 skunk 🦨
 sled 🛷
 slide 🛝
-slider 🎚
+slider 🎚\u{FE0F}
 sloth 🦥
 slots 🎰
 snail 🐌
 snake 🐍
-snowboarding 🏂
-snowflake ❄
-snowman ⛄
-  .snow ☃
+snowboarding 🏂\u{FE0F}
+snowflake ❄\u{FE0F}
+snowman ⛄\u{FE0F}
+  .snow ☃\u{FE0F}
 soap 🧼
 socks 🧦
 softball 🥎
@@ -1245,28 +1245,28 @@ sos 🆘
 soup 🍲
 spaghetti 🍝
 sparkle
-  .box ❇
+  .box ❇\u{FE0F}
 sparkler 🎇
-sparkles ✨
-speaker 🔈
+sparkles ✨\u{FE0F}
+speaker 🔈\u{FE0F}
   .not 🔇
   .wave 🔉
   .waves 🔊
-spider 🕷
-spiderweb 🕸
+spider 🕷\u{FE0F}
+spiderweb 🕸\u{FE0F}
 spinach 🥬
 splatter 🫟
 sponge 🧽
 spoon 🥄
 square
-  .black ⬛
-  .black.tiny ▪
-  .black.small ◾
-  .black.medium ◼
-  .white ⬜
-  .white.tiny ▫
-  .white.small ◽
-  .white.medium ◻
+  .black ⬛\u{FE0F}
+  .black.tiny ▪\u{FE0F}
+  .black.small ◾\u{FE0F}
+  .black.medium ◼\u{FE0F}
+  .white ⬜\u{FE0F}
+  .white.tiny ▫\u{FE0F}
+  .white.small ◽\u{FE0F}
+  .white.medium ◻\u{FE0F}
   .blue 🟦
   .brown 🟫
   .green 🟩
@@ -1275,10 +1275,10 @@ square
   .red 🟥
   .yellow 🟨
 squid 🦑
-stadium 🏟
-star ⭐
+stadium 🏟\u{FE0F}
+star ⭐\u{FE0F}
   .arc 💫
-  .box ✴
+  .box ✴\u{FE0F}
   .glow 🌟
   .shoot 🌠
 stethoscope 🩺
@@ -1287,22 +1287,22 @@ store
   .small 🏪
 strawberry 🍓
 suit
-  .club ♣
-  .diamond ♦
-  .heart ♥
-  .spade ♠
-sun ☀
-  .cloud 🌤
+  .club ♣\u{FE0F}
+  .diamond ♦\u{FE0F}
+  .heart ♥\u{FE0F}
+  .spade ♠\u{FE0F}
+sun ☀\u{FE0F}
+  .cloud 🌤\u{FE0F}
   .face 🌞
 sunrise 🌅
 superhero 🦸
 supervillain 🦹
-surfing 🏄
+surfing 🏄\u{FE0F}
 sushi 🍣
 swan 🦢
-swimming 🏊
+swimming 🏊\u{FE0F}
 swimsuit 🩱
-swords ⚔
+swords ⚔\u{FE0F}
 symbols 🔣
 synagogue 🕍
 syringe 💉
@@ -1323,19 +1323,19 @@ temple 🛕
 ten 🔟
 tengu 👺
 tennis 🎾
-tent ⛺
+tent ⛺\u{FE0F}
 testtube 🧪
-thermometer 🌡
+thermometer 🌡\u{FE0F}
 thread 🧵
 thumb
-  .up 👍
-  .down 👎
+  .up 👍\u{FE0F}
+  .down 👎\u{FE0F}
 ticket
-  .event 🎟
+  .event 🎟\u{FE0F}
   .travel 🎫
 tiger 🐅
   .face 🐯
-tm ™
+tm ™\u{FE0F}
 toilet 🚽
 toiletpaper 🧻
 tomato 🍅
@@ -1344,10 +1344,10 @@ tongue 👅
 toolbox 🧰
 tooth 🦷
 toothbrush 🪥
-tornado 🌪
+tornado 🌪\u{FE0F}
 tower
   .tokyo 🗼
-trackball 🖲
+trackball 🖲\u{FE0F}
 tractor 🚜
 trafficlight
   .v 🚦
@@ -1355,7 +1355,7 @@ trafficlight
 train 🚆
   .car 🚃
   .light 🚈
-  .metro 🚇
+  .metro 🚇\u{FE0F}
   .mono 🚝
   .mountain 🚞
   .speed 🚄
@@ -1365,11 +1365,11 @@ train 🚆
   .suspend 🚟
   .tram 🚊
   .tram.car 🚋
-transgender ⚧
+transgender ⚧\u{FE0F}
 tray
-  .inbox 📥
+  .inbox 📥\u{FE0F}
   .mail 📨
-  .outbox 📤
+  .outbox 📤\u{FE0F}
 tree
   .deciduous 🌳
   .evergreen 🌲
@@ -1377,32 +1377,32 @@ tree
   .palm 🌴
   .xmas 🎄
 triangle
-  .r ▶
-  .l ◀
+  .r ▶\u{FE0F}
+  .l ◀\u{FE0F}
   .t 🔼
   .b 🔽
   .t.red 🔺
   .b.red 🔻
 trident 🔱
 troll 🧌
-trophy 🏆
+trophy 🏆\u{FE0F}
 truck 🚚
   .trailer 🚛
 trumpet 🎺
 tsukimi 🎑
 turkey 🦃
 turtle 🐢
-tv 📺
+tv 📺\u{FE0F}
 ufo 🛸
 umbrella
-  .open ☂
+  .open ☂\u{FE0F}
   .closed 🌂
-  .rain ☔
-  .sun ⛱
+  .rain ☔\u{FE0F}
+  .sun ⛱\u{FE0F}
 unicorn 🦄
 unknown 🦳
 up 🆙
-urn ⚱
+urn ⚱\u{FE0F}
 vampire 🧛
 violin 🎻
 volcano 🌋
@@ -1410,21 +1410,21 @@ volleyball 🏐
 vs 🆚
 waffle 🧇
 wand 🪄
-warning ⚠
-watch ⌚
-  .stop ⏱
+warning ⚠\u{FE0F}
+watch ⌚\u{FE0F}
+  .stop ⏱\u{FE0F}
 watermelon 🍉
 waterpolo 🤽
 wave 🌊
 wc 🚾
-weightlifting 🏋
+weightlifting 🏋\u{FE0F}
 whale 🐋
   .spout 🐳
 wheel 🛞
 wheelchair 🦽
-  .box ♿
+  .box ♿\u{FE0F}
   .motor 🦼
-wind 🌬
+wind 🌬\u{FE0F}
 windchime 🎐
 window 🪟
 wine 🍷
@@ -1432,7 +1432,7 @@ wing 🪽
 wireless 🛜
 wolf 🐺
 woman 👩
-  .box 🚺
+  .box 🚺\u{FE0F}
   .crown 👸
   .old 👵
   .pregnant 🤰
@@ -1445,18 +1445,18 @@ yarn 🧶
 yoyo 🪀
 zebra 🦓
 zodiac
-  .aquarius ♒
-  .aries ♈
-  .cancer ♋
-  .capri ♑
-  .gemini ♊
-  .leo ♌
-  .libra ♎
-  .ophi ⛎
-  .pisces ♓
-  .sagit ♐
-  .scorpio ♏
-  .taurus ♉
-  .virgo ♍
+  .aquarius ♒\u{FE0F}
+  .aries ♈\u{FE0F}
+  .cancer ♋\u{FE0F}
+  .capri ♑\u{FE0F}
+  .gemini ♊\u{FE0F}
+  .leo ♌\u{FE0F}
+  .libra ♎\u{FE0F}
+  .ophi ⛎\u{FE0F}
+  .pisces ♓\u{FE0F}
+  .sagit ♐\u{FE0F}
+  .scorpio ♏\u{FE0F}
+  .taurus ♉\u{FE0F}
+  .virgo ♍\u{FE0F}
 zombie 🧟
 zzz 💤
