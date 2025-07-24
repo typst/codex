@@ -163,8 +163,8 @@ dash
   .o ⊝
   @deprecated: `dash.circle` is deprecated, use `dash.o` instead
   .circle ⊝
-  .wave 〜\u{FE0F}
-  .wave.double 〰
+  .wave 〜
+  .wave.double 〰\u{FE0E}
 dot
   .op ⋅
   .basic \u{2E}
@@ -630,7 +630,7 @@ perp ⟂
 earth 🜨
   .alt ♁
 jupiter ♃
-mars ♂
+mars ♂\u{FE0E}
 mercury ☿
 neptune ♆
   .alt ⯉
@@ -638,7 +638,7 @@ saturn ♄
 sun ☉
 uranus ⛢
   .alt ♅
-venus ♀
+venus ♀\u{FE0E}
 
 // Miscellaneous Technical.
 diameter ⌀
@@ -1269,16 +1269,16 @@ errorbar
   .circle.filled ⧳
 
 gender {
-  female ♀
+  female ♀\u{FE0E}
     .double ⚢
     .male ⚤
   intersex ⚥
-  male ♂
+  male ♂\u{FE0E}
     .double ⚣
     .female ⚤
     .stroke ⚦
     .stroke.t ⚨
     .stroke.r ⚩
   neuter ⚲
-  trans ⚧
+  trans ⚧\u{FE0E}
 }
