@@ -84,7 +84,8 @@ impl Symbol {
     /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
     pub fn variants(
         &self,
-    ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
+    ) -> impl Iterator<Item = (ModifierSet<&'static str>, &'static str, Option<&'static str>)>
+    {
         enum Variants {
             Single(std::iter::Once<&'static str>),
             Multi(
