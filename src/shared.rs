@@ -19,13 +19,13 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
     /// (The `?` is not considered part of the modifier.)
     ///
     /// `s` should not contain any empty modifiers (i.e. it shouldn't contain
-    /// the sequences `..` or `.?.`) and no modifier should occur twice. Otherwise,
-    /// unexpected errors can occur.
+    /// the sequences `..` or `.?` or end in `.`) and no modifier should occur twice.
+    /// Otherwise, unexpected errors can occur.
     pub fn from_raw_dotted(s: S) -> Self {
         // Checking the other requirement too feels like it would be a bit too
         // expensive, even for debug mode.
         debug_assert!(
-            !s.contains("..") && !s.contains(".?."),
+            !s.contains("..") && !s.contains(".?") && !s.ends_with("."),
             "ModifierSet::from_dotted called with string containing empty modifier"
         );
         Self(s)
@@ -36,9 +36,9 @@ impl<S: Deref<Target = str>> ModifierSet<S> {
         self.0.is_empty()
     }
 
-    /// Whether `self` has any optional modifiers.
+    /// Whether `self` has any optional modifier(s).
     pub fn has_optional(&self) -> bool {
-        self.0.ends_with('?') || self.0.contains("?.")
+        self.0.contains('?')
     }
 
     /// Gets the string of modifiers separated by `.`.
@@ -166,17 +166,12 @@ impl<'a> Modifier<'a> {
         self.0
     }
 
-    pub fn name_and_is_optional(self) -> (&'a str, bool) {
-        match self.0.strip_suffix('?') {
-            Some(name) => (name, true),
-            None => (self.0, false),
-        }
-    }
-
+    #[inline]
     pub fn name(self) -> &'a str {
         self.0.strip_suffix('?').unwrap_or(self.0)
     }
 
+    #[inline]
     pub fn is_optional(self) -> bool {
         self.0.ends_with('?')
     }

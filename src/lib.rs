@@ -74,7 +74,7 @@ impl Symbol {
         match self {
             Self::Single(c) => modifs.is_empty().then_some((*c, None)),
             Self::Multi(list) => {
-                modifs.best_match_in(list.iter().copied().map(|(m, c, d)| (m, (c, d))))
+                modifs.best_match_in(list.iter().copied().map(|(ms, c, d)| (ms, (c, d))))
             }
         }
     }
@@ -107,7 +107,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _, _)| m.into_iter().map(|m| m.name()))
+            .flat_map(|(ms, _, _)| ms.into_iter().map(|m| m.name()))
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
@@ -170,15 +170,15 @@ mod test {
             };
             let variants = s
                 .variants()
-                .map(|(m, v, _)| {
-                    (m.into_iter().map(|m| m.as_str()).collect::<BTreeSet<_>>(), v)
+                .map(|(ms, v, _)| {
+                    (ms.into_iter().map(|m| m.as_str()).collect::<BTreeSet<_>>(), v)
                 })
                 .collect::<BTreeSet<_>>();
             let control = control
                 .iter()
-                .map(|&(m, v)| {
+                .map(|&(ms, v)| {
                     (
-                        ModifierSet::from_raw_dotted(m)
+                        ModifierSet::from_raw_dotted(ms)
                             .into_iter()
                             .map(|m| m.as_str())
                             .collect::<BTreeSet<_>>(),
@@ -216,7 +216,7 @@ mod test {
         fn check_symbol(prefix: &str, name: &str, sym: Symbol) {
             // maximum number of modifiers per variant (we don't need to check more than this).
             let max_modifs =
-                sym.variants().map(|(m, ..)| m.iter().count()).max().unwrap();
+                sym.variants().map(|(ms, ..)| ms.iter().count()).max().unwrap();
             let modifs = sym.modifiers().collect::<Vec<_>>();
             let max_index = modifs.len().saturating_sub(1);
 
@@ -231,7 +231,8 @@ mod test {
                         },
                     );
 
-                    if sym.variants().filter(|(m, ..)| mset.is_candidate(*m)).count() > 1
+                    if sym.variants().filter(|(ms, ..)| mset.is_candidate(*ms)).count()
+                        > 1
                     {
                         panic!(
                             "Overlap in symbol {prefix}.{name} for modifiers {}",
@@ -246,12 +247,19 @@ mod test {
             }
         }
 
-        /// Produce the next term in a sequence like
+        /// Produces the (lexicographically) next strictly increasing array of numbers
+        /// less than or equal to `max_index`.
+        ///
+        /// Example:
         /// ```text
         /// [0,1,2], [0,1,3], [0,1,4], [0,2,3], [0,2,4], [0,3,4], [1,2,3], [1,2,4], [1,3,4], [2,3,4]
         /// ```
+        ///
+        /// Invariants:
+        /// - `indices` is strictly increasing
+        /// - All elements of `indices` are `<= max_index`
+        /// - `indices.len() <= max_index + 1` (this is already implied by the previous two)
         fn next_subseq(indices: &mut [usize], max_index: usize) -> Option<()> {
-            // invariant: indices.len() <= max_index + 1
             match indices {
                 [] => None,
                 [single] => {
@@ -264,11 +272,12 @@ mod test {
                 }
                 [left @ .., last] => {
                     assert_ne!(max_index, 0);
+                    assert_ne!(left.len(), 0);
                     if *last < max_index {
                         *last += 1;
                     } else {
                         next_subseq(left, max_index - 1)?;
-                        *last = left.last().copied().map_or(*last, |x| x + 1);
+                        *last = left.last().unwrap() + 1;
                     }
                     Some(())
                 }
