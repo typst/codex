@@ -2,14 +2,17 @@
 //!
 //! ## Model
 //! A [`Symbol`] is a collection of one or more _variants_. Each variant is
-//! identified by a set of [_modifiers_](ModifierSet) and has a single character
-//! as its value. The modifiers themselves can in principle be any non-empty
-//! strings that don't contain the character `.`, but codex only defines ones
-//! that are entirely made of ASCII alphabetical characters.
+//! identified by a set of [_modifiers_](ModifierSet) and has a string as its
+//! value. The modifiers themselves can in principle be any non-empty strings
+//! that don't contain the character `.`, but codex only defines ones that are
+//! entirely made of ASCII alphabetical characters.
 
 pub use self::shared::ModifierSet;
 
 mod shared;
+
+#[cfg(feature = "styling")]
+pub mod styling;
 
 /// A module of definitions.
 #[derive(Debug, Copy, Clone)]
@@ -59,15 +62,15 @@ pub enum Def {
 #[derive(Debug, Copy, Clone)]
 pub enum Symbol {
     /// A symbol without modifiers.
-    Single(char),
+    Single(&'static str),
     /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(ModifierSet<&'static str>, char, Option<&'static str>)]),
+    Multi(&'static [(ModifierSet<&'static str>, &'static str, Option<&'static str>)]),
 }
 
 impl Symbol {
-    /// Get the symbol's character for a given set of modifiers, alongside an optional deprecation
+    /// Get the symbol's variant for a given set of modifiers, alongside an optional deprecation
     /// message.
-    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(char, Option<&str>)> {
+    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(&'static str, Option<&str>)> {
         match self {
             Self::Single(c) => modifs.is_empty().then_some((*c, None)),
             Self::Multi(list) => {
@@ -76,18 +79,18 @@ impl Symbol {
         }
     }
 
-    /// The characters that are covered by this symbol.
+    /// Iterate over the variants of this symbol.
     ///
-    /// Each variant is represented by a tuple `(modifiers, character, deprecation)`.
+    /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
     pub fn variants(
         &self,
-    ) -> impl Iterator<Item = (ModifierSet<&str>, char, Option<&str>)> {
+    ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
         enum Variants {
-            Single(std::iter::Once<char>),
+            Single(std::iter::Once<&'static str>),
             Multi(
                 std::slice::Iter<
                     'static,
-                    (ModifierSet<&'static str>, char, Option<&'static str>),
+                    (ModifierSet<&'static str>, &'static str, Option<&'static str>),
                 >,
             ),
         }
@@ -121,6 +124,7 @@ include!(concat!(env!("OUT_DIR"), "/out.rs"));
 #[cfg(test)]
 mod test {
     use super::*;
+    use std::collections::BTreeSet;
 
     #[test]
     fn all_modules_sorted() {
@@ -135,5 +139,52 @@ mod test {
         }
 
         assert_sorted_recursively(ROOT);
+    }
+
+    #[test]
+    fn unicode_escapes() {
+        let Def::Symbol(wj) = SYM.get("wj").unwrap().def else { panic!() };
+        assert_eq!(wj.get(ModifierSet::default()).unwrap().0, "\u{2060}");
+        let Def::Symbol(space) = SYM.get("space").unwrap().def else { panic!() };
+        assert_eq!(space.get(ModifierSet::default()).unwrap().0, " ");
+        assert_eq!(
+            space.get(ModifierSet::from_raw_dotted("nobreak")).unwrap().0,
+            "\u{A0}"
+        );
+    }
+
+    #[test]
+    fn random_sample() {
+        for (key, control) in [
+            (
+                "backslash",
+                [("", "\\"), ("circle", "⦸"), ("not", "⧷"), ("o", "⦸")].as_slice(),
+            ),
+            ("chi", &[("", "χ")]),
+            ("forces", &[("", "⊩"), ("not", "⊮")]),
+            ("interleave", &[("", "⫴"), ("big", "⫼"), ("struck", "⫵")]),
+            ("uranus", &[("", "⛢"), ("alt", "♅")]),
+        ] {
+            let Def::Symbol(s) = SYM.get(key).unwrap().def else {
+                panic!("{key:?} is not a symbol")
+            };
+            let variants = s
+                .variants()
+                .map(|(m, v, _)| (m.into_iter().collect::<BTreeSet<_>>(), v))
+                .collect::<BTreeSet<_>>();
+            let control = control
+                .iter()
+                .map(|&(m, v)| {
+                    (
+                        ModifierSet::from_raw_dotted(m)
+                            .into_iter()
+                            .collect::<BTreeSet<_>>(),
+                        v,
+                    )
+                })
+                .collect::<BTreeSet<_>>();
+
+            assert_eq!(variants, control);
+        }
     }
 }
