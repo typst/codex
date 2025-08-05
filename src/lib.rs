@@ -125,7 +125,9 @@ include!(concat!(env!("OUT_DIR"), "/out.rs"));
 #[cfg(test)]
 mod test {
     use super::*;
-    use std::collections::{BTreeSet, HashSet};
+    use std::collections::BTreeSet;
+    #[cfg(feature = "_test-unicode-conformance")]
+    use std::collections::HashSet;
 
     #[test]
     fn all_modules_sorted() {
@@ -219,8 +221,9 @@ mod test {
     /// Returns the list of presentation sequences defined by Unicode.
     ///
     /// See: https://www.unicode.org/reports/tr51/#Emoji_Variation_Sequences.
+    #[cfg(feature = "_test-unicode-conformance")]
     fn get_valid_presentation_sequences() -> HashSet<String> {
-        reqwest::blocking::get("https://www.unicode.org/Public/UCD/latest/ucd/emoji/emoji-variation-sequences.txt").unwrap().text().unwrap()
+        include_str!(concat!(env!("OUT_DIR"), "/emoji-variation-sequences.txt"))
             .lines()
             .filter_map(|l| {
                 let line = l.split('#').next().unwrap_or(l);
@@ -239,6 +242,7 @@ mod test {
             .collect()
     }
 
+    #[cfg(feature = "_test-unicode-conformance")]
     #[test]
     fn no_invalid_presentation_sequence() {
         let sequences = get_valid_presentation_sequences();
@@ -256,6 +260,7 @@ mod test {
         )
     }
 
+    #[cfg(feature = "_test-unicode-conformance")]
     #[test]
     fn symbols_have_text_presentation() {
         let require_presentation_selector = get_valid_presentation_sequences()
@@ -271,6 +276,7 @@ mod test {
         )
     }
 
+    #[cfg(feature = "_test-unicode-conformance")]
     #[test]
     fn emojis_have_emoji_presentation() {
         let require_presentation_selector = get_valid_presentation_sequences()
