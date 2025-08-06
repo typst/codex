@@ -24,11 +24,13 @@ space \u{20}
 // Delimiters.
 paren
   .l (
+  .l.flat ⟮
   .l.closed ⦇
   .l.stroked ⦅
   @deprecated: `paren.l.double` is deprecated, use `paren.l.stroked` instead
   .l.double ⦅
   .r )
+  .r.flat ⟯
   .r.closed ⦈
   .r.stroked ⦆
   @deprecated: `paren.r.double` is deprecated, use `paren.r.stroked` instead
@@ -48,10 +50,14 @@ brace
   .b ⏟
 bracket
   .l [
+  .l.tick.t ⦍
+  .l.tick.b ⦏
   .l.stroked ⟦
   @deprecated: `bracket.l.double` is deprecated, use `bracket.l.stroked` instead
   .l.double ⟦
   .r ]
+  .r.tick.t ⦐
+  .r.tick.b ⦎
   .r.stroked ⟧
   @deprecated: `bracket.r.double` is deprecated, use `bracket.r.stroked` instead
   .r.double ⟧
@@ -70,6 +76,12 @@ shell
   .r.double ⟭
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+mustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
@@ -85,7 +97,7 @@ fence
   .r ⧙
   .r.double ⧛
   .dotted ⦙
-angle ∠
+chevron
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
@@ -96,33 +108,21 @@ angle ∠
   .r.dot ⦒
   .r.closed ⦊
   .r.double ⟫
-  .acute ⦟
-  .arc ∡
-  .arc.rev ⦛
-  .oblique ⦦
-  .rev ⦣
-  .right ∟
-  .right.rev ⯾
-  .right.arc ⊾
-  .right.dot ⦝
-  .right.sq ⦜
-  .s ⦞
-  .spatial ⟀
-  .spheric ∢
-  .spheric.rev ⦠
-  .spheric.t ⦡
-  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
-  .spheric.top ⦡
 ceil
   .l ⌈
   .r ⌉
 floor
   .l ⌊
   .r ⌋
-amp &
-  .inv ⅋
+corner
+  .l.t ⌜
+  .l.b ⌞
+  .r.t ⌝
+  .r.b ⌟
 
 // Punctuation.
+amp &
+  .inv ⅋
 ast
   .op ∗
   .op.o ⊛
@@ -253,9 +253,17 @@ quote
   .l.single ‘
   .r.double ”
   .r.single ’
+  .chevron.l.double «
+  .chevron.l.single ‹
+  .chevron.r.double »
+  .chevron.r.single ›
+  @deprecated: `quote.angle.l.double` is deprecated, use `quote.chevron.l.double` instead
   .angle.l.double «
+  @deprecated: `quote.angle.l.single` is deprecated, use `quote.chevron.l.single` instead
   .angle.l.single ‹
+  @deprecated: `quote.angle.r.double` is deprecated, use `quote.chevron.r.double` instead
   .angle.r.double »
+  @deprecated: `quote.angle.r.single` is deprecated, use `quote.chevron.r.single` instead
   .angle.r.single ›
   .high.double ‟
   .high.single ‛
@@ -274,6 +282,8 @@ prime ′
 // Arithmetic.
 plus +
   .o ⊕
+  .o.l ⨭
+  .o.r ⨮
   .o.arrow ⟴
   .o.big ⨁
   @deprecated: `plus.circle` is deprecated, use `plus.o` instead
@@ -301,11 +311,15 @@ minus −
   .triangle ⨺
 div ÷
   .o ⨸
+  .slanted.o ⦼
   @deprecated: `div.circle` is deprecated, use `div.o` instead
   .circle ⨸
 times ×
   .big ⨉
   .o ⊗
+  .o.l ⨴
+  .o.r ⨵
+  .o.hat ⨶
   .o.big ⨂
   @deprecated: `times.circle` is deprecated, use `times.o` instead
   .circle ⊗
@@ -607,6 +621,41 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angle ∠
+  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
+  .l ⟨
+  @deprecated: `angle.l.curly` is deprecated, use `chevron.l.curly` instead
+  .l.curly ⧼
+  @deprecated: `angle.l.dot` is deprecated, use `chevron.l.dot` instead
+  .l.dot ⦑
+  @deprecated: `angle.l.double` is deprecated, use `chevron.l.double` instead
+  .l.double ⟪
+  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
+  .r ⟩
+  @deprecated: `angle.r.curly` is deprecated, use `chevron.r.curly` instead
+  .r.curly ⧽
+  @deprecated: `angle.r.dot` is deprecated, use `chevron.r.dot` instead
+  .r.dot ⦒
+  @deprecated: `angle.r.double` is deprecated, use `chevron.r.double` instead
+  .r.double ⟫
+  .acute ⦟
+  .arc ∡
+  .arc.rev ⦛
+  .azimuth ⍼
+  .oblique ⦦
+  .rev ⦣
+  .right ∟
+  .right.rev ⯾
+  .right.arc ⊾
+  .right.dot ⦝
+  .right.sq ⦜
+  .s ⦞
+  .spatial ⟀
+  .spheric ∢
+  .spheric.rev ⦠
+  .spheric.t ⦡
+  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
+  .spheric.top ⦡
 angzarr ⍼
 parallel ∥
   .struck ⫲
