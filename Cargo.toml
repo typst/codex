@@ -11,8 +11,8 @@ categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
 
 [features]
-default = ["styling", "numbering-formats"]
-numbering-formats = ["chinese-number", "ecow"]
+default = ["styling", "numbering-systems"]
+numbering-systems = ["chinese-number", "ecow"]
 styling = []
 
 [dependencies]

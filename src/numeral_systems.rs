@@ -39,10 +39,10 @@ macro_rules! declare_variants {
 }
 
 declare_variants! {
-    /// Formats for displaying numbers.
+    /// Various numeral systems used worldwide.
     #[non_exhaustive]
     #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
-    pub enum NumberFormat {
+    pub enum NumeralSystem {
         /// Arabic numerals (1, 2, 3, etc.).
         Arabic = "arabic",
         /// Lowercase Latin letters (a, b, c, etc.). Items beyond z use base-26.
@@ -103,8 +103,8 @@ declare_variants! {
     }
 }
 
-impl NumberFormat {
-    /// Apply the numbering to the given number.
+impl NumeralSystem {
+    /// Represents a non-negative integer with this numeral system.
     pub fn apply(self, n: u64) -> EcoString {
         match self {
             Self::Arabic => {

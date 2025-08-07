@@ -11,8 +11,8 @@ pub use self::shared::ModifierSet;
 
 mod shared;
 
-#[cfg(feature = "numbering-formats")]
-pub mod numbering_formats;
+#[cfg(feature = "numbering-systems")]
+pub mod numeral_systems;
 
 #[cfg(feature = "styling")]
 pub mod styling;
