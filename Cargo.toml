@@ -11,5 +11,10 @@ categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
 
 [features]
-default = ["styling"]
+default = ["styling", "numbering-formats"]
+numbering-formats = ["chinese-number", "ecow"]
 styling = []
+
+[dependencies]
+chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
+ecow = { version = "0.2.6", optional = true }
