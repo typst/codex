@@ -68,6 +68,24 @@ fn main() {
     let out = std::env::var_os("OUT_DIR").unwrap();
     let dest = Path::new(&out).join("out.rs");
     std::fs::write(&dest, buf).unwrap();
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    {
+        let emoji_vs_list = Path::new(&out).join("emoji-variation-sequences.txt");
+        if !std::fs::read_to_string(&emoji_vs_list)
+            .is_ok_and(|text| text.contains("Emoji Version 16.0"))
+        {
+            let content = ureq::get(
+                "https://www.unicode.org/Public/16.0.0/ucd/emoji/emoji-variation-sequences.txt",
+            )
+                .call()
+                .unwrap()
+                .body_mut()
+                .read_to_string()
+                .unwrap();
+            std::fs::write(emoji_vs_list, content).unwrap();
+        }
+    }
 }
 
 /// Processes a single file and turns it into a global module.

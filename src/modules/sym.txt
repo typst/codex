@@ -126,7 +126,7 @@ amp &
 ast
   .op ∗
   .op.o ⊛
-  .basic *
+  .basic *\u{FE0E}
   .low ⁎
   .double ⁑
   .triple ⁂
@@ -164,12 +164,12 @@ dash
   .em.two ⸺
   .em.three ⸻
   .fig ‒
-  .wave 〜
   .colon ∹
   .o ⊝
   @deprecated: `dash.circle` is deprecated, use `dash.o` instead
   .circle ⊝
-  .wave.double 〰
+  .wave 〜
+  .wave.double 〰\u{FE0E}
 dot
   .op ⋅
   .basic \u{2E}
@@ -185,16 +185,16 @@ dot
   .triple \u{20DB}
   .quad \u{20DC}
 excl !
-  .double ‼
+  .double ‼\u{FE0E}
   .inv ¡
-  .quest ⁉
+  .quest ⁉\u{FE0E}
 quest ?
   .double ⁇
   .excl ⁈
   .inv ¿
 interrobang ‽
   .inv ⸘
-hash #
+hash #\u{FE0E}
 hyph ‐
   .minus \u{2D}
   .nobreak \u{2011}
@@ -678,7 +678,7 @@ perp ⟂
 earth 🜨
   .alt ♁
 jupiter ♃
-mars ♂
+mars ♂\u{FE0E}
 mercury ☿
 neptune ♆
   .alt ⯉
@@ -686,7 +686,7 @@ saturn ♄
 sun ☉
 uranus ⛢
   .alt ♅
-venus ♀
+venus ♀\u{FE0E}
 
 // Miscellaneous Technical.
 diameter ⌀
@@ -756,11 +756,11 @@ yuan ¥
 // Miscellaneous.
 ballot ☐
   .cross ☒
-  .check ☑
+  .check ☑\u{FE0E}
   .check.heavy 🗹
 checkmark ✓
   .light 🗸
-  .heavy ✔
+  .heavy ✔\u{FE0E}
 crossmark ✗
   .heavy ✘
 floral ❦
@@ -774,21 +774,21 @@ cc 🅭
   .public 🅮
   .sa 🄎
   .zero 🄍
-copyright ©
+copyright ©\u{FE0E}
   .sound ℗
 copyleft 🄯
-trademark ™
-  .registered ®
+trademark ™\u{FE0E}
+  .registered ®\u{FE0E}
   .service ℠
 maltese ✠
 suit
-  .club.filled ♣
+  .club.filled ♣\u{FE0E}
   .club.stroked ♧
-  .diamond.filled ♦
+  .diamond.filled ♦\u{FE0E}
   .diamond.stroked ♢
-  .heart.filled ♥
+  .heart.filled ♥\u{FE0E}
   .heart.stroked ♡
-  .spade.filled ♠
+  .spade.filled ♠\u{FE0E}
   .spade.stroked ♤
 
 // Music.
@@ -874,8 +874,8 @@ triangle
   .stroked.dot ◬
   .filled.t ▲
   .filled.b ▼
-  .filled.r ▶
-  .filled.l ◀
+  .filled.r ▶\u{FE0E}
+  .filled.l ◀\u{FE0E}
   .filled.bl ◣
   .filled.br ◢
   .filled.tl ◤
@@ -886,17 +886,17 @@ triangle
   .filled.small.l ◂
 square
   .stroked □
-  .stroked.tiny ▫
-  .stroked.small ◽
-  .stroked.medium ◻
-  .stroked.big ⬜
+  .stroked.tiny ▫\u{FE0E}
+  .stroked.small ◽\u{FE0E}
+  .stroked.medium ◻\u{FE0E}
+  .stroked.big ⬜\u{FE0E}
   .stroked.dotted ⬚
   .stroked.rounded ▢
   .filled ■
-  .filled.tiny ▪
-  .filled.small ◾
-  .filled.medium ◼
-  .filled.big ⬛
+  .filled.tiny ▪\u{FE0E}
+  .filled.small ◾\u{FE0E}
+  .filled.medium ◼\u{FE0E}
+  .filled.big ⬛\u{FE0E}
 rect
   .stroked.h ▭
   .stroked.v ▯
@@ -946,8 +946,8 @@ arrow
   .r.double.long.bar ⟾
   .r.double.not ⇏
   .r.double.struck ⤃
-  .r.filled ➡
-  .r.hook ↪
+  .r.filled ➡\u{FE0E}
+  .r.hook ↪\u{FE0E}
   .r.long ⟶
   .r.long.squiggly ⟿
   .r.loop ↬
@@ -984,8 +984,8 @@ arrow
   .l.double.long.bar ⟽
   .l.double.not ⇍
   .l.double.struck ⤂
-  .l.filled ⬅
-  .l.hook ↩
+  .l.filled ⬅\u{FE0E}
+  .l.hook ↩\u{FE0E}
   .l.long ⟵
   .l.long.bar ⟻
   .l.long.squiggly ⬳
@@ -1013,11 +1013,11 @@ arrow
   .l.wave ↜
   .t ↑
   .t.bar ↥
-  .t.curve ⤴
+  .t.curve ⤴\u{FE0E}
   .t.turn ⮍
   .t.dashed ⇡
   .t.double ⇑
-  .t.filled ⬆
+  .t.filled ⬆\u{FE0E}
   .t.quad ⟰
   .t.stop ⤒
   .t.stroked ⇧
@@ -1027,11 +1027,11 @@ arrow
   .t.twohead ↟
   .b ↓
   .b.bar ↧
-  .b.curve ⤵
+  .b.curve ⤵\u{FE0E}
   .b.turn ⮏
   .b.dashed ⇣
   .b.double ⇓
-  .b.filled ⬇
+  .b.filled ⬇\u{FE0E}
   .b.quad ⟱
   .b.stop ⤓
   .b.stroked ⇩
@@ -1039,7 +1039,7 @@ arrow
   .b.dstruck ⇟
   .b.triple ⤋
   .b.twohead ↡
-  .l.r ↔
+  .l.r ↔\u{FE0E}
   .l.r.double ⇔
   .l.r.double.long ⟺
   .l.r.double.not ⇎
@@ -1052,26 +1052,26 @@ arrow
   .l.r.dstruck ⇼
   .l.r.open ⇿
   .l.r.wave ↭
-  .t.b ↕
+  .t.b ↕\u{FE0E}
   .t.b.double ⇕
   .t.b.filled ⬍
   .t.b.stroked ⇳
-  .tr ↗
+  .tr ↗\u{FE0E}
   .tr.double ⇗
   .tr.filled ⬈
   .tr.hook ⤤
   .tr.stroked ⬀
-  .br ↘
+  .br ↘\u{FE0E}
   .br.double ⇘
   .br.filled ⬊
   .br.hook ⤥
   .br.stroked ⬂
-  .tl ↖
+  .tl ↖\u{FE0E}
   .tl.double ⇖
   .tl.filled ⬉
   .tl.hook ⤣
   .tl.stroked ⬁
-  .bl ↙
+  .bl ↙\u{FE0E}
   .bl.double ⇙
   .bl.filled ⬋
   .bl.hook ⤦
@@ -1317,16 +1317,16 @@ errorbar
   .circle.filled ⧳
 
 gender {
-  female ♀
+  female ♀\u{FE0E}
     .double ⚢
     .male ⚤
   intersex ⚥
-  male ♂
+  male ♂\u{FE0E}
     .double ⚣
     .female ⚤
     .stroke ⚦
     .stroke.t ⚨
     .stroke.r ⚩
   neuter ⚲
-  trans ⚧
+  trans ⚧\u{FE0E}
 }
