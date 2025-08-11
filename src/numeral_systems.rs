@@ -1,7 +1,7 @@
 //! Various ways of displaying integers.
 
 use chinese_number::{from_u64_to_chinese_ten_thousand, ChineseCase, ChineseVariant};
-use ecow::{eco_format, EcoString};
+use std::fmt::{Display, Formatter};
 
 macro_rules! declare_variants {
     {
@@ -104,13 +104,35 @@ declare_variants! {
 }
 
 impl NumeralSystem {
-    /// Represents a non-negative integer with this numeral system.
-    pub fn apply(self, n: u64) -> EcoString {
-        match self {
-            Self::Arabic => {
-                numeric(&['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], n)
-            }
-            Self::LowerRoman => additive(
+    /// Formats a number using this numeral system.
+    ///
+    /// The returned value implements [`Display`], meaning it can be used in
+    /// [`format!()`].
+    pub fn apply(self, n: u64) -> FormattedNumber {
+        FormattedNumber { system: self, number: n }
+    }
+}
+
+/// A number, together with a numeral system to display it with.
+///
+/// Notably, this type implements [`Display`] and is thus compatible with
+/// [`format!()`].
+#[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
+pub struct FormattedNumber {
+    system: NumeralSystem,
+    number: u64,
+}
+
+impl Display for FormattedNumber {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self.system {
+            NumeralSystem::Arabic => positional(
+                f,
+                &['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+                self.number,
+            ),
+            NumeralSystem::LowerRoman => additive(
+                f,
                 &[
                     ("m̅", 1000000),
                     ("d̅", 500000),
@@ -134,9 +156,10 @@ impl NumeralSystem {
                     ("i", 1),
                     ("n", 0),
                 ],
-                n,
+                self.number,
             ),
-            Self::UpperRoman => additive(
+            NumeralSystem::UpperRoman => additive(
+                f,
                 &[
                     ("M̅", 1000000),
                     ("D̅", 500000),
@@ -160,9 +183,10 @@ impl NumeralSystem {
                     ("I", 1),
                     ("N", 0),
                 ],
-                n,
+                self.number,
             ),
-            Self::LowerGreek => additive(
+            NumeralSystem::LowerGreek => additive(
+                f,
                 &[
                     ("͵θ", 9000),
                     ("͵η", 8000),
@@ -202,9 +226,10 @@ impl NumeralSystem {
                     ("α", 1),
                     ("𐆊", 0),
                 ],
-                n,
+                self.number,
             ),
-            Self::UpperGreek => additive(
+            NumeralSystem::UpperGreek => additive(
+                f,
                 &[
                     ("͵Θ", 9000),
                     ("͵Η", 8000),
@@ -244,9 +269,10 @@ impl NumeralSystem {
                     ("Α", 1),
                     ("𐆊", 0),
                 ],
-                n,
+                self.number,
             ),
-            Self::Hebrew => additive(
+            NumeralSystem::Hebrew => additive(
+                f,
                 &[
                     ("ת", 400),
                     ("ש", 300),
@@ -277,23 +303,26 @@ impl NumeralSystem {
                     ("א", 1),
                     ("-", 0),
                 ],
-                n,
+                self.number,
             ),
-            Self::LowerLatin => alphabetic(
+            NumeralSystem::LowerLatin => bijective(
+                f,
                 &[
                     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
                     'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
                 ],
-                n,
+                self.number,
             ),
-            Self::UpperLatin => alphabetic(
+            NumeralSystem::UpperLatin => bijective(
+                f,
                 &[
                     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
                     'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
                 ],
-                n,
+                self.number,
             ),
-            Self::HiraganaAiueo => alphabetic(
+            NumeralSystem::HiraganaAiueo => bijective(
+                f,
                 &[
                     'あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ', 'さ',
                     'し', 'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と', 'な', 'に',
@@ -301,9 +330,10 @@ impl NumeralSystem {
                     'め', 'も', 'や', 'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'わ',
                     'を', 'ん',
                 ],
-                n,
+                self.number,
             ),
-            Self::HiraganaIroha => alphabetic(
+            NumeralSystem::HiraganaIroha => bijective(
+                f,
                 &[
                     'い', 'ろ', 'は', 'に', 'ほ', 'へ', 'と', 'ち', 'り', 'ぬ', 'る',
                     'を', 'わ', 'か', 'よ', 'た', 'れ', 'そ', 'つ', 'ね', 'な', 'ら',
@@ -311,9 +341,10 @@ impl NumeralSystem {
                     'え', 'て', 'あ', 'さ', 'き', 'ゆ', 'め', 'み', 'し', 'ゑ', 'ひ',
                     'も', 'せ', 'す',
                 ],
-                n,
+                self.number,
             ),
-            Self::KatakanaAiueo => alphabetic(
+            NumeralSystem::KatakanaAiueo => bijective(
+                f,
                 &[
                     'ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ', 'サ',
                     'シ', 'ス', 'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト', 'ナ', 'ニ',
@@ -321,9 +352,10 @@ impl NumeralSystem {
                     'メ', 'モ', 'ヤ', 'ユ', 'ヨ', 'ラ', 'リ', 'ル', 'レ', 'ロ', 'ワ',
                     'ヲ', 'ン',
                 ],
-                n,
+                self.number,
             ),
-            Self::KatakanaIroha => alphabetic(
+            NumeralSystem::KatakanaIroha => bijective(
+                f,
                 &[
                     'イ', 'ロ', 'ハ', 'ニ', 'ホ', 'ヘ', 'ト', 'チ', 'リ', 'ヌ', 'ル',
                     'ヲ', 'ワ', 'カ', 'ヨ', 'タ', 'レ', 'ソ', 'ツ', 'ネ', 'ナ', 'ラ',
@@ -331,31 +363,35 @@ impl NumeralSystem {
                     'エ', 'テ', 'ア', 'サ', 'キ', 'ユ', 'メ', 'ミ', 'シ', 'ヱ', 'ヒ',
                     'モ', 'セ', 'ス',
                 ],
-                n,
+                self.number,
             ),
-            Self::KoreanJamo => alphabetic(
+            NumeralSystem::KoreanJamo => bijective(
+                f,
                 &[
                     'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ',
                     'ㅌ', 'ㅍ', 'ㅎ',
                 ],
-                n,
+                self.number,
             ),
-            Self::KoreanSyllable => alphabetic(
+            NumeralSystem::KoreanSyllable => bijective(
+                f,
                 &[
                     '가', '나', '다', '라', '마', '바', '사', '아', '자', '차', '카',
                     '타', '파', '하',
                 ],
-                n,
+                self.number,
             ),
-            Self::BengaliLetter => alphabetic(
+            NumeralSystem::BengaliLetter => bijective(
+                f,
                 &[
                     'ক', 'খ', 'গ', 'ঘ', 'ঙ', 'চ', 'ছ', 'জ', 'ঝ', 'ঞ', 'ট', 'ঠ', 'ড', 'ঢ',
                     'ণ', 'ত', 'থ', 'দ', 'ধ', 'ন', 'প', 'ফ', 'ব', 'ভ', 'ম', 'য', 'র', 'ল',
                     'শ', 'ষ', 'স', 'হ',
                 ],
-                n,
+                self.number,
             ),
-            Self::CircledNumber => fixed(
+            NumeralSystem::CircledNumber => fixed(
+                f,
                 &[
                     '⓪', '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫', '⑬',
                     '⑭', '⑮', '⑯', '⑰', '⑱', '⑲', '⑳', '㉑', '㉒', '㉓', '㉔', '㉕',
@@ -363,50 +399,74 @@ impl NumeralSystem {
                     '㊲', '㊳', '㊴', '㊵', '㊶', '㊷', '㊸', '㊹', '㊺', '㊻', '㊼',
                     '㊽', '㊾', '㊿',
                 ],
-                n,
+                self.number,
             ),
-            Self::DoubleCircledNumber => {
-                fixed(&['0', '⓵', '⓶', '⓷', '⓸', '⓹', '⓺', '⓻', '⓼', '⓽', '⓾'], n)
-            }
+            NumeralSystem::DoubleCircledNumber => fixed(
+                f,
+                &['0', '⓵', '⓶', '⓷', '⓸', '⓹', '⓺', '⓻', '⓼', '⓽', '⓾'],
+                self.number,
+            ),
 
-            Self::LowerSimplifiedChinese => from_u64_to_chinese_ten_thousand(
-                ChineseVariant::Simple,
-                ChineseCase::Lower,
-                n,
-            )
-            .into(),
-            Self::UpperSimplifiedChinese => from_u64_to_chinese_ten_thousand(
-                ChineseVariant::Simple,
-                ChineseCase::Upper,
-                n,
-            )
-            .into(),
-            Self::LowerTraditionalChinese => from_u64_to_chinese_ten_thousand(
-                ChineseVariant::Traditional,
-                ChineseCase::Lower,
-                n,
-            )
-            .into(),
-            Self::UpperTraditionalChinese => from_u64_to_chinese_ten_thousand(
-                ChineseVariant::Traditional,
-                ChineseCase::Upper,
-                n,
-            )
-            .into(),
+            NumeralSystem::LowerSimplifiedChinese => write!(
+                f,
+                "{}",
+                from_u64_to_chinese_ten_thousand(
+                    ChineseVariant::Simple,
+                    ChineseCase::Lower,
+                    self.number,
+                )
+            ),
+            NumeralSystem::UpperSimplifiedChinese => write!(
+                f,
+                "{}",
+                from_u64_to_chinese_ten_thousand(
+                    ChineseVariant::Simple,
+                    ChineseCase::Upper,
+                    self.number,
+                )
+            ),
+            NumeralSystem::LowerTraditionalChinese => write!(
+                f,
+                "{}",
+                from_u64_to_chinese_ten_thousand(
+                    ChineseVariant::Traditional,
+                    ChineseCase::Lower,
+                    self.number,
+                )
+            ),
+            NumeralSystem::UpperTraditionalChinese => write!(
+                f,
+                "{}",
+                from_u64_to_chinese_ten_thousand(
+                    ChineseVariant::Traditional,
+                    ChineseCase::Upper,
+                    self.number,
+                )
+            ),
 
-            Self::EasternArabic => {
-                numeric(&['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'], n)
+            NumeralSystem::EasternArabic => positional(
+                f,
+                &['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'],
+                self.number,
+            ),
+            NumeralSystem::EasternArabicPersian => positional(
+                f,
+                &['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'],
+                self.number,
+            ),
+            NumeralSystem::DevanagariNumber => positional(
+                f,
+                &['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'],
+                self.number,
+            ),
+            NumeralSystem::BengaliNumber => positional(
+                f,
+                &['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'],
+                self.number,
+            ),
+            NumeralSystem::Symbol => {
+                symbolic(f, &['*', '†', '‡', '§', '¶', '‖'], self.number)
             }
-            Self::EasternArabicPersian => {
-                numeric(&['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'], n)
-            }
-            Self::DevanagariNumber => {
-                numeric(&['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'], n)
-            }
-            Self::BengaliNumber => {
-                numeric(&['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'], n)
-            }
-            Self::Symbol => symbolic(&['*', '†', '‡', '§', '¶', '‖'], n),
         }
     }
 }
@@ -434,30 +494,30 @@ impl NumeralSystem {
 /// ```
 ///
 /// This is the start of the familiar Roman numeral system.
-fn additive(symbols: &[(&str, u64)], mut n: u64) -> EcoString {
+fn additive(
+    f: &mut Formatter<'_>,
+    symbols: &[(&str, u64)],
+    mut n: u64,
+) -> std::fmt::Result {
     if n == 0 {
         if let Some(&(symbol, 0)) = symbols.last() {
-            return symbol.into();
+            return write!(f, "{}", symbol);
         }
-        return '0'.into();
+        return write!(f, "0");
     }
 
-    let mut s = EcoString::new();
     for (symbol, weight) in symbols {
         if *weight == 0 || *weight > n {
             continue;
         }
         let reps = n / weight;
         for _ in 0..reps {
-            s.push_str(symbol);
+            write!(f, "{}", symbol)?
         }
 
         n -= weight * reps;
-        if n == 0 {
-            return s;
-        }
     }
-    s
+    Ok(())
 }
 
 /// Formats a number using a big-endian
@@ -479,18 +539,21 @@ fn additive(symbols: &[(&str, u64)], mut n: u64) -> EcoString {
 /// ```
 ///
 /// A similar system is commonly used in spreadsheet software.
-fn alphabetic(symbols: &[char], mut n: u64) -> EcoString {
-    let n_digits = symbols.len() as u64;
+fn bijective(f: &mut Formatter<'_>, symbols: &[char], mut n: u64) -> std::fmt::Result {
+    let radix = symbols.len() as u64;
     if n == 0 {
-        return '-'.into();
+        return write!(f, "-");
     }
-    let mut s = EcoString::new();
+    let mut digits = Vec::new();
     while n != 0 {
         n -= 1;
-        s.push(symbols[(n % n_digits) as usize]);
-        n /= n_digits;
+        digits.push(symbols[(n % radix) as usize]);
+        n /= radix;
     }
-    s.chars().rev().collect()
+    for digit in digits.iter().rev() {
+        write!(f, "{}", digit)?
+    }
+    Ok(())
 }
 
 /// Formats a number using the symbols provided, defaulting to the arabic
@@ -507,12 +570,13 @@ fn alphabetic(symbols: &[char], mut n: u64) -> EcoString {
 /// 4 => "4"
 /// ...
 /// ```
-fn fixed(symbols: &[char], n: u64) -> EcoString {
+fn fixed(f: &mut Formatter<'_>, symbols: &[char], n: u64) -> std::fmt::Result {
     let n_digits = symbols.len() as u64;
     if n < n_digits {
-        return symbols[n as usize].into();
+        write!(f, "{}", symbols[n as usize])
+    } else {
+        write!(f, "{n}")
     }
-    eco_format!("{n}")
 }
 
 /// Formats a number using a big-endian
@@ -532,17 +596,20 @@ fn fixed(symbols: &[char], n: u64) -> EcoString {
 /// ```
 ///
 /// This is the familiar ternary numeral system.
-fn numeric(symbols: &[char], mut n: u64) -> EcoString {
-    let n_digits = symbols.len() as u64;
+fn positional(f: &mut Formatter<'_>, symbols: &[char], mut n: u64) -> std::fmt::Result {
+    let radix = symbols.len() as u64;
     if n == 0 {
-        return symbols[0].into();
+        return write!(f, "{}", symbols[0]);
     }
-    let mut s = EcoString::new();
+    let mut digits = Vec::new();
     while n != 0 {
-        s.push(symbols[(n % n_digits) as usize]);
-        n /= n_digits;
+        digits.push(symbols[(n % radix) as usize]);
+        n /= radix;
     }
-    s.chars().rev().collect()
+    for digit in digits.iter().rev() {
+        write!(f, "{}", digit)?
+    }
+    Ok(())
 }
 
 /// Formats a number using repeating symbols.
@@ -560,11 +627,13 @@ fn numeric(symbols: &[char], mut n: u64) -> EcoString {
 /// 7 => "AAA"
 /// ...
 /// ```
-fn symbolic(symbols: &[char], n: u64) -> EcoString {
+fn symbolic(f: &mut Formatter<'_>, symbols: &[char], n: u64) -> std::fmt::Result {
     let n_digits = symbols.len() as u64;
     if n == 0 {
-        return '-'.into();
+        return write!(f, "-");
     }
-    EcoString::from(symbols[((n - 1) % n_digits) as usize])
-        .repeat(n.div_ceil(n_digits) as usize)
+    for _ in 0..n.div_ceil(n_digits) {
+        write!(f, "{}", symbols[((n - 1) % n_digits) as usize])?
+    }
+    Ok(())
 }
