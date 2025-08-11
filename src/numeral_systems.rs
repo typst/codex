@@ -597,17 +597,19 @@ fn fixed(f: &mut Formatter<'_>, symbols: &[char], n: u64) -> std::fmt::Result {
 ///
 /// This is the familiar ternary numeral system.
 fn positional(f: &mut Formatter<'_>, symbols: &[char], mut n: u64) -> std::fmt::Result {
-    let radix = symbols.len() as u64;
     if n == 0 {
         return write!(f, "{}", symbols[0]);
     }
-    let mut digits = Vec::new();
-    while n != 0 {
-        digits.push(symbols[(n % radix) as usize]);
-        n /= radix;
-    }
-    for digit in digits.iter().rev() {
-        write!(f, "{}", digit)?
+
+    let radix = symbols.len() as u64;
+    let size = n.ilog(radix) + 1;
+    // For a number of size 1, the MSD's place is the ones place, hence `- 1`.
+    let mut most_significant_digit_place = radix.pow(size - 1);
+    for _ in 0..size {
+        let most_significant_digit = n / most_significant_digit_place;
+        write!(f, "{}", symbols[most_significant_digit as usize])?;
+        n -= most_significant_digit * most_significant_digit_place;
+        most_significant_digit_place /= radix;
     }
     Ok(())
 }
