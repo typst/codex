@@ -692,4 +692,24 @@ mod tests {
             }
         }
     }
+
+    #[test]
+    fn test_roman() {
+        for (n, expect) in [
+            "n", "i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi",
+            "xii", "xiii", "xiv", "xv", "xvi", "xvii", "xviii", "xix", "xx", "xxi",
+            "xxii", "xxiii", "xxiv", "xxv", "xxvi", "xxvii", "xxviii", "xxix", "xxx",
+            "xxxi", "xxxii", "xxxiii", "xxxiv", "xxxv", "xxxvi", "xxxvii", "xxxviii",
+            "xxxix", "xl", "xli", "xlii", "xliii", "xliv", "xlv", "xlvi",
+        ]
+        .iter()
+        .enumerate()
+        {
+            assert_eq!(&NumeralSystem::LowerRoman.apply(n as u64).to_string(), expect);
+            assert_eq!(
+                NumeralSystem::UpperRoman.apply(n as u64).to_string(),
+                expect.to_uppercase(),
+            );
+        }
+    }
 }
