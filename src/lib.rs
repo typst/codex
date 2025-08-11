@@ -201,7 +201,7 @@ mod test {
         assert!(
             are_all_variants_valid(
                 SYM,
-                |c| !c.ends_with(EMOJI_PRESENTATION_SELECTOR),
+                |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),
             ) ,
             "unexpected use of emoji presentation selector (U+FE0F) in `sym` (see list above)",
         )
@@ -212,7 +212,7 @@ mod test {
         assert!(
             are_all_variants_valid(
                 EMOJI,
-                |c| !c.ends_with(TEXT_PRESENTATION_SELECTOR),
+                |c| !c.contains(TEXT_PRESENTATION_SELECTOR),
             ) ,
             "unexpected use of text presentation selector (U+FE0E) in `emoji` (see list above)",
         )
@@ -248,8 +248,8 @@ mod test {
         let sequences = get_valid_presentation_sequences();
         assert!(
             are_all_variants_valid(ROOT, |c| {
-                if c.ends_with(TEXT_PRESENTATION_SELECTOR)
-                    || c.ends_with(EMOJI_PRESENTATION_SELECTOR)
+                if c.contains(TEXT_PRESENTATION_SELECTOR)
+                    || c.contains(EMOJI_PRESENTATION_SELECTOR)
                 {
                     sequences.contains(c)
                 } else {
@@ -269,8 +269,8 @@ mod test {
             .collect::<HashSet<_>>();
         assert!(
             are_all_variants_valid(SYM, |c| {
-                c.chars().count() != 1
-                    || !require_presentation_selector.contains(&c.chars().next().unwrap())
+                !(c.chars().count() == 1
+                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
             "missing text presentation selector(s) (U+FE0E) in `sym` (see list above)",
         )
@@ -285,8 +285,8 @@ mod test {
             .collect::<HashSet<_>>();
         assert!(
             are_all_variants_valid(EMOJI, |c| {
-                c.chars().count() != 1
-                    || !require_presentation_selector.contains(&c.chars().next().unwrap())
+                !(c.chars().count() == 1
+                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
             "missing emoji presentation selector(s) (U+FE0F) in `emoji` (see list above)",
         )
