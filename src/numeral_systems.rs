@@ -540,11 +540,12 @@ fn additive(
 ///
 /// A similar system is commonly used in spreadsheet software.
 fn bijective(f: &mut Formatter<'_>, symbols: &[char], mut n: u64) -> std::fmt::Result {
-    let radix = symbols.len() as u64;
     if n == 0 {
         return write!(f, "-");
     }
-    let mut digits = Vec::new();
+
+    let radix = symbols.len() as u64;
+    let mut digits = Vec::with_capacity((n.ilog(radix) + 1) as usize);
     while n != 0 {
         n -= 1;
         digits.push(symbols[(n % radix) as usize]);
