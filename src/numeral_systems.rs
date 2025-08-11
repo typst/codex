@@ -637,3 +637,56 @@ fn symbolic(f: &mut Formatter<'_>, symbols: &[char], n: u64) -> std::fmt::Result
     }
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::numeral_systems::NumeralSystem;
+
+    #[test]
+    fn test_arabic_numerals() {
+        for n in 0..=9999 {
+            assert_eq!(NumeralSystem::Arabic.apply(n).to_string(), n.to_string())
+        }
+    }
+
+    #[test]
+    fn test_latin() {
+        let mut n = 1;
+        for c1 in 'a'..='z' {
+            assert_eq!(NumeralSystem::LowerLatin.apply(n).to_string(), format!("{c1}"));
+            assert_eq!(
+                NumeralSystem::UpperLatin.apply(n).to_string(),
+                format!("{c1}").to_uppercase(),
+            );
+            n += 1
+        }
+        for c2 in 'a'..='z' {
+            for c1 in 'a'..='z' {
+                assert_eq!(
+                    NumeralSystem::LowerLatin.apply(n).to_string(),
+                    format!("{c2}{c1}"),
+                );
+                assert_eq!(
+                    NumeralSystem::UpperLatin.apply(n).to_string(),
+                    format!("{c2}{c1}").to_uppercase(),
+                );
+                n += 1
+            }
+        }
+        for c3 in 'a'..='z' {
+            for c2 in 'a'..='z' {
+                for c1 in 'a'..='z' {
+                    assert_eq!(
+                        NumeralSystem::LowerLatin.apply(n).to_string(),
+                        format!("{c3}{c2}{c1}"),
+                    );
+                    assert_eq!(
+                        NumeralSystem::UpperLatin.apply(n).to_string(),
+                        format!("{c3}{c2}{c1}").to_uppercase(),
+                    );
+                    n += 1
+                }
+            }
+        }
+    }
+}
