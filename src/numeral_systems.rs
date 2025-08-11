@@ -43,19 +43,19 @@ declare_variants! {
     #[non_exhaustive]
     #[derive(Debug, PartialEq, Eq, Clone, Copy, Hash)]
     pub enum NumeralSystem {
-        /// Arabic numerals (1, 2, 3, etc.).
+        /// Base-ten Arabic numerals: 0, 1, 2, 3, ...
         Arabic = "arabic",
-        /// Lowercase Latin letters (a, b, c, etc.). Items beyond z use base-26.
+        /// Lowercase Latin letters: a, b, c, ..., y, z, aa, ab, ...
         LowerLatin = "latin",
-        /// Uppercase Latin letters (A, B, C, etc.). Items beyond Z use base-26.
+        /// Uppercase Latin letters: A, B, C, ..., Y, Z, AA, AB, ...
         UpperLatin = "Latin",
-        /// Lowercase Roman numerals (i, ii, iii, etc.).
+        /// Lowercase Roman numerals: i, ii, iii, ...
         LowerRoman = "roman",
-        /// Uppercase Roman numerals (I, II, III, etc.).
+        /// Uppercase Roman numerals: I, II, III, ...
         UpperRoman = "Roman",
-        /// Lowercase Greek letters (α, β, γ, etc.).
+        /// Lowercase Greek letters: α, β, γ, ...
         LowerGreek = "greek",
-        /// Uppercase Greek letters (Α, Β, Γ, etc.).
+        /// Uppercase Greek letters: Α, Β, Γ, ...
         UpperGreek = "Greek",
         /// Paragraph/note-like symbols: *, †, ‡, §, ¶, and ‖. Further items use
         /// repeated symbols.
@@ -82,9 +82,9 @@ declare_variants! {
         KatakanaAiueo = "katakana.aiueo",
         /// Katakana in the iroha order. Includes wi and we but excludes n.
         KatakanaIroha = "katakana.oroha",
-        /// Korean jamo (ㄱ, ㄴ, ㄷ, etc.).
+        /// Korean jamo: ㄱ, ㄴ, ㄷ, ...
         KoreanJamo = "korean.jamo",
-        /// Korean syllables (가, 나, 다, etc.).
+        /// Korean syllables: 가, 나, 다, ...
         KoreanSyllable = "korean.syllable",
         /// Eastern Arabic numerals, used in some Arabic-speaking countries.
         EasternArabic = "arabic.eastern",
@@ -94,11 +94,11 @@ declare_variants! {
         DevanagariNumber = "devanagari",
         /// Bengali numerals.
         BengaliNumber = "bengali.number",
-        /// Bengali letters (ক, খ, গ, ...কক, কখ etc.).
+        /// Bengali letters: ক, খ, গ, ..., কক, কখ, ...
         BengaliLetter = "bengali.letter",
-        /// Circled numbers (①, ②, ③, etc.), up to 50.
+        /// Circled numbers up to fifty: ①, ②, ③, ...
         CircledNumber = "circled",
-        /// Double-circled numbers (⓵, ⓶, ⓷, etc.), up to 10.
+        /// Double-circled numbers up to ten: ⓵, ⓶, ⓷, ...
         DoubleCircledNumber = "circled.double",
     }
 }
