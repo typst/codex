@@ -89,7 +89,7 @@ declare_variants! {
         /// Eastern Arabic numerals, used in some Arabic-speaking countries.
         EasternArabic = "arabic.eastern",
         /// The variant of Eastern Arabic numerals used in Persian and Urdu.
-        EasternArabicPersian = "arabic.persan",
+        EasternArabicPersian = "arabic.persian",
         /// Devanagari numerals.
         DevanagariNumber = "devanagari",
         /// Bengali numerals.
