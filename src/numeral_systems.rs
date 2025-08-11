@@ -411,12 +411,15 @@ impl NumeralSystem {
     }
 }
 
-/// Stringifies a number using symbols representing values.
+/// Formats a number using a
+/// [sign-value notation](https://en.wikipedia.org/wiki/Sign-value_notation).
+///
+/// The symbols must be specified by decreasing values.
 ///
 /// The value of a stringified number is recovered by summing over the values of
 /// the symbols present.
 ///
-/// Consider the situation where `[("I", 1), ("IV", 4), ("V", 5)]` are the
+/// Consider the situation where `[("V", 5), ("IV", 4), ("I", 1)]` are the
 /// provided symbols:
 ///
 /// ```text
@@ -457,8 +460,10 @@ fn additive(symbols: &[(&str, u64)], mut n: u64) -> EcoString {
     s
 }
 
-/// Stringifies a number using a base-_b_ (where _b_ is the number of provided
-/// symbols) system without a zero symbol.
+/// Formats a number using a big-endian
+/// [bijective base-_b_](https://en.wikipedia.org/wiki/Bijective_numeration)
+/// system (where _b_ is the number of provided symbols). This is similar to
+/// regular base-_b_ systems, but without a symbol for zero.
 ///
 /// Consider the situation where `['A', 'B', 'C']` are the provided symbols:
 ///
@@ -488,7 +493,7 @@ fn alphabetic(symbols: &[char], mut n: u64) -> EcoString {
     s.chars().rev().collect()
 }
 
-/// Stringifies a number using the symbols provided, defaulting to the arabic
+/// Formats a number using the symbols provided, defaulting to the arabic
 /// representation when the number is greater than the number of symbols.
 ///
 /// Consider the situation where `['0', 'A', 'B', 'C']` are the provided
@@ -510,8 +515,8 @@ fn fixed(symbols: &[char], n: u64) -> EcoString {
     eco_format!("{n}")
 }
 
-/// Stringifies a number using a base-_b_ (where _b_ is the number of provided
-/// symbols) system with a zero symbol.
+/// Formats a number using a big-endian
+/// [positional notation](https://en.wikipedia.org/wiki/Positional_notation).
 ///
 /// Consider the situation where `['0', '1', '2']` are the provided symbols:
 ///
@@ -526,7 +531,7 @@ fn fixed(symbols: &[char], n: u64) -> EcoString {
 /// ...
 /// ```
 ///
-/// This is the familiar trinary counting system.
+/// This is the familiar ternary numeral system.
 fn numeric(symbols: &[char], mut n: u64) -> EcoString {
     let n_digits = symbols.len() as u64;
     if n == 0 {
@@ -540,7 +545,7 @@ fn numeric(symbols: &[char], mut n: u64) -> EcoString {
     s.chars().rev().collect()
 }
 
-/// Stringifies a number using repeating symbols.
+/// Formats a number using repeating symbols.
 ///
 /// Consider the situation where `['A', 'B', 'C']` are the provided symbols:
 ///
