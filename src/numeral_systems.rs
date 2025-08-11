@@ -545,14 +545,19 @@ fn bijective(f: &mut Formatter<'_>, symbols: &[char], mut n: u64) -> std::fmt::R
     }
 
     let radix = symbols.len() as u64;
-    let mut digits = Vec::with_capacity((n.ilog(radix) + 1) as usize);
-    while n != 0 {
-        n -= 1;
-        digits.push(symbols[(n % radix) as usize]);
-        n /= radix;
-    }
-    for digit in digits.iter().rev() {
-        write!(f, "{}", digit)?
+    // Number of digits when representing `n` in this system.
+    // From https://en.wikipedia.org/wiki/Bijective_numeration#Properties_of_bijective_base-k_numerals.
+    let size = ((n + 1) * (radix - 1)).ilog(radix);
+    // Remove 11...11 from `n` (this number contains `size - 1` ones and is
+    // represented here in base-`radix`).
+    n -= (radix.pow(size) - 1) / (radix - 1);
+    // For a number of size 1, the MSD's place is the ones place, hence `- 1`.
+    let mut most_significant_digit_place = radix.pow(size - 1);
+    for _ in 0..size {
+        let most_significant_digit = n / most_significant_digit_place;
+        write!(f, "{}", symbols[most_significant_digit as usize])?;
+        n -= most_significant_digit * most_significant_digit_place;
+        most_significant_digit_place /= radix;
     }
     Ok(())
 }
