@@ -130,7 +130,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 }
 
 /// Tokenizes and classifies a line.
-fn tokenize(line: &str) -> StrResult<Line> {
+fn tokenize(line: &str) -> StrResult<Line<'_>> {
     // Strip comments.
     let line = line.split_once("//").map_or(line, |(head, _)| head);
 
