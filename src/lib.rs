@@ -203,7 +203,7 @@ mod test {
                 SYM,
                 |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),
             ) ,
-            "unexpected use of emoji presentation selector (U+FE0F) in `sym` (see list above)",
+            "unexpected use of emoji presentation selector in `sym` (see list above)",
         )
     }
 
@@ -214,7 +214,7 @@ mod test {
                 EMOJI,
                 |c| !c.contains(TEXT_PRESENTATION_SELECTOR),
             ) ,
-            "unexpected use of text presentation selector (U+FE0E) in `emoji` (see list above)",
+            "unexpected use of text presentation selector in `emoji` (see list above)",
         )
     }
 
@@ -274,7 +274,7 @@ mod test {
                 !(c.chars().count() == 1
                     && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
-            "missing text presentation selector(s) (U+FE0E) in `sym` (see list above)",
+            "missing text presentation selector(s) in `sym` (see list above)",
         )
     }
 
@@ -292,7 +292,7 @@ mod test {
                 !(c.chars().count() == 1
                     && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
-            "missing emoji presentation selector(s) (U+FE0F) in `emoji` (see list above)",
+            "missing emoji presentation selector(s) in `emoji` (see list above)",
         )
     }
 
