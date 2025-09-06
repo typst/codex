@@ -642,6 +642,8 @@ angle ∠
   .arc ∡
   .arc.rev ⦛
   .azimuth ⍼
+  .obtuse ⦦
+  @deprecated: `angle.oblique` is deprecated, use `angle.obtuse` instead
   .oblique ⦦
   .rev ⦣
   .right ∟
