@@ -11,5 +11,9 @@ categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
 
 [features]
-default = ["styling"]
+default = ["styling", "numeral-systems"]
+numeral-systems = ["chinese-number"]
 styling = []
+
+[dependencies]
+chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
