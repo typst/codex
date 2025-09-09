@@ -84,7 +84,8 @@ impl Symbol {
     /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
     pub fn variants(
         &self,
-    ) -> impl Iterator<Item = (ModifierSet<&str>, &'static str, Option<&str>)> {
+    ) -> impl Iterator<Item = (ModifierSet<&'static str>, &'static str, Option<&'static str>)>
+    {
         enum Variants {
             Single(std::iter::Once<&'static str>),
             Multi(
@@ -125,6 +126,8 @@ include!(concat!(env!("OUT_DIR"), "/out.rs"));
 mod test {
     use super::*;
     use std::collections::BTreeSet;
+    #[cfg(feature = "_test-unicode-conformance")]
+    use std::collections::HashSet;
 
     #[test]
     fn all_modules_sorted() {
@@ -186,5 +189,157 @@ mod test {
 
             assert_eq!(variants, control);
         }
+    }
+
+    /// https://www.unicode.org/reports/tr51/#def_text_presentation_selector.
+    const TEXT_PRESENTATION_SELECTOR: char = '\u{FE0E}';
+    /// https://www.unicode.org/reports/tr51/#def_emoji_presentation_selector.
+    const EMOJI_PRESENTATION_SELECTOR: char = '\u{FE0F}';
+
+    #[test]
+    fn symbols_are_not_emojis() {
+        assert!(
+            are_all_variants_valid(
+                SYM,
+                |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),
+            ) ,
+            "unexpected use of emoji presentation selector in `sym` (see list above)",
+        )
+    }
+
+    #[test]
+    fn emojis_are_not_text() {
+        assert!(
+            are_all_variants_valid(
+                EMOJI,
+                |c| !c.contains(TEXT_PRESENTATION_SELECTOR),
+            ) ,
+            "unexpected use of text presentation selector in `emoji` (see list above)",
+        )
+    }
+
+    /// Returns the list of presentation sequences defined by Unicode.
+    ///
+    /// See: https://www.unicode.org/reports/tr51/#Emoji_Variation_Sequences.
+    #[cfg(feature = "_test-unicode-conformance")]
+    fn get_valid_presentation_sequences() -> HashSet<String> {
+        include_str!(concat!(env!("OUT_DIR"), "/emoji-variation-sequences.txt"))
+            .lines()
+            .filter_map(|l| {
+                let line = l.split('#').next().unwrap_or(l);
+                (!line.is_empty()).then_some(line)
+            })
+            .map(|line| {
+                line.split(';')
+                    .next()
+                    .unwrap()
+                    .split_whitespace()
+                    .map(|cp| {
+                        char::from_u32(u32::from_str_radix(cp, 0x10).unwrap()).unwrap()
+                    })
+                    .collect()
+            })
+            .collect()
+    }
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn no_invalid_presentation_sequence() {
+        let sequences = get_valid_presentation_sequences();
+        assert!(
+            are_all_variants_valid(ROOT, |c| {
+                if c.contains(TEXT_PRESENTATION_SELECTOR)
+                    || c.contains(EMOJI_PRESENTATION_SELECTOR)
+                {
+                    sequences.contains(c)
+                } else {
+                    true
+                }
+            }),
+            "invalid presentation sequence(s) (see list above)",
+        )
+    }
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn symbols_have_text_presentation() {
+        let require_presentation_selector = get_valid_presentation_sequences()
+            .into_iter()
+            .map(|s| s.chars().next().unwrap())
+            .collect::<HashSet<_>>();
+        assert!(
+            are_all_variants_valid(SYM, |c| {
+                // All emoji variation sequences are exactly 2 codepoints long
+                // as of Unicode 16.0, so this doesn't miss anything.
+                !(c.chars().count() == 1
+                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
+            }),
+            "missing text presentation selector(s) in `sym` (see list above)",
+        )
+    }
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn emojis_have_emoji_presentation() {
+        let require_presentation_selector = get_valid_presentation_sequences()
+            .into_iter()
+            .map(|s| s.chars().next().unwrap())
+            .collect::<HashSet<_>>();
+        assert!(
+            are_all_variants_valid(EMOJI, |c| {
+                // All emoji variation sequences are exactly 2 codepoints long
+                // as of Unicode 16.0, so this doesn't miss anything.
+                !(c.chars().count() == 1
+                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
+            }),
+            "missing emoji presentation selector(s) in `emoji` (see list above)",
+        )
+    }
+
+    /// Returns `false` if, and only if, the predicate returned `false` for at least one variant
+    /// within the module.
+    ///
+    /// Prints all variants for which the predicate returns `false`.
+    fn are_all_variants_valid<P: FnMut(&'static str) -> bool>(
+        module: Module,
+        mut predicate: P,
+    ) -> bool {
+        let mut all_valid = true;
+        fn aux<P: FnMut(&'static str) -> bool>(
+            module: Module,
+            path: Vec<&'static str>,
+            all_valid: &mut bool,
+            predicate: &mut P,
+        ) {
+            for (name, binding) in module.iter() {
+                let mut new_path = path.clone();
+                new_path.push(name);
+                match binding.def {
+                    Def::Symbol(s) => {
+                        for (modifiers, c, _) in s.variants() {
+                            if !predicate(c) {
+                                *all_valid = false;
+                                eprintln!(
+                                    "- {}{}{} {} ({})",
+                                    new_path.join("."),
+                                    if modifiers.is_empty() { "" } else { "." },
+                                    modifiers.as_str(),
+                                    c,
+                                    c.chars()
+                                        .map(|cp| format!("{:04X}", cp as u32))
+                                        .collect::<Vec<_>>()
+                                        .join(" "),
+                                )
+                            }
+                        }
+                    }
+                    Def::Module(m) => {
+                        aux(m, new_path, all_valid, predicate);
+                    }
+                }
+            }
+        }
+        aux(module, Vec::new(), &mut all_valid, &mut predicate);
+        all_valid
     }
 }
