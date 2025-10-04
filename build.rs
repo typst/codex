@@ -34,14 +34,17 @@ enum Def<'a> {
 /// A symbol, either a leaf or with modifiers with optional deprecation.
 enum Symbol<'a> {
     Single(String),
-    Multi(Vec<(ModifierSet<&'a str>, String, Option<&'a str>)>),
+    Multi {
+        variants: Vec<(ModifierSet<&'a str>, String)>,
+        deprecations: Vec<(&'a str, &'a str)>,
+    },
 }
 
 /// A single line during parsing.
 #[derive(Debug, Clone)]
 enum Line<'a> {
     Blank,
-    Deprecated(&'a str),
+    Deprecated(Option<&'a str>, &'a str),
     ModuleStart(&'a str),
     ModuleEnd,
     Symbol(&'a str, Option<String>),
@@ -53,8 +56,8 @@ enum Line<'a> {
 enum Declaration<'a> {
     ModuleStart(&'a str, Option<&'a str>),
     ModuleEnd,
-    Symbol(&'a str, Option<String>, Option<&'a str>),
-    Variant(ModifierSet<&'a str>, String, Option<&'a str>),
+    Symbol(&'a str, Option<String>, Vec<(Option<&'a str>, &'a str)>),
+    Variant(ModifierSet<&'a str>, String),
 }
 
 fn main() {
@@ -93,7 +96,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 
     let text = std::fs::read_to_string(file).unwrap();
     let mut line_nr = 0;
-    let mut deprecation = None;
+    let mut deprecations = Vec::new();
     let mut iter = text
         .lines()
         .inspect(|_| line_nr += 1)
@@ -102,32 +105,40 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
         .filter_map(|line| match line {
             Err(message) => Some(Err(message)),
             Ok(Line::Blank) => None,
-            Ok(Line::Deprecated(message)) => {
-                if deprecation.is_some() {
-                    Some(Err(String::from("duplicate `@deprecated:`")))
-                } else {
-                    deprecation = Some(message);
-                    None
-                }
+            Ok(Line::Deprecated(modifier, message)) => {
+                deprecations.push((modifier, message));
+                None
             }
             Ok(Line::ModuleStart(name)) => {
-                Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
+                let deprecation = match *std::mem::take(&mut deprecations).as_slice() {
+                    [] => None,
+                    [(None, deprecation)] => Some(deprecation),
+                    _ => return Some(Err("wrong deprecation format for module".into())),
+                };
+                Some(Ok(Declaration::ModuleStart(name, deprecation)))
             }
             Ok(Line::ModuleEnd) => {
-                if deprecation.is_some() {
-                    Some(Err(String::from("dangling `@deprecated:`")))
-                } else {
-                    Some(Ok(Declaration::ModuleEnd))
+                if !deprecations.is_empty() {
+                    return Some(Err("dangling `@deprecated:`".into()));
                 }
+                Some(Ok(Declaration::ModuleEnd))
             }
-            Ok(Line::Symbol(name, value)) => {
-                Some(Ok(Declaration::Symbol(name, value, deprecation.take())))
-            }
+            Ok(Line::Symbol(name, value)) => Some(Ok(Declaration::Symbol(
+                name,
+                value,
+                std::mem::take(&mut deprecations),
+            ))),
             Ok(Line::Variant(modifiers, value)) => {
-                Some(Ok(Declaration::Variant(modifiers, value, deprecation.take())))
+                if !deprecations.is_empty() {
+                    return Some(Err("dangling `@deprecated:`".into()));
+                }
+                Some(Ok(Declaration::Variant(modifiers, value)))
             }
             Ok(Line::Eof) => {
-                deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
+                if !deprecations.is_empty() {
+                    return Some(Err("dangling `@deprecated:`".into()));
+                }
+                None
             }
         })
         .peekable();
@@ -162,24 +173,37 @@ fn tokenize(line: &str) -> StrResult<Line<'_>> {
         None => (line, None),
     };
 
-    Ok(if head == "@deprecated:" {
-        Line::Deprecated(tail.ok_or("missing deprecation message")?.trim())
-    } else if tail == Some("{") {
-        validate_ident(head)?;
-        Line::ModuleStart(head)
-    } else if head == "}" && tail.is_none() {
-        Line::ModuleEnd
-    } else if let Some(rest) = head.strip_prefix('.') {
-        for part in rest.split('.') {
-            validate_ident(part)?;
-        }
-        let value = decode_value(tail.ok_or("missing char")?)?;
-        Line::Variant(ModifierSet::from_raw_dotted(rest), value)
-    } else {
-        validate_ident(head)?;
-        let value = tail.map(decode_value).transpose()?;
-        Line::Symbol(head, value)
-    })
+    Ok(
+        if let Some(inner) =
+            head.strip_prefix("@deprecated").and_then(|s| s.strip_suffix(':'))
+        {
+            let mut modifier = None;
+            if !inner.is_empty() {
+                modifier = Some(
+                    inner
+                        .strip_prefix('(')
+                        .and_then(|s| s.strip_suffix(')'))
+                        .ok_or("malformed modifier in deprecation")?,
+                );
+            }
+            Line::Deprecated(modifier, tail.ok_or("missing deprecation message")?.trim())
+        } else if tail == Some("{") {
+            validate_ident(head)?;
+            Line::ModuleStart(head)
+        } else if head == "}" && tail.is_none() {
+            Line::ModuleEnd
+        } else if let Some(rest) = head.strip_prefix('.') {
+            for part in rest.split('.') {
+                validate_ident(part)?;
+            }
+            let value = decode_value(tail.ok_or("missing char")?)?;
+            Line::Variant(ModifierSet::from_raw_dotted(rest), value)
+        } else {
+            validate_ident(head)?;
+            let value = tail.map(decode_value).transpose()?;
+            Line::Symbol(head, value)
+        },
+    )
 }
 
 /// Ensures that a string is a valid identifier. In `codex`, we use very strict
@@ -257,20 +281,26 @@ fn parse<'a>(
             None | Some(Declaration::ModuleEnd) => {
                 break;
             }
-            Some(Declaration::Symbol(name, value, deprecation)) => {
+            Some(Declaration::Symbol(name, value, deprecations)) => {
                 let mut variants = vec![];
-                while let Some(Declaration::Variant(name, value, deprecation)) =
+                while let Some(Declaration::Variant(name, value)) =
                     p.peek().cloned().transpose()?
                 {
-                    variants.push((name, value, deprecation));
+                    variants.push((name, value));
                     p.next();
                 }
 
+                let deprecation =
+                    deprecations.iter().find(|(m, _)| m.is_none()).map(|&(_, d)| d);
+
+                let modifier_deprecations =
+                    deprecations.iter().filter_map(|&(m, s)| m.map(|m| (m, s))).collect();
+
                 let symbol = if !variants.is_empty() {
                     if let Some(value) = value {
-                        variants.insert(0, (ModifierSet::default(), value, None));
+                        variants.insert(0, (ModifierSet::default(), value));
                     }
-                    Symbol::Multi(variants)
+                    Symbol::Multi { variants, deprecations: modifier_deprecations }
                 } else {
                     let value = value.ok_or("symbol needs char or variants")?;
                     Symbol::Single(value)
@@ -309,7 +339,11 @@ fn encode(buf: &mut String, module: &Module) {
                 buf.push_str("Def::Symbol(Symbol::");
                 match symbol {
                     Symbol::Single(value) => write!(buf, "Single({value:?})").unwrap(),
-                    Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
+                    Symbol::Multi { variants, deprecations } => write!(
+                        buf,
+                        "Multi {{ variants: &{variants:?}, deprecations: &{deprecations:?} }}"
+                    )
+                    .unwrap(),
                 }
                 buf.push(')');
             }

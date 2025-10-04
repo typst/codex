@@ -15,7 +15,7 @@ mod shared;
 pub mod styling;
 
 /// A module of definitions.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct Module(&'static [(&'static str, Binding)]);
 
 impl Module {
@@ -28,13 +28,13 @@ impl Module {
     }
 
     /// Iterate over the module's definition.
-    pub fn iter(&self) -> impl Iterator<Item = (&'static str, Binding)> {
-        self.0.iter().copied()
+    pub fn iter(&self) -> impl Iterator<Item = (&'static str, &'static Binding)> {
+        self.0.iter().map(|(k, v)| (*k, v))
     }
 }
 
 /// A definition bound in a module, with metadata.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub struct Binding {
     /// The bound definition.
     pub def: Def,
@@ -50,7 +50,7 @@ impl Binding {
 }
 
 /// A definition in a module.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub enum Def {
     /// A symbol, potentially with modifiers.
     Symbol(Symbol),
@@ -59,48 +59,47 @@ pub enum Def {
 }
 
 /// A symbol, either a leaf or with modifiers and optional deprecation.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Hash)]
 pub enum Symbol {
     /// A symbol without modifiers.
     Single(&'static str),
     /// A symbol with named modifiers. The symbol defaults to its first variant.
-    Multi(&'static [(ModifierSet<&'static str>, &'static str, Option<&'static str>)]),
+    Multi {
+        /// The symbol's variants.
+        variants: &'static [(ModifierSet<&'static str>, &'static str)],
+        /// The symbol's deprecated modifiers alongside deprecation messages.
+        deprecations: &'static [(&'static str, &'static str)],
+    },
 }
 
 impl Symbol {
     /// Get the symbol's variant for a given set of modifiers, alongside an optional deprecation
     /// message.
-    pub fn get(&self, modifs: ModifierSet<&str>) -> Option<(&'static str, Option<&str>)> {
+    pub fn get(&self, modifiers: ModifierSet<&str>) -> Option<&'static str> {
         match self {
-            Self::Single(c) => modifs.is_empty().then_some((*c, None)),
-            Self::Multi(list) => {
-                modifs.best_match_in(list.iter().copied().map(|(m, c, d)| (m, (c, d))))
+            Self::Single(c) => modifiers.is_empty().then_some(*c),
+            Self::Multi { variants, .. } => {
+                modifiers.best_match_in(variants.iter().copied())
             }
         }
     }
 
     /// Iterate over the variants of this symbol.
     ///
-    /// Each variant is represented by a tuple `(modifiers, value, deprecation)`.
+    /// Each variant is represented by a tuple `(modifiers, value)`.
     pub fn variants(
         &self,
-    ) -> impl Iterator<Item = (ModifierSet<&'static str>, &'static str, Option<&'static str>)>
-    {
+    ) -> impl Iterator<Item = (ModifierSet<&'static str>, &'static str)> {
         enum Variants {
             Single(std::iter::Once<&'static str>),
-            Multi(
-                std::slice::Iter<
-                    'static,
-                    (ModifierSet<&'static str>, &'static str, Option<&'static str>),
-                >,
-            ),
+            Multi(std::slice::Iter<'static, (ModifierSet<&'static str>, &'static str)>),
         }
         let mut iter = match self {
             Self::Single(c) => Variants::Single(std::iter::once(*c)),
-            Self::Multi(sl) => Variants::Multi(sl.iter()),
+            Self::Multi { variants, .. } => Variants::Multi(variants.iter()),
         };
         std::iter::from_fn(move || match &mut iter {
-            Variants::Single(iter) => Some((ModifierSet::default(), iter.next()?, None)),
+            Variants::Single(iter) => Some((ModifierSet::default(), iter.next()?)),
             Variants::Multi(iter) => iter.next().copied(),
         })
     }
@@ -108,7 +107,7 @@ impl Symbol {
     /// Possible modifiers for this symbol.
     pub fn modifiers(&self) -> impl Iterator<Item = &str> + '_ {
         self.variants()
-            .flat_map(|(m, _, _)| m.into_iter())
+            .flat_map(|(m, _)| m.into_iter())
             .collect::<std::collections::BTreeSet<_>>()
             .into_iter()
     }
@@ -147,13 +146,10 @@ mod test {
     #[test]
     fn unicode_escapes() {
         let Def::Symbol(wj) = SYM.get("wj").unwrap().def else { panic!() };
-        assert_eq!(wj.get(ModifierSet::default()).unwrap().0, "\u{2060}");
+        assert_eq!(wj.get(ModifierSet::default()).unwrap(), "\u{2060}");
         let Def::Symbol(space) = SYM.get("space").unwrap().def else { panic!() };
-        assert_eq!(space.get(ModifierSet::default()).unwrap().0, " ");
-        assert_eq!(
-            space.get(ModifierSet::from_raw_dotted("nobreak")).unwrap().0,
-            "\u{A0}"
-        );
+        assert_eq!(space.get(ModifierSet::default()).unwrap(), " ");
+        assert_eq!(space.get(ModifierSet::from_raw_dotted("nobreak")).unwrap(), "\u{A0}");
     }
 
     #[test]
@@ -173,7 +169,7 @@ mod test {
             };
             let variants = s
                 .variants()
-                .map(|(m, v, _)| (m.into_iter().collect::<BTreeSet<_>>(), v))
+                .map(|(m, v)| (m.into_iter().collect::<BTreeSet<_>>(), v))
                 .collect::<BTreeSet<_>>();
             let control = control
                 .iter()
@@ -199,10 +195,7 @@ mod test {
     #[test]
     fn symbols_are_not_emojis() {
         assert!(
-            are_all_variants_valid(
-                SYM,
-                |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),
-            ) ,
+            are_all_variants_valid(SYM, |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),),
             "unexpected use of emoji presentation selector in `sym` (see list above)",
         )
     }
@@ -210,10 +203,7 @@ mod test {
     #[test]
     fn emojis_are_not_text() {
         assert!(
-            are_all_variants_valid(
-                EMOJI,
-                |c| !c.contains(TEXT_PRESENTATION_SELECTOR),
-            ) ,
+            are_all_variants_valid(EMOJI, |c| !c.contains(TEXT_PRESENTATION_SELECTOR),),
             "unexpected use of text presentation selector in `emoji` (see list above)",
         )
     }
@@ -316,7 +306,7 @@ mod test {
                 new_path.push(name);
                 match binding.def {
                     Def::Symbol(s) => {
-                        for (modifiers, c, _) in s.variants() {
+                        for (modifiers, c) in s.variants() {
                             if !predicate(c) {
                                 *all_valid = false;
                                 eprintln!(
@@ -341,5 +331,15 @@ mod test {
         }
         aux(module, Vec::new(), &mut all_valid, &mut predicate);
         all_valid
+    }
+
+    #[test]
+    fn test_symbol_deprecation() {
+        let Def::Symbol(ast) = SYM.get("ast").unwrap().def else { panic!() };
+        let Symbol::Multi { deprecations, .. } = ast else { panic!() };
+        assert_eq!(deprecations, &[
+           ("small", "`ast.small` is deprecated (CJK compatibility character), use ﹡ or `\\u{fe61}` instead"),
+           ("circle", "`ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead"),
+        ])
     }
 }
