@@ -237,7 +237,6 @@
 ### Deprecated
 
 - Hebrew
-  - `diff`, use `partial` instead
   - `alef`, use `aleph` instead
   - `bet`, use `beth` instead
   - `gimmel`, use `gimel` instead
@@ -282,6 +281,7 @@
   - `shell.double`, use `shell.stroked` instead
 
 - Other
+  - `diff`, use `partial` instead
   - `angle.spheric.top`, use `angle.spheric.t` instead
   - `angle.right.sq`, use `angle.right.square` instead
   - `planck.reduce`, use `planck` instead
