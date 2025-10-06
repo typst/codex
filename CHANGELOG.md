@@ -251,7 +251,7 @@
   - `gt.small`, use ﹥ or `\u{fe65}` instead
   - `lt.small`, use ﹤ or `\u{fe64}` instead
 
-- `circle` -> `o`
+- `circle` -> `o` for mathematical operators
   - `bar.v.circle`, use `bar.v.o` instead
   - `ast.circle`, use `convolve.o` or `ast.op.o` instead
   - `backslash.circle`, use `backslash.o` instead
