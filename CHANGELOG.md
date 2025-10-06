@@ -276,7 +276,7 @@
   - `angle.l` and `angle.r` to `chevron.l` and `chevron.r`, respectively
   - `quote.angle` to `quote.chevron`
 
-- `double` -> `stroked`
+- `double` -> `stroked` for double-struck delimiters
   - `paren.double`, use `paren.stroked` instead
   - `bracket.double`, use `bracket.stroked` instead
   - `shell.double`, use `shell.stroked` instead
