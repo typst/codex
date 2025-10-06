@@ -288,7 +288,7 @@
   - `angle.oblique`, use `angle.obtuse` instead
   - `kai`, use ϗ or `\u{3d7}` instead
   - `Kai`, use Ϗ or `\u{3c5}` instead
-  - `franc`, because the symbol was only ever a proposal
+  - `franc`, because the symbol was never used in practice
 
 ## Version 0.1.1 (February 5, 2025)
 Brings back `angstrom`, but uses U+00C5 LATIN CAPITAL LETTER A WITH RING ABOVE, which is the one that should be used in place of the deprecated U+212B ANGSTROM SIGN.
