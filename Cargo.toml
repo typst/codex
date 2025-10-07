@@ -1,6 +1,6 @@
 [package]
 name = "codex"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["The Typst Project Developers"]
 edition = "2021"
 description = "Human-friendly notation for Unicode symbols."
