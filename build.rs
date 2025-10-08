@@ -35,6 +35,7 @@ enum Def<'a> {
 enum Symbol<'a> {
     Single(String),
     Multi(Vec<(ModifierSet<&'a str>, String, Option<&'a str>)>),
+    MultiAlias(Vec<(ModifierSet<String>, String, Option<&'a str>)>),
 }
 
 /// A single line during parsing.
@@ -46,6 +47,7 @@ enum Line<'a> {
     ModuleEnd,
     Symbol(&'a str, Option<String>),
     Variant(ModifierSet<&'a str>, String),
+    Alias(&'a str, &'a str, ModifierSet<&'a str>, bool),
     Eof,
 }
 
@@ -55,6 +57,7 @@ enum Declaration<'a> {
     ModuleEnd,
     Symbol(&'a str, Option<String>, Option<&'a str>),
     Variant(ModifierSet<&'a str>, String, Option<&'a str>),
+    Alias(&'a str, &'a str, ModifierSet<&'a str>, bool, Option<&'a str>),
 }
 
 fn main() {
@@ -94,43 +97,46 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
     let text = std::fs::read_to_string(file).unwrap();
     let mut line_nr = 0;
     let mut deprecation = None;
-    let mut iter = text
-        .lines()
-        .inspect(|_| line_nr += 1)
-        .map(tokenize)
-        .chain(iter::once(Ok(Line::Eof)))
-        .filter_map(|line| match line {
-            Err(message) => Some(Err(message)),
-            Ok(Line::Blank) => None,
-            Ok(Line::Deprecated(message)) => {
-                if deprecation.is_some() {
-                    Some(Err(String::from("duplicate `@deprecated:`")))
-                } else {
-                    deprecation = Some(message);
-                    None
+    let mut iter =
+        text.lines()
+            .inspect(|_| line_nr += 1)
+            .map(tokenize)
+            .chain(iter::once(Ok(Line::Eof)))
+            .filter_map(|line| match line {
+                Err(message) => Some(Err(message)),
+                Ok(Line::Blank) => None,
+                Ok(Line::Deprecated(message)) => {
+                    if deprecation.is_some() {
+                        Some(Err(String::from("duplicate `@deprecated:`")))
+                    } else {
+                        deprecation = Some(message);
+                        None
+                    }
                 }
-            }
-            Ok(Line::ModuleStart(name)) => {
-                Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
-            }
-            Ok(Line::ModuleEnd) => {
-                if deprecation.is_some() {
-                    Some(Err(String::from("dangling `@deprecated:`")))
-                } else {
-                    Some(Ok(Declaration::ModuleEnd))
+                Ok(Line::ModuleStart(name)) => {
+                    Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
                 }
-            }
-            Ok(Line::Symbol(name, value)) => {
-                Some(Ok(Declaration::Symbol(name, value, deprecation.take())))
-            }
-            Ok(Line::Variant(modifiers, value)) => {
-                Some(Ok(Declaration::Variant(modifiers, value, deprecation.take())))
-            }
-            Ok(Line::Eof) => {
-                deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
-            }
-        })
-        .peekable();
+                Ok(Line::ModuleEnd) => {
+                    if deprecation.is_some() {
+                        Some(Err(String::from("dangling `@deprecated:`")))
+                    } else {
+                        Some(Ok(Declaration::ModuleEnd))
+                    }
+                }
+                Ok(Line::Symbol(name, value)) => {
+                    Some(Ok(Declaration::Symbol(name, value, deprecation.take())))
+                }
+                Ok(Line::Variant(modifiers, value)) => {
+                    Some(Ok(Declaration::Variant(modifiers, value, deprecation.take())))
+                }
+                Ok(Line::Alias(alias, head, variant, deep)) => Some(Ok(
+                    Declaration::Alias(alias, head, variant, deep, deprecation.take()),
+                )),
+                Ok(Line::Eof) => {
+                    deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
+                }
+            })
+            .peekable();
 
     let module = match parse(&mut iter) {
         Ok(defs) => Module::new(defs),
@@ -175,6 +181,23 @@ fn tokenize(line: &str) -> StrResult<Line<'_>> {
         }
         let value = decode_value(tail.ok_or("missing char")?)?;
         Line::Variant(ModifierSet::from_raw_dotted(rest), value)
+    } else if let Some(mut value) = tail.and_then(|tail| tail.strip_prefix("@= ")) {
+        let alias = head;
+        validate_ident(alias)?;
+        let mut deep = false;
+        if let Some(v) = value.strip_suffix(".*") {
+            deep = true;
+            value = v;
+        }
+        let (head, rest) = value.split_once('.').unwrap_or((value, ""));
+        validate_ident(head)?;
+        if !rest.is_empty() {
+            for part in rest.split('.') {
+                validate_ident(part)?;
+            }
+        }
+
+        Line::Alias(alias, head, ModifierSet::from_raw_dotted(rest), deep)
     } else {
         validate_ident(head)?;
         let value = tail.map(decode_value).transpose()?;
@@ -252,10 +275,14 @@ fn parse<'a>(
     p: &mut Peekable<impl Iterator<Item = StrResult<Declaration<'a>>>>,
 ) -> StrResult<Vec<(&'a str, Binding<'a>)>> {
     let mut defs = vec![];
+    let mut aliases = vec![];
     loop {
         match p.next().transpose()? {
             None | Some(Declaration::ModuleEnd) => {
                 break;
+            }
+            Some(Declaration::Alias(alias, name, variant, deep, deprecation)) => {
+                aliases.push((alias, name, variant, deep, deprecation));
             }
             Some(Declaration::Symbol(name, value, deprecation)) => {
                 let mut variants = vec![];
@@ -291,6 +318,86 @@ fn parse<'a>(
             other => return Err(format!("expected definition, found {other:?}")),
         }
     }
+    for (alias, name, variant, deep, deprecation) in aliases {
+        let aliased_symbol: &Symbol<'a> = defs
+            .iter()
+            .filter(|(n, _)| *n == name)
+            .find_map(|(_, b)| match &b.def {
+                Def::Symbol(s) => Some(s),
+                _ => None,
+            })
+            .ok_or_else(|| format!("alias to nonexistent symbol: {name}"))?;
+
+        match aliased_symbol {
+            Symbol::Single(value) => {
+                if !variant.is_empty() {
+                    return Err(format!(
+                        "alias to nonexistent variant: {name}.{}",
+                        variant.as_str()
+                    ));
+                }
+                defs.push((
+                    alias,
+                    Binding {
+                        def: Def::Symbol(Symbol::Single(value.clone())),
+                        deprecation,
+                    },
+                ));
+            }
+            Symbol::MultiAlias(_) => {
+                return Err(format!("alias to alias: {name}.{}", variant.as_str()));
+            }
+            Symbol::Multi(variants) => {
+                let variants: Vec<(ModifierSet<String>, String, Option<&str>)> = variants
+                    .iter()
+                    .filter_map(|&(var, ref value, deprecation)| {
+                        if !variant.is_subset(var) {
+                            return None;
+                        }
+
+                        let new_var = var.iter().filter(|&v| !variant.contains(v)).fold(
+                            ModifierSet::default(),
+                            |mut set, m| {
+                                set.insert_raw(m);
+                                set
+                            },
+                        );
+
+                        if !(deep || new_var.is_empty()) {
+                            return None;
+                        }
+
+                        Some((new_var, value.clone(), deprecation))
+                    })
+                    .collect();
+                if variants.is_empty() {
+                    return Err(format!(
+                        "alias to nonexistent variant: {name}.{}",
+                        variant.as_str()
+                    ));
+                }
+                if let [(ref s, ref value, deprecation)] = variants[..] {
+                    if s.is_empty() {
+                        defs.push((
+                            alias,
+                            Binding {
+                                def: Def::Symbol(Symbol::Single(value.clone())),
+                                deprecation,
+                            },
+                        ));
+                        continue;
+                    }
+                }
+                defs.push((
+                    alias,
+                    Binding {
+                        def: Def::Symbol(Symbol::MultiAlias(variants)),
+                        deprecation,
+                    },
+                ));
+            }
+        }
+    }
     Ok(defs)
 }
 
@@ -310,6 +417,7 @@ fn encode(buf: &mut String, module: &Module) {
                 match symbol {
                     Symbol::Single(value) => write!(buf, "Single({value:?})").unwrap(),
                     Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
+                    Symbol::MultiAlias(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                 }
                 buf.push(')');
             }
