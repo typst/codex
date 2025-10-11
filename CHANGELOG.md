@@ -1,5 +1,53 @@
 # Changelog
 
+## Unreleased
+
+### Removals **(Breaking change)**
+These previously deprecated items were removed:
+- `paren.double`
+- `brace.double`
+- `bracket.double`
+- `shell.double`
+- `bar.circle`
+- `ast.small`
+- `ast.circle`
+- `backslash.circle`
+- `dash.circle`
+- `dot.circle`
+- `dot.circle.big`
+- `quote.angle`
+- `plus.circle`
+- `plus.small`
+- `minus.circle`
+- `div.circle`
+- `times.circle`
+- `eq.circle`
+- `eq.small`
+- `gt.circle`
+- `gt.small`
+- `lt.circle`
+- `lt.small`
+- `sect`
+- `diff`
+- `integral.sect`
+- `angle.l`
+- `angle.r`
+- `angle.oblique`
+- `angle.right.sq`
+- `angle.spheric.top`
+- `parallel.circle`
+- `perp.circle`
+- `franc`
+- `circle.nested`
+- `kai`
+- `Kai`
+- `alef`
+- `bet`
+- `gimmel`
+- `dalet`
+- `shin`
+- `planck.reduce`
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes
