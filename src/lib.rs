@@ -161,7 +161,7 @@ mod test {
         for (key, control) in [
             (
                 "backslash",
-                [("", "\\"), ("circle", "⦸"), ("not", "⧷"), ("o", "⦸")].as_slice(),
+                [("", "\\"), ("not", "⧷"), ("o", "⦸")].as_slice(),
             ),
             ("chi", &[("", "χ")]),
             ("forces", &[("", "⊩"), ("not", "⊮")]),
