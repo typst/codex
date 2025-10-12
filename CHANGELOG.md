@@ -4,34 +4,33 @@
 
 ### Removals **(Breaking change)**
 These previously deprecated items were removed:
-- `paren.double`
-- `brace.double`
-- `bracket.double`
-- `shell.double`
+- `paren.double.*`
+- `brace.double.*`
+- `bracket.double.*`
+- `shell.double.*`
 - `bar.circle`
 - `ast.small`
 - `ast.circle`
 - `backslash.circle`
 - `dash.circle`
-- `dot.circle`
-- `dot.circle.big`
-- `quote.angle`
-- `plus.circle`
+- `dot.circle`, `dot.circle.big`
+- `quote.angle.*`
+- `plus.circle`, `plus.circle.*`
 - `plus.small`
 - `minus.circle`
 - `div.circle`
-- `times.circle`
+- `times.circle`, `times.circle.big`
 - `eq.circle`
 - `eq.small`
 - `gt.circle`
 - `gt.small`
 - `lt.circle`
 - `lt.small`
-- `sect`
+- `sect`, `sect.*`
 - `diff`
 - `integral.sect`
-- `angle.l`
-- `angle.r`
+- `angle.l`, `angle.l.*`
+- `angle.r`, `angle.r.*`
 - `angle.oblique`
 - `angle.right.sq`
 - `angle.spheric.top`
@@ -39,8 +38,7 @@ These previously deprecated items were removed:
 - `perp.circle`
 - `franc`
 - `circle.nested`
-- `kai`
-- `Kai`
+- `kai`, `Kai`
 - `alef`
 - `bet`
 - `gimmel`
