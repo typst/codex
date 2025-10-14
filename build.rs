@@ -1,9 +1,8 @@
+use self::shared::ModifierSet;
 use std::fmt::Write;
 use std::iter;
 use std::iter::Peekable;
 use std::path::Path;
-
-use self::shared::ModifierSet;
 
 type StrResult<T> = Result<T, String>;
 
@@ -68,6 +67,24 @@ fn main() {
     let out = std::env::var_os("OUT_DIR").unwrap();
     let dest = Path::new(&out).join("out.rs");
     std::fs::write(&dest, buf).unwrap();
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    {
+        let emoji_vs_list = Path::new(&out).join("emoji-variation-sequences.txt");
+        if !std::fs::read_to_string(&emoji_vs_list)
+            .is_ok_and(|text| text.contains("Emoji Version 16.0"))
+        {
+            let content = ureq::get(
+                "https://www.unicode.org/Public/16.0.0/ucd/emoji/emoji-variation-sequences.txt",
+            )
+                .call()
+                .unwrap()
+                .body_mut()
+                .read_to_string()
+                .unwrap();
+            std::fs::write(emoji_vs_list, content).unwrap();
+        }
+    }
 }
 
 /// Processes a single file and turns it into a global module.
@@ -130,7 +147,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 }
 
 /// Tokenizes and classifies a line.
-fn tokenize(line: &str) -> StrResult<Line> {
+fn tokenize(line: &str) -> StrResult<Line<'_>> {
     // Strip comments.
     let line = line.split_once("//").map_or(line, |(head, _)| head);
 
@@ -174,23 +191,60 @@ fn validate_ident(string: &str) -> StrResult<()> {
     Err(format!("invalid identifier: {string:?}"))
 }
 
-/// Extracts the value of a variant, parsing `\u{XXXX}` escapes
-fn decode_value(text: &str) -> StrResult<String> {
-    let mut iter = text.split("\\u{");
-    let mut res = iter.next().unwrap().to_string();
-    for other in iter {
-        let (hex, rest) = other.split_once("}").ok_or_else(|| {
-            format!("unclosed unicode escape \\u{{{}", other.escape_debug())
-        })?;
-        res.push(
-            u32::from_str_radix(hex, 16)
-                .ok()
-                .and_then(|n| char::try_from(n).ok())
-                .ok_or_else(|| format!("invalid unicode escape \\u{{{hex}}}"))?,
-        );
-        res += rest;
+/// Extracts the value of a variant, parsing `\u{XXXX}` and other escapes.
+fn decode_value(mut text: &str) -> StrResult<String> {
+    let mut result = String::new();
+    loop {
+        if let Some(rest) = text.strip_prefix("\\u{") {
+            let Some((code, tail)) = rest.split_once('}') else {
+                return Err(format!(
+                    "unclosed Unicode escape: \\u{{{}",
+                    rest.escape_debug()
+                ));
+            };
+            result.push(
+                u32::from_str_radix(code, 16)
+                    .ok()
+                    .and_then(|n| char::try_from(n).ok())
+                    .ok_or_else(|| format!("invalid Unicode escape \\u{{{code}}}"))?,
+            );
+            text = tail;
+        } else if let Some(rest) = text.strip_prefix("\\vs{") {
+            let Some((value, tail)) = rest.split_once('}') else {
+                return Err(format!("unclosed VS escape: \\vs{{{}", rest.escape_debug()));
+            };
+            let vs = match value {
+                "1" => '\u{fe00}',
+                "2" => '\u{fe01}',
+                "3" => '\u{fe02}',
+                "4" => '\u{fe03}',
+                "5" => '\u{fe04}',
+                "6" => '\u{fe05}',
+                "7" => '\u{fe06}',
+                "8" => '\u{fe07}',
+                "9" => '\u{fe08}',
+                "10" => '\u{fe09}',
+                "11" => '\u{fe0a}',
+                "12" => '\u{fe0b}',
+                "13" => '\u{fe0c}',
+                "14" => '\u{fe0d}',
+                "15" | "text" => '\u{fe0e}',
+                "16" | "emoji" => '\u{fe0f}',
+                code => return Err(format!("invalid VS escape: \\vs{{{code}}}")),
+            };
+            result.push(vs);
+            text = tail;
+        } else if let Some((prefix, tail)) = text.find('\\').map(|i| text.split_at(i)) {
+            if prefix.is_empty() {
+                return Err(format!("invalid escape sequence: {tail}"));
+            }
+            result.push_str(prefix);
+            text = tail;
+        } else {
+            result.push_str(text);
+            return Ok(result);
+        }
     }
-    Ok(res)
 }
 
 /// Turns a stream of lines into a list of definitions.
