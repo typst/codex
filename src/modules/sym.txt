@@ -795,6 +795,141 @@ suit
   .spade.filled ♠\vs{text}
   .spade.stroked ♤
 
+chess {
+  king
+    .white ♔
+    .white.r 🨉
+    .white.inv 🨞
+    .white.l 🨳
+    .black ♚
+    .black.r 🨏
+    .black.inv 🨤
+    .black.l 🨹
+    .neutral 🨀
+    .neutral.r 🨕
+    .neutral.inv 🨪
+    .neutral.l 🨿
+  queen
+    .white ♕
+    .white.r 🨊
+    .white.inv 🨟
+    .white.l 🨴
+    .black ♛
+    .black.r 🨐
+    .black.inv 🨥
+    .black.l 🨺
+    .neutral 🨁
+    .neutral.r 🨖
+    .neutral.inv 🨫
+    .neutral.l 🩀
+  rook
+    .white ♖
+    .white.r 🨋
+    .white.inv 🨠
+    .white.l 🨵
+    .black ♜
+    .black.r 🨑
+    .black.inv 🨦
+    .black.l 🨻
+    .neutral 🨂
+    .neutral.r 🨗
+    .neutral.inv 🨬
+    .neutral.l 🩁
+  bishop
+    .white ♗
+    .white.r 🨌
+    .white.inv 🨡
+    .white.l 🨶
+    .black ♝
+    .black.r 🨒
+    .black.inv 🨧
+    .black.l 🨼
+    .neutral 🨃
+    .neutral.r 🨘
+    .neutral.inv 🨭
+    .neutral.l 🩂
+  knight
+    .white ♘
+    .white.tr 🨆
+    .white.r 🨍
+    .white.br 🨛
+    .white.inv 🨢
+    .white.bl 🨰
+    .white.l 🨷
+    .white.tl 🩅
+    .black ♞
+    .black.tr 🨇
+    .black.r 🨓
+    .black.br 🨜
+    .black.inv 🨨
+    .black.bl 🨱
+    .black.l 🨽
+    .black.tl 🩆
+    .neutral 🨄
+    .neutral.tr 🨈
+    .neutral.r 🨙
+    .neutral.bl 🨝
+    .neutral.inv 🨮
+    .neutral.bl 🨲
+    .neutral.l 🩃
+    .neutral.tl 🩇
+  pawn
+    .white ♙
+    .white.r 🨎
+    .white.inv 🨣
+    .white.l 🨸
+    .black ♟︎
+    .black.r 🨔
+    .black.inv 🨩
+    .black.l 🨾
+    .neutral 🨅
+    .neutral.r 🨚
+    .neutral.inv 🨯
+    .neutral.l 🩄
+  equihopper
+    .white 🩈
+    .white.rot 🩋
+    .black 🩉
+    .black.rot 🩌
+    .neutral 🩊
+    .neutral.rot 🩍
+  amazon
+    .white 🩎
+    .black 🩑
+  empress
+    .white 🩏
+    .black 🩒
+  princess
+    .white 🩐
+    .black 🩓
+  koma
+    .white ☖
+    .white.inv ⛉
+    .black ☗
+    .black.inv ⛊
+  general
+    .red 🩠
+    .black 🩧
+  mandarin
+    .red 🩡
+    .black 🩨
+  elephant
+    .red 🩢
+    .black 🩩
+  horse
+    .red 🩣
+    .black 🩪
+  chariot
+    .red 🩤
+    .black 🩫
+  cannon
+    .red 🩥
+    .black 🩬
+  soldier
+    .red 🩦
+    .black 🩭
+}
+
 // Music.
 note
   .up 🎜
