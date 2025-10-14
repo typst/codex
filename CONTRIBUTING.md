@@ -16,6 +16,7 @@ always hard rules, especially because of how messy Unicode can be, but you shoul
 adhere to them if possible.
 
 ### General Conventions
+- English words use US spelling.
 - Modifier and module names are entirely lowercase.
 - Symbol names are lowercase unless the symbol is an uppercase letter.
 - Symbol names should be at least two characters long so they can be used easily in Typst's math mode.
