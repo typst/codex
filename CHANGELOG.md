@@ -1,5 +1,23 @@
 # Changelog
 
+## Unreleased
+
+### New in `sym`
+- Miscellaneous Technical
+  - `bowtie.stroked`: ⋈
+  - `bowtie.stroked.big`: ⨝
+  - `bowtie.stroked.big.l`: ⟕
+  - `bowtie.stroked.big.r`: ⟖
+  - `bowtie.stroked.big.l.r`: ⟗
+  - `bowtie.filled`: ⧓
+  - `bowtie.filled.l`: ⧑
+  - `bowtie.filled.r`: ⧒
+
+### Deprecated
+- `join` -> `bowtie.big`
+  - `join.l` and `join.r` to `bowtie.big.l` and `bowtie.big.r`, respectively
+  - `join.l.r` to `bowtie.big.l.r`
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes
