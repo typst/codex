@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### New in `sym`
+
+- Relations
+  - `prec.curly`: ⊰
+  - `succ.curly`: ⊱
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes
