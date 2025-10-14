@@ -1,5 +1,55 @@
 # Changelog
 
+## Unreleased
+
+### New in `sym`
+
+- Shapes
+  - `star.five.stroked.small`: ⭒
+  - `star.five.stroked.outlined`: ⚝
+  - `star.five.stroked.shadowed`: ✰
+  - `star.five.stroked.filled.l`: ⯪
+  - `star.five.stroked.filled.r`: ⯫
+  - `star.five.filled.small`: ⭑
+  - `star.five.filled.light`: 🟉
+  - `star.five.filled.heavy`: 🟊
+  - `star.five.filled.l`: ⯨
+  - `star.five.filled.r`: ⯩
+  - `star.five.filled.outlined`: ✭
+  - `star.five.filled.outlined.heavy`: ✮
+  - `star.five.pinwheel`: ✯
+  - `star.five.crossing`: ⛤
+  - `star.five.crossing.inv`: ⛧
+  - `star.five.crossing.l`: ⛦
+  - `star.five.crossing.r`: ⛥
+  - `star.three.filled`: 🟁
+  - `star.three.filled.light`: 🟀
+  - `star.three.filled.heavy`: 🟂
+  - `star.three.pinwheel`: 🟃
+  - `star.four.filled`: 🟅
+  - `star.four.filled.light`: 🟄
+  - `star.four.filled.heavy`: 🟆
+  - `star.four.pinwheel`: 🟇
+  - `star.four.pinwheel.rev`: 🟈
+  - `star.six.filled`: ✶
+  - `star.six.filled.medium`: 🟋
+  - `star.six.filled.heavy`: 🟌
+  - `star.six.pinwheel`: 🟍
+  - `star.six.crossing`: ✡︎
+  - `star.eight.filled.light`: ✴︎
+  - `star.eight.filled`: 🟎
+  - `star.eight.filled.medium`: 🟏
+  - `star.eight.filled.heavy`: 🟐
+  - `star.eight.filled.rect`: ✷
+  - `star.eight.filled.rect.heavy`: ✸
+  - `star.eight.pinwheel`: ✵
+  - `star.eight.pinwheel.heavy`: 🟑
+  - `star.nine.stroked`: 🟙
+  - `star.twelve`: ✹
+  - `star.twelve.light`: 🟒
+  - `star.twelve.heavy`: 🟓
+  - `star.twelve.heavy.pinwheel`: 🟔
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes

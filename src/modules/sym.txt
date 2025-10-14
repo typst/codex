@@ -932,8 +932,52 @@ parallelogram
   .filled ▰
 star
   .op ⋆
-  .stroked ☆
-  .filled ★
+  .five.stroked ☆
+  .five.stroked.small ⭒
+  .five.stroked.outlined ⚝
+  .five.stroked.shadowed ✰
+  .five.stroked.filled.l ⯪
+  .five.stroked.filled.r ⯫
+  .five.filled ★
+  .five.filled.small ⭑
+  .five.filled.light 🟉
+  .five.filled.heavy 🟊
+  .five.filled.l ⯨
+  .five.filled.r ⯩
+  .five.filled.outlined ✭
+  .five.filled.outlined.heavy ✮
+  .five.pinwheel ✯
+  .five.crossing ⛤
+  .five.crossing.inv ⛧
+  .five.crossing.l ⛦
+  .five.crossing.r ⛥
+  .three.filled 🟁
+  .three.filled.light 🟀
+  .three.filled.heavy 🟂
+  .three.pinwheel 🟃
+  .four.filled 🟅
+  .four.filled.light 🟄
+  .four.filled.heavy 🟆
+  .four.pinwheel 🟇
+  .four.pinwheel.rev 🟈
+  .six.filled ✶
+  .six.filled.medium 🟋
+  .six.filled.heavy 🟌
+  .six.pinwheel 🟍
+  .six.crossing ✡\vs{text}
+  .eight.filled.light ✴\vs{text}
+  .eight.filled 🟎
+  .eight.filled.medium 🟏
+  .eight.filled.heavy 🟐
+  .eight.filled.rect ✷
+  .eight.filled.rect.heavy ✸
+  .eight.pinwheel ✵
+  .eight.pinwheel.heavy 🟑
+  .nine.stroked 🟙
+  .twelve ✹
+  .twelve.light 🟒
+  .twelve.heavy 🟓
+  .twelve.heavy.pinwheel 🟔
 
 // Arrows, harpoons, and tacks.
 arrow
