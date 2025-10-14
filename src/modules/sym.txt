@@ -965,7 +965,6 @@ star
   .six.filled.heavy 🟌
   .six.pinwheel 🟍
   .six.crossing ✡\vs{text}
-  .six.crossing.dot 🔯
   .eight.filled.light ✴\vs{text}
   .eight.filled 🟎
   .eight.filled.medium 🟏

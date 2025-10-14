@@ -36,7 +36,6 @@
   - `star.six.filled.heavy`: 🟌
   - `star.six.pinwheel`: 🟍
   - `star.six.crossing`: ✡︎
-  - `star.six.crossing.dot`: 🔯
   - `star.eight.filled.light`: ✴︎
   - `star.eight.filled`: 🟎
   - `star.eight.filled.medium`: 🟏
