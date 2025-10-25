@@ -264,7 +264,7 @@ mod test {
         assert!(
             are_all_variants_valid(SYM, |c| {
                 // All emoji variation sequences are exactly 2 codepoints long
-                // as of Unicode 16.0, so this doesn't miss anything.
+                // as of Unicode 17.0, so this doesn't miss anything.
                 !(c.chars().count() == 1
                     && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
@@ -282,7 +282,7 @@ mod test {
         assert!(
             are_all_variants_valid(EMOJI, |c| {
                 // All emoji variation sequences are exactly 2 codepoints long
-                // as of Unicode 16.0, so this doesn't miss anything.
+                // as of Unicode 17.0, so this doesn't miss anything.
                 !(c.chars().count() == 1
                     && require_presentation_selector.contains(&c.chars().next().unwrap()))
             }),
