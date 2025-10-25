@@ -199,10 +199,7 @@ mod test {
     #[test]
     fn symbols_are_not_emojis() {
         assert!(
-            are_all_variants_valid(
-                SYM,
-                |c| !c.contains(EMOJI_PRESENTATION_SELECTOR),
-            ) ,
+            are_all_variants_valid(SYM, |c| !c.contains(EMOJI_PRESENTATION_SELECTOR)),
             "unexpected use of emoji presentation selector in `sym` (see list above)",
         )
     }
@@ -210,10 +207,7 @@ mod test {
     #[test]
     fn emojis_are_not_text() {
         assert!(
-            are_all_variants_valid(
-                EMOJI,
-                |c| !c.contains(TEXT_PRESENTATION_SELECTOR),
-            ) ,
+            are_all_variants_valid(EMOJI, |c| !c.contains(TEXT_PRESENTATION_SELECTOR)),
             "unexpected use of text presentation selector in `emoji` (see list above)",
         )
     }
