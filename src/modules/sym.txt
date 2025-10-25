@@ -1296,6 +1296,7 @@ ZZ ℤ
 // Miscellaneous letter-likes.
 angstrom Å
 ell ℓ
+pee ℘
 planck ħ
   @deprecated: `planck.reduce` is deprecated, use `planck` instead
   .reduce ħ
