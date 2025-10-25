@@ -14,9 +14,7 @@
   - `bowtie.filled.r`: ⧒
 
 ### Deprecated
-- `join` -> `bowtie.big`
-  - `join.l` and `join.r` to `bowtie.big.l` and `bowtie.big.r`, respectively
-  - `join.l.r` to `bowtie.big.l.r`
+- `join` and its variants in favor of `bowtie.big` with the same variants
 
 ## Version 0.2.0 (October 7, 2025)
 
