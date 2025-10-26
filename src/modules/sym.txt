@@ -741,6 +741,7 @@ peso $
   .philippine ₱
 pound £
 riel ៛
+riyal ⃁
 ruble ₽
 rupee
   .indian ₹
