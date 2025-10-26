@@ -19,6 +19,11 @@ fn main() {
             "emoji/emoji-variation-sequences.txt",
             out_path.join("emoji-variation-sequences.txt"),
         );
+        unicode_data::download_file(
+            UNICODE_VERSION,
+            "StandardizedVariants.txt",
+            out_path.join("StandardizedVariants.txt"),
+        )
     }
 }
 

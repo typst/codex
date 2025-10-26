@@ -213,6 +213,51 @@ mod test {
             .collect()
     }
 
+    /// Returns the set of standardized variation sequences defined by Unicode.
+    ///
+    /// This does not include emoji variation sequences (also known as
+    /// "presentation sequences").
+    #[cfg(feature = "_test-unicode-conformance")]
+    fn get_valid_standardized_variation_sequences() -> HashSet<String> {
+        read_sequences(include_str!(concat!(
+            env!("OUT_DIR"),
+            "/StandardizedVariants.txt",
+        )))
+    }
+
+    /// Tests whether a string is a standardized variation sequence.
+    ///
+    /// This does not include emoji variation sequences (i.e., presentation
+    /// sequences). Use [`is_presentation_sequence`] to test whether a string is
+    /// a presentation sequence.
+    fn is_standardized_variation_sequence(s: &str) -> bool {
+        // Non-specific variation selectors from
+        // https://unicode.org/charts/PDF/UFE00.pdf.
+        (0xFE00..=0xFE0D)
+            .map(|cp| char::from_u32(cp).unwrap())
+            .any(|vs| s.contains(vs))
+    }
+
+    /// Tests that no standardized variation sequence is invalid.
+    ///
+    /// The validity of emoji variation sequences (i.e., presentation sequences)
+    /// is tested by [`no_invalid_presentation_sequence`].
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn no_invalid_standardized_variation_sequence() {
+        let sequences = get_valid_standardized_variation_sequences();
+        assert!(
+            are_all_variants_valid(ROOT, |c| {
+                if is_standardized_variation_sequence(c) {
+                    sequences.contains(c)
+                } else {
+                    true
+                }
+            }),
+            "invalid standardized variation sequence(s) (see list above)",
+        )
+    }
+
     /// https://www.unicode.org/reports/tr51/#def_text_presentation_selector.
     const TEXT_PRESENTATION_SELECTOR: char = '\u{FE0E}';
     /// https://www.unicode.org/reports/tr51/#def_emoji_presentation_selector.
