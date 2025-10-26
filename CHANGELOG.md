@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### New in `sym`
+
+- Currency
+  - `riyal`: ⃁
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes
