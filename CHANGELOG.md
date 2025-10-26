@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### General changes
+
+- Trivially updated to Unicode 17.0.0
+
 ### New in `sym`
 
 - Currency
