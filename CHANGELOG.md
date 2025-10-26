@@ -4,6 +4,12 @@
 
 ### New in `sym`
 
+- Mathematical symbols
+  - `union.serif`: ∪︀
+  - `union.sq.serif`: ⊔︀
+  - `inter.serif`: ∩︀
+  - `inter.sq.serif`: ⊓︀
+
 - Currency
   - `riyal`: ⃁
 
