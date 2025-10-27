@@ -27,25 +27,17 @@ paren
   .l.flat ⟮
   .l.closed ⦇
   .l.stroked ⦅
-  @deprecated: `paren.double` is deprecated, use `paren.stroked` instead
-  .l.double ⦅
   .r )
   .r.flat ⟯
   .r.closed ⦈
   .r.stroked ⦆
-  @deprecated: `paren.double` is deprecated, use `paren.stroked` instead
-  .r.double ⦆
   .t ⏜
   .b ⏝
 brace
   .l \u{7B}
   .l.stroked ⦃
-  @deprecated: `brace.double` is deprecated, use `brace.stroked` instead
-  .l.double ⦃
   .r \u{7D}
   .r.stroked ⦄
-  @deprecated: `brace.double` is deprecated, use `brace.stroked` instead
-  .r.double ⦄
   .t ⏞
   .b ⏟
 bracket
@@ -53,27 +45,19 @@ bracket
   .l.tick.t ⦍
   .l.tick.b ⦏
   .l.stroked ⟦
-  @deprecated: `bracket.double` is deprecated, use `bracket.stroked` instead
-  .l.double ⟦
   .r ]
   .r.tick.t ⦐
   .r.tick.b ⦎
   .r.stroked ⟧
-  @deprecated: `bracket.double` is deprecated, use `bracket.stroked` instead
-  .r.double ⟧
   .t ⎴
   .b ⎵
 shell
   .l ❲
   .l.stroked ⟬
   .l.filled ⦗
-  @deprecated: `shell.double` is deprecated, use `shell.stroked` instead
-  .l.double ⟬
   .r ❳
   .r.stroked ⟭
   .r.filled ⦘
-  @deprecated: `shell.double` is deprecated, use `shell.stroked` instead
-  .r.double ⟭
   .t ⏠
   .b ⏡
 bag
@@ -88,8 +72,6 @@ bar
   .v.triple ⦀
   .v.broken ¦
   .v.o ⦶
-  @deprecated: `bar.circle` is deprecated, use `bar.o` instead
-  .v.circle ⦶
   .h ―
 fence
   .l ⧘
@@ -130,16 +112,10 @@ ast
   .low ⁎
   .double ⁑
   .triple ⁂
-  @deprecated: `ast.small` is deprecated (CJK compatibility character), use ﹡ or `\u{fe61}` instead
-  .small ﹡
-  @deprecated: `ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead
-  .circle ⊛
   .square ⧆
 at @
 backslash \u{005C}
   .o ⦸
-  @deprecated: `backslash.circle` is deprecated, use `backslash.o` instead
-  .circle ⦸
   .not ⧷
 co ℅
 colon :
@@ -166,8 +142,6 @@ dash
   .fig ‒
   .colon ∹
   .o ⊝
-  @deprecated: `dash.circle` is deprecated, use `dash.o` instead
-  .circle ⊝
   .wave 〜
   .wave.double 〰\vs{text}
 dot
@@ -176,10 +150,6 @@ dot
   .c ·
   .o ⊙
   .o.big ⨀
-  @deprecated: `dot.circle` is deprecated, use `dot.o` instead
-  .circle ⊙
-  @deprecated: `dot.circle.big` is deprecated, use `dot.o.big` instead
-  .circle.big ⨀
   .square ⊡
   .double ¨
   .triple \u{20DB}
@@ -257,14 +227,6 @@ quote
   .chevron.l.single ‹
   .chevron.r.double »
   .chevron.r.single ›
-  @deprecated: `quote.angle` is deprecated, use `quote.chevron` instead
-  .angle.l.double «
-  @deprecated: `quote.angle` is deprecated, use `quote.chevron` instead
-  .angle.l.single ‹
-  @deprecated: `quote.angle` is deprecated, use `quote.chevron` instead
-  .angle.r.double »
-  @deprecated: `quote.angle` is deprecated, use `quote.chevron` instead
-  .angle.r.single ›
   .high.double ‟
   .high.single ‛
   .low.double „
@@ -286,24 +248,14 @@ plus +
   .o.r ⨮
   .o.arrow ⟴
   .o.big ⨁
-  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
-  .circle ⊕
-  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
-  .circle.arrow ⟴
-  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
-  .circle.big ⨁
   .dot ∔
   .double ⧺
   .minus ±
-  @deprecated: `plus.small` is deprecated (CJK compatibility character), use ﹢ or `\u{fe62}` instead
-  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
 minus −
   .o ⊖
-  @deprecated: `minus.circle` is deprecated, use `minus.o` instead
-  .circle ⊖
   .dot ∸
   .plus ∓
   .square ⊟
@@ -312,8 +264,6 @@ minus −
 div ÷
   .o ⨸
   .slanted.o ⦼
-  @deprecated: `div.circle` is deprecated, use `div.o` instead
-  .circle ⨸
 times ×
   .big ⨉
   .o ⊗
@@ -321,10 +271,6 @@ times ×
   .o.r ⨵
   .o.hat ⨶
   .o.big ⨂
-  @deprecated: `times.circle` is deprecated, use `times.o` instead
-  .circle ⊗
-  @deprecated: `times.circle` is deprecated, use `times.o` instead
-  .circle.big ⨂
   .div ⋇
   .three.l ⋋
   .three.r ⋌
@@ -338,8 +284,6 @@ ratio ∶
 eq =
   .star ≛
   .o ⊜
-  @deprecated: `eq.circle` is deprecated, use `eq.o` instead
-  .circle ⊜
   .colon ≕
   .dots ≑
   .dots.down ≒
@@ -354,16 +298,12 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
-  @deprecated: `eq.small` is deprecated (CJK compatibility character), use ﹦ or `\u{fe66}` instead
-  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
   .quad ≣
 gt >
   .o ⧁
-  @deprecated: `gt.circle` is deprecated, use `gt.o` instead
-  .circle ⧁
   .dot ⋗
   .approx ⪆
   .double ≫
@@ -379,8 +319,6 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
-  @deprecated: `gt.small` is deprecated (CJK compatibility character), use ﹥ or `\u{fe65}` instead
-  .small ﹥
   .tilde ≳
   .tilde.not ≵
   .tri ⊳
@@ -391,8 +329,6 @@ gt >
   .triple.nested ⫸
 lt <
   .o ⧀
-  @deprecated: `lt.circle` is deprecated, use `lt.o` instead
-  .circle ⧀
   .dot ⋖
   .approx ⪅
   .double ≪
@@ -408,8 +344,6 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
-  @deprecated: `lt.small` is deprecated (CJK compatibility character), use ﹤ or `\u{fe64}` instead
-  .small ﹤
   .tilde ≲
   .tilde.not ≴
   .tri ⊲
@@ -523,15 +457,6 @@ inter ∩
   .sq ⊓
   .sq.big ⨅
   .sq.double ⩎
-@deprecated: `sect` is deprecated, use `inter` instead
-sect ∩
-  .and ⩄
-  .big ⋂
-  .dot ⩀
-  .double ⋒
-  .sq ⊓
-  .sq.big ⨅
-  .sq.double ⩎
 
 // Calculus.
 infinity ∞
@@ -539,8 +464,6 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo ∞
-@deprecated: `diff` is deprecated, use `partial` instead
-diff ∂
 partial ∂
 gradient ∇
 nabla ∇
@@ -560,8 +483,6 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  @deprecated: `integral.sect` is deprecated, use `integral.inter` instead
-  .sect ⨙
   .slash ⨏
   .square ⨖
   .surf ∯
@@ -622,50 +543,26 @@ wreath ≀
 
 // Geometry.
 angle ∠
-  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
-  .l ⟨
-  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
-  .l.curly ⧼
-  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
-  .l.dot ⦑
-  @deprecated: `angle.l` is deprecated, use `chevron.l` instead
-  .l.double ⟪
-  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
-  .r ⟩
-  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
-  .r.curly ⧽
-  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
-  .r.dot ⦒
-  @deprecated: `angle.r` is deprecated, use `chevron.r` instead
-  .r.double ⟫
   .acute ⦟
   .arc ∡
   .arc.rev ⦛
   .azimuth ⍼
   .obtuse ⦦
-  @deprecated: `angle.oblique` is deprecated, use `angle.obtuse` instead
-  .oblique ⦦
   .rev ⦣
   .right ∟
   .right.rev ⯾
   .right.arc ⊾
   .right.dot ⦝
   .right.square ⦜
-  @deprecated: `angle.right.sq` is deprecated, use `angle.right.square` instead
-  .right.sq ⦜
   .s ⦞
   .spatial ⟀
   .spheric ∢
   .spheric.rev ⦠
   .spheric.t ⦡
-  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
-  .spheric.top ⦡
 angzarr ⍼
 parallel ∥
   .struck ⫲
   .o ⦷
-  @deprecated: `parallel.circle` is deprecated, use `parallel.o` instead
-  .circle ⦷
   .eq ⋕
   .equiv ⩨
   .not ∦
@@ -675,8 +572,6 @@ parallel ∥
   .tilde ⫳
 perp ⟂
   .o ⦹
-  @deprecated: `perp.circle` is deprecated, use `perp.o` instead
-  .circle ⦹
 
 // Astronomical.
 earth 🜨
@@ -727,8 +622,6 @@ dong ₫
 dorome ߾
 dram ֏
 euro €
-@deprecated: `franc` is deprecated, unadopted symbol for currency no longer in use
-franc ₣
 guarani ₲
 hryvnia ₴
 kip ₭
@@ -854,8 +747,6 @@ circle
   .filled.small ∙
   .filled.big ⬤
   .dotted ◌
-  @deprecated: `circle.nested` is deprecated, use `compose.o` instead
-  .nested ⊚
 ellipse
   .stroked.h ⬭
   .stroked.v ⬯
@@ -1184,8 +1075,6 @@ eta η
 gamma γ
 iota ι
   .inv ℩
-@deprecated: `kai` is deprecated, use ϗ or `\u{3d7}` instead
-kai ϗ
 kappa κ
   .alt ϰ
 lambda λ
@@ -1219,8 +1108,6 @@ Epsilon Ε
 Eta Η
 Gamma Γ
 Iota Ι
-@deprecated: `Kai` is deprecated, use Ϗ or `\u{3c5}` instead
-Kai Ϗ
 Kappa Κ
 Lambda Λ
 Mu Μ
@@ -1251,19 +1138,9 @@ Sha Ш
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
-@deprecated: `alef` is deprecated, use `aleph` instead
-alef א
 beth ב
-@deprecated: `bet` is deprecated, use `beth` instead
-bet ב
 gimel ג
-@deprecated: `gimmel` is deprecated, use `gimel` instead
-gimmel ג
 daleth ד
-@deprecated: `dalet` is deprecated, use `daleth` instead
-dalet ד
-@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
-shin ש
 
 // Double-struck.
 AA 𝔸
@@ -1297,8 +1174,6 @@ ZZ ℤ
 angstrom Å
 ell ℓ
 planck ħ
-  @deprecated: `planck.reduce` is deprecated, use `planck` instead
-  .reduce ħ
 Re ℜ
 Im ℑ
 dotless
