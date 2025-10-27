@@ -437,6 +437,7 @@ supset ⊃
   .sq ⊐
   .sq.neq ⋥
 union ∪
+  .serif ∪\vs{1}
   .arrow ⊌
   .big ⋃
   .dot ⊍
@@ -447,14 +448,17 @@ union ∪
   .plus ⊎
   .plus.big ⨄
   .sq ⊔
+  .sq.serif ⊔\vs{1}
   .sq.big ⨆
   .sq.double ⩏
 inter ∩
+  .serif ∩\vs{1}
   .and ⩄
   .big ⋂
   .dot ⩀
   .double ⋒
   .sq ⊓
+  .sq.serif ⊓\vs{1}
   .sq.big ⨅
   .sq.double ⩎
 
