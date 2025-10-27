@@ -4,6 +4,10 @@
 
 ### New in `sym`
 
+- Mathematical symbols
+  - `gt.double.nested`: ⪢
+  - `lt.double.nested`: ⪡
+
 - Currency
   - `riyal`: ⃁
 
