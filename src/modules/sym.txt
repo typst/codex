@@ -306,6 +306,8 @@ gt >
   .o ⧁
   .dot ⋗
   .approx ⪆
+  .arc ⪧
+  .arc.eq ⪩
   .double ≫
   .double.nested ⪢
   .eq ≥
@@ -332,6 +334,8 @@ lt <
   .o ⧀
   .dot ⋖
   .approx ⪅
+  .arc ⪦
+  .arc.eq ⪨
   .double ≪
   .double.nested ⪡
   .eq ≤
