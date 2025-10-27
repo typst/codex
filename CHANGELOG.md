@@ -2,7 +2,13 @@
 
 ## Unreleased
 
+### New in `sym`
+
+- Currency
+  - `riyal`: ⃁
+
 ### Removals **(Breaking change)**
+
 These previously deprecated items were removed:
 - `paren.double.*`
 - `brace.double.*`
