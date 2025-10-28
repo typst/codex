@@ -378,6 +378,7 @@ customs 🛃
 cutlery 🍴
 cyclone 🌀
 dancing
+  .ballet 🧑‍🩰
   .man 🕺
   .woman 💃
   .bunny 👯
