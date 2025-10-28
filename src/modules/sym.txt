@@ -415,27 +415,47 @@ in ∈
   .rev.small ∍
   .small ∊
 subset ⊂
+  .approx ⫉
+  .closed ⫏
+  .closed.eq ⫑
   .dot ⪽
   .double ⋐
   .eq ⊆
+  .eq.dot ⫃
   .eq.not ⊈
   .eq.sq ⊑
   .eq.sq.not ⋢
+  .equiv ⫅
   .neq ⊊
+  .nequiv ⫋
   .not ⊄
+  .open ⟃
+  .plus ⪿
   .sq ⊏
   .sq.neq ⋤
+  .tilde ⫇
+  .times ⫁
 supset ⊃
+  .approx ⫊
+  .closed ⫐
+  .closed.eq ⫒
   .dot ⪾
   .double ⋑
   .eq ⊇
+  .eq.dot ⫄
   .eq.not ⊉
   .eq.sq ⊒
   .eq.sq.not ⋣
+  .equiv ⫆
   .neq ⊋
+  .nequiv ⫌
   .not ⊅
+  .open ⟄
+  .plus ⫀
   .sq ⊐
   .sq.neq ⋥
+  .tilde ⫈
+  .times ⫂
 union ∪
   .arrow ⊌
   .big ⋃
