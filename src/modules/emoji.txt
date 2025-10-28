@@ -251,7 +251,6 @@ checkmark
 cheese 🧀
 cherries 🍒
 chess ♟\vs{emoji}
-chest 🪎
 chestnut 🌰
 chicken 🐔
   .baby 🐥
@@ -319,7 +318,6 @@ clock
   .timer ⏲\vs{emoji}
 cloud ☁\vs{emoji}
   .dust 💨
-  .fight 🫯
   .rain 🌧\vs{emoji}
   .snow 🌨\vs{emoji}
   .storm ⛈\vs{emoji}
@@ -576,6 +574,7 @@ feeding
   .breast 🤱
 fencing 🤺
 ferriswheel 🎡
+fightcloud 🫯
 filebox 🗃\vs{emoji}
 filedividers 🗂\vs{emoji}
 film 🎞\vs{emoji}
@@ -1379,6 +1378,7 @@ tray
   .inbox 📥\vs{emoji}
   .mail 📨
   .outbox 📤\vs{emoji}
+treasure 🪎
 tree
   .deciduous 🌳
   .evergreen 🌲
