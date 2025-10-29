@@ -4,6 +4,9 @@
 
 ### New in `sym`
 
+- Mathematical symbols
+  - `pee`: ℘
+
 - Currency
   - `riyal`: ⃁
 
