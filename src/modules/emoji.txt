@@ -102,6 +102,7 @@ bell 🔔
 bento 🍱
 bicyclist 🚴
   .mountain 🚵
+bigfoot 🫈
 bike 🚲\vs{emoji}
   .not 🚳
 bikini 👙
@@ -375,6 +376,7 @@ customs 🛃
 cutlery 🍴
 cyclone 🌀
 dancing
+  .ballet 🧑‍🩰
   .man 🕺
   .woman 💃
   .bunny 👯
@@ -463,6 +465,7 @@ face
   .devil.frown 👿
   .diagonal 🫤
   .disguise 🥸
+  .distorted 🫪
   .distress 😫
   .dizzy 😵
   .dotted 🫥
@@ -571,6 +574,7 @@ feeding
   .breast 🤱
 fencing 🤺
 ferriswheel 🎡
+fightcloud 🫯
 filebox 🗃\vs{emoji}
 filedividers 🗂\vs{emoji}
 film 🎞\vs{emoji}
@@ -836,6 +840,7 @@ lacrosse 🥍
 ladder 🪜
 lamp
   .diya 🪔
+landslide 🛘
 laptop 💻\vs{emoji}
 a 🅰\vs{emoji}
 ab 🆎
@@ -994,6 +999,7 @@ olive 🫒
 oni 👹
 onion 🧅
 orangutan 🦧
+orca 🫍
 otter 🦦
 owl 🦉
 ox 🐂
@@ -1372,6 +1378,7 @@ tray
   .inbox 📥\vs{emoji}
   .mail 📨
   .outbox 📤\vs{emoji}
+treasure 🪎
 tree
   .deciduous 🌳
   .evergreen 🌲
@@ -1387,6 +1394,7 @@ triangle
   .b.red 🔻
 trident 🔱
 troll 🧌
+trombone 🪊
 trophy 🏆\vs{emoji}
 truck 🚚
   .trailer 🚛
