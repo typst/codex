@@ -23,6 +23,7 @@
   - `supset.plus`: ⫀
   - `supset.tilde`: ⫈
   - `supset.times`: ⫂
+  - `pee`: ℘
 
 - Currency
   - `riyal`: ⃁

@@ -1191,6 +1191,7 @@ ZZ ℤ
 // Miscellaneous letter-likes.
 angstrom Å
 ell ℓ
+pee ℘
 planck ħ
 Re ℜ
 Im ℑ
