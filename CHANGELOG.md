@@ -11,7 +11,6 @@
   - `subset.eq.dot`: ⫃
   - `subset.equiv`: ⫅
   - `subset.nequiv`: ⫋
-  - `subset.open`: ⟃
   - `subset.plus`: ⪿
   - `subset.tilde`: ⫇
   - `subset.times`: ⫁
@@ -21,7 +20,6 @@
   - `supset.eq.dot`: ⫄
   - `supset.equiv`: ⫆
   - `supset.nequiv`: ⫌
-  - `supset.open`: ⟄
   - `supset.plus`: ⫀
   - `supset.tilde`: ⫈
   - `supset.times`: ⫂

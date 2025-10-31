@@ -429,7 +429,6 @@ subset ⊂
   .neq ⊊
   .nequiv ⫋
   .not ⊄
-  .open ⟃
   .plus ⪿
   .sq ⊏
   .sq.neq ⋤
@@ -450,7 +449,6 @@ supset ⊃
   .neq ⊋
   .nequiv ⫌
   .not ⊅
-  .open ⟄
   .plus ⫀
   .sq ⊐
   .sq.neq ⋥
