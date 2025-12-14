@@ -11,6 +11,25 @@
   - `gt.arc.eq` ⪩
   - `lt.arc`: ⪦
   - `lt.arc.eq`: ⪨
+  - `subset.approx`: ⫉
+  - `subset.closed`: ⫏
+  - `subset.closed.eq`: ⫑
+  - `subset.eq.dot`: ⫃
+  - `subset.equiv`: ⫅
+  - `subset.nequiv`: ⫋
+  - `subset.plus`: ⪿
+  - `subset.tilde`: ⫇
+  - `subset.times`: ⫁
+  - `supset.approx`: ⫊
+  - `supset.closed`: ⫐
+  - `supset.closed.eq`: ⫒
+  - `supset.eq.dot`: ⫄
+  - `supset.equiv`: ⫆
+  - `supset.nequiv`: ⫌
+  - `supset.plus`: ⫀
+  - `supset.tilde`: ⫈
+  - `supset.times`: ⫂
+  - `pee`: ℘
 
 - Currency
   - `riyal`: ⃁
