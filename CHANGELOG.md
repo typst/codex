@@ -28,6 +28,17 @@
 - Currency
   - `riyal`: ⃁
 
+### New in `emoji`
+
+- bigfoot: 🫈
+- dancing.ballet: 🧑‍🩰
+- face.distorted: 🫪
+- fightcloud: 🫯
+- landslide: 🛘
+- orca: 🫍
+- treasure: 🪎
+- trombone: 🪊
+
 ### Removals **(Breaking change)**
 
 These previously deprecated items were removed:
