@@ -306,6 +306,10 @@ gt >
   .o ⧁
   .dot ⋗
   .approx ⪆
+  .closed ⊳
+  .closed.eq ⊵
+  .closed.eq.not ⋭
+  .closed.not ⋫
   .double ≫
   .eq ≥
   .eq.slant ⩾
@@ -321,9 +325,13 @@ gt >
   .ntilde ⋧
   .tilde ≳
   .tilde.not ≵
+  @deprecated: `gt.tri` is deprecated, use `gt.closed` instead
   .tri ⊳
+  @deprecated: `gt.tri.eq` is deprecated, use `gt.closed.eq` instead
   .tri.eq ⊵
+  @deprecated: `gt.tri.eq.not` is deprecated, use `gt.closed.eq.not` instead
   .tri.eq.not ⋭
+  @deprecated: `gt.tri.not` is deprecated, use `gt.closed.not` instead
   .tri.not ⋫
   .triple ⋙
   .triple.nested ⫸
@@ -331,6 +339,10 @@ lt <
   .o ⧀
   .dot ⋖
   .approx ⪅
+  .closed ⊲
+  .closed.eq ⊴
+  .closed.eq.not ⋬
+  .closed.not ⋪
   .double ≪
   .eq ≤
   .eq.slant ⩽
@@ -346,9 +358,13 @@ lt <
   .ntilde ⋦
   .tilde ≲
   .tilde.not ≴
+  @deprecated: `lt.tri` is deprecated, use `lt.closed` instead
   .tri ⊲
+  @deprecated: `lt.tri.eq` is deprecated, use `lt.closed.eq` instead
   .tri.eq ⊴
+  @deprecated: `lt.tri.eq.not` is deprecated, use `lt.closed.eq.not` instead
   .tri.eq.not ⋬
+  @deprecated: `lt.tri.not` is deprecated, use `lt.closed.not` instead
   .tri.not ⋪
   .triple ⋘
   .triple.nested ⫷
