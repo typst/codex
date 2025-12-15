@@ -5,6 +5,12 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `gt.double.nested`: ⪢
+  - `lt.double.nested`: ⪡
+  - `gt.arc` ⪧
+  - `gt.arc.eq` ⪩
+  - `lt.arc`: ⪦
+  - `lt.arc.eq`: ⪨
   - `subset.approx`: ⫉
   - `subset.closed`: ⫏
   - `subset.closed.eq`: ⫑
