@@ -9,9 +9,90 @@
   - `union.sq.serif`: ⊔︀
   - `inter.serif`: ∩︀
   - `inter.sq.serif`: ⊓︀
+  - `gt.double.nested`: ⪢
+  - `lt.double.nested`: ⪡
+  - `gt.arc` ⪧
+  - `gt.arc.eq` ⪩
+  - `lt.arc`: ⪦
+  - `lt.arc.eq`: ⪨
+  - `subset.approx`: ⫉
+  - `subset.closed`: ⫏
+  - `subset.closed.eq`: ⫑
+  - `subset.eq.dot`: ⫃
+  - `subset.equiv`: ⫅
+  - `subset.nequiv`: ⫋
+  - `subset.plus`: ⪿
+  - `subset.tilde`: ⫇
+  - `subset.times`: ⫁
+  - `supset.approx`: ⫊
+  - `supset.closed`: ⫐
+  - `supset.closed.eq`: ⫒
+  - `supset.eq.dot`: ⫄
+  - `supset.equiv`: ⫆
+  - `supset.nequiv`: ⫌
+  - `supset.plus`: ⫀
+  - `supset.tilde`: ⫈
+  - `supset.times`: ⫂
+  - `pee`: ℘
 
 - Currency
   - `riyal`: ⃁
+
+### New in `emoji`
+
+- bigfoot: 🫈
+- dancing.ballet: 🧑‍🩰
+- face.distorted: 🫪
+- fightcloud: 🫯
+- landslide: 🛘
+- orca: 🫍
+- treasure: 🪎
+- trombone: 🪊
+
+### Removals **(Breaking change)**
+
+These previously deprecated items were removed:
+- `paren.double.*`
+- `brace.double.*`
+- `bracket.double.*`
+- `shell.double.*`
+- `bar.circle`
+- `ast.small`
+- `ast.circle`
+- `backslash.circle`
+- `dash.circle`
+- `dot.circle`, `dot.circle.big`
+- `quote.angle.*`
+- `plus.circle`, `plus.circle.*`
+- `plus.small`
+- `minus.circle`
+- `div.circle`
+- `times.circle`, `times.circle.big`
+- `eq.circle`
+- `eq.small`
+- `gt.circle`
+- `gt.small`
+- `lt.circle`
+- `lt.small`
+- `sect`, `sect.*`
+- `diff`
+- `integral.sect`
+- `angle.l`, `angle.l.*`
+- `angle.r`, `angle.r.*`
+- `angle.oblique`
+- `angle.right.sq`
+- `angle.spheric.top`
+- `parallel.circle`
+- `perp.circle`
+- `franc`
+- `circle.nested`
+- `kai`, `Kai`
+- `alef`
+- `bet`
+- `gimmel`
+- `dalet`
+- `shin`
+- `planck.reduce`
 
 ## Version 0.2.0 (October 7, 2025)
 
