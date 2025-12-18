@@ -401,12 +401,14 @@ asymp ≍
 
 // Set theory.
 emptyset ∅
+  .zero ∅\vs{1}
   .arrow.r ⦳
   .arrow.l ⦴
   .bar ⦱
   .circle ⦲
   .rev ⦰
 nothing ∅
+  .zero ∅\vs{1}
   .arrow.r ⦳
   .arrow.l ⦴
   .bar ⦱

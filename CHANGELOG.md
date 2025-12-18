@@ -5,6 +5,8 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `emptyset.zero`: ∅︀
+  - `nothing.zero`: ∅︀
   - `union.serif`: ∪︀
   - `union.sq.serif`: ⊔︀
   - `inter.serif`: ∩︀
