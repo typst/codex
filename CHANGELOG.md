@@ -5,6 +5,8 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `emptyset.alt`: ∅︀
+  - `nothing.alt`: ∅︀
   - `gt.double.nested`: ⪢
   - `lt.double.nested`: ⪡
   - `gt.arc` ⪧
