@@ -260,6 +260,7 @@ minus −
   .plus ∓
   .square ⊟
   .tilde ≂
+  .tilde.not ≂\c{not}
   .triangle ⨺
 div ÷
   .o ⨸
@@ -302,6 +303,7 @@ eq =
   .triple ≡
   .triple.not ≢
   .quad ≣
+  .quad.not ≣\c{not}
 gt >
   .o ⧁
   .dot ⋗
@@ -312,9 +314,11 @@ gt >
   .double.nested ⪢
   .eq ≥
   .eq.slant ⩾
+  .eq.slant.not ⩾\c{not}
   .eq.lt ⋛
   .eq.not ≱
   .equiv ≧
+  .equiv.not ≧\c{not}
   .lt ≷
   .lt.not ≹
   .neq ⪈
@@ -340,9 +344,11 @@ lt <
   .double.nested ⪡
   .eq ≤
   .eq.slant ⩽
+  .eq.slant.not ⩽\c{not}
   .eq.gt ⋚
   .eq.not ≰
   .equiv ≦
+  .equiv.not ≦\c{not}
   .gt ≶
   .gt.not ≸
   .neq ⪇
@@ -419,7 +425,9 @@ in ∈
   .rev ∋
   .rev.not ∌
   .rev.small ∍
+  .rev.small.not ∍\c{not}
   .small ∊
+  .small.not ∊\c{not}
 subset ⊂
   .approx ⫉
   .closed ⫏

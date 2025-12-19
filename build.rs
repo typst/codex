@@ -234,6 +234,23 @@ fn decode_value(mut text: &str) -> StrResult<String> {
             };
             result.push(vs);
             text = tail;
+        } else if let Some(rest) = text.strip_prefix("\\c{") {
+            let Some((value, tail)) = rest.split_once('}') else {
+                return Err(format!(
+                    "unclosed combining character escape: \\c{{{}",
+                    rest.escape_debug(),
+                ));
+            };
+            let c = match value {
+                "not" => '\u{0338}',
+                code => {
+                    return Err(format!(
+                        "invalid combining character escape: \\c{{{code}}}",
+                    ))
+                }
+            };
+            result.push(c);
+            text = tail;
         } else if let Some((prefix, tail)) = text.find('\\').map(|i| text.split_at(i)) {
             if prefix.is_empty() {
                 return Err(format!("invalid escape sequence: {tail}"));
