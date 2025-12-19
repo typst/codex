@@ -5,6 +5,10 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `union.serif`: ∪︀
+  - `union.sq.serif`: ⊔︀
+  - `inter.serif`: ∩︀
+  - `inter.sq.serif`: ⊓︀
   - `gt.double.nested`: ⪢
   - `lt.double.nested`: ⪡
   - `gt.arc` ⪧
