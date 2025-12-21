@@ -72,10 +72,10 @@ fn main() {
     {
         let emoji_vs_list = Path::new(&out).join("emoji-variation-sequences.txt");
         if !std::fs::read_to_string(&emoji_vs_list)
-            .is_ok_and(|text| text.contains("Emoji Version 16.0"))
+            .is_ok_and(|text| text.contains("Version: 17.0"))
         {
             let content = ureq::get(
-                "https://www.unicode.org/Public/16.0.0/ucd/emoji/emoji-variation-sequences.txt",
+                "https://www.unicode.org/Public/17.0.0/ucd/emoji/emoji-variation-sequences.txt",
             )
                 .call()
                 .unwrap()
