@@ -549,6 +549,8 @@ qed ∎
 // Function and category theory.
 mapsto ↦
   .long ⟼
+mapsfrom ↤
+  .long ⟻
 compose ∘
   .o ⊚
 convolve ∗
