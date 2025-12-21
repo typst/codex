@@ -15,6 +15,8 @@
   - `gt.arc.eq` ⪩
   - `lt.arc`: ⪦
   - `lt.arc.eq`: ⪨
+  - `mapsfrom`: ↤
+  - `mapsfrom.long` ⟻
   - `subset.approx`: ⫉
   - `subset.closed`: ⫏
   - `subset.closed.eq`: ⫑
