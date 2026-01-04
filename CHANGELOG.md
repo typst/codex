@@ -13,6 +13,10 @@
   - `gt.equiv.not`: ≧̸
   - `lt.eq.slant.not`: ⩽̸
   - `gt.eq.slant.not`: ⩾̸
+  - `union.serif`: ∪︀
+  - `union.sq.serif`: ⊔︀
+  - `inter.serif`: ∩︀
+  - `inter.sq.serif`: ⊓︀
   - `gt.double.nested`: ⪢
   - `lt.double.nested`: ⪡
   - `gt.arc` ⪧
