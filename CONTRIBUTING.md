@@ -22,6 +22,19 @@ and naming ideas.
 
 [^symbol]: This document also uses "symbol" in the more abstract sense of a graphical symbol.
 
+## Pull Requests
+- All PRs require two approvals by collaborators to be merged.
+- PRs with breaking changes require three such approvals instead.
+- PRs with changes to the public Rust API also require an approval by @laurmaedje.
+
+To remove a symbol or variant, it is first marked as deprecated.
+(This is considered a breaking change)
+After a Typst version that includes this deprecation notice has been released,
+the deprecated symbol or variant will be removed. (This is not considered a breaking change)
+Instead of being removed, the name can also be repurposed for a different symbol,
+which can be seen as a combination of removing the old symbol or variant
+and adding a new one with the same name.
+
 ## Conventions
 When adding new modules, symbols or variants, please try to be consistent with
 existing ones. Below are some guidelines based on existing symbols. These aren't
