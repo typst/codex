@@ -1,6 +1,6 @@
 [package]
 name = "codex"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["The Typst Project Developers"]
 edition = "2021"
 description = "Human-friendly notation for Unicode symbols."
@@ -9,3 +9,11 @@ readme = "README.md"
 license = "Apache-2.0"
 categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
+
+[features]
+default = ["styling"]
+styling = []
+_test-unicode-conformance = ["ureq"]
+
+[build-dependencies]
+ureq = { version = "3.0.12", optional = true }
