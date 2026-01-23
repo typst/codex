@@ -1,14 +1,26 @@
 # Contributing Guidelines
 Contributions are welcome! This document provides some resources and guidelines to help with the process.
 
-Symbol definitions are in `src/modules/`; The syntax should be mostly self-evident.
-If you need help with a contribution, you can ask us [on Discord](https://discord.com/channels/1054443721975922748/1277628305142452306).
+Codex collects related Unicode symbols as different *variants* of the same *symbol*.[^symbol]
+For example, `→ ⇒ ↑ ⇑` are four variants of the `arrow` symbol.
+Each symbol has a default variant (here `→`).
+To refer to a particular variant, *modifiers* can be appended to the symbol name
+using dot separators.
+For example `⇒` is `arrow.double`, `↑` is `arrow.t` and `⇑` is `arrow.double.t`.
+Modifiers are order-independent, so the latter can also be referred to as `arrow.t.double`.
+Groups of related symbols are collected into *modules*. Modules can also contain other modules.
+Codex exports two main modules: `sym` for for text-style symbols and `emoji` for emoji;
+Their source code is found in `src/modules/`.
+
+If you need help with a contribution, you can also ask us [on Discord](https://discord.com/channels/1054443721975922748/1277628305142452306).
 
 Proposals used to be written in a dedicated Proposals document,
 but new proposals should now be filed as GitHub issues instead.
 The [document](https://typst.app/project/riXtMSim5zLCo7DWngIFbT)
 has been repurposed to serve as a collection of useful information
 and naming ideas.
+
+[^symbol]: This document also uses "symbol" in the more abstract sense of a graphical symbol.
 
 ## Conventions
 When adding new modules, symbols or variants, please try to be consistent with
