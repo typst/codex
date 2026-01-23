@@ -68,7 +68,7 @@ These have a broad meaning and can have varying interpretations.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
     - Generally, these are used for a single, diagonal direction,
         whereas combinations of two main directions (like `.t.l`) are used to mean both of them at once,
-        e.g. `arrow.t.l`, if it existed, would be a two-headed arrow that points both top and left,
+        e.g. `arrow.t.l`, if it existed, would be a bidirectional arrow that points both top and left,
         similarly to how `arrow.l.r` is an arrow pointing both left and right.
 - `.cw`/`.ccw`: Clockwise/Counterclockwise, e.g. `arrow.cw`, `integral.ccw`.
 - `.tiny`/`.small`/`.medium`/`.big`: A geometric shape with a certain size, e.g. `square.stroked.small`.
