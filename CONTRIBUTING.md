@@ -23,12 +23,12 @@ adhere to them if possible.
 - Symbol names should be at least two characters long so they can be used easily in Typst's math mode.
 - When a symbol is added to a base, the symbol name is used as a modifier on the base.[^modifname]
 	This can have the following meanings:
-	- The symbol is added around or inside the base as a subordinate (smaller than the base),
+	1. The symbol is added around or inside the base as a subordinate (smaller than the base),
 		e.g. `eq.quest`, `triangle.stroked.dot`.
-	- The symbol is stacked below the base, e.g. `gt.lt`.
-	- The symbol is stacked to the right of the base, e.g. `colon.eq`.
-	- The symbol is overlaid at the center of the base, e.g. `integral.dash`.
-	- The symbol surrounds the base, e.g. `plus.square`.
+	2. The symbol is stacked below the base, e.g. `gt.lt`.
+	3. The symbol is stacked to the right of the base, e.g. `colon.eq`.
+	4. The symbol is overlaid at the center of the base, e.g. `integral.dash`.
+	5. The symbol surrounds the base, e.g. `plus.square`.
 - Notable exceptions to the previous convention:
 	- When `.eq` is used in the second sense (stacked below), it only adds a single line and not two,
 		e.g. `lt.eq`. For two lines below, `.equiv` is used, e.g. `lt.equiv`.
@@ -43,7 +43,7 @@ These have a broad meaning and can have varying interpretations.
 - `.tl`/`.tr`/`.bl`/`.br`: The four corners, e.g. `arrow.tl`, `triangle.stroked.tr`.
 	- Generally, these are used for a single, diagonal direction,
 		whereas combinations of two main directions (like `.t.l`) are used to mean both of them at once,
-		e.g. `arrow.t.l`, if it existed, would be an arrow that points both top and left,
+		e.g. `arrow.t.l`, if it existed, would be a two-headed arrow that points both top and left,
 		similarly to how `arrow.l.r` is an arrow pointing both left and right.
 - `.cw`/`.ccw`: Clockwise/Counterclockwise, e.g. `arrow.cw`, `integral.ccw`.
 - `.tiny`/`.small`/`.medium`/`.big`: A geometric shape with a certain size, e.g. `square.stroked.small`.
