@@ -475,7 +475,7 @@ union ∪
   .sq.serif ⊔\vs{1}
   .sq.big ⨆
   .sq.double ⩏
-  .vee ⩅
+  .join ⩅
 inter ∩
   .serif ∩\vs{1}
   .and ⩄
@@ -486,7 +486,7 @@ inter ∩
   .sq.serif ⊓\vs{1}
   .sq.big ⨅
   .sq.double ⩎
-  .wedge ⩄
+  .meet ⩄
 
 // Calculus.
 infinity ∞
@@ -866,12 +866,12 @@ star
   .op ⋆
   .stroked ☆
   .filled ★
-wedge ∧
+meet ∧
   .big ⋀
   .curly ⋏
   .dot ⟑
   .double ⩓
-vee ∨
+join ∨
   .big ⋁
   .curly ⋎
   .dot ⟇
