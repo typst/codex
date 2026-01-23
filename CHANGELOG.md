@@ -35,6 +35,16 @@
   - `supset.times`: ⫂
   - `pee`: ℘
 
+- Miscellaneous technical
+  - `bowtie.stroked`: ⋈
+  - `bowtie.stroked.big`: ⨝
+  - `bowtie.stroked.big.l`: ⟕
+  - `bowtie.stroked.big.r`: ⟖
+  - `bowtie.stroked.big.l.r`: ⟗
+  - `bowtie.filled`: ⧓
+  - `bowtie.filled.l`: ⧑
+  - `bowtie.filled.r`: ⧒
+
 - Currency
   - `riyal`: ⃁
 
@@ -48,6 +58,10 @@
 - orca: 🫍
 - treasure: 🪎
 - trombone: 🪊
+
+### Deprecations
+
+- `join` and its variants in favor of `bowtie.big` with the same variants
 
 ### Removals **(Breaking change)**
 
