@@ -27,10 +27,10 @@ and naming ideas.
 - PRs with breaking changes require three such approvals instead.
 - PRs with changes to the public Rust API also require an approval by @laurmaedje.
 
-To remove a symbol or variant, it is first marked as deprecated.
-(This is considered a breaking change)
+To remove a symbol or variant, it is first marked as deprecated
+(This is considered a breaking change).
 After a Typst version that includes this deprecation notice has been released,
-the deprecated symbol or variant will be removed. (This is not considered a breaking change)
+the deprecated symbol or variant will be removed (This is not considered a breaking change).
 Instead of being removed, the name can also be repurposed for a different symbol,
 which can be seen as a combination of removing the old symbol or variant
 and adding a new one with the same name.
