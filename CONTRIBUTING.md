@@ -11,7 +11,7 @@ Modifiers are order-independent, so the latter can also be referred to as `arrow
 Additionally, not all modifiers have to be specified, in which case the best match[^match]
 will be taken. For example, `⇒` can also be referred to as `arrow.double`.
 Groups of related symbols are collected into *modules*. Modules can also contain other modules.
-Codex exports two top-level modules: `sym` for for text-style symbols and `emoji` for emoji;
+Codex exports two top-level modules: `sym` for text-style symbols and `emoji` for emoji;
 Their source code is found in `src/modules/`.
 
 If you need help with a contribution, you can also ask us [on Discord](https://discord.com/channels/1054443721975922748/1277628305142452306).
