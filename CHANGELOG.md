@@ -5,6 +5,10 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `union.serif`: ∪︀
+  - `union.sq.serif`: ⊔︀
+  - `inter.serif`: ∩︀
+  - `inter.sq.serif`: ⊓︀
   - `gt.double.nested`: ⪢
   - `lt.double.nested`: ⪡
   - `gt.arc` ⪧
@@ -39,6 +43,16 @@
   - `lt.closed.eq.not`: ⋬
   - `lt.closed.not`: ⋪
 
+- Miscellaneous technical
+  - `bowtie.stroked`: ⋈
+  - `bowtie.stroked.big`: ⨝
+  - `bowtie.stroked.big.l`: ⟕
+  - `bowtie.stroked.big.r`: ⟖
+  - `bowtie.stroked.big.l.r`: ⟗
+  - `bowtie.filled`: ⧓
+  - `bowtie.filled.l`: ⧑
+  - `bowtie.filled.r`: ⧒
+
 - Currency
   - `riyal`: ⃁
 
@@ -57,6 +71,7 @@
 
 - `gt.tri` and variants in favor of `gt.closed`
 - `lt.tri` and variants in favor of `lt.closed`
+- `join` and its variants in favor of `bowtie.big` with the same variants
 
 ### Removals **(Breaking change)**
 
