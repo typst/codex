@@ -6,8 +6,10 @@ For example, `→ ⇒ ↑ ⇑` are four variants of the `arrow` symbol.
 Each symbol has a default variant (here `→`).
 To refer to a particular variant, *modifiers* can be appended to the symbol name
 using dot separators.
-For example `⇒` is `arrow.double`, `↑` is `arrow.t` and `⇑` is `arrow.double.t`.
-Modifiers are order-independent, so the latter can also be referred to as `arrow.t.double`.
+For example `⇒` is `arrow.r.double`, `↑` is `arrow.t` and `⇑` is `arrow.t.double`.
+Modifiers are order-independent, so the latter can also be referred to as `arrow.double.t`.
+Additionally, not all modifiers have to be specified, in which case the best match[^match]
+will be taken. For example, `⇒` can also be referred to as `arrow.double`.
 Groups of related symbols are collected into *modules*. Modules can also contain other modules.
 Codex exports two top-level modules: `sym` for for text-style symbols and `emoji` for emoji;
 Their source code is found in `src/modules/`.
@@ -21,6 +23,7 @@ has been repurposed to serve as a collection of useful information
 and naming ideas.
 
 [^symbol]: This document also uses "symbol" in the more abstract sense of a graphical symbol.
+[^match]: See the documentation of `ModifierSet::best_match_in` for the exact details.
 
 ## Pull Requests
 - All PRs require two approvals by collaborators to be merged.
