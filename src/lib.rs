@@ -230,6 +230,7 @@ mod test {
     /// This does not include emoji variation sequences (i.e., presentation
     /// sequences). Use [`is_presentation_sequence`] to test whether a string is
     /// a presentation sequence.
+    #[cfg(feature = "_test-unicode-conformance")]
     fn is_standardized_variation_sequence(s: &str) -> bool {
         // Non-specific variation selectors from
         // https://unicode.org/charts/PDF/UFE00.pdf.
@@ -274,6 +275,7 @@ mod test {
     }
 
     /// Tests whether a string is a presentation sequence.
+    #[cfg(feature = "_test-unicode-conformance")]
     fn is_presentation_sequence(s: &str) -> bool {
         is_text_presentation_sequence(s) || is_emoji_presentation_sequence(s)
     }
