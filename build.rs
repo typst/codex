@@ -13,7 +13,7 @@ fn main() {
 
     #[cfg(feature = "_test-unicode-conformance")]
     {
-        const UNICODE_VERSION: &str = "16.0.0";
+        const UNICODE_VERSION: &str = "17.0.0";
         unicode_data::download_file(
             UNICODE_VERSION,
             "emoji/emoji-variation-sequences.txt",

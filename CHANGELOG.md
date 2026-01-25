@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### General changes
+
+- Trivially updated to Unicode 17.0.0
+
 ### New in `sym`
 
 - Mathematical symbols
@@ -34,6 +38,24 @@
   - `supset.tilde`: ⫈
   - `supset.times`: ⫂
   - `pee`: ℘
+  - `gt.closed`: ⊳
+  - `gt.closed.eq`: ⊵
+  - `gt.closed.eq.not`: ⋭
+  - `gt.closed.not`: ⋫
+  - `lt.closed`: ⊲
+  - `lt.closed.eq`: ⊴
+  - `lt.closed.eq.not`: ⋬
+  - `lt.closed.not`: ⋪
+
+- Miscellaneous technical
+  - `bowtie.stroked`: ⋈
+  - `bowtie.stroked.big`: ⨝
+  - `bowtie.stroked.big.l`: ⟕
+  - `bowtie.stroked.big.r`: ⟖
+  - `bowtie.stroked.big.l.r`: ⟗
+  - `bowtie.filled`: ⧓
+  - `bowtie.filled.l`: ⧑
+  - `bowtie.filled.r`: ⧒
 
 - Currency
   - `riyal`: ⃁
@@ -48,6 +70,12 @@
 - orca: 🫍
 - treasure: 🪎
 - trombone: 🪊
+
+### Deprecations in `sym`
+
+- `gt.tri` and variants in favor of `gt.closed`
+- `lt.tri` and variants in favor of `lt.closed`
+- `join` and its variants in favor of `bowtie.big` with the same variants
 
 ### Removals **(Breaking change)**
 

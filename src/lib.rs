@@ -330,6 +330,8 @@ mod test {
             .collect::<HashSet<_>>();
         assert!(
             are_all_variants_valid(SYM, |c| {
+                // All emoji variation sequences are exactly 2 codepoints long
+                // as of Unicode 17.0, so this doesn't miss anything.
                 if require_presentation_selector.contains(&c.chars().next().unwrap()) {
                     is_text_presentation_sequence(c)
                 } else {
@@ -349,6 +351,8 @@ mod test {
             .collect::<HashSet<_>>();
         assert!(
             are_all_variants_valid(EMOJI, |c| {
+                // All emoji variation sequences are exactly 2 codepoints long
+                // as of Unicode 17.0, so this doesn't miss anything.
                 if require_presentation_selector.contains(&c.chars().next().unwrap()) {
                     is_emoji_presentation_sequence(c)
                 } else {
