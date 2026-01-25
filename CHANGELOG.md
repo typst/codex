@@ -9,6 +9,14 @@
 ### New in `sym`
 
 - Mathematical symbols
+  - `in.small.not`: ∊̸
+  - `in.rev.small.not`: ∍̸
+  - `minus.tilde.not`: ≂̸
+  - `eq.quad.not`: ≣̸
+  - `lt.equiv.not`: ≦̸
+  - `gt.equiv.not`: ≧̸
+  - `lt.eq.slant.not`: ⩽̸
+  - `gt.eq.slant.not`: ⩾̸
   - `union.serif`: ∪︀
   - `union.sq.serif`: ⊔︀
   - `inter.serif`: ∩︀
