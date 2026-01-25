@@ -38,6 +38,14 @@
   - `supset.tilde`: ⫈
   - `supset.times`: ⫂
   - `pee`: ℘
+  - `gt.closed`: ⊳
+  - `gt.closed.eq`: ⊵
+  - `gt.closed.eq.not`: ⋭
+  - `gt.closed.not`: ⋫
+  - `lt.closed`: ⊲
+  - `lt.closed.eq`: ⊴
+  - `lt.closed.eq.not`: ⋬
+  - `lt.closed.not`: ⋪
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈
@@ -63,8 +71,10 @@
 - treasure: 🪎
 - trombone: 🪊
 
-### Deprecations
+### Deprecations in `sym`
 
+- `gt.tri` and variants in favor of `gt.closed`
+- `lt.tri` and variants in favor of `lt.closed`
 - `join` and its variants in favor of `bowtie.big` with the same variants
 
 ### Removals **(Breaking change)**
