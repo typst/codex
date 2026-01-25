@@ -92,7 +92,7 @@ These have a specific meaning that is not open to much interpretation.
 - `.inv`: Either vertically mirrored or a 180° rotated version of a symbol, e.g. `amp.inv`, `Omega.inv`.
     - See also [#108](https://github.com/typst/codex/issues/108).
 - `.not`: A negation of the symbol, e.g. `eq.not`.
-- `.o`: A symbol with a circle around it, e.g. `plus.circle`.
+- `.o`: A symbol with a circle around it, e.g. `plus.o`.
     - See also [#62](https://github.com/typst/codex/pull/62)
 - `.rev`: A horizontally mirrored version of a symbol, e.g. `in.rev`.
     - See also [#108](https://github.com/typst/codex/issues/108).
