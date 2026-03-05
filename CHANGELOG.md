@@ -62,6 +62,14 @@
 - Currency
   - `riyal`: ⃁
 
+- New `chess` submodule
+  - `{king,queen,rook,bishop,knight,pawn}.{white,black,neutral}.{,inv,l,r}`
+  - `knight.{white,black,neutral}.{tr,br,bl,tl}`
+  - `equihopper.{white,black,neutral}.{,rot}`
+  - `{amazon,empress,princess,ferz,alfil}.{white,black}`
+  - `koma.{white,black}.{,inv}`
+  - `{general,mandarin,elephant,horse,chariot,cannon,soldier}.{red,black}`
+
 ### New in `emoji`
 
 - bigfoot: 🫈
