@@ -8,6 +8,9 @@
 
 ### New in `sym`
 
+- Punctuation
+  - `underscore`: _
+
 - Mathematical symbols
   - `emptyset.zero`: ∅︀
   - `nothing.zero`: ∅︀
