@@ -1,8 +1,13 @@
+use self::shared::ModifierSet;
 use std::fmt::Write;
+use std::iter;
 use std::iter::Peekable;
 use std::path::Path;
 
 type StrResult<T> = Result<T, String>;
+
+#[path = "src/shared.rs"]
+mod shared;
 
 /// A module of definitions.
 struct Module<'a>(Vec<(&'a str, Binding<'a>)>);
@@ -26,21 +31,30 @@ enum Def<'a> {
     Module(Module<'a>),
 }
 
-/// A symbol, either a leaf or with modifiers.
+/// A symbol, either a leaf or with modifiers with optional deprecation.
 enum Symbol<'a> {
-    Single(char),
-    Multi(Vec<(&'a str, char)>),
+    Single(String),
+    Multi(Vec<(ModifierSet<&'a str>, String, Option<&'a str>)>),
 }
 
 /// A single line during parsing.
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Clone)]
 enum Line<'a> {
     Blank,
     Deprecated(&'a str),
     ModuleStart(&'a str),
     ModuleEnd,
-    Symbol(&'a str, Option<char>),
-    Variant(&'a str, char),
+    Symbol(&'a str, Option<String>),
+    Variant(ModifierSet<&'a str>, String),
+    Eof,
+}
+
+#[derive(Debug, Clone)]
+enum Declaration<'a> {
+    ModuleStart(&'a str, Option<&'a str>),
+    ModuleEnd,
+    Symbol(&'a str, Option<String>, Option<&'a str>),
+    Variant(ModifierSet<&'a str>, String, Option<&'a str>),
 }
 
 fn main() {
@@ -53,6 +67,24 @@ fn main() {
     let out = std::env::var_os("OUT_DIR").unwrap();
     let dest = Path::new(&out).join("out.rs");
     std::fs::write(&dest, buf).unwrap();
+
+    #[cfg(feature = "_test-unicode-conformance")]
+    {
+        let emoji_vs_list = Path::new(&out).join("emoji-variation-sequences.txt");
+        if !std::fs::read_to_string(&emoji_vs_list)
+            .is_ok_and(|text| text.contains("Version: 17.0"))
+        {
+            let content = ureq::get(
+                "https://www.unicode.org/Public/17.0.0/ucd/emoji/emoji-variation-sequences.txt",
+            )
+                .call()
+                .unwrap()
+                .body_mut()
+                .read_to_string()
+                .unwrap();
+            std::fs::write(emoji_vs_list, content).unwrap();
+        }
+    }
 }
 
 /// Processes a single file and turns it into a global module.
@@ -61,11 +93,43 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 
     let text = std::fs::read_to_string(file).unwrap();
     let mut line_nr = 0;
+    let mut deprecation = None;
     let mut iter = text
         .lines()
         .inspect(|_| line_nr += 1)
         .map(tokenize)
-        .filter(|line| !matches!(line, Ok(Line::Blank)))
+        .chain(iter::once(Ok(Line::Eof)))
+        .filter_map(|line| match line {
+            Err(message) => Some(Err(message)),
+            Ok(Line::Blank) => None,
+            Ok(Line::Deprecated(message)) => {
+                if deprecation.is_some() {
+                    Some(Err(String::from("duplicate `@deprecated:`")))
+                } else {
+                    deprecation = Some(message);
+                    None
+                }
+            }
+            Ok(Line::ModuleStart(name)) => {
+                Some(Ok(Declaration::ModuleStart(name, deprecation.take())))
+            }
+            Ok(Line::ModuleEnd) => {
+                if deprecation.is_some() {
+                    Some(Err(String::from("dangling `@deprecated:`")))
+                } else {
+                    Some(Ok(Declaration::ModuleEnd))
+                }
+            }
+            Ok(Line::Symbol(name, value)) => {
+                Some(Ok(Declaration::Symbol(name, value, deprecation.take())))
+            }
+            Ok(Line::Variant(modifiers, value)) => {
+                Some(Ok(Declaration::Variant(modifiers, value, deprecation.take())))
+            }
+            Ok(Line::Eof) => {
+                deprecation.map(|_| Err(String::from("dangling `@deprecated:`")))
+            }
+        })
         .peekable();
 
     let module = match parse(&mut iter) {
@@ -83,7 +147,7 @@ fn process(buf: &mut String, file: &Path, name: &str, desc: &str) {
 }
 
 /// Tokenizes and classifies a line.
-fn tokenize(line: &str) -> StrResult<Line> {
+fn tokenize(line: &str) -> StrResult<Line<'_>> {
     // Strip comments.
     let line = line.split_once("//").map_or(line, |(head, _)| head);
 
@@ -109,12 +173,12 @@ fn tokenize(line: &str) -> StrResult<Line> {
         for part in rest.split('.') {
             validate_ident(part)?;
         }
-        let c = decode_char(tail.ok_or("missing char")?)?;
-        Line::Variant(rest, c)
+        let value = decode_value(tail.ok_or("missing char")?)?;
+        Line::Variant(ModifierSet::from_raw_dotted(rest), value)
     } else {
         validate_ident(head)?;
-        let c = tail.map(decode_char).transpose()?;
-        Line::Symbol(head, c)
+        let value = tail.map(decode_value).transpose()?;
+        Line::Symbol(head, value)
     })
 }
 
@@ -127,58 +191,94 @@ fn validate_ident(string: &str) -> StrResult<()> {
     Err(format!("invalid identifier: {string:?}"))
 }
 
-/// Extracts either a single char or parses a U+XXXX escape.
-fn decode_char(text: &str) -> StrResult<char> {
-    if let Some(hex) = text.strip_prefix("U+") {
-        u32::from_str_radix(hex, 16)
-            .ok()
-            .and_then(|n| char::try_from(n).ok())
-            .ok_or_else(|| format!("invalid unicode escape {text:?}"))
-    } else {
-        let mut chars = text.chars();
-        match (chars.next(), chars.next()) {
-            (Some(c), None) => Ok(c),
-            _ => Err(format!("expected exactly one char, found {text:?}")),
+/// Extracts the value of a variant, parsing `\u{XXXX}` and other escapes.
+fn decode_value(mut text: &str) -> StrResult<String> {
+    let mut result = String::new();
+    loop {
+        if let Some(rest) = text.strip_prefix("\\u{") {
+            let Some((code, tail)) = rest.split_once('}') else {
+                return Err(format!(
+                    "unclosed Unicode escape: \\u{{{}",
+                    rest.escape_debug()
+                ));
+            };
+            result.push(
+                u32::from_str_radix(code, 16)
+                    .ok()
+                    .and_then(|n| char::try_from(n).ok())
+                    .ok_or_else(|| format!("invalid Unicode escape \\u{{{code}}}"))?,
+            );
+            text = tail;
+        } else if let Some(rest) = text.strip_prefix("\\vs{") {
+            let Some((value, tail)) = rest.split_once('}') else {
+                return Err(format!("unclosed VS escape: \\vs{{{}", rest.escape_debug()));
+            };
+            let vs = match value {
+                "1" => '\u{fe00}',
+                "2" => '\u{fe01}',
+                "3" => '\u{fe02}',
+                "4" => '\u{fe03}',
+                "5" => '\u{fe04}',
+                "6" => '\u{fe05}',
+                "7" => '\u{fe06}',
+                "8" => '\u{fe07}',
+                "9" => '\u{fe08}',
+                "10" => '\u{fe09}',
+                "11" => '\u{fe0a}',
+                "12" => '\u{fe0b}',
+                "13" => '\u{fe0c}',
+                "14" => '\u{fe0d}',
+                "15" | "text" => '\u{fe0e}',
+                "16" | "emoji" => '\u{fe0f}',
+                code => return Err(format!("invalid VS escape: \\vs{{{code}}}")),
+            };
+            result.push(vs);
+            text = tail;
+        } else if let Some((prefix, tail)) = text.find('\\').map(|i| text.split_at(i)) {
+            if prefix.is_empty() {
+                return Err(format!("invalid escape sequence: {tail}"));
+            }
+            result.push_str(prefix);
+            text = tail;
+        } else {
+            result.push_str(text);
+            return Ok(result);
         }
     }
 }
 
 /// Turns a stream of lines into a list of definitions.
 fn parse<'a>(
-    p: &mut Peekable<impl Iterator<Item = StrResult<Line<'a>>>>,
+    p: &mut Peekable<impl Iterator<Item = StrResult<Declaration<'a>>>>,
 ) -> StrResult<Vec<(&'a str, Binding<'a>)>> {
     let mut defs = vec![];
-    let mut deprecation = None;
     loop {
         match p.next().transpose()? {
-            None | Some(Line::ModuleEnd) => {
-                if let Some(message) = deprecation {
-                    return Err(format!("dangling `@deprecated: {}`", message));
-                }
+            None | Some(Declaration::ModuleEnd) => {
                 break;
             }
-            Some(Line::Deprecated(message)) => deprecation = Some(message),
-            Some(Line::Symbol(name, c)) => {
+            Some(Declaration::Symbol(name, value, deprecation)) => {
                 let mut variants = vec![];
-                while let Some(Line::Variant(name, c)) = p.peek().cloned().transpose()? {
-                    variants.push((name, c));
+                while let Some(Declaration::Variant(name, value, deprecation)) =
+                    p.peek().cloned().transpose()?
+                {
+                    variants.push((name, value, deprecation));
                     p.next();
                 }
 
                 let symbol = if !variants.is_empty() {
-                    if let Some(c) = c {
-                        variants.insert(0, ("", c));
+                    if let Some(value) = value {
+                        variants.insert(0, (ModifierSet::default(), value, None));
                     }
                     Symbol::Multi(variants)
                 } else {
-                    let c = c.ok_or("symbol needs char or variants")?;
-                    Symbol::Single(c)
+                    let value = value.ok_or("symbol needs char or variants")?;
+                    Symbol::Single(value)
                 };
 
                 defs.push((name, Binding { def: Def::Symbol(symbol), deprecation }));
-                deprecation = None;
             }
-            Some(Line::ModuleStart(name)) => {
+            Some(Declaration::ModuleStart(name, deprecation)) => {
                 let module_defs = parse(p)?;
                 defs.push((
                     name,
@@ -187,7 +287,6 @@ fn parse<'a>(
                         deprecation,
                     },
                 ));
-                deprecation = None;
             }
             other => return Err(format!("expected definition, found {other:?}")),
         }
@@ -209,7 +308,7 @@ fn encode(buf: &mut String, module: &Module) {
             Def::Symbol(symbol) => {
                 buf.push_str("Def::Symbol(Symbol::");
                 match symbol {
-                    Symbol::Single(c) => write!(buf, "Single({c:?})").unwrap(),
+                    Symbol::Single(value) => write!(buf, "Single({value:?})").unwrap(),
                     Symbol::Multi(list) => write!(buf, "Multi(&{list:?})").unwrap(),
                 }
                 buf.push(')');
