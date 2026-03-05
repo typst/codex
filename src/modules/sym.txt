@@ -852,6 +852,12 @@ chess {
   princess
     .white 🩐
     .black 🩓
+  ferz
+    .white 🩔
+    .black 🩖
+  alfil
+    .white 🩕
+    .black 🩗
   koma
     .white ☖
     .white.inv ⛉
