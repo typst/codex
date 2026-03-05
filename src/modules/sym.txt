@@ -818,7 +818,7 @@ chess {
     .neutral 🨄
     .neutral.tr 🨈
     .neutral.r 🨙
-    .neutral.bl 🨝
+    .neutral.br 🨝
     .neutral.inv 🨮
     .neutral.bl 🨲
     .neutral.l 🩃
