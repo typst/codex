@@ -1,7 +1,8 @@
 //! Various ways of displaying non-negative integers.
 
-use chinese_number::{ChineseCase, ChineseVariant, from_u64_to_chinese_ten_thousand};
 use std::fmt::{Display, Formatter};
+
+use chinese_number::{ChineseCase, ChineseVariant, from_u64_to_chinese_ten_thousand};
 
 macro_rules! declare_named {
     (
@@ -932,7 +933,8 @@ pub enum NumeralSystem<'a> {
     ///
     /// ## Representable Numbers
     ///
-    /// A numeral system of this kind can represent any non-negative integer.
+    /// A numeral system of this kind with `n` symbols can represent any
+    /// non-negative integer up to `n - 1`.
     ///
     /// ## Example
     ///
@@ -951,7 +953,8 @@ pub enum NumeralSystem<'a> {
     ///
     /// ## Representable Numbers
     ///
-    /// A numeral system of this kind can represent any positive integer.
+    /// A numeral system of this kind with `n` symbols can represent any
+    /// positive integer up to `n`.
     ///
     /// ## Example
     ///
@@ -997,7 +1000,7 @@ impl<'a> NumeralSystem<'a> {
     pub const fn represent(
         self,
         number: u64,
-    ) -> Result<RepresentedNumber<'a>, RepresentationError> {
+    ) -> Result<impl Display, RepresentationError> {
         match self {
             Self::Positional(_) | Self::Chinese(_, _) => {}
             Self::Bijective(_) | Self::Symbolic(_) => {
@@ -1035,7 +1038,7 @@ impl<'a> NumeralSystem<'a> {
 ///
 /// Values of this type are constructed by [`NumeralSystem::represent`].
 #[derive(Debug, Clone, Copy)]
-pub struct RepresentedNumber<'a> {
+struct RepresentedNumber<'a> {
     /// Invariant: This system must be able to represent the number.
     system: NumeralSystem<'a>,
     number: u64,
@@ -1234,7 +1237,7 @@ mod tests {
                     .to_string(),
                 format!("{c1}").to_uppercase(),
             );
-            n += 1
+            n += 1;
         }
         for c2 in 'a'..='z' {
             for c1 in 'a'..='z' {
@@ -1254,7 +1257,7 @@ mod tests {
                         .to_string(),
                     format!("{c2}{c1}").to_uppercase(),
                 );
-                n += 1
+                n += 1;
             }
         }
         for c3 in 'a'..='z' {
@@ -1276,7 +1279,7 @@ mod tests {
                             .to_string(),
                         format!("{c3}{c2}{c1}").to_uppercase(),
                     );
-                    n += 1
+                    n += 1;
                 }
             }
         }
@@ -1329,24 +1332,4 @@ mod tests {
             )
         }
     }
-
-    // #[test]
-    // fn foo() {
-    //     let mut values = String::new();
-    //     for i in 0..12 {
-    //         if i != 0 {
-    //             values.push_str(", ")
-    //         }
-    //         // values.push_str("<span dir=\"auto\">");
-    //         values.push_str(
-    //             &NamedNumeralSystem::BengaliLetters
-    //                 .system()
-    //                 .represent(i + 1)
-    //                 .unwrap()
-    //                 .to_string(),
-    //         );
-    //         // values.push_str("</span>");
-    //     }
-    //     panic!("{values}")
-    // }
 }
