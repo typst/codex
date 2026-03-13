@@ -172,12 +172,18 @@ mod tests {
 
     #[test]
     fn subset() {
-        assert!(ModifierSet::from_raw_dotted("a")
-            .is_subset(ModifierSet::from_raw_dotted("a.b")));
-        assert!(ModifierSet::from_raw_dotted("a")
-            .is_subset(ModifierSet::from_raw_dotted("b.a")));
-        assert!(ModifierSet::from_raw_dotted("a.b")
-            .is_subset(ModifierSet::from_raw_dotted("b.c.a")));
+        assert!(
+            ModifierSet::from_raw_dotted("a")
+                .is_subset(ModifierSet::from_raw_dotted("a.b"))
+        );
+        assert!(
+            ModifierSet::from_raw_dotted("a")
+                .is_subset(ModifierSet::from_raw_dotted("b.a"))
+        );
+        assert!(
+            ModifierSet::from_raw_dotted("a.b")
+                .is_subset(ModifierSet::from_raw_dotted("b.c.a"))
+        );
     }
 
     #[test]
