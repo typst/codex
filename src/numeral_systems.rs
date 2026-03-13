@@ -1098,7 +1098,7 @@ impl<'a> Display for RepresentedNumber<'a> {
 
                 if n == 0 {
                     if let Some(&(numeral, 0)) = numerals.last() {
-                        return write!(f, "{}", numeral);
+                        return write!(f, "{numeral}");
                     }
                     unreachable!()
                 }
@@ -1110,7 +1110,7 @@ impl<'a> Display for RepresentedNumber<'a> {
                     }
                     let reps = n / weight;
                     for _ in 0..reps {
-                        write!(f, "{}", numeral)?
+                        write!(f, "{numeral}")?
                     }
 
                     n -= weight * reps;
