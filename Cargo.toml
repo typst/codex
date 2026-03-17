@@ -20,5 +20,8 @@ _test-unicode-conformance = ["ureq"]
 [dependencies]
 chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
 
+[dev-dependencies]
+siphasher = "1.0.2"
+
 [build-dependencies]
 ureq = { version = "3.0.12", optional = true }

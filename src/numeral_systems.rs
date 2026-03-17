@@ -1155,6 +1155,10 @@ pub enum RepresentationError {
 
 #[cfg(test)]
 mod tests {
+    use std::hash::{Hash, Hasher};
+
+    use siphasher::sip128::{Hasher128, SipHasher13};
+
     use super::{NamedNumeralSystem, NumeralSystem};
 
     /// Makes sure shorthands correspond to the way the number one is
@@ -1329,6 +1333,106 @@ mod tests {
                     .unwrap()
                     .to_string(),
                 r,
+            )
+        }
+    }
+
+    /// Compares the hashes of the first integers represented in each numeral
+    /// system to pre-computed values.
+    #[test]
+    fn test_numeral_systems() {
+        struct StableHasher(SipHasher13);
+
+        impl Hasher for StableHasher {
+            fn finish(&self) -> u64 {
+                self.0.finish()
+            }
+
+            fn write(&mut self, bytes: &[u8]) {
+                self.0.write(bytes);
+            }
+
+            fn write_usize(&mut self, i: usize) {
+                self.0.write_u64(i as u64);
+            }
+        }
+
+        fn compute_hash(system: NamedNumeralSystem) -> u128 {
+            let mut state = StableHasher(SipHasher13::new());
+            for i in 0..50_000 {
+                system.system().represent(i).map(|r| r.to_string()).hash(&mut state)
+            }
+            state.0.finish128().as_u128()
+        }
+
+        fn expected_hash(system: NamedNumeralSystem) -> u128 {
+            match system {
+                NamedNumeralSystem::Arabic => 233363652923672209674688099512602556474,
+                NamedNumeralSystem::CircledArabic => {
+                    14788096368351499805674874468259519865
+                }
+                NamedNumeralSystem::DoubleCircledArabic => {
+                    84846816834872732753601089381949808193
+                }
+                NamedNumeralSystem::LowerLatin => 338462384600087330263193927875970822818,
+                NamedNumeralSystem::UpperLatin => 63389938855801182654207252735381557455,
+                NamedNumeralSystem::LowerRoman => 320120650624228984391933034556134697794,
+                NamedNumeralSystem::UpperRoman => 179137825631358807472580756311985798892,
+                NamedNumeralSystem::LowerGreek => 286426313636684184647936794996618738517,
+                NamedNumeralSystem::UpperGreek => 266767054320463395696526156316564222710,
+                NamedNumeralSystem::LowerArmenian => {
+                    118575058866853099370711220898739682550
+                }
+                NamedNumeralSystem::UpperArmenian => {
+                    14157728964774965650431335537322548529
+                }
+                NamedNumeralSystem::Hebrew => 206914675362605565607546884904163595545,
+                NamedNumeralSystem::LowerSimplifiedChinese => {
+                    111467758380137268027180550654359765178
+                }
+                NamedNumeralSystem::UpperSimplifiedChinese => {
+                    245480392218028497842549251253255025420
+                }
+                NamedNumeralSystem::LowerTraditionalChinese => {
+                    335477487643271707320761870063839694075
+                }
+                NamedNumeralSystem::UpperTraditionalChinese => {
+                    97580884915630322847859767213149399933
+                }
+                NamedNumeralSystem::HiraganaAiueo => {
+                    228263127493940549113355043662499568034
+                }
+                NamedNumeralSystem::HiraganaIroha => {
+                    223752166294897561554884466357640039672
+                }
+                NamedNumeralSystem::KatakanaAiueo => {
+                    159989562581792168649789815071020535332
+                }
+                NamedNumeralSystem::KatakanaIroha => {
+                    199999534019736521402858209442755367027
+                }
+                NamedNumeralSystem::KoreanJamo => 65477685939649764827530478995838083425, // 21
+                NamedNumeralSystem::KoreanSyllable => {
+                    24217153056183571894327643661698510954
+                }
+                NamedNumeralSystem::EasternArabic => {
+                    277754701051910363703826860323053920831
+                }
+                NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
+                NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
+                NamedNumeralSystem::Bengali => 79096832028418218544110224478554962928,
+                NamedNumeralSystem::BengaliLetters => {
+                    269999388716378396079918080520770981179
+                }
+                NamedNumeralSystem::Symbols => 88780534058354093087932015985325954737,
+            }
+        }
+
+        for system in NamedNumeralSystem::iter() {
+            assert_eq!(
+                expected_hash(system),
+                compute_hash(system),
+                "unexpected hash for `{system:?}` (left is expected, right is computed)",
             )
         }
     }
