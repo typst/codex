@@ -92,6 +92,7 @@ declare_named! {
         ///
         /// > 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
         Arabic = "arabic" ("1"),
+
         /// Circled decimal positional notation using
         /// [Western Arabic numerals](https://en.wikipedia.org/wiki/Arabic_numerals).
         ///
@@ -105,6 +106,7 @@ declare_named! {
         ///
         /// > ⓪, ①, ②, ③, ④, ⑤, ⑥, ⑦, ⑧, ⑨, ⑩, ⑪
         CircledArabic = "arabic.o" ("①"),
+
         /// Double circled decimal positional notation using
         /// [Western Arabic numerals](https://en.wikipedia.org/wiki/Arabic_numerals).
         ///
@@ -118,6 +120,7 @@ declare_named! {
         ///
         /// > ⓵, ⓶, ⓷, ⓸, ⓹, ⓺, ⓻, ⓼, ⓽, ⓾
         DoubleCircledArabic = "arabic.oo" ("⓵"),
+
         /// Lowercase
         /// [Latin letters](https://en.wikipedia.org/wiki/Latin_alphabet).
         ///
@@ -132,6 +135,7 @@ declare_named! {
         /// > a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v,
         /// > w, x, y, z, aa, ab
         LowerLatin = "latin" ("a"),
+
         /// Uppercase
         /// [Latin letters](https://en.wikipedia.org/wiki/Latin_alphabet).
         ///
@@ -146,6 +150,7 @@ declare_named! {
         /// > A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V,
         /// > W, X, Y, Z, AA, AB
         UpperLatin = "Latin" ("A"),
+
         /// Lowercase
         /// [Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals).
         ///
@@ -159,6 +164,7 @@ declare_named! {
         ///
         /// > n, i, ii, iii, iv, v, vi, vii, viii, ix, x, xi
         LowerRoman = "roman" ("i"),
+
         /// Uppercase
         /// [Roman numerals](https://en.wikipedia.org/wiki/Roman_numerals).
         ///
@@ -172,6 +178,7 @@ declare_named! {
         ///
         /// > N, I, II, III, IV, V, VI, VII, VIII, IX, X, XI
         UpperRoman = "Roman" ("I"),
+
         /// Lowercase
         /// [Greek numerals](https://en.wikipedia.org/wiki/Greek_numerals).
         ///
@@ -198,6 +205,7 @@ declare_named! {
         ///
         /// > 𐆊, Α, Β, Γ, Δ, Ε, ΣΤ, Ζ, Η, Θ, Ι, ΙΑ, ΙΒ
         UpperGreek = "Greek" ("Α"),
+
         /// Lowercase
         /// [Armenian numerals](https://en.wikipedia.org/wiki/Armenian_numerals).
         ///
@@ -211,6 +219,7 @@ declare_named! {
         ///
         /// > ա, բ, գ, դ, ե, զ, է, ը, թ, ժ, ժա, ժբ
         LowerArmenian = "armenian" ("ա"),
+
         /// Uppercase
         /// [Armenian numerals](https://en.wikipedia.org/wiki/Armenian_numerals).
         ///
@@ -224,6 +233,7 @@ declare_named! {
         ///
         /// > Ա, Բ, Գ, Դ, Ե, Զ, Է, Ը, Թ, Ժ, ԺԱ, ԺԲ
         UpperArmenian = "Armenian" ("Ա"),
+
         /// [Hebrew alphabetic numerals](https://en.wikipedia.org/wiki/Hebrew_numerals)
         /// without a
         /// [gershayim](https://en.wikipedia.org/wiki/Hebrew_numerals#Gershayim)
@@ -244,6 +254,7 @@ declare_named! {
         /// > <span dir="auto">ט</span>, <span dir="auto">י</span>,
         /// > <span dir="auto">יא</span>, <span dir="auto">יב</span>
         Hebrew = "hebrew" ("א"),
+
         /// Everyday ordinary simplified
         /// [Chinese numerals](https://en.wikipedia.org/wiki/Chinese_numerals#Ordinary_numerals).
         ///
@@ -257,6 +268,7 @@ declare_named! {
         ///
         /// > 零, 一, 二, 三, 四, 五, 六, 七, 八, 九, 十, 十一, 十二
         LowerSimplifiedChinese = "chinese.simple" ("一"),
+
         /// Financial ("capital") ordinary simplified
         /// [Chinese numerals](https://en.wikipedia.org/wiki/Chinese_numerals#Ordinary_numerals).
         ///
@@ -270,6 +282,7 @@ declare_named! {
         ///
         /// > 零, 壹, 贰, 叁, 肆, 伍, 陆, 柒, 捌, 玖, 拾, 拾壹, 拾贰
         UpperSimplifiedChinese = "Chinese.simple" ("壹"),
+
         /// Everyday ordinary traditional
         /// [Chinese numerals](https://en.wikipedia.org/wiki/Chinese_numerals#Ordinary_numerals).
         ///
@@ -283,6 +296,7 @@ declare_named! {
         ///
         /// > 零, 一, 二, 三, 四, 五, 六, 七, 八, 九, 十, 十一, 十二
         LowerTraditionalChinese = "chinese.trad",
+
         /// Financial ("capital") ordinary traditional
         /// [Chinese numerals](https://en.wikipedia.org/wiki/Chinese_numerals#Ordinary_numerals).
         ///
@@ -296,6 +310,7 @@ declare_named! {
         ///
         /// > 零, 壹, 貳, 參, 肆, 伍, 陸, 柒, 捌, 玖, 拾, 拾壹, 拾貳
         UpperTraditionalChinese = "Chinese.trad",
+
         /// Hiragana in the gojūon order. Includes n but excludes wi and we.
         ///
         /// ## Representable Numbers
@@ -308,6 +323,7 @@ declare_named! {
         ///
         /// > あ, い, う, え, お, か, き, く, け, こ, さ, し
         HiraganaAiueo = "hiragana.aiueo" ("あ"),
+
         /// Hiragana in the iroha order. Includes wi and we but excludes n.
         ///
         /// ## Representable Numbers
@@ -320,6 +336,7 @@ declare_named! {
         ///
         /// > い, ろ, は, に, ほ, へ, と, ち, り, ぬ, る, を
         HiraganaIroha = "hiragana.iroha" ("い"),
+
         /// Katakana in the gojūon order. Includes n but excludes wi and we.
         ///
         /// ## Representable Numbers
@@ -332,6 +349,7 @@ declare_named! {
         ///
         /// > ア, イ, ウ, エ, オ, カ, キ, ク, ケ, コ, サ, シ
         KatakanaAiueo = "katakana.aiueo" ("ア"),
+
         /// Katakana in the iroha order. Includes wi and we but excludes n.
         ///
         /// ## Representable Numbers
@@ -344,6 +362,7 @@ declare_named! {
         ///
         /// > イ, ロ, ハ, ニ, ホ, ヘ, ト, チ, リ, ヌ, ル, ヲ
         KatakanaIroha = "katakana.iroha" ("イ"),
+
         // TODO: Improve Korean numeral systems based on https://github.com/typst/typst/issues/7335.
         /// Korean jamo.
         ///
@@ -357,6 +376,7 @@ declare_named! {
         ///
         /// > ㄱ, ㄴ, ㄷ, ㄹ, ㅁ, ㅂ, ㅅ, ㅇ, ㅈ, ㅊ, ㅋ, ㅌ
         KoreanJamo = "korean.jamo" ("ㄱ"),
+
         /// Korean syllables.
         ///
         /// ## Representable Numbers
@@ -369,6 +389,7 @@ declare_named! {
         ///
         /// > 가, 나, 다, 라, 마, 바, 사, 아, 자, 차, 카, 타
         KoreanSyllable = "korean.syllable" ("가"),
+
         /// Decimal positional notation using
         /// [Eastern Arabic numerals](https://en.wikipedia.org/wiki/Eastern_Arabic_numerals#Numerals).
         ///
@@ -387,6 +408,7 @@ declare_named! {
         /// > <span dir="auto">٨</span>, <span dir="auto">٩</span>,
         /// > <span dir="auto">١٠</span>, <span dir="auto">١١</span>
         EasternArabic = "arabic.eastern" ("١"),
+
         /// Decimal positional notation using the Persian variant of
         /// [Eastern Arabic numerals](https://en.wikipedia.org/wiki/Eastern_Arabic_numerals#Numerals).
         ///
@@ -405,6 +427,7 @@ declare_named! {
         /// > <span dir="auto">۸</span>, <span dir="auto">۹</span>,
         /// > <span dir="auto">۱۰</span>, <span dir="auto">۱۱</span>
         Persian = "persian" ("۱"),
+
         /// Decimal positional notation using
         /// [Devanagari numerals](https://en.wikipedia.org/wiki/Devanagari_numerals).
         ///
@@ -418,6 +441,7 @@ declare_named! {
         ///
         /// > ०, १, २, ३, ४, ५, ६, ७, ८, ९, १०, ११
         Devanagari = "devanagari" ("१"),
+
         /// Decimal positional notation using
         /// [Bengali numerals](https://en.wikipedia.org/wiki/Bengali_numerals).
         ///
@@ -431,6 +455,7 @@ declare_named! {
         ///
         /// > ০, ১, ২, ৩, ৪, ৫, ৬, ৭, ৮, ৯, ১০, ১১
         Bengali = "bengali" ("১"),
+
         /// Bengali letters.
         ///
         /// ## Representable Numbers
@@ -443,6 +468,7 @@ declare_named! {
         ///
         /// > ক, খ, গ, ঘ, ঙ, চ, ছ, জ, ঝ, ঞ, ট, ঠ
         BengaliLetters = "bengali.letter" ("ক"),
+
         /// Repeating
         /// [note numbering symbols](https://en.wikipedia.org/wiki/Note_(typography)#Numbering_and_symbols).
         ///
@@ -1337,8 +1363,8 @@ mod tests {
         }
     }
 
-    /// Compares the hashes of the first integers represented in each numeral
-    /// system to pre-computed values.
+    /// Compares the hashes of the first 50 thousand integers represented in
+    /// each numeral system to pre-computed values.
     #[test]
     fn test_numeral_systems() {
         struct StableHasher(SipHasher13);
@@ -1360,70 +1386,41 @@ mod tests {
         fn compute_hash(system: NamedNumeralSystem) -> u128 {
             let mut state = StableHasher(SipHasher13::new());
             for i in 0..50_000 {
-                system.system().represent(i).map(|r| r.to_string()).hash(&mut state)
+                system.system().represent(i).map(|r| r.to_string()).hash(&mut state);
             }
             state.0.finish128().as_u128()
         }
 
+        #[rustfmt::skip]
         fn expected_hash(system: NamedNumeralSystem) -> u128 {
             match system {
                 NamedNumeralSystem::Arabic => 233363652923672209674688099512602556474,
-                NamedNumeralSystem::CircledArabic => {
-                    14788096368351499805674874468259519865
-                }
-                NamedNumeralSystem::DoubleCircledArabic => {
-                    84846816834872732753601089381949808193
-                }
+                NamedNumeralSystem::CircledArabic => 14788096368351499805674874468259519865,
+                NamedNumeralSystem::DoubleCircledArabic => 84846816834872732753601089381949808193,
                 NamedNumeralSystem::LowerLatin => 338462384600087330263193927875970822818,
                 NamedNumeralSystem::UpperLatin => 63389938855801182654207252735381557455,
                 NamedNumeralSystem::LowerRoman => 320120650624228984391933034556134697794,
                 NamedNumeralSystem::UpperRoman => 179137825631358807472580756311985798892,
                 NamedNumeralSystem::LowerGreek => 286426313636684184647936794996618738517,
                 NamedNumeralSystem::UpperGreek => 266767054320463395696526156316564222710,
-                NamedNumeralSystem::LowerArmenian => {
-                    118575058866853099370711220898739682550
-                }
-                NamedNumeralSystem::UpperArmenian => {
-                    14157728964774965650431335537322548529
-                }
+                NamedNumeralSystem::LowerArmenian => 118575058866853099370711220898739682550,
+                NamedNumeralSystem::UpperArmenian => 14157728964774965650431335537322548529,
                 NamedNumeralSystem::Hebrew => 206914675362605565607546884904163595545,
-                NamedNumeralSystem::LowerSimplifiedChinese => {
-                    111467758380137268027180550654359765178
-                }
-                NamedNumeralSystem::UpperSimplifiedChinese => {
-                    245480392218028497842549251253255025420
-                }
-                NamedNumeralSystem::LowerTraditionalChinese => {
-                    335477487643271707320761870063839694075
-                }
-                NamedNumeralSystem::UpperTraditionalChinese => {
-                    97580884915630322847859767213149399933
-                }
-                NamedNumeralSystem::HiraganaAiueo => {
-                    228263127493940549113355043662499568034
-                }
-                NamedNumeralSystem::HiraganaIroha => {
-                    223752166294897561554884466357640039672
-                }
-                NamedNumeralSystem::KatakanaAiueo => {
-                    159989562581792168649789815071020535332
-                }
-                NamedNumeralSystem::KatakanaIroha => {
-                    199999534019736521402858209442755367027
-                }
+                NamedNumeralSystem::LowerSimplifiedChinese => 111467758380137268027180550654359765178,
+                NamedNumeralSystem::UpperSimplifiedChinese => 245480392218028497842549251253255025420,
+                NamedNumeralSystem::LowerTraditionalChinese => 335477487643271707320761870063839694075,
+                NamedNumeralSystem::UpperTraditionalChinese => 97580884915630322847859767213149399933,
+                NamedNumeralSystem::HiraganaAiueo => 228263127493940549113355043662499568034,
+                NamedNumeralSystem::HiraganaIroha => 223752166294897561554884466357640039672,
+                NamedNumeralSystem::KatakanaAiueo => 159989562581792168649789815071020535332,
+                NamedNumeralSystem::KatakanaIroha => 199999534019736521402858209442755367027,
                 NamedNumeralSystem::KoreanJamo => 65477685939649764827530478995838083425, // 21
-                NamedNumeralSystem::KoreanSyllable => {
-                    24217153056183571894327643661698510954
-                }
-                NamedNumeralSystem::EasternArabic => {
-                    277754701051910363703826860323053920831
-                }
+                NamedNumeralSystem::KoreanSyllable => 24217153056183571894327643661698510954,
+                NamedNumeralSystem::EasternArabic => 277754701051910363703826860323053920831,
                 NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
                 NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
                 NamedNumeralSystem::Bengali => 79096832028418218544110224478554962928,
-                NamedNumeralSystem::BengaliLetters => {
-                    269999388716378396079918080520770981179
-                }
+                NamedNumeralSystem::BengaliLetters => 269999388716378396079918080520770981179,
                 NamedNumeralSystem::Symbols => 88780534058354093087932015985325954737,
             }
         }

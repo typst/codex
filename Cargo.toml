@@ -13,7 +13,7 @@ keywords = ["unicode", "symbols"]
 
 [features]
 default = ["numeral-systems", "styling"]
-numeral-systems = ["chinese-number"]
+numeral-systems = ["dep:chinese-number"]
 styling = []
 _test-unicode-conformance = ["ureq"]
 
