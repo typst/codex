@@ -68,14 +68,14 @@
 
 ### New in `emoji`
 
-- bigfoot: 🫈
-- dancing.ballet: 🧑‍🩰
-- face.distorted: 🫪
-- fightcloud: 🫯
-- landslide: 🛘
-- orca: 🫍
-- treasure: 🪎
-- trombone: 🪊
+- `bigfoot`: 🫈
+- `dancing.ballet`: 🧑‍🩰
+- `face.distorted`: 🫪
+- `fightcloud`: 🫯
+- `landslide`: 🛘
+- `orca`: 🫍
+- `treasure`: 🪎
+- `trombone`: 🪊
 
 ### Deprecations in `sym`
 
