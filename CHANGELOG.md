@@ -5,6 +5,7 @@
 ### General changes
 
 - Trivially updated to Unicode 17.0.0
+- Added numeral systems API under the `numeral-systems` feature flag
 
 ### New in `sym`
 
