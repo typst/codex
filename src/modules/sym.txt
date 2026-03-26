@@ -1104,6 +1104,7 @@ tack
   .r.short ⊦
   .r.double ⊨
   .r.double.not ⊭
+  .r.triple ⫢
   .l ⊣
   .l.long ⟞
   .l.short ⫞
@@ -1117,6 +1118,17 @@ tack
   .b.double ⫪
   .b.short ⫟
   .l.r ⟛
+ttack
+  .r ⊩
+  .r.not ⊮
+  .r.double ⊫
+  .r.double.not ⊯
+  .l ⫣
+  .l.double ⫥
+  .t.short ⫨
+  .b.short ⫧
+tttack
+  .r ⊪
 
 // Lowercase Greek.
 alpha α
