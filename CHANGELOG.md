@@ -61,6 +61,16 @@
   - `bowtie.filled`: ⧓
   - `bowtie.filled.l`: ⧑
   - `bowtie.filled.r`: ⧒
+  - `tack.r.triple`: ⫢
+  - `ttack.r`: ⊩
+  - `ttack.r.not`: ⊮
+  - `ttack.r.double`: ⊫
+  - `ttack.r.double.not`: ⊯
+  - `ttack.l`: ⫣
+  - `ttack.l.double`: ⫥
+  - `ttack.t.short`: ⫨
+  - `ttack.b.short`: ⫧
+  - `tttack.r`: ⊪
 
 - Currency
   - `riyal`: ⃁
