@@ -1130,6 +1130,8 @@ tack
   .bb ⫪
   .b.short ⫟
   .l.r ⟛
+  .ll.rr ⟚
+  .t.b.short ⫩
 
 // Lowercase Greek.
 alpha α
