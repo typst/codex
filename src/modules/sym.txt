@@ -20,6 +20,7 @@ space \u{20}
   .punct \u{2008}
   .thin \u{2009}
   .hair \u{200A}
+  .glyph ␣
 
 // Delimiters.
 paren
