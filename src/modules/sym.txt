@@ -1269,44 +1269,45 @@ gender {
   trans ⚧\vs{text}
 }
 
+// Printable characters representing control (non-printable) characters
 control {
-  // ␀ symbol for null
-  // ␁ symbol for start of heading
-  // ␂ symbol for start of text
-  // ␃ symbol for end of text
-  // ␄ symbol for end of transmission
-  // ␅ symbol for enquiry
-  // ␆ symbol for acknowledge
-  // ␇ symbol for bell
-  // ␇ symbol for backspace
-  // ␉ symbol for horizontal tabulation
-  // ␊ symbol for line feed
-  // ␋ symbol for vertical tabulation
-  // ␌ symbol for form feed
-  // ␍ symbol for carriage return
-  // ␎ symbol for shift out
-  // ␏ symbol for shift in
-  // ␐ symbol for datalink escape
-  // ␑ symbol for device control one
-  // ␒ symbol for device control two
-  // ␓ symbol for device control three
-  // ␔ symbol for device control four
-  // ␕ symbol for negative acknowledge
-  // ␖ symbol for synchronous idle
-  // ␗ symbol for end of transmission block
-  // ␘ symbol for cancel
-  // ␙ symbol for end of medium
-  // ␚ symbol for substitute
-  // ␛ symbol for escape
-  // ␜ symbol for file separator
-  // ␝ symbol for group separator
-  // ␞ symbol for record separator
-  // ␟ symbol for unit separator
-  // ␠ symbol for space
-  // ␡ symbol for delete
-  // ␢ blank symbol
-  // ␣ open box
-  // ␤ symbol for newline
-  // ␥ symbol for delete form two
-  // ␦ symbol for substitute form two
+  null ␀
+  heading.start ␁
+  text.start ␂
+  text.end ␃
+  transmission.end ␄
+  transmission.block.end ␗
+  enquiry ␅
+  bell ␇
+  backspace ␇
+  tab.h ␉
+  tab.v ␋
+  line.feed ␊
+  form.feed ␌
+  line.return ␍
+  shift.out ␎
+  shirt.in ␏
+  escape ␐
+  device.one ␑
+  device.two ␒
+  device.three ␓
+  device.four ␔
+  ack ␆
+  ack.not ␕
+  syn ␖
+  cancel ␘
+  medium.end ␙
+  sub ␚
+  sub.alt ␦
+  esc ␛
+  separator.file ␜
+  separator.group ␝
+  separator.record ␞
+  separator.unit ␟
+  space ␠
+  del ␡
+  del.alt ␥
+  blank ␢
+  open ␣
+  line.new ␤
 }
