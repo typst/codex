@@ -1272,42 +1272,52 @@ gender {
 // Printable characters representing control (non-printable) characters
 control {
   null ␀
-  heading.start ␁
-  text.start ␂
-  text.end ␃
-  transmission.end ␄
-  transmission.block.end ␗
+  heading
+    .start ␁
+  text
+    .start ␂
+    .end ␃
+  transmission
+    .end ␄
+    .block.end ␗
   enquiry ␅
   bell ␇
   backspace ␇
-  tab.h ␉
-  tab.v ␋
-  line.feed ␊
-  form.feed ␌
-  line.return ␍
-  shift.out ␎
-  shirt.in ␏
+  tab
+    .h ␉
+    .v ␋
+  line
+    .feed ␊
+    .return ␍
+    .new ␤
+  form
+    .feed ␌
+  shift
+    .out ␎
+    .in ␏
   escape ␐
-  device.one ␑
-  device.two ␒
-  device.three ␓
-  device.four ␔
+  device
+    .one ␑
+    .two ␒
+    .three ␓
+    .four ␔
   ack ␆
-  ack.not ␕
+    .not ␕
   syn ␖
   cancel ␘
-  medium.end ␙
+  medium
+    .end ␙
   sub ␚
-  sub.alt ␦
+    .alt ␦
   esc ␛
-  separator.file ␜
-  separator.group ␝
-  separator.record ␞
-  separator.unit ␟
+  separator
+    .file ␜
+    .group ␝
+    .record ␞
+    .unit ␟
   space ␠
   del ␡
-  del.alt ␥
+    .alt ␥
   blank ␢
-  open ␣
-  line.new ␤
+    .box ␣
 }
