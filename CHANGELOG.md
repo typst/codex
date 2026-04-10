@@ -65,6 +65,47 @@
 - Currency
   - `riyal`: ⃁
 
+- Control (Printable symbols representing non-printable characters)
+
+  - null ␀
+  - heading.start ␁
+  - text.start ␂
+  - text.end ␃
+  - transmission.end ␄
+  - transmission.block.end ␗
+  - enquiry ␅
+  - bell ␇
+  - backspace ␇
+  - tab.h ␉
+  - tab.v ␋
+  - line.feed ␊
+  - line.return ␍
+  - line.feed ␌
+  - shift.out ␎
+  - shift.in ␏
+  - escape ␐
+  - device.one ␑
+  - device.two ␒
+  - device.three ␓
+  - device.four ␔
+  - ack ␆
+  - ack.not ␕
+  - syn ␖
+  - cancel ␘
+  - medium.end ␙
+  - sub ␚
+  - sub.alt ␦
+  - esc ␛
+  - separator.file ␜
+  - separator.group ␝
+  - separator.record ␞
+  - separator.unit ␟
+  - space ␠
+  - del ␡
+  - del.alt ␥
+  - blank ␢
+  - blank.box ␣
+
 ### New in `emoji`
 
 - bigfoot: 🫈
