@@ -1301,22 +1301,22 @@ control {
     .two ␒
     .three ␓
     .four ␔
-  ack ␆
+  acknowledge ␆
     .not ␕
-  syn ␖
+  synchronous ␖
   cancel ␘
   medium
     .end ␙
-  sub ␚
+  substitute ␚
     .alt ␦
-  esc ␛
+  escape ␛
   separator
     .file ␜
     .group ␝
     .record ␞
     .unit ␟
   space ␠
-  del ␡
+  delete ␡
     .alt ␥
   blank ␢
     .box ␣
