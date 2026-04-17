@@ -1254,7 +1254,7 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
-// Keyboard.
+// Keyboard labels.
 spacebar ␣
 delete ␥
 
