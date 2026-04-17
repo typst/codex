@@ -1275,40 +1275,40 @@ gender {
 
 // Printable characters representing control (non-printable) characters
 control {
-  nul ␀
-  soh ␁
-  stx ␂
-  etx ␃
-  eot ␄
-  enq ␅
-  ack ␆
-  bel ␇
-  bs ␈
-  ht ␉
-  lf ␊
-  vt ␋
-  ff ␌
-  cr ␍
-  so ␎
-  si ␏
-  dle ␐
-  dc
+  nul ␀ // NULL
+  soh ␁ // Start Of Heading
+  stx ␂ // Start of TeXt
+  etx ␃ // End of TeXt
+  eot ␄ // End Of Transmission
+  enq ␅ // ENQuiry
+  ack ␆ // ACKnowledge
+  bel ␇ // BELl
+  bs ␈ // BackSpace
+  ht ␉ // Horizontal Tabulation
+  lf ␊ // Line Feed
+  vt ␋ // Vertical Tabulation
+  ff ␌ // Form Feed
+  cr ␍ // Carriage Return
+  so ␎ // Shift Out
+  si ␏ // Shift In
+  dle ␐ // Data Link Escape
+  dc // Device Control
     .one ␑
     .two ␒
     .three ␓
     .four ␔
-  nak ␕
-  syn ␖
-  etb ␗
-  can ␘
-  em ␙
-  sub ␚
-  esc ␛
-  fs ␜
-  gs ␝
-  rs ␞
-  us ␟
-  sp ␠
-  del ␡
-  nl ␤
+  nak ␕ // Negativ AcKnowledge
+  syn ␖ // SYNchronous idle
+  etb ␗ // End of Transmission Block
+  can ␘ // CANcel
+  em ␙ // End of Medium
+  sub ␚ // SUBstitute
+  esc ␛ // ESCape
+  fs ␜ // File Separator
+  gs ␝ // Group Separator
+  rs ␞ // Record Separator
+  us ␟ // Unit Separator
+  sp ␠ // SPace
+  del ␡ // DELete
+  nl ␤ // New Line
 }

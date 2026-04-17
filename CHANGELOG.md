@@ -65,46 +65,46 @@
 - Currency
   - `riyal`: ⃁
 
-- Control (Printable symbols representing non-printable characters)
+- Keyboard labels
+  - `spacebar` : ␣
+  - `delete` : ␥
 
-  - `null` ␀
-  - `heading.start` ␁
-  - `text.start` ␂
-  - `text.end` ␃
-  - `transmission.end` ␄
-  - `transmission.block.end` ␗
-  - `enquiry` ␅
-  - `bell` ␇
-  - `backspace` ␇
-  - `tab.h` ␉
-  - `tab.v` ␋
-  - `line.feed` ␊
-  - `line.return` ␍
-  - `line.feed` ␌
-  - `shift.out` ␎
-  - `shift.in` ␏
-  - `escape` ␐
-  - `device.one` ␑
-  - `device.two` ␒
-  - `device.three` ␓
-  - `device.four` ␔
-  - `acknowledge` ␆
-  - `acknowledge.not` ␕
-  - `synchronous` ␖
-  - `cancel` ␘
-  - `medium.end` ␙
-  - `substitute` ␚
-  - `substitute.alt` ␦
-  - `escape` ␛
-  - `separator.file` ␜
-  - `separator.group` ␝
-  - `separator.record` ␞
-  - `separator.unit` ␟
-  - `space` ␠
-  - `delete` ␡
-  - `delete.alt` ␥
-  - `blank` ␢
-  - `blank.box` ␣
+- Control (Printable symbols representing non-printable characters)
+  - `nul` : ␀
+  - `soh` : ␁
+  - `stx` : ␂
+  - `etx` : ␃
+  - `eot` : ␄
+  - `enq` : ␅
+  - `ack` : ␆
+  - `bel` : ␇
+  - `bs` : ␈
+  - `ht` : ␉
+  - `lf` : ␊
+  - `vt` : ␋
+  - `ff` : ␌
+  - `cr` : ␍
+  - `so` : ␎
+  - `si` : ␏
+  - `dle` : ␐
+  - `dc.one` : ␑
+  - `dc.two` : ␒
+  - `dc.three` : ␓
+  - `dc.four` : ␔
+  - `nak` : ␕
+  - `syn` : ␖
+  - `etb` : ␗
+  - `can` : ␘
+  - `em` : ␙
+  - `sub` : ␚
+  - `esc` : ␛
+  - `fs` : ␜
+  - `gs` : ␝
+  - `rs` : ␞
+  - `us` : ␟
+  - `sp` : ␠
+  - `del` : ␡
+  - `nl` : ␤
 
 ### New in `emoji`
 
