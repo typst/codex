@@ -1255,7 +1255,7 @@ errorbar
   .circle.filled ⧳
 
 // Keyboard.
-space ␣
+spacebar ␣
 delete ␥
 
 gender {
