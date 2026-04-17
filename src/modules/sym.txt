@@ -1254,6 +1254,10 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
+// Keyboard.
+space ␣
+delete ␥
+
 gender {
   female ♀\vs{text}
     .double ⚢
