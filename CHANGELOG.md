@@ -66,45 +66,45 @@
   - `riyal`: ⃁
 
 - Keyboard labels
-  - `spacebar` : ␣
-  - `delete` : ␥
+  - `spacebar`: ␣
+  - `delete`: ␥
 
 - Control (Printable symbols representing non-printable characters)
-  - `nul` : ␀
-  - `soh` : ␁
-  - `stx` : ␂
-  - `etx` : ␃
-  - `eot` : ␄
-  - `enq` : ␅
-  - `ack` : ␆
-  - `bel` : ␇
-  - `bs` : ␈
-  - `ht` : ␉
-  - `lf` : ␊
-  - `vt` : ␋
-  - `ff` : ␌
-  - `cr` : ␍
-  - `so` : ␎
-  - `si` : ␏
-  - `dle` : ␐
-  - `dc.one` : ␑
-  - `dc.two` : ␒
-  - `dc.three` : ␓
-  - `dc.four` : ␔
-  - `nak` : ␕
-  - `syn` : ␖
-  - `etb` : ␗
-  - `can` : ␘
-  - `em` : ␙
-  - `sub` : ␚
-  - `esc` : ␛
-  - `fs` : ␜
-  - `gs` : ␝
-  - `rs` : ␞
-  - `us` : ␟
-  - `sp` : ␠
-  - `del` : ␡
-  - `nl` : ␤
+  - `nul`: ␀
+  - `soh`: ␁
+  - `stx`: ␂
+  - `etx`: ␃
+  - `eot`: ␄
+  - `enq`: ␅
+  - `ack`: ␆
+  - `bel`: ␇
+  - `bs`: ␈
+  - `ht`: ␉
+  - `lf`: ␊
+  - `vt`: ␋
+  - `ff`: ␌
+  - `cr`: ␍
+  - `so`: ␎
+  - `si`: ␏
+  - `dle`: ␐
+  - `dc.one`: ␑
+  - `dc.two`: ␒
+  - `dc.three`: ␓
+  - `dc.four`: ␔
+  - `nak`: ␕
+  - `syn`: ␖
+  - `etb`: ␗
+  - `can`: ␘
+  - `em`: ␙
+  - `sub`: ␚
+  - `esc`: ␛
+  - `fs`: ␜
+  - `gs`: ␝
+  - `rs`: ␞
+  - `us`: ␟
+  - `sp`: ␠
+  - `del`: ␡
+  - `nl`: ␤
 
 ### New in `emoji`
 

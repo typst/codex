@@ -1297,7 +1297,7 @@ control {
     .two ␒
     .three ␓
     .four ␔
-  nak ␕ // Negativ AcKnowledge
+  nak ␕ // Negative AcKnowledge
   syn ␖ // SYNchronous idle
   etb ␗ // End of Transmission Block
   can ␘ // CANcel
