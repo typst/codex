@@ -1292,10 +1292,11 @@ control {
   so ␎
   si ␏
   dle ␐
-  dc1 ␑
-  dc2 ␒
-  dc3 ␓
-  dc4 ␔
+  dc
+    .one ␑
+    .two ␒
+    .three ␓
+    .four ␔
   nak ␕
   syn ␖
   etb ␗
