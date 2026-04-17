@@ -1256,7 +1256,6 @@ errorbar
 
 // Keyboard labels.
 spacebar ␣
-delete ␥
 
 gender {
   female ♀\vs{text}

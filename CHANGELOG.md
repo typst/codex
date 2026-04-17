@@ -67,7 +67,6 @@
 
 - Keyboard labels
   - `spacebar`: ␣
-  - `delete`: ␥
 
 - Control (Printable symbols representing non-printable characters)
   - `nul`: ␀
