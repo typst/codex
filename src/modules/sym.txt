@@ -422,6 +422,10 @@ succ ≻
   .tilde ≿
 equiv ≡
   .not ≢
+  .lt ⪙
+  .lt.slant ⪛
+  .gt ⪚
+  .gt.slant ⪜
 smt ⪪
   .eq ⪬
   .eq.slant ⪬\vs{1}

@@ -54,6 +54,10 @@
   - `lt.closed.not`: ⋪
   - `eq.gt.slant`: ⪖
   - `eq.lt.slant`: ⪕
+  - `equiv.gt`: ⪚
+  - `equiv.gt.slant`: ⪜
+  - `equiv.lt`: ⪙
+  - `equiv.lt.slant`: ⪛
   - `gt.eq.lt.slant`: ⋛︀
   - `gt.equiv.slant`: ⫺
   - `gt.tilde.slant`: ≳︀
