@@ -52,6 +52,16 @@
   - `lt.closed.eq`: ⊴
   - `lt.closed.eq.not`: ⋬
   - `lt.closed.not`: ⋪
+  - `eq.gt.slant`: ⪖
+  - `eq.lt.slant`: ⪕
+  - `gt.eq.lt.slant`: ⋛︀
+  - `gt.equiv.slant`: ⫺
+  - `gt.tilde.slant`: ≳︀
+  - `lt.eq.gt.slant`: ⋚︀
+  - `tl.equiv.slant`: ⫹
+  - `lt.tilde.slant`: ≲︀
+  - `smt.eq.slant`: ⪬︀
+  - `lat.eq.slant`: ⪭︀
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈
@@ -121,6 +131,8 @@
 
 - `gt.tri` and variants in favor of `gt.closed`
 - `lt.tri` and variants in favor of `lt.closed`
+- `prec.curly.eq` and variants in favor of `prec.eq.slant`
+- `succ.curly.eq` and variants in favor of `succ.eq.slant`
 - `join` and its variants in favor of `bowtie.big` with the same variants
 
 ### Removals **(Breaking change)**
