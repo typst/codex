@@ -1118,6 +1118,9 @@ tack
   .b.short ⫟
   .l.r ⟛
 
+zero 0
+  .slashed 0\vs{1}
+
 // Lowercase Greek.
 alpha α
 beta β

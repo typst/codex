@@ -54,6 +54,8 @@
   - `lt.closed.not`: ⋪
 
 - Miscellaneous technical
+  - `zero`: 0
+  - `zero.slashed`: 0︀
   - `bowtie.stroked`: ⋈
   - `bowtie.stroked.big`: ⨝
   - `bowtie.stroked.big.l`: ⟕
