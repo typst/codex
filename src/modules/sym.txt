@@ -1108,8 +1108,6 @@ tack
   @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.rr.not`
   .r.double.not ⊭
   .rr.not ⊭
-  @deprecated: `tack.triple` is deprecated, use `tack.rrr` instead
-  .r.triple ⫢
   .rrr ⫢
   .l ⊣
   .l.long ⟞
