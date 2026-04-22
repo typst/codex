@@ -66,6 +66,10 @@
   - `lt.tilde.slant`: ≲︀
   - `smt.eq.slant`: ⪬︀
   - `lat.eq.slant`: ⪭︀
+  - `tilde.gt`: ⪞
+  - `tilde.gt.slant`: ⪞︀
+  - `tilde.lt`: ⪝
+  - `tilde.lt.slant`: ⪝︀
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈

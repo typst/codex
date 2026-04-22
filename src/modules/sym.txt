@@ -202,6 +202,10 @@ tilde
   .equiv ≅
   .equiv.not ≇
   .nequiv ≆
+  .lt ⪝
+  .lt.slant ⪝\vs{1}
+  .gt ⪞
+  .gt.slant ⪞\vs{1}
   .not ≁
   .rev ∽
   .rev.equiv ≌
