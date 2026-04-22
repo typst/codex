@@ -1118,7 +1118,7 @@ tack
   .b.short ⫟
   .l.r ⟛
 
-zero 0
+zero 0\vs{text}
   .slashed 0\vs{1}
 
 // Lowercase Greek.
