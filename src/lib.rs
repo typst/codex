@@ -313,11 +313,7 @@ mod test {
         let sequences = get_valid_presentation_sequences();
         assert!(
             are_all_variants_valid(ROOT, |c| {
-                if is_presentation_sequence(c) {
-                    sequences.contains(c)
-                } else {
-                    true
-                }
+                !is_presentation_sequence(c) || sequences.contains(c)
             }),
             "invalid presentation sequence(s) (see list above)",
         )
