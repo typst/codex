@@ -228,8 +228,8 @@ impl MathStyle {
         bold: bool,
         italic: Option<bool>,
     ) -> MathStyle {
-        use conversions::*;
         use MathVariant::*;
+        use conversions::*;
         match (variant.unwrap_or(Plain), bold, italic) {
             (SansSerif, false, Some(false)) if is_latin(c) => MathStyle::SansSerif,
             (SansSerif, false, _) if is_latin(c) => MathStyle::SansSerifItalic,
@@ -368,8 +368,8 @@ impl fmt::Display for ToStyle {
 /// assert_eq!("𝕩ℽΩ𝔸𞺸𞺧𝟙⅀𞺮", s);
 /// ```
 pub fn to_style(c: char, style: MathStyle) -> ToStyle {
-    use conversions::*;
     use MathStyle::*;
+    use conversions::*;
     let styled = match style {
         Plain => [c, '\0'],
         Bold => [to_bold(c), '\0'],
