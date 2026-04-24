@@ -68,6 +68,7 @@
   - `arrow.br.bar`: 🢺
   - `arrow.tl.bar`: 🢸
   - `arrow.bl.bar`: 🢻
+  - `arrows.rl.long`: 🣐
 
 - Currency
   - `riyal`: ⃁

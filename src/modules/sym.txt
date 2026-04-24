@@ -1048,6 +1048,7 @@ arrows
   .lr ⇆
   .lr.stop ↹
   .rl ⇄
+  .rl.long 🣐
   .tb ⇅
   .bt ⇵
   .rrr ⇶
