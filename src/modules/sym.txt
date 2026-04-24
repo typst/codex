@@ -255,6 +255,7 @@ plus +
   .square ⊞
   .triangle ⨹
   .triple ⧻
+  .hat ⨣
 minus −
   .o ⊖
   .dot ∸
@@ -378,6 +379,7 @@ lt <
 approx ≈
   .eq ≊
   .not ≉
+  .hat ⩯
 prec ≺
   .approx ⪷
   .curly.eq ≼
