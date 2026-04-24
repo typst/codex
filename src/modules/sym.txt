@@ -1010,21 +1010,25 @@ arrow
   .t.b.filled ⬍
   .t.b.stroked ⇳
   .tr ↗\vs{text}
+  .tr.bar 🢹
   .tr.double ⇗
   .tr.filled ⬈
   .tr.hook ⤤
   .tr.stroked ⬀
   .br ↘\vs{text}
+  .br.bar 🢺
   .br.double ⇘
   .br.filled ⬊
   .br.hook ⤥
   .br.stroked ⬂
   .tl ↖\vs{text}
+  .tl.bar 🢸
   .tl.double ⇖
   .tl.filled ⬉
   .tl.hook ⤣
   .tl.stroked ⬁
   .bl ↙\vs{text}
+  .bl.bar 🢻
   .bl.double ⇙
   .bl.filled ⬋
   .bl.hook ⤦

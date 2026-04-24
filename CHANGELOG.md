@@ -63,6 +63,12 @@
   - `bowtie.filled.l`: ⧑
   - `bowtie.filled.r`: ⧒
 
+- Arrows
+  - `arrow.tr.bar`: 🢹
+  - `arrow.br.bar`: 🢺
+  - `arrow.tl.bar`: 🢸
+  - `arrow.bl.bar`: 🢻
+
 - Currency
   - `riyal`: ⃁
 
