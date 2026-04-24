@@ -56,6 +56,8 @@
 - Decorated mathematical symbols
   - `plus.hat`: ⨣
   - `approx.hat`: ⩯
+  - `lt.quest`: ⩻
+  - `gt.quest`: ⩼
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈

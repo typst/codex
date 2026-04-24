@@ -307,6 +307,7 @@ eq =
 gt >
   .o ⧁
   .dot ⋗
+  .quest ⩼
   .approx ⪆
   .arc ⪧
   .arc.eq ⪩
@@ -343,6 +344,7 @@ gt >
 lt <
   .o ⧀
   .dot ⋖
+  .quest ⩻
   .approx ⪅
   .arc ⪦
   .arc.eq ⪨
