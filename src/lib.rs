@@ -11,6 +11,9 @@ pub use self::shared::ModifierSet;
 
 mod shared;
 
+#[cfg(feature = "numeral-systems")]
+pub mod numeral_systems;
+
 #[cfg(feature = "styling")]
 pub mod styling;
 
@@ -159,10 +162,7 @@ mod test {
     #[test]
     fn random_sample() {
         for (key, control) in [
-            (
-                "backslash",
-                [("", "\\"), ("not", "⧷"), ("o", "⦸")].as_slice(),
-            ),
+            ("backslash", [("", "\\"), ("not", "⧷"), ("o", "⦸")].as_slice()),
             ("chi", &[("", "χ")]),
             ("forces", &[("", "⊩"), ("not", "⊮")]),
             ("interleave", &[("", "⫴"), ("big", "⫼"), ("struck", "⫵")]),

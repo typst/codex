@@ -5,8 +5,12 @@
 ### General changes
 
 - Trivially updated to Unicode 17.0.0
+- Added numeral systems API under the `numeral-systems` feature flag
 
 ### New in `sym`
+
+- Punctuation
+  - `underscore`: _
 
 - Mathematical symbols
   - `emptyset.zero`: ∅︀
@@ -62,7 +66,7 @@
 - Currency
   - `riyal`: ⃁
 
-- New `chess` submodule
+- New `sym.chess` submodule
   - `{king,queen,rook,bishop,knight,pawn}.{white,black,neutral}.{,inv,l,r}`
   - `knight.{white,black,neutral}.{tr,br,bl,tl}`
   - `equihopper.{white,black,neutral}.{,rot}`
@@ -70,16 +74,56 @@
   - `koma.{white,black}.{,inv}`
   - `{general,mandarin,elephant,horse,chariot,cannon,soldier}.{red,black}`
 
+- Keyboard labels
+  - `spacebar`: ␣
+
+- Control (Printable symbols representing non-printable characters)
+  - `nul`: ␀
+  - `soh`: ␁
+  - `stx`: ␂
+  - `etx`: ␃
+  - `eot`: ␄
+  - `enq`: ␅
+  - `ack`: ␆
+  - `bel`: ␇
+  - `bs`: ␈
+  - `ht`: ␉
+  - `lf`: ␊
+  - `vt`: ␋
+  - `ff`: ␌
+  - `cr`: ␍
+  - `so`: ␎
+  - `si`: ␏
+  - `dle`: ␐
+  - `dc.one`: ␑
+  - `dc.two`: ␒
+  - `dc.three`: ␓
+  - `dc.four`: ␔
+  - `nak`: ␕
+  - `syn`: ␖
+  - `etb`: ␗
+  - `can`: ␘
+  - `em`: ␙
+  - `sub`: ␚
+  - `esc`: ␛
+  - `fs`: ␜
+  - `gs`: ␝
+  - `rs`: ␞
+  - `us`: ␟
+  - `sp`: ␠
+  - `del`: ␡
+  - `nl`: ␤
+
 ### New in `emoji`
 
-- bigfoot: 🫈
-- dancing.ballet: 🧑‍🩰
-- face.distorted: 🫪
-- fightcloud: 🫯
-- landslide: 🛘
-- orca: 🫍
-- treasure: 🪎
-- trombone: 🪊
+- `bigfoot`: 🫈
+- `dancing.ballet`: 🧑‍🩰
+- `face.distorted`: 🫪
+- `fightcloud`: 🫯
+- `landslide`: 🛘
+- `orca`: 🫍
+- `treasure`: 🪎
+- `trombone`: 🪊
 
 ### Deprecations in `sym`
 
