@@ -58,6 +58,7 @@
   - `approx.hat`: ⩯
   - `lt.quest`: ⩻
   - `gt.quest`: ⩼
+  - `eq.ast`: ⩮
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈

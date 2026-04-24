@@ -284,6 +284,7 @@ ratio ∶
 
 // Relations.
 eq =
+  .ast ⩮
   .star ≛
   .o ⊜
   .colon ≕
