@@ -255,6 +255,7 @@ plus +
   .square ⊞
   .triangle ⨹
   .triple ⧻
+  .hat ⨣
 minus −
   .o ⊖
   .dot ∸
@@ -283,6 +284,7 @@ ratio ∶
 
 // Relations.
 eq =
+  .ast ⩮
   .star ≛
   .o ⊜
   .colon ≕
@@ -306,6 +308,7 @@ eq =
 gt >
   .o ⧁
   .dot ⋗
+  .quest ⩼
   .approx ⪆
   .arc ⪧
   .arc.eq ⪩
@@ -342,6 +345,7 @@ gt >
 lt <
   .o ⧀
   .dot ⋖
+  .quest ⩻
   .approx ⪅
   .arc ⪦
   .arc.eq ⪨
@@ -378,6 +382,7 @@ lt <
 approx ≈
   .eq ≊
   .not ≉
+  .hat ⩯
 prec ≺
   .approx ⪷
   .curly.eq ≼

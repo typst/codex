@@ -55,6 +55,13 @@
   - `lt.closed.eq.not`: ⋬
   - `lt.closed.not`: ⋪
 
+- Decorated mathematical symbols
+  - `plus.hat`: ⨣
+  - `approx.hat`: ⩯
+  - `lt.quest`: ⩻
+  - `gt.quest`: ⩼
+  - `eq.ast`: ⩮
+
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈
   - `bowtie.stroked.big`: ⨝
