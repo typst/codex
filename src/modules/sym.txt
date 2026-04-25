@@ -753,13 +753,13 @@ note
   .up 🎜
   .down 🎝
   .whole 𝅝
-  .half 𝅗𝅥
-  .quarter 𝅘𝅥
+  .half 𝅗𝅥
+  .quarter 𝅘𝅥
   .quarter.alt ♩
-  .eighth 𝅘𝅥𝅮
+  .eighth 𝅘𝅥𝅮
   .eighth.alt ♪
   .eighth.beamed ♫
-  .sixteenth 𝅘𝅥𝅯
+  .sixteenth 𝅘𝅥𝅯
   .sixteenth.beamed ♬
   .grace 𝆕
   .grace.slash 𝆔

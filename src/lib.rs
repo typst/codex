@@ -191,6 +191,17 @@ mod test {
         }
     }
 
+    /// Tests that all symbols use NFC, i.e., use precomposed codepoints when
+    /// possible.
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn symbols_are_nfc() {
+        assert!(
+            are_all_variants_valid(ROOT, unicode_normalization::is_nfc),
+            "symbols should use NFC (see list above)",
+        )
+    }
+
     /// https://www.unicode.org/reports/tr51/#def_text_presentation_selector.
     const TEXT_PRESENTATION_SELECTOR: char = '\u{FE0E}';
     /// https://www.unicode.org/reports/tr51/#def_emoji_presentation_selector.
