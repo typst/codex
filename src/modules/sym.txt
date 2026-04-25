@@ -1104,21 +1104,37 @@ tack
   .r.not ⊬
   .r.long ⟝
   .r.short ⊦
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.rr`
   .r.double ⊨
+  .rr ⊨
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.rr.not`
   .r.double.not ⊭
+  .rr.not ⊭
+  .rrr ⫢
   .l ⊣
   .l.long ⟞
   .l.short ⫞
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.ll`
   .l.double ⫤
+  .ll ⫤
   .t ⊥
   .t.big ⟘
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.tt`
   .t.double ⫫
+  .tt ⫫
   .t.short ⫠
   .b ⊤
   .b.big ⟙
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.bb`
   .b.double ⫪
+  .bb ⫪
   .b.short ⫟
+  @deprecated: `tack.l.r` is deprecated, use `tacks.lr` instead
   .l.r ⟛
+tacks
+  .lr ⟛
+  .llrr ⟚
+  .tb ⫩
 
 // Lowercase Greek.
 alpha α
