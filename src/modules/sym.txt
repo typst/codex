@@ -494,6 +494,7 @@ union ∪
   .sq.serif ⊔\vs{1}
   .sq.big ⨆
   .sq.double ⩏
+  .join ⩅
 inter ∩
   .serif ∩\vs{1}
   .and ⩄
@@ -504,6 +505,7 @@ inter ∩
   .sq.serif ⊓\vs{1}
   .sq.big ⨅
   .sq.double ⩎
+  .meet ⩄
 
 // Calculus.
 infinity ∞
@@ -885,6 +887,16 @@ star
   .op ⋆
   .stroked ☆
   .filled ★
+meet ∧
+  .big ⋀
+  .curly ⋏
+  .dot ⟑
+  .double ⩓
+join ∨
+  .big ⋁
+  .curly ⋎
+  .dot ⟇
+  .double ⩔
 
 // Arrows, harpoons, and tacks.
 arrow
