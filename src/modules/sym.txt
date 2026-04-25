@@ -1127,12 +1127,12 @@ tack
   .b.double ⫪
   .bb ⫪
   .b.short ⫟
-  @deprecated: `tack.l.r` is deprecated, use `tacks.l.r` instead
+  @deprecated: `tack.l.r` is deprecated, use `tacks.lr` instead
   .l.r ⟛
 tacks
-  .l.r ⟛
-  .ll.rr ⟚
-  .t.b.short ⫩
+  .lr ⟛
+  .llrr ⟚
+  .tb ⫩
 
 // Lowercase Greek.
 alpha α
