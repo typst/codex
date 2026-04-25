@@ -170,6 +170,9 @@ These previously deprecated items were removed:
 - `shin`
 - `planck.reduce`
 
+The `dotless` symbol was converted to a module,
+meaning you can no longer use `dotless` as a shorthand for `dotless.i`.
+
 ## Version 0.2.0 (October 7, 2025)
 
 ### General changes
