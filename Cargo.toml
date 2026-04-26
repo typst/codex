@@ -1,8 +1,9 @@
 [package]
 name = "codex"
-version = "0.1.1"
+version = "0.2.0"
+rust-version = "1.88" # also change in ci.yml
 authors = ["The Typst Project Developers"]
-edition = "2021"
+edition = "2024"
 description = "Human-friendly notation for Unicode symbols."
 repository = "https://github.com/typst/codex"
 readme = "README.md"
@@ -11,5 +12,16 @@ categories = ["encoding", "text-processing"]
 keywords = ["unicode", "symbols"]
 
 [features]
-default = ["styling"]
+default = ["numeral-systems", "styling"]
+numeral-systems = ["dep:chinese-number"]
 styling = []
+_test-unicode-conformance = ["ureq"]
+
+[dependencies]
+chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
+
+[dev-dependencies]
+siphasher = "1.0.2"
+
+[build-dependencies]
+ureq = { version = "3.0.12", optional = true }

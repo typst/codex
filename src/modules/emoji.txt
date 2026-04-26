@@ -3,17 +3,17 @@ abc 🔤
 abcd 🔡
 ABCD 🔠
 accordion 🪗
-aesculapius ⚕
-airplane ✈
+aesculapius ⚕\vs{emoji}
+airplane ✈\vs{emoji}
   .landing 🛬
-  .small 🛩
+  .small 🛩\vs{emoji}
   .takeoff 🛫
-alembic ⚗
-alien 👽
+alembic ⚗\vs{emoji}
+alien 👽\vs{emoji}
   .monster 👾
-ambulance 🚑
+ambulance 🚑\vs{emoji}
 amphora 🏺
-anchor ⚓
+anchor ⚓\vs{emoji}
 anger 💢
 ant 🐜
 apple
@@ -24,37 +24,37 @@ arm
   .muscle 💪
   .selfie 🤳
 arrow
-  .r.filled ➡
-  .r.hook ↪
+  .r.filled ➡\vs{emoji}
+  .r.hook ↪\vs{emoji}
   .r.soon 🔜
-  .l.filled ⬅
-  .l.hook ↩
+  .l.filled ⬅\vs{emoji}
+  .l.hook ↩\vs{emoji}
   .l.back 🔙
   .l.end 🔚
-  .t.filled ⬆
-  .t.curve ⤴
+  .t.filled ⬆\vs{emoji}
+  .t.curve ⤴\vs{emoji}
   .t.top 🔝
-  .b.filled ⬇
-  .b.curve ⤵
-  .l.r ↔
+  .b.filled ⬇\vs{emoji}
+  .b.curve ⤵\vs{emoji}
+  .l.r ↔\vs{emoji}
   .l.r.on 🔛
-  .t.b ↕
-  .bl ↙
-  .br ↘
-  .tl ↖
-  .tr ↗
+  .t.b ↕\vs{emoji}
+  .bl ↙\vs{emoji}
+  .br ↘\vs{emoji}
+  .tl ↖\vs{emoji}
+  .tr ↗\vs{emoji}
 arrows
   .cycle 🔄
-ast *
-  .box ✳
+ast *\vs{emoji}
+  .box ✳\vs{emoji}
 atm 🏧
-atom ⚛
+atom ⚛\vs{emoji}
 aubergine 🍆
 avocado 🥑
 axe 🪓
 baby 👶
   .angel 👼
-  .box 🚼
+  .box 🚼\vs{emoji}
 babybottle 🍼
 backpack 🎒
 bacon 🥓
@@ -65,16 +65,16 @@ baggageclaim 🛄
 baguette 🥖
 balloon 🎈
 ballot
-  .check ☑
-ballotbox 🗳
+  .check ☑\vs{emoji}
+ballotbox 🗳\vs{emoji}
 banana 🍌
 banjo 🪕
 bank 🏦
 barberpole 💈
-baseball ⚾
+baseball ⚾\vs{emoji}
 basecap 🧢
 basket 🧺
-basketball ⛹
+basketball ⛹\vs{emoji}
   .ball 🏀
 bat 🦇
 bathtub 🛀
@@ -82,13 +82,13 @@ bathtub 🛀
 battery 🔋
   .low 🪫
 beach
-  .palm 🏝
-  .umbrella 🏖
+  .palm 🏝\vs{emoji}
+  .umbrella 🏖\vs{emoji}
 beads 📿
 beans 🫘
 bear 🐻
 beaver 🦫
-bed 🛏
+bed 🛏\vs{emoji}
   .person 🛌
 bee 🐝
 beer 🍺
@@ -97,18 +97,19 @@ beet 🫜
 beetle 🪲
   .lady 🐞
 bell 🔔
-  .ding 🛎
+  .ding 🛎\vs{emoji}
   .not 🔕
 bento 🍱
 bicyclist 🚴
   .mountain 🚵
-bike 🚲
+bigfoot 🫈
+bike 🚲\vs{emoji}
   .not 🚳
 bikini 👙
 billiards 🎱
-bin 🗑
-biohazard ☣
-bird 🐦
+bin 🗑\vs{emoji}
+biohazard ☣\vs{emoji}
+bird 🐦\vs{emoji}
 bison 🦬
 blood 🩸
 blouse 👚
@@ -116,13 +117,13 @@ blowfish 🐡
 blueberries 🫐
 boar 🐗
 boat
-  .sail ⛵
+  .sail ⛵\vs{emoji}
   .row 🚣
-  .motor 🛥
+  .motor 🛥\vs{emoji}
   .speed 🚤
   .canoe 🛶
 bolt 🔩
-bomb 💣
+bomb 💣\vs{emoji}
 bone 🦴
 book
   .red 📕
@@ -132,7 +133,7 @@ book
   .spiral 📒
   .open 📖
 bookmark 🔖
-books 📚
+books 📚\vs{emoji}
 boomerang 🪃
 bordercontrol 🛂
 bouquet 💐
@@ -157,12 +158,12 @@ brightness
   .low 🔅
 broccoli 🥦
 broom 🧹
-brush 🖌
+brush 🖌\vs{emoji}
 bubble
   .speech.r 💬
-  .speech.l 🗨
+  .speech.l 🗨\vs{emoji}
   .thought 💭
-  .anger.r 🗯
+  .anger.r 🗯\vs{emoji}
 bubbles 🫧
 bubbletea 🧋
 bucket 🪣
@@ -173,7 +174,7 @@ builder 👷
 burger 🍔
 burrito 🌯
 bus 🚌
-  .front 🚍
+  .front 🚍\vs{emoji}
   .small 🚐
   .stop 🚏
   .trolley 🚎
@@ -183,7 +184,7 @@ button 🔲
   .alt 🔳
   .radio 🔘
 cabinet
-  .file 🗄
+  .file 🗄\vs{emoji}
 cablecar 🚠
   .small 🚡
 cactus 🌵
@@ -192,30 +193,30 @@ cake 🎂
   .moon 🥮
   .slice 🍰
 calendar 📅
-  .spiral 🗓
+  .spiral 🗓\vs{emoji}
   .tearoff 📆
 camel 🐫
   .dromedar 🐪
-camera 📷
+camera 📷\vs{emoji}
   .flash 📸
   .movie 🎥
   .movie.box 🎦
-  .video 📹
-camping 🏕
+  .video 📹\vs{emoji}
+camping 🏕\vs{emoji}
 can 🥫
-candle 🕯
+candle 🕯\vs{emoji}
 candy 🍬
 cane 🦯
 car 🚗
-  .front 🚘
+  .front 🚘\vs{emoji}
   .pickup 🛻
   .police 🚓
-  .police.front 🚔
-  .racing 🏎
+  .police.front 🚔\vs{emoji}
+  .racing 🏎\vs{emoji}
   .rickshaw 🛺
   .suv 🚙
 card
-  .credit 💳
+  .credit 💳\vs{emoji}
   .id 🪪
 cardindex 📇
 carrot 🥕
@@ -224,7 +225,7 @@ cassette 📼
 castle
   .eu 🏰
   .jp 🏯
-cat 🐈
+cat 🐈\vs{emoji}
   .face 🐱
   .face.angry 😾
   .face.cry 😿
@@ -236,7 +237,7 @@ cat 🐈
   .face.smile 😺
   .face.smirk 😼
 chain 🔗
-chains ⛓
+chains ⛓\vs{emoji}
 chair 🪑
 champagne 🍾
 chart
@@ -245,11 +246,11 @@ chart
   .down 📉
   .yen.up 💹
 checkmark
-  .heavy ✔
-  .box ✅
+  .heavy ✔\vs{emoji}
+  .box ✅\vs{emoji}
 cheese 🧀
 cherries 🍒
-chess ♟
+chess ♟\vs{emoji}
 chestnut 🌰
 chicken 🐔
   .baby 🐥
@@ -258,109 +259,109 @@ chicken 🐔
   .leg 🍗
   .male 🐓
 child 🧒
-chipmunk 🐿
+chipmunk 🐿\vs{emoji}
 chocolate 🍫
 chopsticks 🥢
-church ⛪
+church ⛪\vs{emoji}
   .love 💒
 cigarette 🚬
-  .not 🚭
+  .not 🚭\vs{emoji}
 circle
-  .black ⚫
+  .black ⚫\vs{emoji}
   .blue 🔵
   .brown 🟤
   .green 🟢
   .orange 🟠
   .purple 🟣
-  .white ⚪
+  .white ⚪\vs{emoji}
   .red 🔴
   .yellow 🟡
-  .stroked ⭕
+  .stroked ⭕\vs{emoji}
 circus 🎪
-city 🏙
+city 🏙\vs{emoji}
   .dusk 🌆
   .night 🌃
   .sunset 🌇
-clamp 🗜
-clapperboard 🎬
+clamp 🗜\vs{emoji}
+clapperboard 🎬\vs{emoji}
 climbing 🧗
 clip 📎
-clipboard 📋
-clips 🖇
+clipboard 📋\vs{emoji}
+clips 🖇\vs{emoji}
 clock
-  .one 🕐
-  .one.thirty 🕜
-  .two 🕑
-  .two.thirty 🕝
-  .three 🕒
-  .three.thirty 🕞
-  .four 🕓
-  .four.thirty 🕟
-  .five 🕔
-  .five.thirty 🕠
-  .six 🕕
-  .six.thirty 🕡
-  .seven 🕖
-  .seven.thirty 🕢
-  .eight 🕗
-  .eight.thirty 🕣
-  .nine 🕘
-  .nine.thirty 🕤
-  .ten 🕙
-  .ten.thirty 🕥
-  .eleven 🕚
-  .eleven.thirty 🕦
-  .twelve 🕛
-  .twelve.thirty 🕧
-  .alarm ⏰
-  .old 🕰
-  .timer ⏲
-cloud ☁
+  .one 🕐\vs{emoji}
+  .one.thirty 🕜\vs{emoji}
+  .two 🕑\vs{emoji}
+  .two.thirty 🕝\vs{emoji}
+  .three 🕒\vs{emoji}
+  .three.thirty 🕞\vs{emoji}
+  .four 🕓\vs{emoji}
+  .four.thirty 🕟\vs{emoji}
+  .five 🕔\vs{emoji}
+  .five.thirty 🕠\vs{emoji}
+  .six 🕕\vs{emoji}
+  .six.thirty 🕡\vs{emoji}
+  .seven 🕖\vs{emoji}
+  .seven.thirty 🕢\vs{emoji}
+  .eight 🕗\vs{emoji}
+  .eight.thirty 🕣\vs{emoji}
+  .nine 🕘\vs{emoji}
+  .nine.thirty 🕤\vs{emoji}
+  .ten 🕙\vs{emoji}
+  .ten.thirty 🕥\vs{emoji}
+  .eleven 🕚\vs{emoji}
+  .eleven.thirty 🕦\vs{emoji}
+  .twelve 🕛\vs{emoji}
+  .twelve.thirty 🕧\vs{emoji}
+  .alarm ⏰\vs{emoji}
+  .old 🕰\vs{emoji}
+  .timer ⏲\vs{emoji}
+cloud ☁\vs{emoji}
   .dust 💨
-  .rain 🌧
-  .snow 🌨
-  .storm ⛈
-  .sun ⛅
-  .sun.hidden 🌥
-  .sun.rain 🌦
-  .thunder 🌩
+  .rain 🌧\vs{emoji}
+  .snow 🌨\vs{emoji}
+  .storm ⛈\vs{emoji}
+  .sun ⛅\vs{emoji}
+  .sun.hidden 🌥\vs{emoji}
+  .sun.rain 🌦\vs{emoji}
+  .thunder 🌩\vs{emoji}
 coat 🧥
   .lab 🥼
 cockroach 🪳
 cocktail
-  .martini 🍸
+  .martini 🍸\vs{emoji}
   .tropical 🍹
 coconut 🥥
-coffee ☕
-coffin ⚰
+coffee ☕\vs{emoji}
+coffin ⚰\vs{emoji}
 coin 🪙
-comet ☄
+comet ☄\vs{emoji}
 compass 🧭
-computer 🖥
-computermouse 🖱
+computer 🖥\vs{emoji}
+computermouse 🖱\vs{emoji}
 confetti 🎊
 construction 🚧
-controller 🎮
+controller 🎮\vs{emoji}
 cookie 🍪
   .fortune 🥠
 cooking 🍳
 cool 🆒
-copyright ©
+copyright ©\vs{emoji}
 coral 🪸
 corn 🌽
-couch 🛋
+couch 🛋\vs{emoji}
 couple 💑
 cow 🐄
   .face 🐮
 crab 🦀
-crane 🏗
-crayon 🖍
+crane 🏗\vs{emoji}
+crayon 🖍\vs{emoji}
 cricket 🦗
 cricketbat 🏏
 crocodile 🐊
 croissant 🥐
-crossmark ❌
-  .box ❎
+crossmark ❌\vs{emoji}
+  .box ❎\vs{emoji}
 crown 👑
 crutch 🩼
 crystal 🔮
@@ -375,15 +376,18 @@ customs 🛃
 cutlery 🍴
 cyclone 🌀
 dancing
+  .ballet 🧑‍🩰
   .man 🕺
   .woman 💃
-  .women.bunny 👯
+  .bunny 👯
+  .bunny.men 👯‍♂
+  .bunny.women 👯‍♀
 darts 🎯
 dash
-  .wave.double 〰
+  .wave.double 〰\vs{emoji}
 deer 🦌
-desert 🏜
-detective 🕵
+desert 🏜\vs{emoji}
+detective 🕵\vs{emoji}
 diamond
   .blue 🔷
   .blue.small 🔹
@@ -395,13 +399,13 @@ dino
   .pod 🦕
   .rex 🦖
 disc
-  .cd 💿
+  .cd 💿\vs{emoji}
   .dvd 📀
   .mini 💽
 discoball 🪩
 diving 🤿
 dodo 🦤
-dog 🐕
+dog 🐕\vs{emoji}
   .face 🐶
   .guide 🦮
   .poodle 🐩
@@ -411,7 +415,7 @@ donkey 🫏
 donut 🍩
 door 🚪
 dove
-  .peace 🕊
+  .peace 🕊\vs{emoji}
 dragon 🐉
   .face 🐲
 dress 👗
@@ -424,7 +428,7 @@ drum 🥁
 duck 🦆
 dumpling 🥟
 eagle 🦅
-ear 👂
+ear 👂\vs{emoji}
   .aid 🦻
 egg 🥚
 eighteen
@@ -433,13 +437,13 @@ elephant 🐘
 elevator 🛗
 elf 🧝
 email 📧
-excl ❗
-  .white ❕
-  .double ‼
-  .quest ⁉
+excl ❗\vs{emoji}
+  .white ❕\vs{emoji}
+  .double ‼\vs{emoji}
+  .quest ⁉\vs{emoji}
 explosion 💥
 extinguisher 🧯
-eye 👁
+eye 👁\vs{emoji}
 eyes 👀
 face
   .grin 😀
@@ -461,6 +465,7 @@ face
   .devil.frown 👿
   .diagonal 🫤
   .disguise 🥸
+  .distorted 🫪
   .distress 😫
   .dizzy 😵
   .dotted 🫥
@@ -469,12 +474,12 @@ face
   .drool 🤤
   .explode 🤯
   .eyeroll 🙄
-  .friendly ☺
+  .friendly ☺\vs{emoji}
   .fear 😨
   .fear.sweat 😰
   .fever 🤒
   .flush 😳
-  .frown ☹
+  .frown ☹\vs{emoji}
   .frown.slight 🙁
   .frust 😣
   .goofy 🤪
@@ -499,7 +504,7 @@ face
   .monocle 🧐
   .nausea 🤢
   .nerd 🤓
-  .neutral 😐
+  .neutral 😐\vs{emoji}
   .open 😃
   .party 🥳
   .peek 🫣
@@ -546,38 +551,39 @@ face
   .wow 😮
   .yawn 🥱
   .zip 🤐
-factory 🏭
+factory 🏭\vs{emoji}
 fairy 🧚
 faith
-  .christ ✝
-  .dharma ☸
+  .christ ✝\vs{emoji}
+  .dharma ☸\vs{emoji}
   .khanda 🪯
-  .islam ☪
-  .judaism ✡
+  .islam ☪\vs{emoji}
+  .judaism ✡\vs{emoji}
   .menorah 🕎
-  .om 🕉
-  .orthodox ☦
-  .peace ☮
+  .om 🕉\vs{emoji}
+  .orthodox ☦\vs{emoji}
+  .peace ☮\vs{emoji}
   .star.dot 🔯
   .worship 🛐
-  .yinyang ☯
+  .yinyang ☯\vs{emoji}
 falafel 🧆
-family 👪
+family 👪\vs{emoji}
 fax 📠
 feather 🪶
 feeding
   .breast 🤱
 fencing 🤺
 ferriswheel 🎡
-filebox 🗃
-filedividers 🗂
-film 🎞
+fightcloud 🫯
+filebox 🗃\vs{emoji}
+filedividers 🗂\vs{emoji}
+film 🎞\vs{emoji}
 finger
-  .r 👉
-  .l 👈
-  .t 👆
-  .t.alt ☝
-  .b 👇
+  .r 👉\vs{emoji}
+  .l 👈\vs{emoji}
+  .t 👆\vs{emoji}
+  .t.alt ☝\vs{emoji}
+  .b 👇\vs{emoji}
   .front 🫵
   .m 🖕
 fingerprint 🫆
@@ -589,26 +595,26 @@ fire 🔥
 firecracker 🧨
 fireengine 🚒
 fireworks 🎆
-fish 🐟
+fish 🐟\vs{emoji}
   .tropical 🐠
 fishing 🎣
 fist
   .front 👊
   .r 🤜
   .l 🤛
-  .raised ✊
+  .raised ✊\vs{emoji}
 flag
   .black 🏴
-  .white 🏳
+  .white 🏳\vs{emoji}
   .goal 🏁
-  .golf ⛳
+  .golf ⛳\vs{emoji}
   .red 🚩
 flags
   .jp.crossed 🎌
 flamingo 🦩
 flashlight 🔦
 flatbread 🫓
-fleur ⚜
+fleur ⚜\vs{emoji}
 floppy 💾
 flower
   .hibiscus 🌺
@@ -623,24 +629,24 @@ flower
   .yellow 🌼
 flute 🪈
 fly 🪰
-fog 🌫
+fog 🌫\vs{emoji}
 folder 📁
   .open 📂
 fondue 🫕
 foot 🦶
-football ⚽
+football ⚽\vs{emoji}
   .am 🏈
 forex 💱
-fountain ⛲
+fountain ⛲\vs{emoji}
 fox 🦊
 free 🆓
 fries 🍟
 frisbee 🥏
 frog
   .face 🐸
-fuelpump ⛽
+fuelpump ⛽\vs{emoji}
 garlic 🧄
-gear ⚙
+gear ⚙\vs{emoji}
 gem 💎
 genie 🧞
 ghost 👻
@@ -652,18 +658,18 @@ glass
   .milk 🥛
   .pour 🫗
   .tumbler 🥃
-glasses 👓
-  .sun 🕶
+glasses 👓\vs{emoji}
+  .sun 🕶\vs{emoji}
 globe
-  .am 🌎
-  .as.au 🌏
-  .eu.af 🌍
+  .am 🌎\vs{emoji}
+  .as.au 🌏\vs{emoji}
+  .eu.af 🌍\vs{emoji}
   .meridian 🌐
 gloves 🧤
 goal 🥅
 goat 🐐
 goggles 🥽
-golfing 🏌
+golfing 🏌\vs{emoji}
 goose 🪿
 gorilla 🦍
 grapes 🍇
@@ -674,13 +680,13 @@ gymnastics 🤸
 haircut 💇
 hairpick 🪮
 hammer 🔨
-  .pick ⚒
-  .wrench 🛠
+  .pick ⚒\vs{emoji}
+  .wrench 🛠\vs{emoji}
 hamsa 🪬
 hamster
   .face 🐹
 hand
-  .raised ✋
+  .raised ✋\vs{emoji}
   .raised.alt 🤚
   .r 🫱
   .l 🫲
@@ -690,18 +696,18 @@ hand
   .call 🤙
   .love 🤟
   .part 🖖
-  .peace ✌
+  .peace ✌\vs{emoji}
   .pinch 🤏
   .pushing.l 🫷
   .pushing.r 🫸
   .rock 🤘
-  .splay 🖐
+  .splay 🖐\vs{emoji}
   .wave 👋
-  .write ✍
+  .write ✍\vs{emoji}
 handbag 👜
 handball 🤾
 handfan 🪭
-handholding
+handholding 🧑‍🤝‍🧑
   .man.man 👬
   .woman.man 👫
   .woman.woman 👭
@@ -714,12 +720,12 @@ hands
   .raised 🙌
   .shake 🤝
 harp 🪉
-hash #
+hash #\vs{emoji}
 hat
   .ribbon 👒
   .top 🎩
-headphone 🎧
-heart ❤
+headphone 🎧\vs{emoji}
+heart ❤\vs{emoji}
   .arrow 💘
   .beat 💓
   .black 🖤
@@ -728,7 +734,7 @@ heart ❤
   .broken 💔
   .brown 🤎
   .double 💕
-  .excl ❣
+  .excl ❣\vs{emoji}
   .gray 🩶
   .green 💚
   .grow 💗
@@ -746,11 +752,11 @@ hedgehog 🦔
 helicopter 🚁
 helix 🧬
 helmet
-  .cross ⛑
+  .cross ⛑\vs{emoji}
   .military 🪖
 hippo 🦛
 hockey 🏑
-hole 🕳
+hole 🕳\vs{emoji}
 honey 🍯
 hongbao 🧧
 hook 🪝
@@ -764,13 +770,13 @@ hospital 🏥
 hotdog 🌭
 hotel 🏨
   .love 🏩
-hotspring ♨
-hourglass ⌛
-  .flow ⏳
-house 🏠
-  .derelict 🏚
+hotspring ♨\vs{emoji}
+hourglass ⌛\vs{emoji}
+  .flow ⏳\vs{emoji}
+house 🏠\vs{emoji}
+  .derelict 🏚\vs{emoji}
   .garden 🏡
-  .multiple 🏘
+  .multiple 🏘\vs{emoji}
 hundred 💯
 hut 🛖
 ice 🧊
@@ -779,69 +785,70 @@ icecream 🍨
   .soft 🍦
 icehockey 🏒
 id 🆔
-info ℹ
+info ℹ\vs{emoji}
 izakaya 🏮
 jar 🫙
 jellyfish 🪼
 jeans 👖
 jigsaw 🧩
-joystick 🕹
+joystick 🕹\vs{emoji}
 juggling 🤹
 juice 🧃
 kaaba 🕋
 kadomatsu 🎍
 kangaroo 🦘
-gachi 🈷
+gachi 🈷\vs{emoji}
 go 🈴
-hi ㊙
+hi ㊙\vs{emoji}
 ka 🉑
 kachi 🈹
 kara 🈳
 kon 🈲
 man 👨
-  .box 🚹
+  .box 🚹\vs{emoji}
   .crown 🤴
   .guapimao 👲
-  .levitate 🕴
+  .levitate 🕴\vs{emoji}
   .old 👴
   .pregnant 🫃
   .turban 👳
   .tuxedo 🤵
-muryo 🈚
+muryo 🈚\vs{emoji}
 shin 🈸
-shuku ㊗
+shuku ㊗\vs{emoji}
 toku 🉐
 yo 🈺
-yubi 🈯
+yubi 🈯\vs{emoji}
 yuryo 🈶
 koko 🈁
-sa 🈂
+sa 🈂\vs{emoji}
 kebab 🥙
 key 🔑
-  .old 🗝
-keyboard ⌨
+  .old 🗝\vs{emoji}
+keyboard ⌨\vs{emoji}
 kiss 💏
 kissmark 💋
 kite 🪁
 kiwi 🥝
 knife 🔪
-  .dagger 🗡
+  .dagger 🗡\vs{emoji}
 knot 🪢
 koala 🐨
 koinobori 🎏
-label 🏷
+label 🏷\vs{emoji}
 lacrosse 🥍
 ladder 🪜
 lamp
   .diya 🪔
-laptop 💻
-a 🅰
+landslide 🛘
+laptop 💻\vs{emoji}
+a 🅰\vs{emoji}
 ab 🆎
-b 🅱
+b 🅱\vs{emoji}
 cl 🆑
-o 🅾
+o 🅾\vs{emoji}
 leaf
-  .clover.three ☘
+  .clover.three ☘\vs{emoji}
   .clover.four 🍀
   .fall 🍂
   .herb 🌿
@@ -856,7 +863,7 @@ letter
   .love 💌
 liberty 🗽
 lightbulb 💡
-lightning ⚡
+lightning ⚡\vs{emoji}
 lion 🦁
 lipstick 💄
 litter 🚮
@@ -864,9 +871,9 @@ litter 🚮
 lizard 🦎
 llama 🦙
 lobster 🦞
-lock 🔒
+lock 🔒\vs{emoji}
   .key 🔐
-  .open 🔓
+  .open 🔓\vs{emoji}
   .pen 🔏
 lollipop 🍭
 lotion 🧴
@@ -876,24 +883,24 @@ mage 🧙
 magnet 🧲
 magnify
   .r 🔎
-  .l 🔍
+  .l 🔍\vs{emoji}
 mahjong
-  .dragon.red 🀄
-mail ✉
+  .dragon.red 🀄\vs{emoji}
+mail ✉\vs{emoji}
   .arrow 📩
 mailbox
-  .closed.empty 📪
-  .closed.full 📫
-  .open.empty 📭
-  .open.full 📬
+  .closed.empty 📪\vs{emoji}
+  .closed.full 📫\vs{emoji}
+  .open.empty 📭\vs{emoji}
+  .open.full 📬\vs{emoji}
 mammoth 🦣
 mango 🥭
 map
-  .world 🗺
+  .world 🗺\vs{emoji}
   .jp 🗾
 maracas 🪇
 martialarts 🥋
-masks 🎭
+masks 🎭\vs{emoji}
 mate 🧉
 matryoshka 🪆
 meat 🥩
@@ -903,21 +910,21 @@ medal
   .second 🥈
   .third 🥉
   .sports 🏅
-  .military 🎖
+  .military 🎖\vs{emoji}
 megaphone 📢
   .simple 📣
 melon 🍈
 merperson 🧜
-metro Ⓜ
+metro Ⓜ\vs{emoji}
 microbe 🦠
 microphone 🎤
-  .studio 🎙
+  .studio 🎙\vs{emoji}
 microscope 🔬
 milkyway 🌌
 mirror 🪞
-mixer 🎛
+mixer 🎛\vs{emoji}
 money
-  .bag 💰
+  .bag 💰\vs{emoji}
   .dollar 💵
   .euro 💶
   .pound 💷
@@ -930,27 +937,27 @@ monkey 🐒
   .speak.not 🙊
 moon
   .crescent 🌙
-  .full 🌕
+  .full 🌕\vs{emoji}
   .full.face 🌝
   .new 🌑
   .new.face 🌚
   .wane.one 🌖
   .wane.two 🌗
-  .wane.three.face 🌜
+  .wane.three.face 🌜\vs{emoji}
   .wane.three 🌘
   .wax.one 🌒
   .wax.two 🌓
   .wax.two.face 🌛
   .wax.three 🌔
 moose 🫎
-mortarboard 🎓
+mortarboard 🎓\vs{emoji}
 mosque 🕌
 mosquito 🦟
-motorcycle 🏍
-motorway 🛣
-mountain ⛰
+motorcycle 🏍\vs{emoji}
+motorway 🛣\vs{emoji}
+mountain ⛰\vs{emoji}
   .fuji 🗻
-  .snow 🏔
+  .snow 🏔\vs{emoji}
   .sunrise 🌄
 mouse 🐁
   .face 🐭
@@ -958,7 +965,7 @@ mousetrap 🪤
 mouth 👄
   .bite 🫦
 moyai 🗿
-museum 🏛
+museum 🏛\vs{emoji}
 mushroom 🍄
 musicalscore 🎼
 nails
@@ -972,47 +979,48 @@ nest
   .eggs 🪺
 new 🆕
 newspaper 📰
-  .rolled 🗞
+  .rolled 🗞\vs{emoji}
 ng 🆖
 ningyo 🎎
 ninja 🥷
-noentry ⛔
+noentry ⛔\vs{emoji}
 nose 👃
 notebook 📓
   .deco 📔
-notepad 🗒
+notepad 🗒\vs{emoji}
 notes 🎵
   .triple 🎶
 numbers 🔢
 octopus 🐙
 office 🏢
-oil 🛢
+oil 🛢\vs{emoji}
 ok 🆗
 olive 🫒
 oni 👹
 onion 🧅
 orangutan 🦧
+orca 🫍
 otter 🦦
 owl 🦉
 ox 🐂
 oyster 🦪
-package 📦
+package 📦\vs{emoji}
 paella 🥘
 page 📄
   .curl 📃
   .pencil 📝
-pager 📟
+pager 📟\vs{emoji}
 pages
   .tabs 📑
-painting 🖼
+painting 🖼\vs{emoji}
 palette 🎨
 pancakes 🥞
 panda 🐼
 parachute 🪂
-park 🏞
-parking 🅿
+park 🏞\vs{emoji}
+parking 🅿\vs{emoji}
 parrot 🦜
-partalteration 〽
+partalteration 〽\vs{emoji}
 party 🎉
 peach 🍑
 peacock 🦚
@@ -1022,12 +1030,12 @@ pear 🍐
 pedestrian 🚶
   .not 🚷
 pen
-  .ball 🖊
-  .fountain 🖋
-pencil ✏
+  .ball 🖊\vs{emoji}
+  .fountain 🖋\vs{emoji}
+pencil ✏\vs{emoji}
 penguin 🐧
 pepper 🫑
-  .hot 🌶
+  .hot 🌶\vs{emoji}
 person 🧑
   .angry 🙎
   .beard 🧔
@@ -1053,14 +1061,14 @@ person 🧑
 petri 🧫
 phone 📱
   .arrow 📲
-  .classic ☎
+  .classic ☎\vs{emoji}
   .not 📵
   .off 📴
   .receiver 📞
   .signal 📶
   .vibrate 📳
 piano 🎹
-pick ⛏
+pick ⛏\vs{emoji}
 pie 🥧
 pig 🐖
   .face 🐷
@@ -1078,23 +1086,23 @@ planet 🪐
 plant 🪴
 plaster 🩹
 plate
-  .cutlery 🍽
+  .cutlery 🍽\vs{emoji}
 playback
-  .down ⏬
-  .eject ⏏
-  .forward ⏩
-  .pause ⏸
-  .record ⏺
+  .down ⏬\vs{emoji}
+  .eject ⏏\vs{emoji}
+  .forward ⏩\vs{emoji}
+  .pause ⏸\vs{emoji}
+  .record ⏺\vs{emoji}
   .repeat 🔁
   .repeat.once 🔂
   .repeat.v 🔃
-  .restart ⏮
-  .rewind ⏪
+  .restart ⏮\vs{emoji}
+  .rewind ⏪\vs{emoji}
   .shuffle 🔀
-  .skip ⏭
-  .stop ⏹
-  .toggle ⏯
-  .up ⏫
+  .skip ⏭\vs{emoji}
+  .stop ⏹\vs{emoji}
+  .toggle ⏯\vs{emoji}
+  .up ⏫\vs{emoji}
 playingcard
   .flower 🎴
   .joker 🃏
@@ -1112,34 +1120,34 @@ pouch 👝
 powerplug 🔌
 present 🎁
 pretzel 🥨
-printer 🖨
+printer 🖨\vs{emoji}
 prints
   .foot 👣
   .paw 🐾
 prohibited 🚫
-projector 📽
+projector 📽\vs{emoji}
 pumpkin
   .lantern 🎃
 purse 👛
-quest ❓
-  .white ❔
+quest ❓\vs{emoji}
+  .white ❔\vs{emoji}
 rabbit 🐇
   .face 🐰
 raccoon 🦝
-radio 📻
-radioactive ☢
-railway 🛤
+radio 📻\vs{emoji}
+radioactive ☢\vs{emoji}
+railway 🛤\vs{emoji}
 rainbow 🌈
 ram 🐏
 rat 🐀
 razor 🪒
 receipt 🧾
-recycling ♻
-reg ®
+recycling ♻\vs{emoji}
+reg ®\vs{emoji}
 restroom 🚻
 rhino 🦏
 ribbon 🎀
-  .remind 🎗
+  .remind 🎗\vs{emoji}
 rice 🍚
   .cracker 🍘
   .ear 🌾
@@ -1150,7 +1158,7 @@ robot 🤖
 rock 🪨
 rocket 🚀
 rollercoaster 🎢
-rosette 🏵
+rosette 🏵\vs{emoji}
 rugby 🏉
 ruler 📏
   .triangle 📐
@@ -1165,13 +1173,13 @@ santa
   .man 🎅
   .woman 🤶
 satdish 📡
-satellite 🛰
+satellite 🛰\vs{emoji}
 saw 🪚
 saxophone 🎷
-scales ⚖
+scales ⚖\vs{emoji}
 scarf 🧣
 school 🏫
-scissors ✂
+scissors ✂\vs{emoji}
 scooter 🛴
   .motor 🛵
 scorpion 🦂
@@ -1184,10 +1192,10 @@ shark 🦈
 sheep 🐑
 shell
   .spiral 🐚
-shield 🛡
+shield 🛡\vs{emoji}
 ship 🚢
-  .cruise 🛳
-  .ferry ⛴
+  .cruise 🛳\vs{emoji}
+  .ferry ⛴\vs{emoji}
 shirt
   .sports 🎽
   .t 👕
@@ -1196,48 +1204,48 @@ shoe 👞
   .flat 🥿
   .heel 👠
   .hike 🥾
-  .ice ⛸
+  .ice ⛸\vs{emoji}
   .roller 🛼
   .sandal.heel 👡
   .ski 🎿
   .sneaker 👟
   .tall 👢
   .thong 🩴
-shopping 🛍
+shopping 🛍\vs{emoji}
 shorts 🩳
 shoshinsha 🔰
 shovel 🪏
 shower 🚿
 shrimp 🦐
   .fried 🍤
-shrine ⛩
+shrine ⛩\vs{emoji}
 sign
   .crossing 🚸
   .stop 🛑
 silhouette 👤
   .double 👥
   .hug 🫂
-  .speak 🗣
+  .speak 🗣\vs{emoji}
 siren 🚨
 skateboard 🛹
 skewer
   .dango 🍡
   .oden 🍢
-skiing ⛷
+skiing ⛷\vs{emoji}
 skull 💀
-  .bones ☠
+  .bones ☠\vs{emoji}
 skunk 🦨
 sled 🛷
 slide 🛝
-slider 🎚
+slider 🎚\vs{emoji}
 sloth 🦥
 slots 🎰
 snail 🐌
 snake 🐍
-snowboarding 🏂
-snowflake ❄
-snowman ⛄
-  .snow ☃
+snowboarding 🏂\vs{emoji}
+snowflake ❄\vs{emoji}
+snowman ⛄\vs{emoji}
+  .snow ☃\vs{emoji}
 soap 🧼
 socks 🧦
 softball 🥎
@@ -1245,28 +1253,28 @@ sos 🆘
 soup 🍲
 spaghetti 🍝
 sparkle
-  .box ❇
+  .box ❇\vs{emoji}
 sparkler 🎇
-sparkles ✨
-speaker 🔈
+sparkles ✨\vs{emoji}
+speaker 🔈\vs{emoji}
   .not 🔇
   .wave 🔉
   .waves 🔊
-spider 🕷
-spiderweb 🕸
+spider 🕷\vs{emoji}
+spiderweb 🕸\vs{emoji}
 spinach 🥬
 splatter 🫟
 sponge 🧽
 spoon 🥄
 square
-  .black ⬛
-  .black.tiny ▪
-  .black.small ◾
-  .black.medium ◼
-  .white ⬜
-  .white.tiny ▫
-  .white.small ◽
-  .white.medium ◻
+  .black ⬛\vs{emoji}
+  .black.tiny ▪\vs{emoji}
+  .black.small ◾\vs{emoji}
+  .black.medium ◼\vs{emoji}
+  .white ⬜\vs{emoji}
+  .white.tiny ▫\vs{emoji}
+  .white.small ◽\vs{emoji}
+  .white.medium ◻\vs{emoji}
   .blue 🟦
   .brown 🟫
   .green 🟩
@@ -1275,10 +1283,10 @@ square
   .red 🟥
   .yellow 🟨
 squid 🦑
-stadium 🏟
-star ⭐
+stadium 🏟\vs{emoji}
+star ⭐\vs{emoji}
   .arc 💫
-  .box ✴
+  .box ✴\vs{emoji}
   .glow 🌟
   .shoot 🌠
 stethoscope 🩺
@@ -1287,22 +1295,22 @@ store
   .small 🏪
 strawberry 🍓
 suit
-  .club ♣
-  .diamond ♦
-  .heart ♥
-  .spade ♠
-sun ☀
-  .cloud 🌤
+  .club ♣\vs{emoji}
+  .diamond ♦\vs{emoji}
+  .heart ♥\vs{emoji}
+  .spade ♠\vs{emoji}
+sun ☀\vs{emoji}
+  .cloud 🌤\vs{emoji}
   .face 🌞
 sunrise 🌅
 superhero 🦸
 supervillain 🦹
-surfing 🏄
+surfing 🏄\vs{emoji}
 sushi 🍣
 swan 🦢
-swimming 🏊
+swimming 🏊\vs{emoji}
 swimsuit 🩱
-swords ⚔
+swords ⚔\vs{emoji}
 symbols 🔣
 synagogue 🕍
 syringe 💉
@@ -1323,19 +1331,19 @@ temple 🛕
 ten 🔟
 tengu 👺
 tennis 🎾
-tent ⛺
+tent ⛺\vs{emoji}
 testtube 🧪
-thermometer 🌡
+thermometer 🌡\vs{emoji}
 thread 🧵
 thumb
-  .up 👍
-  .down 👎
+  .up 👍\vs{emoji}
+  .down 👎\vs{emoji}
 ticket
-  .event 🎟
+  .event 🎟\vs{emoji}
   .travel 🎫
 tiger 🐅
   .face 🐯
-tm ™
+tm ™\vs{emoji}
 toilet 🚽
 toiletpaper 🧻
 tomato 🍅
@@ -1344,10 +1352,10 @@ tongue 👅
 toolbox 🧰
 tooth 🦷
 toothbrush 🪥
-tornado 🌪
+tornado 🌪\vs{emoji}
 tower
   .tokyo 🗼
-trackball 🖲
+trackball 🖲\vs{emoji}
 tractor 🚜
 trafficlight
   .v 🚦
@@ -1355,7 +1363,7 @@ trafficlight
 train 🚆
   .car 🚃
   .light 🚈
-  .metro 🚇
+  .metro 🚇\vs{emoji}
   .mono 🚝
   .mountain 🚞
   .speed 🚄
@@ -1365,11 +1373,12 @@ train 🚆
   .suspend 🚟
   .tram 🚊
   .tram.car 🚋
-transgender ⚧
+transgender ⚧\vs{emoji}
 tray
-  .inbox 📥
+  .inbox 📥\vs{emoji}
   .mail 📨
-  .outbox 📤
+  .outbox 📤\vs{emoji}
+treasure 🪎
 tree
   .deciduous 🌳
   .evergreen 🌲
@@ -1377,32 +1386,33 @@ tree
   .palm 🌴
   .xmas 🎄
 triangle
-  .r ▶
-  .l ◀
+  .r ▶\vs{emoji}
+  .l ◀\vs{emoji}
   .t 🔼
   .b 🔽
   .t.red 🔺
   .b.red 🔻
 trident 🔱
 troll 🧌
-trophy 🏆
+trombone 🪊
+trophy 🏆\vs{emoji}
 truck 🚚
   .trailer 🚛
 trumpet 🎺
 tsukimi 🎑
 turkey 🦃
 turtle 🐢
-tv 📺
+tv 📺\vs{emoji}
 ufo 🛸
 umbrella
-  .open ☂
+  .open ☂\vs{emoji}
   .closed 🌂
-  .rain ☔
-  .sun ⛱
+  .rain ☔\vs{emoji}
+  .sun ⛱\vs{emoji}
 unicorn 🦄
 unknown 🦳
 up 🆙
-urn ⚱
+urn ⚱\vs{emoji}
 vampire 🧛
 violin 🎻
 volcano 🌋
@@ -1410,21 +1420,21 @@ volleyball 🏐
 vs 🆚
 waffle 🧇
 wand 🪄
-warning ⚠
-watch ⌚
-  .stop ⏱
+warning ⚠\vs{emoji}
+watch ⌚\vs{emoji}
+  .stop ⏱\vs{emoji}
 watermelon 🍉
 waterpolo 🤽
 wave 🌊
 wc 🚾
-weightlifting 🏋
+weightlifting 🏋\vs{emoji}
 whale 🐋
   .spout 🐳
 wheel 🛞
 wheelchair 🦽
-  .box ♿
+  .box ♿\vs{emoji}
   .motor 🦼
-wind 🌬
+wind 🌬\vs{emoji}
 windchime 🎐
 window 🪟
 wine 🍷
@@ -1432,7 +1442,7 @@ wing 🪽
 wireless 🛜
 wolf 🐺
 woman 👩
-  .box 🚺
+  .box 🚺\vs{emoji}
   .crown 👸
   .old 👵
   .pregnant 🤰
@@ -1445,18 +1455,18 @@ yarn 🧶
 yoyo 🪀
 zebra 🦓
 zodiac
-  .aquarius ♒
-  .aries ♈
-  .cancer ♋
-  .capri ♑
-  .gemini ♊
-  .leo ♌
-  .libra ♎
-  .ophi ⛎
-  .pisces ♓
-  .sagit ♐
-  .scorpio ♏
-  .taurus ♉
-  .virgo ♍
+  .aquarius ♒\vs{emoji}
+  .aries ♈\vs{emoji}
+  .cancer ♋\vs{emoji}
+  .capri ♑\vs{emoji}
+  .gemini ♊\vs{emoji}
+  .leo ♌\vs{emoji}
+  .libra ♎\vs{emoji}
+  .ophi ⛎\vs{emoji}
+  .pisces ♓\vs{emoji}
+  .sagit ♐\vs{emoji}
+  .scorpio ♏\vs{emoji}
+  .taurus ♉\vs{emoji}
+  .virgo ♍\vs{emoji}
 zombie 🧟
 zzz 💤

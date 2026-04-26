@@ -24,40 +24,54 @@ space \u{20}
 // Delimiters.
 paren
   .l (
-  .l.double ⦅
+  .l.flat ⟮
+  .l.closed ⦇
+  .l.stroked ⦅
   .r )
-  .r.double ⦆
+  .r.flat ⟯
+  .r.closed ⦈
+  .r.stroked ⦆
   .t ⏜
   .b ⏝
 brace
   .l \u{7B}
-  .l.double ⦃
+  .l.stroked ⦃
   .r \u{7D}
-  .r.double ⦄
+  .r.stroked ⦄
   .t ⏞
   .b ⏟
 bracket
   .l [
-  .l.double ⟦
+  .l.tick.t ⦍
+  .l.tick.b ⦏
+  .l.stroked ⟦
   .r ]
-  .r.double ⟧
+  .r.tick.t ⦐
+  .r.tick.b ⦎
+  .r.stroked ⟧
   .t ⎴
   .b ⎵
 shell
   .l ❲
-  .l.double ⟬
+  .l.stroked ⟬
+  .l.filled ⦗
   .r ❳
-  .r.double ⟭
+  .r.stroked ⟭
+  .r.filled ⦘
   .t ⏠
   .b ⏡
+bag
+  .l ⟅
+  .r ⟆
+mustache
+  .l ⎰
+  .r ⎱
 bar
   .v |
   .v.double ‖
   .v.triple ⦀
   .v.broken ¦
   .v.o ⦶
-  @deprecated: `bar.v.circle` is deprecated, use `bar.v.o` instead
-  .v.circle ⦶
   .h ―
 fence
   @deprecated: `fence.l` is deprecated, use `zigzag.l` instead
@@ -75,38 +89,28 @@ zigzag ⦚
   .l.double ⧚
   .r ⧙
   .r.double ⧛
-angle ∠
+chevron
   .l ⟨
   .l.curly ⧼
   .l.dot ⦑
+  .l.closed ⦉
   .l.double ⟪
   .r ⟩
   .r.curly ⧽
   .r.dot ⦒
+  .r.closed ⦊
   .r.double ⟫
-  .acute ⦟
-  .arc ∡
-  .arc.rev ⦛
-  .oblique ⦦
-  .rev ⦣
-  .right ∟
-  .right.rev ⯾
-  .right.arc ⊾
-  .right.dot ⦝
-  .right.sq ⦜
-  .s ⦞
-  .spatial ⟀
-  .spheric ∢
-  .spheric.rev ⦠
-  .spheric.t ⦡
-  @deprecated: `angle.spheric.top` is deprecated, use `angle.spheric.t` instead
-  .spheric.top ⦡
 ceil
   .l ⌈
   .r ⌉
 floor
   .l ⌊
   .r ⌋
+corner
+  .l.t ⌜
+  .l.b ⌞
+  .r.t ⌝
+  .r.b ⌟
 
 // Punctuation.
 amp &
@@ -114,20 +118,14 @@ amp &
 ast
   .op ∗
   .op.o ⊛
-  .basic *
+  .basic *\vs{text}
   .low ⁎
   .double ⁑
   .triple ⁂
-  @deprecated: `ast.small` is deprecated (CJK compatibility character), use ﹡ or `\u{fe61}` instead
-  .small ﹡
-  @deprecated: `ast.circle` is deprecated, use `convolve.o` or `ast.op.o` instead
-  .circle ⊛
   .square ⧆
 at @
-backslash \
+backslash \u{005C}
   .o ⦸
-  @deprecated: `backslash.circle` is deprecated, use `backslash.o` instead
-  .circle ⦸
   .not ⧷
 co ℅
 colon :
@@ -152,37 +150,32 @@ dash
   .em.two ⸺
   .em.three ⸻
   .fig ‒
-  .wave 〜
   .colon ∹
   .o ⊝
-  @deprecated: `dash.circle` is deprecated, use `dash.o` instead
-  .circle ⊝
-  .wave.double 〰
+  .wave 〜
+  .wave.double 〰\vs{text}
+underscore _
 dot
   .op ⋅
   .basic \u{2E}
   .c ·
   .o ⊙
   .o.big ⨀
-  @deprecated: `dot.circle` is deprecated, use `dot.o` instead
-  .circle ⊙
-  @deprecated: `dot.circle.big` is deprecated, use `dot.o.big` instead
-  .circle.big ⨀
   .square ⊡
   .double ¨
   .triple \u{20DB}
   .quad \u{20DC}
 excl !
-  .double ‼
+  .double ‼\vs{text}
   .inv ¡
-  .quest ⁉
+  .quest ⁉\vs{text}
 quest ?
   .double ⁇
   .excl ⁈
   .inv ¿
 interrobang ‽
   .inv ⸘
-hash #
+hash #\vs{text}
 hyph ‐
   .minus \u{2D}
   .nobreak \u{2011}
@@ -242,10 +235,10 @@ quote
   .l.single ‘
   .r.double ”
   .r.single ’
-  .angle.l.double «
-  .angle.l.single ‹
-  .angle.r.double »
-  .angle.r.single ›
+  .chevron.l.double «
+  .chevron.l.single ‹
+  .chevron.r.double »
+  .chevron.r.single ›
   .high.double ‟
   .high.single ‛
   .low.double „
@@ -263,26 +256,18 @@ prime ′
 // Arithmetic.
 plus +
   .o ⊕
+  .o.l ⨭
+  .o.r ⨮
   .o.arrow ⟴
   .o.big ⨁
-  @deprecated: `plus.circle` is deprecated, use `plus.o` instead
-  .circle ⊕
-  @deprecated: `plus.circle.arrow` is deprecated, use `plus.o.arrow` instead
-  .circle.arrow ⟴
-  @deprecated: `plus.circle.big` is deprecated, use `plus.o.big` instead
-  .circle.big ⨁
   .dot ∔
   .double ⧺
   .minus ±
-  @deprecated: `plus.small` is deprecated (CJK compatibility character), use ﹢ or `\u{fe62}` instead
-  .small ﹢
   .square ⊞
   .triangle ⨹
   .triple ⧻
 minus −
   .o ⊖
-  @deprecated: `minus.circle` is deprecated, use `minus.o` instead
-  .circle ⊖
   .dot ∸
   .plus ∓
   .square ⊟
@@ -290,16 +275,14 @@ minus −
   .triangle ⨺
 div ÷
   .o ⨸
-  @deprecated: `div.circle` is deprecated, use `div.o` instead
-  .circle ⨸
+  .slanted.o ⦼
 times ×
   .big ⨉
   .o ⊗
+  .o.l ⨴
+  .o.r ⨵
+  .o.hat ⨶
   .o.big ⨂
-  @deprecated: `times.circle` is deprecated, use `times.o` instead
-  .circle ⊗
-  @deprecated: `times.circle.big` is deprecated, use `times.o.big` instead
-  .circle.big ⨂
   .div ⋇
   .three.l ⋋
   .three.r ⋌
@@ -313,8 +296,6 @@ ratio ∶
 eq =
   .star ≛
   .o ⊜
-  @deprecated: `eq.circle` is deprecated, use `eq.o` instead
-  .circle ⊜
   .colon ≕
   .dots ≑
   .dots.down ≒
@@ -329,19 +310,22 @@ eq =
   .not ≠
   .prec ⋞
   .quest ≟
-  @deprecated: `eq.small` is deprecated (CJK compatibility character), use ﹦ or `\u{fe66}` instead
-  .small ﹦
   .succ ⋟
   .triple ≡
   .triple.not ≢
   .quad ≣
 gt >
   .o ⧁
-  @deprecated: `gt.circle` is deprecated, use `gt.o` instead
-  .circle ⧁
   .dot ⋗
   .approx ⪆
+  .arc ⪧
+  .arc.eq ⪩
+  .closed ⊳
+  .closed.eq ⊵
+  .closed.eq.not ⋭
+  .closed.not ⋫
   .double ≫
+  .double.nested ⪢
   .eq ≥
   .eq.slant ⩾
   .eq.lt ⋛
@@ -354,23 +338,30 @@ gt >
   .nequiv ≩
   .not ≯
   .ntilde ⋧
-  @deprecated: `gt.small` is deprecated (CJK compatibility character), use ﹥ or `\u{fe65}` instead
-  .small ﹥
   .tilde ≳
   .tilde.not ≵
+  @deprecated: `gt.tri` is deprecated, use `gt.closed` instead
   .tri ⊳
+  @deprecated: `gt.tri.eq` is deprecated, use `gt.closed.eq` instead
   .tri.eq ⊵
+  @deprecated: `gt.tri.eq.not` is deprecated, use `gt.closed.eq.not` instead
   .tri.eq.not ⋭
+  @deprecated: `gt.tri.not` is deprecated, use `gt.closed.not` instead
   .tri.not ⋫
   .triple ⋙
   .triple.nested ⫸
 lt <
   .o ⧀
-  @deprecated: `lt.circle` is deprecated, use `lt.o` instead
-  .circle ⧀
   .dot ⋖
   .approx ⪅
+  .arc ⪦
+  .arc.eq ⪨
+  .closed ⊲
+  .closed.eq ⊴
+  .closed.eq.not ⋬
+  .closed.not ⋪
   .double ≪
+  .double.nested ⪡
   .eq ≤
   .eq.slant ⩽
   .eq.gt ⋚
@@ -383,13 +374,15 @@ lt <
   .nequiv ≨
   .not ≮
   .ntilde ⋦
-  @deprecated: `lt.small` is deprecated (CJK compatibility character), use ﹤ or `\u{fe64}` instead
-  .small ﹤
   .tilde ≲
   .tilde.not ≴
+  @deprecated: `lt.tri` is deprecated, use `lt.closed` instead
   .tri ⊲
+  @deprecated: `lt.tri.eq` is deprecated, use `lt.closed.eq` instead
   .tri.eq ⊴
+  @deprecated: `lt.tri.eq.not` is deprecated, use `lt.closed.eq.not` instead
   .tri.eq.not ⋬
+  @deprecated: `lt.tri.not` is deprecated, use `lt.closed.not` instead
   .tri.not ⋪
   .triple ⋘
   .triple.nested ⫷
@@ -436,12 +429,14 @@ asymp ≍
 
 // Set theory.
 emptyset ∅
+  .zero ∅\vs{1}
   .arrow.r ⦳
   .arrow.l ⦴
   .bar ⦱
   .circle ⦲
   .rev ⦰
 nothing ∅
+  .zero ∅\vs{1}
   .arrow.r ⦳
   .arrow.l ⦴
   .bar ⦱
@@ -456,28 +451,47 @@ in ∈
   .rev.small ∍
   .small ∊
 subset ⊂
+  .approx ⫉
+  .closed ⫏
+  .closed.eq ⫑
   .dot ⪽
   .double ⋐
   .eq ⊆
+  .eq.dot ⫃
   .eq.not ⊈
   .eq.sq ⊑
   .eq.sq.not ⋢
+  .equiv ⫅
   .neq ⊊
+  .nequiv ⫋
   .not ⊄
+  .plus ⪿
   .sq ⊏
   .sq.neq ⋤
+  .tilde ⫇
+  .times ⫁
 supset ⊃
+  .approx ⫊
+  .closed ⫐
+  .closed.eq ⫒
   .dot ⪾
   .double ⋑
   .eq ⊇
+  .eq.dot ⫄
   .eq.not ⊉
   .eq.sq ⊒
   .eq.sq.not ⋣
+  .equiv ⫆
   .neq ⊋
+  .nequiv ⫌
   .not ⊅
+  .plus ⫀
   .sq ⊐
   .sq.neq ⋥
+  .tilde ⫈
+  .times ⫂
 union ∪
+  .serif ∪\vs{1}
   .arrow ⊌
   .big ⋃
   .dot ⊍
@@ -488,23 +502,17 @@ union ∪
   .plus ⊎
   .plus.big ⨄
   .sq ⊔
+  .sq.serif ⊔\vs{1}
   .sq.big ⨆
   .sq.double ⩏
 inter ∩
+  .serif ∩\vs{1}
   .and ⩄
   .big ⋂
   .dot ⩀
   .double ⋒
   .sq ⊓
-  .sq.big ⨅
-  .sq.double ⩎
-@deprecated: `sect` is deprecated, use `inter` instead
-sect ∩
-  .and ⩄
-  .big ⋂
-  .dot ⩀
-  .double ⋒
-  .sq ⊓
+  .sq.serif ⊓\vs{1}
   .sq.big ⨅
   .sq.double ⩎
 
@@ -514,8 +522,6 @@ infinity ∞
   .incomplete ⧜
   .tie ⧝
 oo ∞
-@deprecated: `diff` is deprecated, use `partial` instead
-diff ∂
 partial ∂
 gradient ∇
 nabla ∇
@@ -535,8 +541,6 @@ integral ∫
   .double ∬
   .quad ⨌
   .inter ⨙
-  @deprecated: `integral.sect` is deprecated, use `integral.inter` instead
-  .sect ⨙
   .slash ⨏
   .square ⨖
   .surf ∯
@@ -575,6 +579,8 @@ qed ∎
 // Function and category theory.
 mapsto ↦
   .long ⟼
+mapsfrom ↤
+  .long ⟻
 compose ∘
   .o ⊚
 convolve ∗
@@ -596,12 +602,27 @@ divides ∣
 wreath ≀
 
 // Geometry.
+angle ∠
+  .acute ⦟
+  .arc ∡
+  .arc.rev ⦛
+  .azimuth ⍼
+  .obtuse ⦦
+  .rev ⦣
+  .right ∟
+  .right.rev ⯾
+  .right.arc ⊾
+  .right.dot ⦝
+  .right.square ⦜
+  .s ⦞
+  .spatial ⟀
+  .spheric ∢
+  .spheric.rev ⦠
+  .spheric.t ⦡
 angzarr ⍼
 parallel ∥
   .struck ⫲
   .o ⦷
-  @deprecated: `parallel.circle` is deprecated, use `parallel.o` instead
-  .circle ⦷
   .eq ⋕
   .equiv ⩨
   .not ∦
@@ -611,14 +632,12 @@ parallel ∥
   .tilde ⫳
 perp ⟂
   .o ⦹
-  @deprecated: `perp.circle` is deprecated, use `perp.o` instead
-  .circle ⦹
 
 // Astronomical.
 earth 🜨
   .alt ♁
 jupiter ♃
-mars ♂
+mars ♂\vs{text}
 mercury ☿
 neptune ♆
   .alt ⯉
@@ -626,17 +645,27 @@ saturn ♄
 sun ☉
 uranus ⛢
   .alt ♅
-venus ♀
+venus ♀\vs{text}
 
 // Miscellaneous Technical.
 diameter ⌀
 interleave ⫴
   .big ⫼
   .struck ⫵
+@deprecated: `join` is deprecated, use `bowtie.big` instead
 join ⨝
   .r ⟖
   .l ⟕
   .l.r ⟗
+bowtie
+  .stroked ⋈
+  .stroked.big ⨝
+  .stroked.big.l ⟕
+  .stroked.big.r ⟖
+  .stroked.big.l.r ⟗
+  .filled ⧓
+  .filled.l ⧑
+  .filled.r ⧒
 hourglass
   .stroked ⧖
   .filled ⧗
@@ -663,8 +692,6 @@ dong ₫
 dorome ߾
 dram ֏
 euro €
-@deprecated: `franc` is deprecated, unadopted symbol for currency no longer in use
-franc ₣
 guarani ₲
 hryvnia ₴
 kip ₭
@@ -677,6 +704,7 @@ peso $
   .philippine ₱
 pound £
 riel ៛
+riyal ⃁
 ruble ₽
 rupee
   .indian ₹
@@ -696,11 +724,11 @@ yuan ¥
 // Miscellaneous.
 ballot ☐
   .cross ☒
-  .check ☑
+  .check ☑\vs{text}
   .check.heavy 🗹
 checkmark ✓
   .light 🗸
-  .heavy ✔
+  .heavy ✔\vs{text}
 crossmark ✗
   .heavy ✘
 floral ❦
@@ -714,21 +742,21 @@ cc 🅭
   .public 🅮
   .sa 🄎
   .zero 🄍
-copyright ©
+copyright ©\vs{text}
   .sound ℗
 copyleft 🄯
-trademark ™
-  .registered ®
+trademark ™\vs{text}
+  .registered ®\vs{text}
   .service ℠
 maltese ✠
 suit
-  .club.filled ♣
+  .club.filled ♣\vs{text}
   .club.stroked ♧
-  .diamond.filled ♦
+  .diamond.filled ♦\vs{text}
   .diamond.stroked ♢
-  .heart.filled ♥
+  .heart.filled ♥\vs{text}
   .heart.stroked ♡
-  .spade.filled ♠
+  .spade.filled ♠\vs{text}
   .spade.stroked ♤
 
 // Music.
@@ -789,8 +817,6 @@ circle
   .filled.small ∙
   .filled.big ⬤
   .dotted ◌
-  @deprecated: `circle.nested` is deprecated, use `compose.o` instead
-  .nested ⊚
 ellipse
   .stroked.h ⬭
   .stroked.v ⬯
@@ -814,8 +840,8 @@ triangle
   .stroked.dot ◬
   .filled.t ▲
   .filled.b ▼
-  .filled.r ▶
-  .filled.l ◀
+  .filled.r ▶\vs{text}
+  .filled.l ◀\vs{text}
   .filled.bl ◣
   .filled.br ◢
   .filled.tl ◤
@@ -826,17 +852,17 @@ triangle
   .filled.small.l ◂
 square
   .stroked □
-  .stroked.tiny ▫
-  .stroked.small ◽
-  .stroked.medium ◻
-  .stroked.big ⬜
+  .stroked.tiny ▫\vs{text}
+  .stroked.small ◽\vs{text}
+  .stroked.medium ◻\vs{text}
+  .stroked.big ⬜\vs{text}
   .stroked.dotted ⬚
   .stroked.rounded ▢
   .filled ■
-  .filled.tiny ▪
-  .filled.small ◾
-  .filled.medium ◼
-  .filled.big ⬛
+  .filled.tiny ▪\vs{text}
+  .filled.small ◾\vs{text}
+  .filled.medium ◼\vs{text}
+  .filled.big ⬛\vs{text}
 rect
   .stroked.h ▭
   .stroked.v ▯
@@ -886,8 +912,8 @@ arrow
   .r.double.long.bar ⟾
   .r.double.not ⇏
   .r.double.struck ⤃
-  .r.filled ➡
-  .r.hook ↪
+  .r.filled ➡\vs{text}
+  .r.hook ↪\vs{text}
   .r.long ⟶
   .r.long.squiggly ⟿
   .r.loop ↬
@@ -924,8 +950,8 @@ arrow
   .l.double.long.bar ⟽
   .l.double.not ⇍
   .l.double.struck ⤂
-  .l.filled ⬅
-  .l.hook ↩
+  .l.filled ⬅\vs{text}
+  .l.hook ↩\vs{text}
   .l.long ⟵
   .l.long.bar ⟻
   .l.long.squiggly ⬳
@@ -953,11 +979,11 @@ arrow
   .l.wave ↜
   .t ↑
   .t.bar ↥
-  .t.curve ⤴
+  .t.curve ⤴\vs{text}
   .t.turn ⮍
   .t.dashed ⇡
   .t.double ⇑
-  .t.filled ⬆
+  .t.filled ⬆\vs{text}
   .t.quad ⟰
   .t.stop ⤒
   .t.stroked ⇧
@@ -967,11 +993,11 @@ arrow
   .t.twohead ↟
   .b ↓
   .b.bar ↧
-  .b.curve ⤵
+  .b.curve ⤵\vs{text}
   .b.turn ⮏
   .b.dashed ⇣
   .b.double ⇓
-  .b.filled ⬇
+  .b.filled ⬇\vs{text}
   .b.quad ⟱
   .b.stop ⤓
   .b.stroked ⇩
@@ -979,7 +1005,7 @@ arrow
   .b.dstruck ⇟
   .b.triple ⤋
   .b.twohead ↡
-  .l.r ↔
+  .l.r ↔\vs{text}
   .l.r.double ⇔
   .l.r.double.long ⟺
   .l.r.double.not ⇎
@@ -992,26 +1018,26 @@ arrow
   .l.r.dstruck ⇼
   .l.r.open ⇿
   .l.r.wave ↭
-  .t.b ↕
+  .t.b ↕\vs{text}
   .t.b.double ⇕
   .t.b.filled ⬍
   .t.b.stroked ⇳
-  .tr ↗
+  .tr ↗\vs{text}
   .tr.double ⇗
   .tr.filled ⬈
   .tr.hook ⤤
   .tr.stroked ⬀
-  .br ↘
+  .br ↘\vs{text}
   .br.double ⇘
   .br.filled ⬊
   .br.hook ⤥
   .br.stroked ⬂
-  .tl ↖
+  .tl ↖\vs{text}
   .tl.double ⇖
   .tl.filled ⬉
   .tl.hook ⤣
   .tl.stroked ⬁
-  .bl ↙
+  .bl ↙\vs{text}
   .bl.double ⇙
   .bl.filled ⬋
   .bl.hook ⤦
@@ -1119,8 +1145,6 @@ eta η
 gamma γ
 iota ι
   .inv ℩
-@deprecated: `kai` is deprecated, use ϗ or `\u{3d7}` instead
-kai ϗ
 kappa κ
   .alt ϰ
 lambda λ
@@ -1154,8 +1178,6 @@ Epsilon Ε
 Eta Η
 Gamma Γ
 Iota Ι
-@deprecated: `Kai` is deprecated, use Ϗ or `\u{3c5}` instead
-Kai Ϗ
 Kappa Κ
 Lambda Λ
 Mu Μ
@@ -1186,19 +1208,9 @@ Sha Ш
 // from Letterlike Symbols.
 // See https://github.com/typst/typst/pull/3375.
 aleph א
-@deprecated: `alef` is deprecated, use `aleph` instead
-alef א
 beth ב
-@deprecated: `bet` is deprecated, use `beth` instead
-bet ב
 gimel ג
-@deprecated: `gimmel` is deprecated, use `gimel` instead
-gimmel ג
 daleth ד
-@deprecated: `dalet` is deprecated, use `daleth` instead
-dalet ד
-@deprecated: `shin` is deprecated, perhaps you meant to use `sha` instead
-shin ש
 
 // Double-struck.
 AA 𝔸
@@ -1231,9 +1243,8 @@ ZZ ℤ
 // Miscellaneous letter-likes.
 angstrom Å
 ell ℓ
+pee ℘
 planck ħ
-  @deprecated: `planck.reduce` is deprecated, use `planck` instead
-  .reduce ħ
 Re ℜ
 Im ℑ
 dotless
@@ -1256,17 +1267,60 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
+// Keyboard labels.
+spacebar ␣
+
 gender {
-  female ♀
+  female ♀\vs{text}
     .double ⚢
     .male ⚤
   intersex ⚥
-  male ♂
+  male ♂\vs{text}
     .double ⚣
     .female ⚤
     .stroke ⚦
     .stroke.t ⚨
     .stroke.r ⚩
   neuter ⚲
-  trans ⚧
+  trans ⚧\vs{text}
+}
+
+// Printable characters representing control (non-printable) characters
+control {
+  nul ␀ // NULL
+  soh ␁ // Start Of Heading
+  stx ␂ // Start of TeXt
+  etx ␃ // End of TeXt
+  eot ␄ // End Of Transmission
+  enq ␅ // ENQuiry
+  ack ␆ // ACKnowledge
+  bel ␇ // BELl
+  bs ␈ // BackSpace
+  ht ␉ // Horizontal Tabulation
+  lf ␊ // Line Feed
+  vt ␋ // Vertical Tabulation
+  ff ␌ // Form Feed
+  cr ␍ // Carriage Return
+  so ␎ // Shift Out
+  si ␏ // Shift In
+  dle ␐ // Data Link Escape
+  dc // Device Control
+    .one ␑
+    .two ␒
+    .three ␓
+    .four ␔
+  nak ␕ // Negative AcKnowledge
+  syn ␖ // SYNchronous idle
+  etb ␗ // End of Transmission Block
+  can ␘ // CANcel
+  em ␙ // End of Medium
+  sub ␚ // SUBstitute
+  esc ␛ // ESCape
+  fs ␜ // File Separator
+  gs ␝ // Group Separator
+  rs ␞ // Record Separator
+  us ␟ // Unit Separator
+  sp ␠ // SPace
+  del ␡ // DELete
+  nl ␤ // New Line
 }
