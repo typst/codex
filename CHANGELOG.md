@@ -54,6 +54,7 @@
   - `lt.closed.eq`: ⊴
   - `lt.closed.eq.not`: ⋬
   - `lt.closed.not`: ⋪
+  - `eq.dot`: ≐
 
 - Miscellaneous technical
   - `bowtie.stroked`: ⋈
