@@ -406,6 +406,7 @@ succ ≻
   .ntilde ⋩
   .tilde ≿
 equiv ≡
+  .dot ⩧
   .not ≢
 smt ⪪
   .eq ⪬
