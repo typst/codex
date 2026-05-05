@@ -443,6 +443,20 @@ declare_named! {
         Devanagari = "devanagari" ("१"),
 
         /// Decimal positional notation using
+        /// [Tibetan numerals](https://en.wikipedia.org/wiki/Tibetan_numerals).
+        ///
+        /// ## Representable Numbers
+        ///
+        /// All non-negative integers can be represented.
+        ///
+        /// ## Example
+        ///
+        /// The first twelve non-negative integers are represented as follows:
+        ///
+        /// > ༠, ༡, ༢, ༣, ༤, ༥, ༦, ༧, ༨, ༩, ༡༠, ༡༡
+        Tibetan = "tibetan" ("༡"),
+
+        /// Decimal positional notation using
         /// [Bengali numerals](https://en.wikipedia.org/wiki/Bengali_numerals).
         ///
         /// ## Representable Numbers
@@ -814,6 +828,10 @@ impl NamedNumeralSystem {
 
             Self::Devanagari => NumeralSystem::Positional(&[
                 '०', '१', '२', '३', '४', '५', '६', '७', '८', '९',
+            ]),
+
+            Self::Tibetan => NumeralSystem::Positional(&[
+                '༠', '༡', '༢', '༣', '༤', '༥', '༦', '༧', '༨', '༩',
             ]),
 
             Self::Bengali => NumeralSystem::Positional(&[
@@ -1419,6 +1437,7 @@ mod tests {
                 NamedNumeralSystem::EasternArabic => 277754701051910363703826860323053920831,
                 NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
                 NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
+                NamedNumeralSystem::Tibetan => 87580519645280744681237273097105390953,
                 NamedNumeralSystem::Bengali => 79096832028418218544110224478554962928,
                 NamedNumeralSystem::BengaliLetters => 269999388716378396079918080520770981179,
                 NamedNumeralSystem::Symbols => 88780534058354093087932015985325954737,
