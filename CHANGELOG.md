@@ -6,7 +6,7 @@
 
 - Trivially updated to Unicode 17.0.0
 - Added numeral systems API under the `numeral-systems` feature flag
-- Added Tibetan numerals to `numeral-systems`.
+  - Compared to Typst 0.14.2, added Tibetan numerals to `numeral-systems`.
 
 ### New in `sym`
 
