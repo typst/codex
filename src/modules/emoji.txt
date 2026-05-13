@@ -45,7 +45,7 @@ arrow
   .tr ↗\vs{emoji}
 arrows
   .cycle 🔄
-ast *\vs{emoji}
+ast *\vs{emoji}\u{20E3}
   .box ✳\vs{emoji}
 atm 🏧
 atom ⚛\vs{emoji}
@@ -720,7 +720,7 @@ hands
   .raised 🙌
   .shake 🤝
 harp 🪉
-hash #\vs{emoji}
+hash #\vs{emoji}\u{20E3}
 hat
   .ribbon 👒
   .top 🎩

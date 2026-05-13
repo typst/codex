@@ -242,8 +242,12 @@ mod test {
         let sequences = get_valid_presentation_sequences();
         assert!(
             are_all_variants_valid(ROOT, |c| {
+                // FIXME: Some emoji consist of many characters and contain an
+                // emoji presentation sequence in the middle, but are not listed
+                // in emoji-variation-sequences.txt.
+                // See: https://github.com/typst/codex/issues/166.
                 if c.contains(TEXT_PRESENTATION_SELECTOR)
-                    || c.contains(EMOJI_PRESENTATION_SELECTOR)
+                    || c.ends_with(EMOJI_PRESENTATION_SELECTOR)
                 {
                     sequences.contains(c)
                 } else {
