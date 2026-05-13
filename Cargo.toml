@@ -15,10 +15,11 @@ keywords = ["unicode", "symbols"]
 default = ["numeral-systems", "styling"]
 numeral-systems = ["dep:chinese-number"]
 styling = []
-_test-unicode-conformance = ["ureq"]
+_test-unicode-conformance = ["ureq", "dep:unicode-normalization"]
 
 [dependencies]
 chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
+unicode-normalization = { version = "0.1.25", optional = true }
 
 [dev-dependencies]
 siphasher = "1.0.2"
