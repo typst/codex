@@ -17,6 +17,9 @@ pub mod numeral_systems;
 #[cfg(feature = "styling")]
 pub mod styling;
 
+#[cfg(feature = "space-discarding")]
+pub mod space_discarding;
+
 /// A module of definitions.
 #[derive(Debug, Copy, Clone)]
 pub struct Module(&'static [(&'static str, Binding)]);
