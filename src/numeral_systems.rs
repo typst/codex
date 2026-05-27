@@ -408,6 +408,33 @@ declare_named! {
         /// > <span dir="auto">٨</span>, <span dir="auto">٩</span>,
         /// > <span dir="auto">١٠</span>, <span dir="auto">١١</span>
         EasternArabic = "arabic.eastern" ("١"),
+        
+        /// Abjad order
+        /// [Arabic letters](https://en.wikipedia.org/wiki/Abjad).
+        ///
+        /// ## Representable Numbers
+        ///
+        /// All non-negative integers can be represented.
+        ///
+        /// ## Example
+        ///
+        /// The first twenty-eight positive integers are represented as follows:
+        ///
+        /// > <span dir="auto">أ</span>, <span dir="auto">ب</span>,
+        /// > <span dir="auto">ج</span>, <span dir="auto">د</span>,
+        /// > <span dir="auto">ه</span>, <span dir="auto">و</span>,
+        /// > <span dir="auto">ز</span>, <span dir="auto">ح</span>,
+        /// > <span dir="auto">ط</span>, <span dir="auto">ي</span>,
+        /// > <span dir="auto">ك</span>, <span dir="auto">ل</span>
+        /// > <span dir="auto">م</span>, <span dir="auto">ن</span>
+        /// > <span dir="auto">س</span>, <span dir="auto">ع</span>
+        /// > <span dir="auto">ف</span>, <span dir="auto">ص</span>
+        /// > <span dir="auto">ق</span>, <span dir="auto">ر</span>
+        /// > <span dir="auto">ش</span>, <span dir="auto">ت</span>
+        /// > <span dir="auto">ث</span>, <span dir="auto">خ</span>
+        /// > <span dir="auto">ذ</span>, <span dir="auto">ض</span>
+        /// > <span dir="auto">ظ</span>, <span dir="auto">غ</span>
+        ArabicAbjad = "arabic.abjad" ("أ"),
 
         /// Decimal positional notation using the Persian variant of
         /// [Eastern Arabic numerals](https://en.wikipedia.org/wiki/Eastern_Arabic_numerals#Numerals).
@@ -821,6 +848,11 @@ impl NamedNumeralSystem {
             Self::EasternArabic => NumeralSystem::Positional(&[
                 '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩',
             ]),
+            
+            Self::ArabicAbjad => NumeralSystem::Positional(&[
+                'أ', 'ب', 'ج', 'د', 'ه', 'و', 'ز', 'ح', 'ط', 'ي', 'ك', 'ل', 'م', 'ن', 
+                'س', 'ع', 'ف', 'ص', 'ق', 'ر', 'ش', 'ت', 'ث', 'خ', 'ذ', 'ض', 'ظ', 'غ',
+            ]),         
 
             Self::Persian => NumeralSystem::Positional(&[
                 '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',
@@ -1435,6 +1467,7 @@ mod tests {
                 NamedNumeralSystem::KoreanJamo => 65477685939649764827530478995838083425, // 21
                 NamedNumeralSystem::KoreanSyllable => 24217153056183571894327643661698510954,
                 NamedNumeralSystem::EasternArabic => 277754701051910363703826860323053920831,
+                NamedNumeralSystem::ArabicAbjad => , // ?
                 NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
                 NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
                 NamedNumeralSystem::Tibetan => 87580519645280744681237273097105390953,
