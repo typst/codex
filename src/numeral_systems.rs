@@ -1467,7 +1467,7 @@ mod tests {
                 NamedNumeralSystem::KoreanJamo => 65477685939649764827530478995838083425, // 21
                 NamedNumeralSystem::KoreanSyllable => 24217153056183571894327643661698510954,
                 NamedNumeralSystem::EasternArabic => 277754701051910363703826860323053920831,
-                NamedNumeralSystem::ArabicAbjad => 0, 
+                NamedNumeralSystem::ArabicAbjad => 332217778941065507236060222268877272547, 
                 NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
                 NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
                 NamedNumeralSystem::Tibetan => 87580519645280744681237273097105390953,
