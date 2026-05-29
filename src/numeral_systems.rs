@@ -508,14 +508,14 @@ impl NamedNumeralSystem {
             ]),
 
             Self::CircledArabic => NumeralSystem::Fixed(&[
-                '⓪', '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫', '⑬',
-                '⑭', '⑮', '⑯', '⑰', '⑱', '⑲', '⑳', '㉑', '㉒', '㉓', '㉔', '㉕', '㉖',
-                '㉗', '㉘', '㉙', '㉚', '㉛', '㉜', '㉝', '㉞', '㉟', '㊱', '㊲', '㊳',
-                '㊴', '㊵', '㊶', '㊷', '㊸', '㊹', '㊺', '㊻', '㊼', '㊽', '㊾', '㊿',
+                "⓪", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬",
+                "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳", "㉑", "㉒", "㉓", "㉔", "㉕", "㉖",
+                "㉗", "㉘", "㉙", "㉚", "㉛", "㉜", "㉝", "㉞", "㉟", "㊱", "㊲", "㊳",
+                "㊴", "㊵", "㊶", "㊷", "㊸", "㊹", "㊺", "㊻", "㊼", "㊽", "㊾", "㊿",
             ]),
 
             Self::DoubleCircledArabic => NumeralSystem::ZerolessFixed(&[
-                '⓵', '⓶', '⓷', '⓸', '⓹', '⓺', '⓻', '⓼', '⓽', '⓾',
+                "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽", "⓾",
             ]),
 
             Self::LowerLatin => NumeralSystem::Bijective(&[
@@ -990,7 +990,7 @@ pub enum NumeralSystem<'a> {
     /// | 0      | A              |
     /// | 1      | B              |
     /// | 2      | C              |
-    Fixed(&'a [char]),
+    Fixed(&'a [&'a str]),
 
     /// A system that uses a fixed set of symbols to represent the first
     /// positive integers.
@@ -1010,7 +1010,7 @@ pub enum NumeralSystem<'a> {
     /// | 1      | A              |
     /// | 2      | B              |
     /// | 3      | C              |
-    ZerolessFixed(&'a [char]),
+    ZerolessFixed(&'a [&'a str]),
 
     /// A Chinese numeral system.
     ///
@@ -1229,7 +1229,8 @@ mod tests {
     /// Makes sure fixed systems are implemented properly.
     #[test]
     fn test_fixed_systems() {
-        let symbols = ('a'..='z').collect::<Vec<_>>();
+        let symbols = ('a'..='z').map(String::from).collect::<Vec<_>>();
+        let symbols = symbols.iter().map(|s| s.as_ref()).collect::<Vec<_>>();
         for n in 0..symbols.len() {
             for i in 0..n {
                 assert_eq!(
