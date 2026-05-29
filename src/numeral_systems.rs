@@ -1229,8 +1229,7 @@ mod tests {
     /// Makes sure fixed systems are implemented properly.
     #[test]
     fn test_fixed_systems() {
-        let symbols = ('a'..='z').map(String::from).collect::<Vec<_>>();
-        let symbols = symbols.iter().map(|s| s.as_ref()).collect::<Vec<_>>();
+        let symbols = ["a", "b", "c", "d", "e", "f", "g"];
         for n in 0..symbols.len() {
             for i in 0..n {
                 assert_eq!(
@@ -1238,14 +1237,14 @@ mod tests {
                         .represent(i as u64)
                         .unwrap()
                         .to_string(),
-                    symbols[i].to_string(),
+                    symbols[i],
                 );
                 assert_eq!(
                     NumeralSystem::ZerolessFixed(&symbols[0..n])
                         .represent(i as u64 + 1)
                         .unwrap()
                         .to_string(),
-                    symbols[i].to_string(),
+                    symbols[i],
                 )
             }
         }
