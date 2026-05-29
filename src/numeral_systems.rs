@@ -844,7 +844,7 @@ impl NamedNumeralSystem {
                 "শ", "ষ", "স", "হ",
             ]),
 
-            Self::Symbols => NumeralSystem::Symbolic(&['*', '†', '‡', '§', '¶', '‖']),
+            Self::Symbols => NumeralSystem::Symbolic(&["*", "†", "‡", "§", "¶", "‖"]),
         }
     }
 }
@@ -970,7 +970,7 @@ pub enum NumeralSystem<'a> {
     /// | 5      | BB             |
     /// | 6      | CC             |
     /// | 7      | AAA            |
-    Symbolic(&'a [char]),
+    Symbolic(&'a [&'a str]),
 
     /// A system that uses a fixed set of symbols to represent the first
     /// non-negative integers.
@@ -1372,7 +1372,7 @@ mod tests {
         let expected = ["a", "b", "aa", "bb", "aaa", "bbb", "aaaa", "bbbb"];
         for (i, r) in expected.iter().enumerate() {
             assert_eq!(
-                &NumeralSystem::Symbolic(&['a', 'b'])
+                &NumeralSystem::Symbolic(&["a", "b"])
                     .represent(i as u64 + 1)
                     .unwrap()
                     .to_string(),
