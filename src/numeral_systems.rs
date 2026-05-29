@@ -421,7 +421,7 @@ declare_named! {
         ///
         /// > <span dir="auto">أ</span>, <span dir="auto">ب</span>,
         /// > <span dir="auto">ج</span>, <span dir="auto">د</span>,
-        /// > <span dir="auto">ه</span>, <span dir="auto">و</span>,
+        /// > <span dir="auto">ه‍</span>, <span dir="auto">و</span>,
         /// > <span dir="auto">ز</span>, <span dir="auto">ح</span>,
         /// > <span dir="auto">ط</span>, <span dir="auto">ي</span>,
         /// > <span dir="auto">ك</span>, <span dir="auto">ل</span>
@@ -841,7 +841,7 @@ impl NamedNumeralSystem {
             ]),
 
             Self::ArabicAbjad => NumeralSystem::Bijective(&[
-                'أ', 'ب', 'ج', 'د', 'ه', 'و', 'ز', 'ح', 'ط', 'ي', 'ك', 'ل', 'م', 'ن',
+                'أ', 'ب', 'ج', 'د', 'ه‍', 'و', 'ز', 'ح', 'ط', 'ي', 'ك', 'ل', 'م', 'ن',
                 'س', 'ع', 'ف', 'ص', 'ق', 'ر', 'ش', 'ت', 'ث', 'خ', 'ذ', 'ض', 'ظ', 'غ',
             ]),
 
