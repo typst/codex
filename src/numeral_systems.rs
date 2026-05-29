@@ -504,7 +504,7 @@ impl NamedNumeralSystem {
     pub fn system(self) -> NumeralSystem<'static> {
         match self {
             Self::Arabic => NumeralSystem::Positional(&[
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ]),
 
             Self::CircledArabic => NumeralSystem::Fixed(&[
@@ -819,23 +819,23 @@ impl NamedNumeralSystem {
             ]),
 
             Self::EasternArabic => NumeralSystem::Positional(&[
-                '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩',
+                "٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩",
             ]),
 
             Self::Persian => NumeralSystem::Positional(&[
-                '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',
+                "۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹",
             ]),
 
             Self::Devanagari => NumeralSystem::Positional(&[
-                '०', '१', '२', '३', '४', '५', '६', '७', '८', '९',
+                "०", "१", "२", "३", "४", "५", "६", "७", "८", "९",
             ]),
 
             Self::Tibetan => NumeralSystem::Positional(&[
-                '༠', '༡', '༢', '༣', '༤', '༥', '༦', '༧', '༨', '༩',
+                "༠", "༡", "༢", "༣", "༤", "༥", "༦", "༧", "༨", "༩",
             ]),
 
             Self::Bengali => NumeralSystem::Positional(&[
-                '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯',
+                "০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯",
             ]),
 
             Self::BengaliLetters => NumeralSystem::Bijective(&[
@@ -883,7 +883,7 @@ pub enum NumeralSystem<'a> {
     /// | 4      | 12             |
     /// | 5      | 12             |
     /// | 6      | 20             |
-    Positional(&'a [char]),
+    Positional(&'a [&'a str]),
 
     /// A big-endian
     /// [bijective numeration](https://en.wikipedia.org/wiki/Bijective_numeration)
