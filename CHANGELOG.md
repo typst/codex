@@ -26,39 +26,39 @@
   - `gt.double.nested`: ⪢
   - `lt.double.nested`: ⪡
   - `gt.closed`: ⊳
+  - `gt.closed.not`: ⋫
   - `gt.closed.eq`: ⊵
   - `gt.closed.eq.not`: ⋭
-  - `gt.closed.not`: ⋫
   - `lt.closed`: ⊲
+  - `lt.closed.not`: ⋪
   - `lt.closed.eq`: ⊴
   - `lt.closed.eq.not`: ⋬
-  - `lt.closed.not`: ⋪
-  - `subset.closed`: ⫏
   - `supset.closed`: ⫐
   - `supset.closed.eq`: ⫒
+  - `subset.closed`: ⫏
   - `subset.closed.eq`: ⫑
   - `gt.arc` ⪧
   - `gt.arc.eq` ⪩
   - `lt.arc`: ⪦
   - `lt.arc.eq`: ⪨
-  - `subset.approx`: ⫉
-  - `subset.eq.dot`: ⫃
-  - `subset.equiv`: ⫅
-  - `subset.nequiv`: ⫋
-  - `subset.plus`: ⪿
-  - `subset.tilde`: ⫇
-  - `subset.times`: ⫁
-  - `supset.approx`: ⫊
-  - `supset.eq.dot`: ⫄
   - `supset.equiv`: ⫆
+  - `subset.equiv`: ⫅
   - `supset.nequiv`: ⫌
-  - `supset.plus`: ⫀
+  - `subset.nequiv`: ⫋
   - `supset.tilde`: ⫈
+  - `subset.tilde`: ⫇
+  - `supset.approx`: ⫊
+  - `subset.approx`: ⫉
+  - `supset.eq.dot`: ⫄
+  - `subset.eq.dot`: ⫃
+  - `supset.plus`: ⫀
+  - `subset.plus`: ⪿
   - `supset.times`: ⫂
+  - `subset.times`: ⫁
   - `plus.hat`: ⨣
   - `approx.hat`: ⩯
-  - `lt.quest`: ⩻
   - `gt.quest`: ⩼
+  - `lt.quest`: ⩻
   - `eq.dot`: ≐
   - `eq.ast`: ⩮
 
