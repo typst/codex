@@ -73,7 +73,12 @@
   - `bowtie.filled`: ⧓
   - `bowtie.filled.l`: ⧑
   - `bowtie.filled.r`: ⧒
+  - `tack.rr`: ⊨
+  - `tack.rr.not`: ⊭
   - `tack.rrr`: ⫢
+  - `tack.ll`: ⫤
+  - `tack.tt`: ⫫
+  - `tack.bb`: ⫪
 
 - Arrows
   - `arrow.tr.bar`: 🢹
