@@ -24,41 +24,41 @@
   - `inter.serif`: ∩︀
   - `inter.sq.serif`: ⊓︀
   - `gt.double.nested`: ⪢
-  - `lt.double.nested`: ⪡
   - `gt.closed`: ⊳
   - `gt.closed.not`: ⋫
   - `gt.closed.eq`: ⊵
   - `gt.closed.eq.not`: ⋭
+  - `gt.arc` ⪧
+  - `gt.arc.eq` ⪩
+  - `gt.quest`: ⩼
+  - `lt.double.nested`: ⪡
   - `lt.closed`: ⊲
   - `lt.closed.not`: ⋪
   - `lt.closed.eq`: ⊴
   - `lt.closed.eq.not`: ⋬
-  - `supset.closed`: ⫐
-  - `supset.closed.eq`: ⫒
-  - `subset.closed`: ⫏
-  - `subset.closed.eq`: ⫑
-  - `gt.arc` ⪧
-  - `gt.arc.eq` ⪩
   - `lt.arc`: ⪦
   - `lt.arc.eq`: ⪨
+  - `lt.quest`: ⩻
+  - `supset.closed`: ⫐
+  - `supset.closed.eq`: ⫒
   - `supset.equiv`: ⫆
-  - `subset.equiv`: ⫅
   - `supset.nequiv`: ⫌
-  - `subset.nequiv`: ⫋
   - `supset.tilde`: ⫈
-  - `subset.tilde`: ⫇
   - `supset.approx`: ⫊
-  - `subset.approx`: ⫉
   - `supset.eq.dot`: ⫄
-  - `subset.eq.dot`: ⫃
   - `supset.plus`: ⫀
-  - `subset.plus`: ⪿
   - `supset.times`: ⫂
+  - `subset.closed`: ⫏
+  - `subset.closed.eq`: ⫑
+  - `subset.equiv`: ⫅
+  - `subset.nequiv`: ⫋
+  - `subset.tilde`: ⫇
+  - `subset.approx`: ⫉
+  - `subset.eq.dot`: ⫃
+  - `subset.plus`: ⪿
   - `subset.times`: ⫁
   - `plus.hat`: ⨣
   - `approx.hat`: ⩯
-  - `gt.quest`: ⩼
-  - `lt.quest`: ⩻
   - `eq.dot`: ≐
   - `eq.ast`: ⩮
 
