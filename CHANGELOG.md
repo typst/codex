@@ -1,5 +1,24 @@
 # Changelog
 
+## Unreleased
+
+### Removals in `sym` **(Breaking change)**
+These previously deprecated items were removed:
+- `gt.tri`
+- `gt.tri.eq`
+- `gt.tri.not`
+- `gt.tri.eq.not`
+- `lt.tri`
+- `lt.tri.eq`
+- `lt.tri.not`
+- `lt.tri.eq.not`
+- `join`, `join.*`
+- `tack.r.double`
+- `tack.r.double.not`
+- `tack.l.double`
+- `tack.t.double`
+- `tack.b.double`
+
 ## Version 0.3.0 (June 4, 2026)
 
 ### General changes
