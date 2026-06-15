@@ -4,14 +4,8 @@
 
 ### Removals in `sym` **(Breaking change)**
 These previously deprecated items were removed:
-- `gt.tri`
-- `gt.tri.eq`
-- `gt.tri.not`
-- `gt.tri.eq.not`
-- `lt.tri`
-- `lt.tri.eq`
-- `lt.tri.not`
-- `lt.tri.eq.not`
+- `gt.tri.*`
+- `lt.tri.*`
 - `join`, `join.*`
 - `tack.r.double`
 - `tack.r.double.not`
