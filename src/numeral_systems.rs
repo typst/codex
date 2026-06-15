@@ -408,6 +408,24 @@ declare_named! {
         /// > <span dir="auto">٨</span>, <span dir="auto">٩</span>,
         /// > <span dir="auto">١٠</span>, <span dir="auto">١١</span>
         EasternArabic = "arabic.eastern" ("١"),
+        /// Abjad order
+        /// [Arabic letters](https://en.wikipedia.org/wiki/Abjad).
+        ///
+        /// ## Representable Numbers
+        ///
+        /// All non-negative integers can be represented.
+        ///
+        /// ## Example
+        ///
+        /// The first twelve positive integers are represented as follows:
+        ///
+        /// > <span dir="auto">أ</span>, <span dir="auto">ب</span>,
+        /// > <span dir="auto">ج</span>, <span dir="auto">د</span>,
+        /// > <span dir="auto">ه‍</span>, <span dir="auto">و</span>,
+        /// > <span dir="auto">ز</span>, <span dir="auto">ح</span>,
+        /// > <span dir="auto">ط</span>, <span dir="auto">ي</span>,
+        /// > <span dir="auto">ك</span>, <span dir="auto">ل</span>
+        ArabicAbjad = "arabic.abjad" ("أ"),
 
         /// Decimal positional notation using the Persian variant of
         /// [Eastern Arabic numerals](https://en.wikipedia.org/wiki/Eastern_Arabic_numerals#Numerals).
@@ -441,6 +459,20 @@ declare_named! {
         ///
         /// > ०, १, २, ३, ४, ५, ६, ७, ८, ९, १०, ११
         Devanagari = "devanagari" ("१"),
+
+        /// Decimal positional notation using
+        /// [Tibetan numerals](https://en.wikipedia.org/wiki/Tibetan_numerals).
+        ///
+        /// ## Representable Numbers
+        ///
+        /// All non-negative integers can be represented.
+        ///
+        /// ## Example
+        ///
+        /// The first twelve non-negative integers are represented as follows:
+        ///
+        /// > ༠, ༡, ༢, ༣, ༤, ༥, ༦, ༧, ༨, ༩, ༡༠, ༡༡
+        Tibetan = "tibetan" ("༡"),
 
         /// Decimal positional notation using
         /// [Bengali numerals](https://en.wikipedia.org/wiki/Bengali_numerals).
@@ -490,28 +522,28 @@ impl NamedNumeralSystem {
     pub fn system(self) -> NumeralSystem<'static> {
         match self {
             Self::Arabic => NumeralSystem::Positional(&[
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             ]),
 
             Self::CircledArabic => NumeralSystem::Fixed(&[
-                '⓪', '①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩', '⑪', '⑫', '⑬',
-                '⑭', '⑮', '⑯', '⑰', '⑱', '⑲', '⑳', '㉑', '㉒', '㉓', '㉔', '㉕', '㉖',
-                '㉗', '㉘', '㉙', '㉚', '㉛', '㉜', '㉝', '㉞', '㉟', '㊱', '㊲', '㊳',
-                '㊴', '㊵', '㊶', '㊷', '㊸', '㊹', '㊺', '㊻', '㊼', '㊽', '㊾', '㊿',
+                "⓪", "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬",
+                "⑭", "⑮", "⑯", "⑰", "⑱", "⑲", "⑳", "㉑", "㉒", "㉓", "㉔", "㉕", "㉖",
+                "㉗", "㉘", "㉙", "㉚", "㉛", "㉜", "㉝", "㉞", "㉟", "㊱", "㊲", "㊳",
+                "㊴", "㊵", "㊶", "㊷", "㊸", "㊹", "㊺", "㊻", "㊼", "㊽", "㊾", "㊿",
             ]),
 
             Self::DoubleCircledArabic => NumeralSystem::ZerolessFixed(&[
-                '⓵', '⓶', '⓷', '⓸', '⓹', '⓺', '⓻', '⓼', '⓽', '⓾',
+                "⓵", "⓶", "⓷", "⓸", "⓹", "⓺", "⓻", "⓼", "⓽", "⓾",
             ]),
 
             Self::LowerLatin => NumeralSystem::Bijective(&[
-                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+                "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
             ]),
 
             Self::UpperLatin => NumeralSystem::Bijective(&[
-                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-                'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+                "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
             ]),
 
             Self::LowerRoman => NumeralSystem::Additive(&[
@@ -767,66 +799,75 @@ impl NamedNumeralSystem {
             }
 
             Self::HiraganaAiueo => NumeralSystem::Bijective(&[
-                'あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ', 'さ', 'し',
-                'す', 'せ', 'そ', 'た', 'ち', 'つ', 'て', 'と', 'な', 'に', 'ぬ', 'ね',
-                'の', 'は', 'ひ', 'ふ', 'へ', 'ほ', 'ま', 'み', 'む', 'め', 'も', 'や',
-                'ゆ', 'よ', 'ら', 'り', 'る', 'れ', 'ろ', 'わ', 'を', 'ん',
+                "あ", "い", "う", "え", "お", "か", "き", "く", "け", "こ", "さ", "し",
+                "す", "せ", "そ", "た", "ち", "つ", "て", "と", "な", "に", "ぬ", "ね",
+                "の", "は", "ひ", "ふ", "へ", "ほ", "ま", "み", "む", "め", "も", "や",
+                "ゆ", "よ", "ら", "り", "る", "れ", "ろ", "わ", "を", "ん",
             ]),
 
             Self::HiraganaIroha => NumeralSystem::Bijective(&[
-                'い', 'ろ', 'は', 'に', 'ほ', 'へ', 'と', 'ち', 'り', 'ぬ', 'る', 'を',
-                'わ', 'か', 'よ', 'た', 'れ', 'そ', 'つ', 'ね', 'な', 'ら', 'む', 'う',
-                'ゐ', 'の', 'お', 'く', 'や', 'ま', 'け', 'ふ', 'こ', 'え', 'て', 'あ',
-                'さ', 'き', 'ゆ', 'め', 'み', 'し', 'ゑ', 'ひ', 'も', 'せ', 'す',
+                "い", "ろ", "は", "に", "ほ", "へ", "と", "ち", "り", "ぬ", "る", "を",
+                "わ", "か", "よ", "た", "れ", "そ", "つ", "ね", "な", "ら", "む", "う",
+                "ゐ", "の", "お", "く", "や", "ま", "け", "ふ", "こ", "え", "て", "あ",
+                "さ", "き", "ゆ", "め", "み", "し", "ゑ", "ひ", "も", "せ", "す",
             ]),
 
             Self::KatakanaAiueo => NumeralSystem::Bijective(&[
-                'ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ', 'サ', 'シ',
-                'ス', 'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト', 'ナ', 'ニ', 'ヌ', 'ネ',
-                'ノ', 'ハ', 'ヒ', 'フ', 'ヘ', 'ホ', 'マ', 'ミ', 'ム', 'メ', 'モ', 'ヤ',
-                'ユ', 'ヨ', 'ラ', 'リ', 'ル', 'レ', 'ロ', 'ワ', 'ヲ', 'ン',
+                "ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ",
+                "ス", "セ", "ソ", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ",
+                "ノ", "ハ", "ヒ", "フ", "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ",
+                "ユ", "ヨ", "ラ", "リ", "ル", "レ", "ロ", "ワ", "ヲ", "ン",
             ]),
 
             Self::KatakanaIroha => NumeralSystem::Bijective(&[
-                'イ', 'ロ', 'ハ', 'ニ', 'ホ', 'ヘ', 'ト', 'チ', 'リ', 'ヌ', 'ル', 'ヲ',
-                'ワ', 'カ', 'ヨ', 'タ', 'レ', 'ソ', 'ツ', 'ネ', 'ナ', 'ラ', 'ム', 'ウ',
-                'ヰ', 'ノ', 'オ', 'ク', 'ヤ', 'マ', 'ケ', 'フ', 'コ', 'エ', 'テ', 'ア',
-                'サ', 'キ', 'ユ', 'メ', 'ミ', 'シ', 'ヱ', 'ヒ', 'モ', 'セ', 'ス',
+                "イ", "ロ", "ハ", "ニ", "ホ", "ヘ", "ト", "チ", "リ", "ヌ", "ル", "ヲ",
+                "ワ", "カ", "ヨ", "タ", "レ", "ソ", "ツ", "ネ", "ナ", "ラ", "ム", "ウ",
+                "ヰ", "ノ", "オ", "ク", "ヤ", "マ", "ケ", "フ", "コ", "エ", "テ", "ア",
+                "サ", "キ", "ユ", "メ", "ミ", "シ", "ヱ", "ヒ", "モ", "セ", "ス",
             ]),
 
             Self::KoreanJamo => NumeralSystem::Bijective(&[
-                'ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ',
-                'ㅍ', 'ㅎ',
+                "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ",
+                "ㅍ", "ㅎ",
             ]),
 
             Self::KoreanSyllable => NumeralSystem::Bijective(&[
-                '가', '나', '다', '라', '마', '바', '사', '아', '자', '차', '카', '타',
-                '파', '하',
+                "가", "나", "다", "라", "마", "바", "사", "아", "자", "차", "카", "타",
+                "파", "하",
             ]),
 
             Self::EasternArabic => NumeralSystem::Positional(&[
-                '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩',
+                "٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩",
+            ]),
+
+            Self::ArabicAbjad => NumeralSystem::Bijective(&[
+                "أ", "ب", "ج", "د", "ه‍", "و", "ز", "ح", "ط", "ي", "ك", "ل", "م", "ن",
+                "س", "ع", "ف", "ص", "ق", "ر", "ش", "ت", "ث", "خ", "ذ", "ض", "ظ", "غ",
             ]),
 
             Self::Persian => NumeralSystem::Positional(&[
-                '۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹',
+                "۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹",
             ]),
 
             Self::Devanagari => NumeralSystem::Positional(&[
-                '०', '१', '२', '३', '४', '५', '६', '७', '८', '९',
+                "०", "१", "२", "३", "४", "५", "६", "७", "८", "९",
+            ]),
+
+            Self::Tibetan => NumeralSystem::Positional(&[
+                "༠", "༡", "༢", "༣", "༤", "༥", "༦", "༧", "༨", "༩",
             ]),
 
             Self::Bengali => NumeralSystem::Positional(&[
-                '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯',
+                "০", "১", "২", "৩", "৪", "৫", "৬", "৭", "৮", "৯",
             ]),
 
             Self::BengaliLetters => NumeralSystem::Bijective(&[
-                'ক', 'খ', 'গ', 'ঘ', 'ঙ', 'চ', 'ছ', 'জ', 'ঝ', 'ঞ', 'ট', 'ঠ', 'ড', 'ঢ',
-                'ণ', 'ত', 'থ', 'দ', 'ধ', 'ন', 'প', 'ফ', 'ব', 'ভ', 'ম', 'য', 'র', 'ল',
-                'শ', 'ষ', 'স', 'হ',
+                "ক", "খ", "গ", "ঘ", "ঙ", "চ", "ছ", "জ", "ঝ", "ঞ", "ট", "ঠ", "ড", "ঢ",
+                "ণ", "ত", "থ", "দ", "ধ", "ন", "প", "ফ", "ব", "ভ", "ম", "য", "র", "ল",
+                "শ", "ষ", "স", "হ",
             ]),
 
-            Self::Symbols => NumeralSystem::Symbolic(&['*', '†', '‡', '§', '¶', '‖']),
+            Self::Symbols => NumeralSystem::Symbolic(&["*", "†", "‡", "§", "¶", "‖"]),
         }
     }
 }
@@ -865,7 +906,7 @@ pub enum NumeralSystem<'a> {
     /// | 4      | 12             |
     /// | 5      | 12             |
     /// | 6      | 20             |
-    Positional(&'a [char]),
+    Positional(&'a [&'a str]),
 
     /// A big-endian
     /// [bijective numeration](https://en.wikipedia.org/wiki/Bijective_numeration)
@@ -890,7 +931,7 @@ pub enum NumeralSystem<'a> {
     /// | 5      | AB             |
     /// | 6      | AC             |
     /// | 7      | BA             |
-    Bijective(&'a [char]),
+    Bijective(&'a [&'a str]),
 
     /// An additive
     /// [sign-value notation](https://en.wikipedia.org/wiki/Sign-value_notation)
@@ -952,7 +993,7 @@ pub enum NumeralSystem<'a> {
     /// | 5      | BB             |
     /// | 6      | CC             |
     /// | 7      | AAA            |
-    Symbolic(&'a [char]),
+    Symbolic(&'a [&'a str]),
 
     /// A system that uses a fixed set of symbols to represent the first
     /// non-negative integers.
@@ -972,7 +1013,7 @@ pub enum NumeralSystem<'a> {
     /// | 0      | A              |
     /// | 1      | B              |
     /// | 2      | C              |
-    Fixed(&'a [char]),
+    Fixed(&'a [&'a str]),
 
     /// A system that uses a fixed set of symbols to represent the first
     /// positive integers.
@@ -992,7 +1033,7 @@ pub enum NumeralSystem<'a> {
     /// | 1      | A              |
     /// | 2      | B              |
     /// | 3      | C              |
-    ZerolessFixed(&'a [char]),
+    ZerolessFixed(&'a [&'a str]),
 
     /// A Chinese numeral system.
     ///
@@ -1211,7 +1252,7 @@ mod tests {
     /// Makes sure fixed systems are implemented properly.
     #[test]
     fn test_fixed_systems() {
-        let symbols = ('a'..='z').collect::<Vec<_>>();
+        let symbols = ["a", "b", "c", "d", "e", "f", "g"];
         for n in 0..symbols.len() {
             for i in 0..n {
                 assert_eq!(
@@ -1219,14 +1260,14 @@ mod tests {
                         .represent(i as u64)
                         .unwrap()
                         .to_string(),
-                    symbols[i].to_string(),
+                    symbols[i],
                 );
                 assert_eq!(
                     NumeralSystem::ZerolessFixed(&symbols[0..n])
                         .represent(i as u64 + 1)
                         .unwrap()
                         .to_string(),
-                    symbols[i].to_string(),
+                    symbols[i],
                 )
             }
         }
@@ -1354,7 +1395,7 @@ mod tests {
         let expected = ["a", "b", "aa", "bb", "aaa", "bbb", "aaaa", "bbbb"];
         for (i, r) in expected.iter().enumerate() {
             assert_eq!(
-                &NumeralSystem::Symbolic(&['a', 'b'])
+                &NumeralSystem::Symbolic(&["a", "b"])
                     .represent(i as u64 + 1)
                     .unwrap()
                     .to_string(),
@@ -1417,8 +1458,10 @@ mod tests {
                 NamedNumeralSystem::KoreanJamo => 65477685939649764827530478995838083425, // 21
                 NamedNumeralSystem::KoreanSyllable => 24217153056183571894327643661698510954,
                 NamedNumeralSystem::EasternArabic => 277754701051910363703826860323053920831,
+                NamedNumeralSystem::ArabicAbjad => 170607069918421736382595569105894253021,
                 NamedNumeralSystem::Persian => 6232158096065129450489636457808686806,
                 NamedNumeralSystem::Devanagari => 327133969362282954753636774557232534052,
+                NamedNumeralSystem::Tibetan => 87580519645280744681237273097105390953,
                 NamedNumeralSystem::Bengali => 79096832028418218544110224478554962928,
                 NamedNumeralSystem::BengaliLetters => 269999388716378396079918080520770981179,
                 NamedNumeralSystem::Symbols => 88780534058354093087932015985325954737,

@@ -1,6 +1,6 @@
 [package]
 name = "codex"
-version = "0.2.0"
+version = "0.3.0"
 rust-version = "1.88" # also change in ci.yml
 authors = ["The Typst Project Developers"]
 edition = "2024"
@@ -15,7 +15,7 @@ keywords = ["unicode", "symbols"]
 default = ["numeral-systems", "styling"]
 numeral-systems = ["dep:chinese-number"]
 styling = []
-_test-unicode-conformance = ["ureq"]
+_test-unicode-conformance = ["dep:ureq", "dep:rustls-webpki"]
 
 [dependencies]
 chinese-number = { version = "0.7.7", default-features = false, features = ["number-to-chinese"], optional = true }
@@ -25,3 +25,5 @@ siphasher = "1.0.2"
 
 [build-dependencies]
 ureq = { version = "3.0.12", optional = true }
+# Security fix. Can be removed again with a ureq update that transitively depends on at least this version.
+rustls-webpki = { version = "0.103.13", optional = true }

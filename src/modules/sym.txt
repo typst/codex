@@ -255,6 +255,7 @@ plus +
   .square ⊞
   .triangle ⨹
   .triple ⧻
+  .hat ⨣
 minus −
   .o ⊖
   .dot ∸
@@ -283,9 +284,11 @@ ratio ∶
 
 // Relations.
 eq =
+  .ast ⩮
   .star ≛
   .o ⊜
   .colon ≕
+  .dot ≐
   .dots ≑
   .dots.down ≒
   .dots.up ≓
@@ -306,6 +309,7 @@ eq =
 gt >
   .o ⧁
   .dot ⋗
+  .quest ⩼
   .approx ⪆
   .arc ⪧
   .arc.eq ⪩
@@ -342,6 +346,7 @@ gt >
 lt <
   .o ⧀
   .dot ⋖
+  .quest ⩻
   .approx ⪅
   .arc ⪦
   .arc.eq ⪨
@@ -378,6 +383,7 @@ lt <
 approx ≈
   .eq ≊
   .not ≉
+  .hat ⩯
 prec ≺
   .approx ⪷
   .curly.eq ≼
@@ -568,6 +574,8 @@ qed ∎
 // Function and category theory.
 mapsto ↦
   .long ⟼
+mapsfrom ↤
+  .long ⟻
 compose ∘
   .o ⊚
 convolve ∗
@@ -1010,21 +1018,25 @@ arrow
   .t.b.filled ⬍
   .t.b.stroked ⇳
   .tr ↗\vs{text}
+  .tr.bar 🢹
   .tr.double ⇗
   .tr.filled ⬈
   .tr.hook ⤤
   .tr.stroked ⬀
   .br ↘\vs{text}
+  .br.bar 🢺
   .br.double ⇘
   .br.filled ⬊
   .br.hook ⤥
   .br.stroked ⬂
   .tl ↖\vs{text}
+  .tl.bar 🢸
   .tl.double ⇖
   .tl.filled ⬉
   .tl.hook ⤣
   .tl.stroked ⬁
   .bl ↙\vs{text}
+  .bl.bar 🢻
   .bl.double ⇙
   .bl.filled ⬋
   .bl.hook ⤦
@@ -1044,6 +1056,7 @@ arrows
   .lr ⇆
   .lr.stop ↹
   .rl ⇄
+  .rl.long 🣐
   .tb ⇅
   .bt ⇵
   .rrr ⇶
@@ -1102,21 +1115,35 @@ tack
   .r.not ⊬
   .r.long ⟝
   .r.short ⊦
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.rr`
   .r.double ⊨
+  .rr ⊨
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.rr.not`
   .r.double.not ⊭
+  .rr.not ⊭
+  .rrr ⫢
   .l ⊣
   .l.long ⟞
   .l.short ⫞
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.ll`
   .l.double ⫤
+  .ll ⫤
   .t ⊥
   .t.big ⟘
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.tt`
   .t.double ⫫
+  .tt ⫫
   .t.short ⫠
   .b ⊤
   .b.big ⟙
+  @deprecated: `tack.double` is deprecated, use repeated letters instead, e.g., `tack.bb`
   .b.double ⫪
+  .bb ⫪
   .b.short ⫟
   .l.r ⟛
+
+zero 0\vs{text}
+  .slashed 0\vs{1}
 
 // Lowercase Greek.
 alpha α
@@ -1255,6 +1282,9 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
+// Keyboard labels.
+spacebar ␣
+
 gender {
   female ♀\vs{text}
     .double ⚢
@@ -1268,4 +1298,44 @@ gender {
     .stroke.r ⚩
   neuter ⚲
   trans ⚧\vs{text}
+}
+
+// Printable characters representing control (non-printable) characters
+control {
+  nul ␀ // NULL
+  soh ␁ // Start Of Heading
+  stx ␂ // Start of TeXt
+  etx ␃ // End of TeXt
+  eot ␄ // End Of Transmission
+  enq ␅ // ENQuiry
+  ack ␆ // ACKnowledge
+  bel ␇ // BELl
+  bs ␈ // BackSpace
+  ht ␉ // Horizontal Tabulation
+  lf ␊ // Line Feed
+  vt ␋ // Vertical Tabulation
+  ff ␌ // Form Feed
+  cr ␍ // Carriage Return
+  so ␎ // Shift Out
+  si ␏ // Shift In
+  dle ␐ // Data Link Escape
+  dc // Device Control
+    .one ␑
+    .two ␒
+    .three ␓
+    .four ␔
+  nak ␕ // Negative AcKnowledge
+  syn ␖ // SYNchronous idle
+  etb ␗ // End of Transmission Block
+  can ␘ // CANcel
+  em ␙ // End of Medium
+  sub ␚ // SUBstitute
+  esc ␛ // ESCape
+  fs ␜ // File Separator
+  gs ␝ // Group Separator
+  rs ␞ // Record Separator
+  us ␟ // Unit Separator
+  sp ␠ // SPace
+  del ␡ // DELete
+  nl ␤ // New Line
 }
