@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### General changes
+
+- The `dotless` symbol was converted to a module,
+  meaning you can no longer use `dotless` as a shorthand for `dotless.i`.
+
 ## Version 0.3.0 (June 4, 2026)
 
 ### General changes
@@ -192,9 +199,6 @@ These previously deprecated items were removed:
 - `dalet`
 - `shin`
 - `planck.reduce`
-
-The `dotless` symbol was converted to a module,
-meaning you can no longer use `dotless` as a shorthand for `dotless.i`.
 
 ## Version 0.2.0 (October 7, 2025)
 
