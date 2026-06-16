@@ -1103,12 +1103,12 @@ tack
   .ll ⫤
   .t ⊥
   .t.big ⟘
-  .tt ⫫
   .t.short ⫠
+  .tt ⫫
   .b ⊤
   .b.big ⟙
-  .bb ⫪
   .b.short ⫟
+  .bb ⫪
   .l.r ⟛
 
 zero 0\vs{text}
