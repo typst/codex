@@ -7,6 +7,17 @@
 - The `dotless` symbol was converted to a module,
   meaning you can no longer use `dotless` as a shorthand for `dotless.i`. **(Breaking change)**
 
+### Removals in `sym` **(Breaking change)**
+These previously deprecated items were removed:
+- `gt.tri.*`
+- `lt.tri.*`
+- `join`, `join.*`
+- `tack.r.double`
+- `tack.r.double.not`
+- `tack.l.double`
+- `tack.t.double`
+- `tack.b.double`
+
 ## Version 0.3.0 (June 4, 2026)
 
 ### General changes
