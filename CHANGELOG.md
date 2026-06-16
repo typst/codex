@@ -8,6 +8,7 @@
   meaning you can no longer use `dotless` as a shorthand for `dotless.i`. **(Breaking change)**
 
 ### Removals in `sym` **(Breaking change)**
+
 These previously deprecated items were removed:
 - `gt.tri.*`
 - `lt.tri.*`
