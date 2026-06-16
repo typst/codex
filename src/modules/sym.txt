@@ -1230,9 +1230,10 @@ pee ℘
 planck ħ
 Re ℜ
 Im ℑ
-dotless
-  .i ı
-  .j ȷ
+dotless {
+  i ı
+  j ȷ
+}
 
 // Miscellany.
 die
