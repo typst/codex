@@ -5,7 +5,7 @@
 ### General changes
 
 - The `dotless` symbol was converted to a module,
-  meaning you can no longer use `dotless` as a shorthand for `dotless.i`.
+  meaning you can no longer use `dotless` as a shorthand for `dotless.i`. **(Breaking change)**
 
 ## Version 0.3.0 (June 4, 2026)
 
