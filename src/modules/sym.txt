@@ -733,6 +733,97 @@ suit
   .spade.filled ♠\vs{text}
   .spade.stroked ♤
 
+playingcard {
+  spade
+    .ace 🂡
+    .two 🂢
+    .three 🂣
+    .four 🂤
+    .five 🂥
+    .six 🂦
+    .seven 🂧
+    .eight 🂨
+    .nine 🂩
+    .ten 🂪
+    .jack 🂫
+    .knight 🂬
+    .queen 🂭
+    .king 🂮
+  heart
+    .ace 🂱
+    .two 🂲
+    .three 🂳
+    .four 🂴
+    .five 🂵
+    .six 🂶
+    .seven 🂷
+    .eight 🂸
+    .nine 🂹
+    .ten 🂺
+    .jack 🂻
+    .knight 🂼
+    .queen 🂽
+    .king 🂾
+  diamond
+    .ace 🃁
+    .two 🃂
+    .three 🃃
+    .four 🃄
+    .five 🃅
+    .six 🃆
+    .seven 🃇
+    .eight 🃈
+    .nine 🃉
+    .ten 🃊
+    .jack 🃋
+    .knight 🃌
+    .queen 🃍
+    .king 🃎
+  club
+    .ace 🃑
+    .two 🃒
+    .three 🃓
+    .four 🃔
+    .five 🃕
+    .six 🃖
+    .seven 🃗
+    .eight 🃘
+    .nine 🃙
+    .ten 🃚
+    .jack 🃛
+    .knight 🃜
+    .queen 🃝
+    .king 🃞
+  back 🂠
+  joker
+    .red 🂿
+    .black 🃏︎
+    .white 🃟
+  fool 🃠
+  trump
+    .one 🃡
+    .two 🃢
+    .three 🃣
+    .four 🃤
+    .five 🃥
+    .six 🃦
+    .seven 🃧
+    .eight 🃨
+    .nine 🃩
+    .ten 🃪
+    .eleven 🃫
+    .twelve 🃬
+    .thirteen 🃭
+    .fourteen 🃮
+    .fifteen 🃯
+    .sixteen 🃰
+    .seventeen 🃱
+    .eighteen 🃲
+    .nineteen 🃳
+    .twenty 🃴
+    .twentyone 🃵
+}
+
 // Music.
 note
   .up 🎜
