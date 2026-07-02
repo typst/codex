@@ -342,14 +342,6 @@ gt >
   .tilde ≳
   .tilde.slant ≳\vs{1}
   .tilde.not ≵
-  @deprecated: `gt.tri` is deprecated, use `gt.closed` instead
-  .tri ⊳
-  @deprecated: `gt.tri.eq` is deprecated, use `gt.closed.eq` instead
-  .tri.eq ⊵
-  @deprecated: `gt.tri.eq.not` is deprecated, use `gt.closed.eq.not` instead
-  .tri.eq.not ⋭
-  @deprecated: `gt.tri.not` is deprecated, use `gt.closed.not` instead
-  .tri.not ⋫
   .triple ⋙
   .triple.nested ⫸
 lt <
@@ -382,14 +374,6 @@ lt <
   .tilde ≲
   .tilde.slant ≲\vs{1}
   .tilde.not ≴
-  @deprecated: `lt.tri` is deprecated, use `lt.closed` instead
-  .tri ⊲
-  @deprecated: `lt.tri.eq` is deprecated, use `lt.closed.eq` instead
-  .tri.eq ⊴
-  @deprecated: `lt.tri.eq.not` is deprecated, use `lt.closed.eq.not` instead
-  .tri.eq.not ⋬
-  @deprecated: `lt.tri.not` is deprecated, use `lt.closed.not` instead
-  .tri.not ⋪
   .triple ⋘
   .triple.nested ⫷
 approx ≈
@@ -673,11 +657,6 @@ diameter ⌀
 interleave ⫴
   .big ⫼
   .struck ⫵
-@deprecated: `join` is deprecated, use `bowtie.big` instead
-join ⨝
-  .r ⟖
-  .l ⟕
-  .l.r ⟗
 bowtie
   .stroked ⋈
   .stroked.big ⨝
@@ -1141,21 +1120,25 @@ tack
   .r.not ⊬
   .r.long ⟝
   .r.short ⊦
-  .r.double ⊨
-  .r.double.not ⊭
+  .rr ⊨
+  .rr.not ⊭
+  .rrr ⫢
   .l ⊣
   .l.long ⟞
   .l.short ⫞
-  .l.double ⫤
+  .ll ⫤
   .t ⊥
   .t.big ⟘
-  .t.double ⫫
+  .tt ⫫
   .t.short ⫠
   .b ⊤
   .b.big ⟙
-  .b.double ⫪
+  .bb ⫪
   .b.short ⫟
   .l.r ⟛
+
+zero 0\vs{text}
+  .slashed 0\vs{1}
 
 // Lowercase Greek.
 alpha α
