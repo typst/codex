@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+### New in `sym`
+
+- New `chess` submodule
+  - `king.white`: ♔
+  - `king.black`: ♚
+  - `queen.white`: ♕
+  - `queen.black`: ♛
+  - `rook.white`: ♖
+  - `rook.black`: ♜
+  - `bishop.white`: ♗
+  - `bishop.black`: ♝
+  - `knight.white`: ♘
+  - `knight.black`: ♞
+  - `pawn.white`: ♙
+  - `pawn.black`: ♟︎
+
 ### Removals in `sym` **(Breaking change)**
 These previously deprecated items were removed:
 - `gt.tri.*`
