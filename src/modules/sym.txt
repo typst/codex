@@ -732,9 +732,10 @@ suit
   .heart.stroked ♡
   .spade.filled ♠\vs{text}
   .spade.stroked ♤
-ordinal
-  .a ª
-  .o º
+ordinal {
+  a ª
+  o º
+}
 
 // Music.
 note
