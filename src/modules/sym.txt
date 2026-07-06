@@ -722,6 +722,8 @@ copyleft 🄯
 trademark ™\vs{text}
   .registered ®\vs{text}
   .service ℠
+  .mc 🅪
+  .md 🅫
 maltese ✠
 suit
   .club.filled ♣\vs{text}
