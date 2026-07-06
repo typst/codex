@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### New in `sym`
+
+- Ordinal indicators
+  - `ordinal.a`: ª
+  - `ordinal.o`: º
+
 ### Removals in `sym` **(Breaking change)**
 These previously deprecated items were removed:
 - `gt.tri.*`
