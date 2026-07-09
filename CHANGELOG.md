@@ -16,6 +16,20 @@
   - `tack.t.double.short` ⫨
   - `tack.b.double.short` ⫧
 
+- New `chess` submodule
+  - `king.white`: ♔
+  - `king.black`: ♚
+  - `queen.white`: ♕
+  - `queen.black`: ♛
+  - `rook.white`: ♖
+  - `rook.black`: ♜
+  - `bishop.white`: ♗
+  - `bishop.black`: ♝
+  - `knight.white`: ♘
+  - `knight.black`: ♞
+  - `pawn.white`: ♙
+  - `pawn.black`: ♟︎
+
 ### Changed values in `sym` **(Breaking change)**
 
 These previously deprecated items were undeprecated with a changed value:
