@@ -2,22 +2,49 @@
 
 ## Unreleased
 
-### New in `sym`
+## New in `sym`
 
-- Ordinal indicators
-  - `ordinal.a`: ª
-  - `ordinal.o`: º
+- Miscellaneous technical
+  - `tack.r.double` ⊩
+  - `tack.r.double.not` ⊮
+  - `tack.r.triple` ⊪
+  - `tack.rr.short` ⊧
+  - `tack.rr.double` ⊫
+  - `tack.rr.double.not` ⊯
+  - `tack.l.double` ⫣
+  - `tack.ll.double` ⫥
+  - `tack.t.double.short` ⫨
+  - `tack.b.double.short` ⫧
 
-### Removals in `sym` **(Breaking change)**
-These previously deprecated items were removed:
-- `gt.tri.*`
-- `lt.tri.*`
-- `join`, `join.*`
+- New `chess` submodule
+  - `king.white`: ♔
+  - `king.black`: ♚
+  - `queen.white`: ♕
+  - `queen.black`: ♛
+  - `rook.white`: ♖
+  - `rook.black`: ♜
+  - `bishop.white`: ♗
+  - `bishop.black`: ♝
+  - `knight.white`: ♘
+  - `knight.black`: ♞
+  - `pawn.white`: ♙
+  - `pawn.black`: ♟︎
+
+### Changed values in `sym` **(Breaking change)**
+
+These previously deprecated items were undeprecated with a changed value:
 - `tack.r.double`
 - `tack.r.double.not`
 - `tack.l.double`
 - `tack.t.double`
 - `tack.b.double`
+
+### Removals in `sym` **(Breaking change)**
+
+These previously deprecated items were removed:
+- `gt.tri.*`
+- `lt.tri.*`
+- `join`, `join.*`
 
 ## Version 0.3.0 (June 4, 2026)
 

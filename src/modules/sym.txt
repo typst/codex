@@ -737,6 +737,27 @@ ordinal {
   o º
 }
 
+chess {
+  king
+    .white ♔
+    .black ♚
+  queen
+    .white ♕
+    .black ♛
+  rook
+    .white ♖
+    .black ♜
+  bishop
+    .white ♗
+    .black ♝
+  knight
+    .white ♘
+    .black ♞
+  pawn
+    .white ♙
+    .black ♟︎
+}
+
 // Music.
 note
   .up 🎜
@@ -1098,21 +1119,31 @@ tack
   .r.not ⊬
   .r.long ⟝
   .r.short ⊦
+  .r.double ⊩
+  .r.double.not ⊮
+  .r.triple ⊪
   .rr ⊨
   .rr.not ⊭
+  .rr.short ⊧
+  .rr.double ⊫
+  .rr.double.not ⊯
   .rrr ⫢
   .l ⊣
   .l.long ⟞
   .l.short ⫞
+  .l.double ⫣
   .ll ⫤
+  .ll.double ⫥
   .t ⊥
   .t.big ⟘
-  .tt ⫫
   .t.short ⫠
+  .t.double.short ⫨
+  .tt ⫫
   .b ⊤
   .b.big ⟙
-  .bb ⫪
   .b.short ⫟
+  .b.double.short ⫧
+  .bb ⫪
   .l.r ⟛
 
 zero 0\vs{text}
