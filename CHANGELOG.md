@@ -2,33 +2,6 @@
 
 ## Unreleased
 
-### New in `sym`
-
-- Mathematical symbols
-  - `eq.gt.slant`: ⪖
-  - `eq.lt.slant`: ⪕
-  - `equiv.gt`: ⪚
-  - `equiv.gt.slant`: ⪜
-  - `equiv.lt`: ⪙
-  - `equiv.lt.slant`: ⪛
-  - `gt.eq.lt.slant`: ⋛︀
-  - `gt.equiv.slant`: ⫺
-  - `gt.tilde.slant`: ≳︀
-  - `lt.eq.gt.slant`: ⋚︀
-  - `tl.equiv.slant`: ⫹
-  - `lt.tilde.slant`: ≲︀
-  - `smt.eq.slant`: ⪬︀
-  - `lat.eq.slant`: ⪭︀
-  - `tilde.gt`: ⪞
-  - `tilde.gt.slant`: ⪞︀
-  - `tilde.lt`: ⪝
-  - `tilde.lt.slant`: ⪝︀
-
-### Deprecations in `sym`
-
-- `prec.curly.eq` and variants in favor of `prec.eq.slant`
-- `succ.curly.eq` and variants in favor of `succ.eq.slant`
-
 ### Removals in `sym` **(Breaking change)**
 These previously deprecated items were removed:
 - `gt.tri.*`
