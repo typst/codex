@@ -733,8 +733,8 @@ suit
   .spade.filled ♠\vs{text}
   .spade.stroked ♤
 ordinal {
-  a ª
-  o º
+  feminine ª
+  masculine º
 }
 
 chess {
