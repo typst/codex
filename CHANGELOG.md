@@ -2,12 +2,6 @@
 
 ## Unreleased
 
-### New in `sym`
-
-- Canadian French trademark symbols
-  - `trademark.mc`: 🅪
-  - `trademark.md`: 🅫
-
 ### Removals in `sym` **(Breaking change)**
 These previously deprecated items were removed:
 - `gt.tri.*`
