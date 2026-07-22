@@ -1307,9 +1307,6 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
-// Keyboard labels.
-spacebar ␣
-
 gender {
   female ♀\vs{text}
     .double ⚢
@@ -1363,4 +1360,31 @@ control {
   sp ␠ // SPace
   del ␡ // DELete
   nl ␤ // New Line
+}
+
+// Characters commonly used as keyboards labels
+@deprecated: `spacebar` is deprecated, use `keyboard.space` instead
+spacebar ␣
+
+keyboard {
+  tab ↹
+    .r ⇥
+  pageup ⇞
+    .alt ⎗
+  pagedown ⇟
+    .alt ⎘
+  shift ⇧
+  capslock ⇪
+    .pedestal ⇫
+  space ␣
+  erase
+    .l ⌫
+    .r ⌦
+  cmd ⌘
+  option ⌥
+  clear ⌧
+  alt ⎇
+  esc ⎋
+  enter ⏎
+    .alt ↵
 }
