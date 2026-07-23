@@ -191,33 +191,10 @@ mod test {
         }
     }
 
-    /// https://www.unicode.org/reports/tr51/#def_text_presentation_selector.
-    const TEXT_PRESENTATION_SELECTOR: char = '\u{FE0E}';
-    /// https://www.unicode.org/reports/tr51/#def_emoji_presentation_selector.
-    const EMOJI_PRESENTATION_SELECTOR: char = '\u{FE0F}';
-
-    #[test]
-    fn symbols_are_not_emojis() {
-        assert!(
-            are_all_variants_valid(SYM, |c| !c.contains(EMOJI_PRESENTATION_SELECTOR)),
-            "unexpected use of emoji presentation selector in `sym` (see list above)",
-        )
-    }
-
-    #[test]
-    fn emojis_are_not_text() {
-        assert!(
-            are_all_variants_valid(EMOJI, |c| !c.contains(TEXT_PRESENTATION_SELECTOR)),
-            "unexpected use of text presentation selector in `emoji` (see list above)",
-        )
-    }
-
-    /// Returns the list of presentation sequences defined by Unicode.
-    ///
-    /// See: https://www.unicode.org/reports/tr51/#Emoji_Variation_Sequences.
+    /// Returns the set of variation sequences defined in a file.
     #[cfg(feature = "_test-unicode-conformance")]
-    fn get_valid_presentation_sequences() -> HashSet<String> {
-        include_str!(concat!(env!("OUT_DIR"), "/emoji-variation-sequences.txt"))
+    fn read_sequences(source: &str) -> HashSet<String> {
+        source
             .lines()
             .filter_map(|l| {
                 let line = l.split('#').next().unwrap_or(l);
@@ -236,19 +213,144 @@ mod test {
             .collect()
     }
 
+    // A variation sequence (including presentation sequences) always consists
+    // of a single base codepoint, followed by a single variation selector.
+    // https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-23/#G26678
+
+    /// Returns an iterator over all the variation sequences in a string.
+    fn variation_sequences(s: &str) -> impl Iterator<Item = &str> {
+        s.char_indices()
+            .filter(|&(_, c)| matches!(c, '\u{FE00}'..='\u{FE0F}'))
+            // Yield the slice containing the variation selector and the
+            // codepoint right before. If the variation selector is the first
+            // codepoint in the string, yield the slice containing just the
+            // variation selector.
+            .map(|(i, _)| {
+                &s[s.floor_char_boundary(i.saturating_sub(1))
+                    ..s.ceil_char_boundary(i + 1)]
+            })
+    }
+
+    /// Tests whether a string has the format of a standardized variation
+    /// sequence.
+    ///
+    /// Note that this does not check whether the string is a _valid_
+    /// standardized variation sequence.
+    fn is_standardized_variation_sequence(s: &str) -> bool {
+        let mut chars = s.chars();
+        matches!(
+            (chars.next(), chars.next(), chars.next()),
+            (Some(_), Some('\u{FE00}'..='\u{FE0D}'), None),
+        )
+    }
+
+    /// https://www.unicode.org/reports/tr51/#def_text_presentation_selector.
+    const TEXT_PRESENTATION_SELECTOR: char = '\u{FE0E}';
+
+    /// Tests whether a string is a text presentation sequence.
+    ///
+    /// Note that this does not check whether the string is a _valid_ text
+    /// presentation sequence.
+    fn is_text_presentation_sequence(s: &str) -> bool {
+        let mut chars = s.chars();
+        matches!(
+            (chars.next(), chars.next(), chars.next()),
+            (Some(_), Some(TEXT_PRESENTATION_SELECTOR), None),
+        )
+    }
+
+    /// https://www.unicode.org/reports/tr51/#def_emoji_presentation_selector.
+    const EMOJI_PRESENTATION_SELECTOR: char = '\u{FE0F}';
+
+    /// Tests whether a string is an emoji presentation sequence.
+    ///
+    /// Note that this does not check whether the string is a _valid_ emoji
+    /// presentation sequence.
+    fn is_emoji_presentation_sequence(s: &str) -> bool {
+        let mut chars = s.chars();
+        matches!(
+            (chars.next(), chars.next(), chars.next()),
+            (Some(_), Some(EMOJI_PRESENTATION_SELECTOR), None),
+        )
+    }
+
+    /// Tests whether a string is a presentation sequence.
+    ///
+    /// Note that this does not check whether the string is a _valid_
+    /// presentation sequence.
+    fn is_presentation_sequence(s: &str) -> bool {
+        is_text_presentation_sequence(s) || is_emoji_presentation_sequence(s)
+    }
+
+    #[test]
+    fn symbols_are_not_emojis() {
+        assert!(
+            are_all_variants_valid(SYM, |s| {
+                variation_sequences(s).all(|vs| !is_emoji_presentation_sequence(vs))
+            }),
+            "unexpected use of emoji presentation selector in `sym` (see list above)",
+        )
+    }
+
+    #[test]
+    fn emojis_are_not_text() {
+        assert!(
+            are_all_variants_valid(EMOJI, |s| {
+                variation_sequences(s).all(|vs| !is_text_presentation_sequence(vs))
+            }),
+            "unexpected use of text presentation selector in `emoji` (see list above)",
+        )
+    }
+
+    /// Returns the set of standardized variation sequences defined by Unicode.
+    ///
+    /// This does not include emoji variation sequences (also known as
+    /// "presentation sequences").
+    #[cfg(feature = "_test-unicode-conformance")]
+    fn get_valid_standardized_variation_sequences() -> HashSet<String> {
+        read_sequences(include_str!(concat!(
+            env!("OUT_DIR"),
+            "/StandardizedVariants.txt",
+        )))
+    }
+
+    /// Tests that no standardized variation sequence is invalid.
+    ///
+    /// The validity of emoji variation sequences (i.e., presentation sequences)
+    /// is tested by [`no_invalid_presentation_sequence`].
+    #[cfg(feature = "_test-unicode-conformance")]
+    #[test]
+    fn no_invalid_standardized_variation_sequence() {
+        let sequences = get_valid_standardized_variation_sequences();
+        assert!(
+            are_all_variants_valid(ROOT, |s| {
+                variation_sequences(s).all(|vs| {
+                    !is_standardized_variation_sequence(s) || sequences.contains(vs)
+                })
+            }),
+            "invalid standardized variation sequence(s) (see list above)",
+        )
+    }
+
+    /// Returns the set of presentation sequences defined by Unicode.
+    ///
+    /// See: https://www.unicode.org/reports/tr51/#Emoji_Variation_Sequences.
+    #[cfg(feature = "_test-unicode-conformance")]
+    fn get_valid_presentation_sequences() -> HashSet<String> {
+        read_sequences(include_str!(concat!(
+            env!("OUT_DIR"),
+            "/emoji-variation-sequences.txt",
+        )))
+    }
+
     #[cfg(feature = "_test-unicode-conformance")]
     #[test]
     fn no_invalid_presentation_sequence() {
         let sequences = get_valid_presentation_sequences();
         assert!(
-            are_all_variants_valid(ROOT, |c| {
-                if c.contains(TEXT_PRESENTATION_SELECTOR)
-                    || c.contains(EMOJI_PRESENTATION_SELECTOR)
-                {
-                    sequences.contains(c)
-                } else {
-                    true
-                }
+            are_all_variants_valid(ROOT, |s| {
+                variation_sequences(s)
+                    .all(|vs| !is_presentation_sequence(vs) || sequences.contains(vs))
             }),
             "invalid presentation sequence(s) (see list above)",
         )
@@ -262,11 +364,19 @@ mod test {
             .map(|s| s.chars().next().unwrap())
             .collect::<HashSet<_>>();
         assert!(
-            are_all_variants_valid(SYM, |c| {
-                // All emoji variation sequences are exactly 2 codepoints long
-                // as of Unicode 17.0, so this doesn't miss anything.
-                !(c.chars().count() == 1
-                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
+            are_all_variants_valid(SYM, |s| {
+                // We test that there are as many text presentation selectors as
+                // there should be. Together with the test for the validity of
+                // all presentation sequences, this ensures all necessary text
+                // presentation selectors are present and at the right place.
+                let require_selector = s
+                    .chars()
+                    .filter(|c| require_presentation_selector.contains(c))
+                    .count();
+                let have_selector = variation_sequences(s)
+                    .filter(|vs| is_text_presentation_sequence(vs))
+                    .count();
+                require_selector == have_selector
             }),
             "missing text presentation selector(s) in `sym` (see list above)",
         )
@@ -280,11 +390,20 @@ mod test {
             .map(|s| s.chars().next().unwrap())
             .collect::<HashSet<_>>();
         assert!(
-            are_all_variants_valid(EMOJI, |c| {
-                // All emoji variation sequences are exactly 2 codepoints long
-                // as of Unicode 17.0, so this doesn't miss anything.
-                !(c.chars().count() == 1
-                    && require_presentation_selector.contains(&c.chars().next().unwrap()))
+            are_all_variants_valid(EMOJI, |s| {
+                // We test that there are as many emoji presentation selectors
+                // as there should be. Together with the test for the validity
+                // of all presentation sequences, this ensures all necessary
+                // emoji presentation selectors are present and at the right
+                // place.
+                let require_selector = s
+                    .chars()
+                    .filter(|c| require_presentation_selector.contains(c))
+                    .count();
+                let have_selector = variation_sequences(s)
+                    .filter(|vs| is_emoji_presentation_sequence(vs))
+                    .count();
+                require_selector == have_selector
             }),
             "missing emoji presentation selector(s) in `emoji` (see list above)",
         )
