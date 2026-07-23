@@ -1307,6 +1307,60 @@ errorbar
   .circle.stroked ⧲
   .circle.filled ⧳
 
+mahjong {
+  wind
+    .east 🀀
+    .south 🀁
+    .west 🀂
+    .north 🀃
+  dragon
+    .red 🀄︎
+    .green 🀅
+    .white 🀆
+  character
+    .one 🀇
+    .two 🀈
+    .three 🀉
+    .four 🀊
+    .five 🀋
+    .six 🀌
+    .seven 🀍
+    .eight 🀎
+    .nine 🀏
+  bamboo
+    .one 🀐
+    .two 🀑
+    .three 🀒
+    .four 🀓
+    .five 🀔
+    .six 🀕
+    .seven 🀖
+    .eight 🀗
+    .nine 🀘
+  circle
+    .one 🀙
+    .two 🀚
+    .three 🀛
+    .four 🀜
+    .five 🀝
+    .six 🀞
+    .seven 🀟
+    .eight 🀠
+    .nine 🀡
+  flower
+    .plum 🀢
+    .orchid 🀣
+    .bamboo 🀤
+    .chrysanthemum 🀥
+  season
+    .spring 🀦
+    .summer 🀧
+    .autumn 🀨
+    .winter 🀩
+  joker 🀪
+  back 🀫
+}
+
 gender {
   female ♀\vs{text}
     .double ⚢
