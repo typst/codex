@@ -562,6 +562,8 @@ exists ∃
 top ⊤
 bot ⊥
 not ¬
+  .inv ⌙
+  .rev ⌐
 and ∧
   .big ⋀
   .curly ⋏
