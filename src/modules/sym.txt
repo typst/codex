@@ -758,6 +758,10 @@ suit
   .heart.stroked ♡
   .spade.filled ♠\vs{text}
   .spade.stroked ♤
+ordinal {
+  feminine ª
+  masculine º
+}
 
 chess {
   king
