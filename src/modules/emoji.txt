@@ -380,8 +380,8 @@ dancing
   .man 🕺
   .woman 💃
   .bunny 👯
-  .bunny.men 👯‍♂
-  .bunny.women 👯‍♀
+  .bunny.men 👯‍♂️
+  .bunny.women 👯‍♀️
 darts 🎯
 dash
   .wave.double 〰\vs{emoji}
