@@ -74,11 +74,21 @@ bar
   .v.o ⦶
   .h ―
 fence
+  @deprecated: `fence.l` is deprecated, use `zigzag.l` instead
+  .l ⧘
+  @deprecated: `fence.l.double` is deprecated, use `zigzag.l.double` instead
+  .l.double ⧚
+  @deprecated: `fence.r` is deprecated, use `zigzag.r` instead
+  .r ⧙
+  @deprecated: `fence.r.double` is deprecated, use `zigzag.r.double` instead
+  .r.double ⧛
+  @deprecated: `fence.dotted` is deprecated, use `dots.v.quad` instead
+  .dotted ⦙
+zigzag ⦚
   .l ⧘
   .l.double ⧚
   .r ⧙
   .r.double ⧛
-  .dotted ⦙
 chevron
   .l ⟨
   .l.curly ⧼
@@ -190,6 +200,7 @@ dots
   .h.c ⋯
   .h …
   .v ⋮
+  .v.quad ⦙
   .down ⋱
   .up ⋰
 tilde
