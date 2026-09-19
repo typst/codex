@@ -187,8 +187,9 @@ slash /
   .triple ⫻
   .big ⧸
 dots
-  .h.c ⋯
   .h …
+  .h.c ⋯
+  .h.low …
   .v ⋮
   .down ⋱
   .up ⋰
