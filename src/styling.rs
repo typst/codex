@@ -266,7 +266,7 @@ impl MathStyle {
             (_, true, None) if is_latin(c) | is_lower_greek(c) => MathStyle::BoldItalic,
             (_, true, None) if is_upper_greek(c) => MathStyle::Bold,
             (_, true, _) if is_digit(c) | matches!(c, 'Ϝ' | 'ϝ') => MathStyle::Bold,
-            (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ') => {
+            (_, _, Some(true) | None) if matches!(c, 'ı' | 'ȷ' | 'ħ' | '𝾕') => {
                 MathStyle::Italic
             }
             (_, _, Some(true) | None) if is_hebrew(c) => MathStyle::Hebrew,
@@ -472,8 +472,8 @@ mod conversions {
 
     /// The character given by adding `delta` to the codepoint of `c`.
     #[inline]
-    fn apply_delta(c: char, delta: u32) -> char {
-        std::char::from_u32((c as u32) + delta).unwrap()
+    fn apply_delta(c: char, delta: i32) -> char {
+        std::char::from_u32((c as u32).strict_add_signed(delta)).unwrap()
     }
 
     pub fn to_bold(c: char) -> char {
@@ -519,6 +519,8 @@ mod conversions {
             // Dotless symbols (U+1D6A4..U+1D6A5)
             'ı' => 0x1D573,
             'ȷ' => 0x1D46E,
+            // Additional Latin symbol (U+1D6A6)
+            '𝾕' => -0x8EF,
             // Italic Greek symbols (U+1D6E2..U+1D714)
             'Α'..='Ρ' => 0x1D351,
             'ϴ' => 0x1D2FF,
