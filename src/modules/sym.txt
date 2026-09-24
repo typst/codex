@@ -788,6 +788,21 @@ chess {
     .black ♟︎
 }
 
+recycle
+  .stroked ♲
+  .filled ♻︎
+  .generic ♺
+  .plastic.one ♳
+  .plastic.two ♴
+  .plastic.three ♵
+  .plastic.four ♶
+  .plastic.five ♷
+  .plastic.six ♸
+  .plastic.seven ♹
+  .paper ♼
+  .paper.partial ♽
+  .paper.permanent ♾︎
+
 // Music.
 note
   .up 🎜
