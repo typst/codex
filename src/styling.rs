@@ -402,13 +402,16 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
     ToStyle::new(styled)
 }
 
-/// Functions which convert a `char` to its specified styled form.
+/// Functions which convert a [`char`] to its specified styled form.
 ///
 /// Sourced from:
 /// - [Unicode Core Specification - Section 22.2, Letterlike Symbols]
 /// - [Letterlike Symbols]
 /// - [Mathematical Alphanumeric Symbols]
 /// - [Arabic Mathematical Alphabetic Symbols]
+///
+/// All functions in this module expect that characters have been normalized
+/// through [`conversions::normalize`].
 ///
 /// [Unicode Core Specification - Section 22.2, Letterlike Symbols]: <https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-22/#G14143>
 /// [Letterlike Symbols]: <https://unicode.org/charts/PDF/U2100.pdf>
@@ -423,8 +426,8 @@ mod conversions {
     /// For example, this function converts U+2126 OHM SIGN to the regular
     /// capital omega.
     ///
-    /// All functions in this module expect that characters have been
-    /// normalized.
+    /// All functions in the [`conversions`](self) module expect that characters
+    /// have been normalized.
     pub fn normalize(c: char) -> char {
         match c {
             // OHM SIGN
