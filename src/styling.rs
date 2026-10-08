@@ -67,7 +67,8 @@ pub enum MathStyle {
     Bold,
     /// Italic style. May be serif or sans-serif depending on the font.
     ///
-    /// Supported characters: latin, greek, dotless, and the extra ħ (U+0127).
+    /// Supported characters: latin, greek, dotless, and the extra ħ (U+0127)
+    /// and 𝾕 (U+1DF95).
     Italic,
     /// Bold italic style. May be serif or sans-serif depending on the font.
     ///
@@ -495,7 +496,7 @@ mod conversions {
             // Dotless symbols (U+1D6A4..U+1D6A5)
             'ı' => 0x1D573,
             'ȷ' => 0x1D46E,
-            // Additional Latin symbol (U+1D6A6)
+            // Ligature long s (U+1D6A6)
             '𝾕' => -0x8EF,
             // Italic Greek symbols (U+1D6E2..U+1D714)
             'Α'..='Ρ' => 0x1D351,
@@ -856,7 +857,7 @@ mod conversions {
             'Γ' => 0x1DAB,
             'Π' => 0x1D9F,
             // Double-struck large operator (U+2140)
-            '∑' => return '⅀', // delta is negative
+            '∑' => -0xD1, // delta is negative
 
             // Mathematical Alphanumeric Symbols Block (U+1D400..U+1D7FF)
             // Double-struck symbols (U+1D538..U+1D56B)
