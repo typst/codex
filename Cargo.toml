@@ -1,7 +1,7 @@
 [package]
 name = "codex"
 version = "0.3.0"
-rust-version = "1.88" # also change in ci.yml
+rust-version = "1.92" # also change in ci.yml
 authors = ["The Typst Project Developers"]
 edition = "2024"
 description = "Human-friendly notation for Unicode symbols."
