@@ -230,6 +230,7 @@ impl MathStyle {
     ) -> MathStyle {
         use MathVariant::*;
         use conversions::*;
+        let c = normalize(c);
         match (variant.unwrap_or(Plain), bold, italic) {
             (SansSerif, false, Some(false)) if is_latin(c) => MathStyle::SansSerif,
             (SansSerif, false, _) if is_latin(c) => MathStyle::SansSerifItalic,
@@ -370,6 +371,7 @@ impl fmt::Display for ToStyle {
 pub fn to_style(c: char, style: MathStyle) -> ToStyle {
     use MathStyle::*;
     use conversions::*;
+    let c = normalize(c);
     let styled = match style {
         Plain => [c, '\0'],
         Bold => [to_bold(c), '\0'],
@@ -400,13 +402,16 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
     ToStyle::new(styled)
 }
 
-/// Functions which convert a `char` to its specified styled form.
+/// Functions which convert a [`char`] to its specified styled form.
 ///
 /// Sourced from:
 /// - [Unicode Core Specification - Section 22.2, Letterlike Symbols]
 /// - [Letterlike Symbols]
 /// - [Mathematical Alphanumeric Symbols]
 /// - [Arabic Mathematical Alphabetic Symbols]
+///
+/// All functions in this module expect that characters have been normalized
+/// through [`conversions::normalize`].
 ///
 /// [Unicode Core Specification - Section 22.2, Letterlike Symbols]: <https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-22/#G14143>
 /// [Letterlike Symbols]: <https://unicode.org/charts/PDF/U2100.pdf>
@@ -415,6 +420,25 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
 mod conversions {
     const VARIATION_SELECTOR_1: char = '\u{FE00}';
     const VARIATION_SELECTOR_2: char = '\u{FE01}';
+
+    /// Applies relevant canonical decompositions.
+    ///
+    /// For example, this function converts U+2126 OHM SIGN to the regular
+    /// capital omega.
+    ///
+    /// All functions in the [`conversions`](self) module expect that characters
+    /// have been normalized.
+    pub fn normalize(c: char) -> char {
+        match c {
+            // OHM SIGN
+            '\u{2126}' => 'Ω',
+            // KELVIN SIGN
+            '\u{212A}' => 'K',
+            // GREEK PROSGEGRAMMENI
+            '\u{1FBE}' => 'ι',
+            _ => c,
+        }
+    }
 
     #[inline]
     pub fn is_digit(c: char) -> bool {
