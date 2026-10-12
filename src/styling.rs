@@ -5,7 +5,7 @@ use std::iter::FusedIterator;
 
 /// The version of [Unicode](https://www.unicode.org/) that this version of the
 /// styling module is based on.
-pub const UNICODE_VERSION: (u8, u8, u8) = (17, 0, 0);
+pub const UNICODE_VERSION: (u8, u8, u8) = (18, 0, 0);
 
 /// A style for mathematical symbols.
 ///
@@ -414,7 +414,7 @@ pub fn to_style(c: char, style: MathStyle) -> ToStyle {
 /// All functions in this module expect that characters have been normalized
 /// through [`conversions::normalize`].
 ///
-/// [Unicode Core Specification - Section 22.2, Letterlike Symbols]: <https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-22/#G14143>
+/// [Unicode Core Specification - Section 22.2, Letterlike Symbols]: <https://www.unicode.org/versions/Unicode18.0.0/core-spec/chapter-22/#G14143>
 /// [Letterlike Symbols]: <https://unicode.org/charts/PDF/U2100.pdf>
 /// [Mathematical Alphanumeric Symbols]: <https://unicode.org/charts/PDF/U1D400.pdf>
 /// [Arabic Mathematical Alphabetic Symbols]: <https://unicode.org/charts/PDF/U1EE00.pdf>
