@@ -288,6 +288,8 @@ ratio ∶
 
 // Relations.
 eq =
+  .and ⩞
+  .or ⩢
   .ast ⩮
   .star ≛
   .o ⊜
@@ -564,16 +566,32 @@ bot ⊥
 not ¬
   .inv ⌙
   .rev ⌐
+  .double ⫬
+  .rev.double ⫭
 and ∧
   .big ⋀
   .curly ⋏
   .dot ⟑
   .double ⩓
+  .eq ⩠
+  .or ⩙
+  .sloped ⩘
+  .stem ⩚
+  .struck ⩜
+  .twice ⩕
+  .twice.big ⨇
 or ∨
+  .and ⩙
   .big ⋁
   .curly ⋎
   .dot ⟇
   .double ⩔
+  .eq ⩣
+  .sloped ⩗
+  .stem ⩛
+  .struck ⩝
+  .twice ⩖
+  .twice.big ⨈
 xor ⊕
   .big ⨁
 models ⊧
