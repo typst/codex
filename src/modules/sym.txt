@@ -196,9 +196,12 @@ tilde
   .op ∼
   .basic ~
   .dot ⩪
+  .double ≈
+  .double.not ≉
   .eq ≃
   .eq.not ≄
   .eq.rev ⋍
+  .eq.tilde ⩬
   .equiv ≅
   .equiv.not ≇
   .nequiv ≆
@@ -265,6 +268,7 @@ minus −
   .dot ∸
   .plus ∓
   .square ⊟
+  @deprecated: `minus.tilde` is deprecated, use `eq.tilde` instead
   .tilde ≂
   .triangle ⨺
 div ÷
@@ -309,6 +313,7 @@ eq =
   .prec ⋞
   .quest ≟
   .succ ⋟
+  .tilde ≂
   .triple ≡
   .triple.not ≢
   .quad ≣
@@ -378,6 +383,7 @@ lt <
   .triple.nested ⫷
 approx ≈
   .eq ≊
+  .equiv ⩰
   .not ≉
   .hat ⩯
 prec ≺
@@ -420,6 +426,7 @@ equiv ≡
   .lt.slant ⪛
   .gt ⪚
   .gt.slant ⪜
+  .tilde ⩳
 smt ⪪
   .eq ⪬
   .eq.slant ⪬\vs{1}
