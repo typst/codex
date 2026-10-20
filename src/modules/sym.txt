@@ -210,6 +210,12 @@ tilde
   .rev ∽
   .rev.equiv ≌
   .triple ≋
+lazys ∽\vs{1}
+  .eq ⋍\vs{1}
+  .rev ∾
+  .rev.eq ≃\vs{1}
+  .rev.double ≈\vs{1}
+  .rev.eq.lazys ⩬\vs{1}
 
 // Accents, quotes, and primes.
 acute ´
@@ -304,6 +310,7 @@ eq =
   .gt.slant ⪖
   .lt ⋜
   .lt.slant ⪕
+  .lazys.rev ≂\vs{1}
   .m ≞
   .not ≠
   .prec ⋞
