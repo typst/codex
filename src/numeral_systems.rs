@@ -896,7 +896,7 @@ impl NamedNumeralSystem {
                 "๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙",
             ]),
 
-            Self::ThaiLetters => NumeralSystem::Fixed(&[
+            Self::ThaiLetters => NumeralSystem::ZerolessFixed(&[
                 "ก", "ข", "ค", "ง", "จ", "ฉ", "ช", "ซ", "ฌ", "ญ", "ฎ", "ฏ", "ฐ", "ฑ",
                 "ฒ", "ณ", "ด", "ต", "ถ", "ท", "ธ", "น", "บ", "ป", "ผ", "ฝ", "พ", "ฟ",
                 "ภ", "ม", "ย", "ร", "ล", "ว", "ศ", "ษ", "ส", "ห", "ล", "อ", "ฮ",
@@ -1498,6 +1498,8 @@ mod tests {
                 NamedNumeralSystem::Bengali => 79096832028418218544110224478554962928,
                 NamedNumeralSystem::BengaliLetters => 269999388716378396079918080520770981179,
                 NamedNumeralSystem::Symbols => 88780534058354093087932015985325954737,
+                NamedNumeralSystem::Thai => 24629330179757431545706612668883071968,
+                NamedNumeralSystem::ThaiLetters => 11411336741365137317186217842643707911,
             }
         }
 
